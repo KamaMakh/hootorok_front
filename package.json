@@ -2,7 +2,7 @@
   "name": "hutorok",
   "version": "0.0.1",
   "description": "New site of recreation center Hutorok",
-  "productName": "Hutorok site",
+  "productName": "База отдыха \"Хуторок\". Термальные источники",
   "cordovaId": "org.cordova.quasar.app",
   "author": "applesFather <otetcyablok@gmail.com>",
   "private": true,

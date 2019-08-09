@@ -1,4 +1,5 @@
 // import axios from 'axios';
+import { showErrorMessage } from 'src/utils/function-show-error-message.js';
 
 const state = {
   loggedIn: false,
@@ -24,7 +25,8 @@ const actions = {
       console.log(payload);
     } catch (error) {
       console.log(error);
-      // popup with error?
+      // popup with the error
+      showErrorMessage(error.message);
     }
   },
   handleAuthState({ commit }) {

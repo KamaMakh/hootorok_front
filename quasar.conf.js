@@ -58,6 +58,7 @@ module.exports = () => ({
       'QBanner',
       'QTabPanels',
       'QTabPanel',
+      'QDialog',
     ],
 
     directives: [

@@ -1,0 +1,46 @@
+// import axios from 'axios';
+
+const state = {
+  loggedIn: false,
+  alreadyRegistered: false,
+};
+
+const mutations = {
+  // eslint-disable-next-line no-shadow
+  setLoggedIn(state, value) {
+    state.loggedIn = value;
+  },
+};
+
+const actions = {
+  async registerUser({ commit }, payload) {
+    try {
+      // const response = await axios.post('здесь мне нужен адрес api', { payload })
+      // const data = response.data
+      // console.log(data);
+      // history.push('/booking');
+      commit('setLoggedIn', true);
+      this.$router.push('/booking');
+      console.log(payload);
+    } catch (error) {
+      console.log(error);
+      // popup with error?
+    }
+  },
+  handleAuthState({ commit }) {
+    if (state.loggedIn) {
+      commit('setLoggedIn', true);
+      this.$router.push('/booking');
+    }
+  },
+};
+
+const getters = {};
+
+export default {
+  namespaced: true,
+  state,
+  mutations,
+  actions,
+  getters,
+};

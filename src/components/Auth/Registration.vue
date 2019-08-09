@@ -1,17 +1,17 @@
 <template>
   <form @submit.prevent="submitForm" class="col">
-    <div class='row q-mb-md'>
-      <q-banner class='bg-grey-3 col '>
+    <div class="row q-mb-md">
+      <q-banner class="bg-grey-3 col">
         <div class="registrationHeader">Регистрация</div>
       </q-banner>
     </div>
-    <div class='row q-mb-md'>
+    <div class="row q-mb-md">
       <q-input
         outlined
-        v-model='formData.tel'
-        label='Телефон'
-        class='col q-ml-md q-mr-md'
-        ref='tel'
+        v-model="formData.tel"
+        label="Телефон"
+        class="col q-ml-md q-mr-md"
+        ref="tel"
         mask="###########"
         fill-mask
         hint="Формат: 8##########"
@@ -22,13 +22,13 @@
           ]"
       />
     </div>
-    <div class='row q-mb-md'>
+    <div class="row q-mb-md">
       <q-input
         outlined
-        v-model='formData.email'
-        label='E-mail'
-        class='col q-ml-md q-mr-md'
-        ref='email'
+        v-model="formData.email"
+        label="E-mail"
+        class="col q-ml-md q-mr-md"
+        ref="email"
         lazy-rules
         :rules="[
           val => !!val || 'Это обязательное поле',
@@ -36,76 +36,80 @@
           ]"
       />
     </div>
-    <div class='row q-mb-md'>
+    <div class="row q-mb-md">
       <q-input
-        ref='password'
+        ref="password"
         outlined
-        v-model='formData.password'
-        label='Пароль'
-        class='col q-ml-md q-mr-md'
-        type='password'
+        v-model="formData.password"
+        label="Пароль"
+        class="col q-ml-md q-mr-md"
+        type="password"
         :rules="[
           val => !!val || 'Это обязательное поле',
           val => val.length >= 6 || 'Пароль должен быть не менее 6 знаков'
           ]"
         lazy-rules
       >
-        <div class='column justify-center'>
-          <q-icon name='visibility' size='18px' color='primary' @click='showPassword()' />
+        <div class="column justify-center">
+          <q-icon name="visibility" size="18px" color="primary" @click="showPassword()" />
         </div>
       </q-input>
     </div>
-    <div class='row q-mb-md'>
+    <div class="row q-mb-md">
       <q-input
-        ref='password2'
+        ref="password2"
         outlined
-        v-model='formData.password2'
-        label='Подтверждение пароля'
-        class='col q-ml-md q-mr-md'
-        type='password'
+        v-model="formData.password2"
+        label="Подтверждение пароля"
+        class="col q-ml-md q-mr-md"
+        type="password"
         :rules="[
           val => !!val || 'Это обязательное поле',
           val => isPasswordsMatch(val) || 'Пароли не совпадают'
           ]"
         lazy-rules
       >
-        <div class='column justify-center'>
-          <q-icon name='visibility' size='18px' color='primary' @click='showPassword2()' />
+        <div class="column justify-center">
+          <q-icon name="visibility" size="18px" color="primary" @click="showPassword2()" />
         </div>
       </q-input>
     </div>
-    <div class='row q-mb-md'>
+    <div class="row q-mb-md">
       <q-input
         outlined
-        v-model='formData.name'
-        label='Имя'
-        class='col q-ml-md q-mr-md'
-        ref='name'
+        v-model="formData.name"
+        label="Имя"
+        class="col q-ml-md q-mr-md"
+        ref="name"
         lazy-rules
         :rules="[
           val => !!val || 'Это обязательное поле',
           ]"
       />
     </div>
-    <div class='row'>
+    <div class="row">
       <q-input
         outlined
-        v-model='formData.surname'
-        label='Фамилия'
-        class='col q-ml-md q-mr-md'
-        ref='surname'
+        v-model="formData.surname"
+        label="Фамилия"
+        class="col q-ml-md q-mr-md"
+        ref="surname"
         lazy-rules
         :rules="[
           val => !!val || 'Это обязательное поле',
           ]"
       />
     </div>
-    <div class='row'>
-      <q-checkbox class='q-ml-sm q-mb-md' right-label v-model="formData.subscribed"
-      label="Подписаться на рассылку об акциях и скидках" />
+    <div class="row">
+      <q-checkbox
+        class="q-ml-sm q-mb-md"
+        right-label
+        v-model="formData.subscribed"
+        label="Подписаться на рассылку об акциях и скидках"
+      />
     </div>
-    <div class='row'>
-      <q-btn color='primary' label='Зарегистрироваться' type='submit' class='q-ml-md q-mb-md'/>
+    <div class="row">
+      <q-btn color="primary" label="Зарегистрироваться" type="submit" class="q-ml-md q-mb-md" />
     </div>
   </form>
 </template>

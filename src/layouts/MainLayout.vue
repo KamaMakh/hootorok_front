@@ -10,7 +10,7 @@
 
         <div class="row items-center">
           <router-link
-            :to="{ name: 'login' }"
+            :to="{ name: 'auth' }"
             class="standard-link text-white q-ml-md"
             v-text="$t('login')"
           />

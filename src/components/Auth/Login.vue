@@ -8,10 +8,10 @@
     <div class="row q-mb-md">
       <q-input
         outlined
-        v-model="formData.email"
+        v-model="formData.phone_number"
         label="Телефон или email"
         class="col q-ml-md q-mr-md"
-        ref="email"
+        ref="phone_number"
         lazy-rules
         :rules="[
           val => !!val || 'Поле обязательно'
@@ -57,7 +57,7 @@ export default {
     return {
       formData: {
         password: '',
-        email: '',
+        phone_number: '',
         subscribed: 'false',
       },
     };
@@ -74,7 +74,7 @@ export default {
     },
     submitForm() {
       if (
-        !this.$refs.email.hasError
+        !this.$refs.phone_number.hasError
         && !this.$refs.password.hasError
       ) {
         this.loginUser(this.formData);

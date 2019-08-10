@@ -1,6 +1,6 @@
 <template>
   <q-page class="q-px-md q-pb-md">
-    <h1 class="text-h2" v-text="$t('auth')" />
+    <h1 class="text-h2" v-text="$t('auth')"/>
   </q-page>
 </template>
 

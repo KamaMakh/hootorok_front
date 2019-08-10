@@ -19,7 +19,6 @@
         :rules="[
           val => !!val || 'Поле обязательно',
           val => isValidTelNumber(val) || 'Пожалуйста введите корректный номер телефона',
-          val => val.length !== 11 || 'Ожидается 11 цифр'
           ]"
       />
     </div>
@@ -44,7 +43,7 @@
         v-model="formData.password"
         label="Пароль"
         class="col q-ml-md q-mr-md"
-        type="password"
+        :type="isPwd ? 'password' : 'text'"
         :rules="[
           val => !!val || 'Поле обязательно',
           val => val.length >= 6 || 'Ожидается минимум 6 символов',
@@ -64,7 +63,7 @@
         v-model="formData.password2"
         label="Подтверждение пароля"
         class="col q-ml-md q-mr-md"
-        type="password"
+        :type="isPwd ? 'password' : 'text'"
         :rules="[
           val => !!val || 'Поле обязательно',
           val => isPasswordsMatch(val) || 'Пароли не совпадают'
@@ -137,22 +136,22 @@ export default {
   },
   methods: {
     ...mapActions('auth', ['registerUser', 'handleAuthState']),
-    showPassword() {
-      const x = this.$refs.password;
-      if (x.type === 'password') {
-        x.type = 'text';
-      } else {
-        x.type = 'password';
-      }
-    },
-    showPassword2() {
-      const x = this.$refs.password2;
-      if (x.type === 'password') {
-        x.type = 'text';
-      } else {
-        x.type = 'password';
-      }
-    },
+    // showPassword() {
+    //   const x = this.$refs.password;
+    //   if (x.type === 'password') {
+    //     x.type = 'text';
+    //   } else {
+    //     x.type = 'password';
+    //   }
+    // },
+    // showPassword2() {
+    //   const x = this.$refs.password2;
+    //   if (x.type === 'password') {
+    //     x.type = 'text';
+    //   } else {
+    //     x.type = 'password';
+    //   }
+    // },
     isValidEmailAddress(email) {
       const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(String(email).toLowerCase());

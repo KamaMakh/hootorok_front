@@ -46,6 +46,13 @@ module.exports = () => ({
       'QItemSection',
       'QItemLabel',
       'QSelect',
+      'QTable',
+      'QTh',
+      'QTr',
+      'QTd',
+      'QCarousel',
+      'QCarouselControl',
+      'QCarouselSlide',
     ],
 
     directives: [

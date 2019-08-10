@@ -19,6 +19,11 @@ const routes = [
         name: 'registration',
         component: () => import('pages/Registration.vue'),
       },
+      {
+        path: '/thermal',
+        name: 'Thermal',
+        component: () => import('pages/Thermal.vue'),
+      },
     ],
   },
 ];

@@ -12,13 +12,14 @@
         label="Телефон"
         class="col q-ml-md q-mr-md"
         ref="tel"
-        mask="###########"
+        mask="# ### ### ## ##"
         fill-mask
-        hint="Формат: 8##########"
+        hint="Формат: 8 ### ### ## ##"
         lazy-rules
         :rules="[
-          val => !!val || 'Это обязательное поле',
-          val => isValidTelNumber(val) || 'Пожалуйста введите корректный номер телефона'
+          val => !!val || 'Поле обязательно',
+          val => isValidTelNumber(val) || 'Пожалуйста введите корректный номер телефона',
+          val => val.length !== 11 || 'Ожидается 11 цифр'
           ]"
       />
     </div>
@@ -31,8 +32,8 @@
         ref="email"
         lazy-rules
         :rules="[
-          val => !!val || 'Это обязательное поле',
-          val => isValidEmailAddress(val) || 'Пожалуйста введите корректный e-mail'
+          val => !!val || 'Поле обязательно',
+          val => isValidEmailAddress(val) || 'Невалидный e-mail'
           ]"
       />
     </div>
@@ -45,8 +46,9 @@
         class="col q-ml-md q-mr-md"
         type="password"
         :rules="[
-          val => !!val || 'Это обязательное поле',
-          val => val.length >= 6 || 'Пароль должен быть не менее 6 знаков'
+          val => !!val || 'Поле обязательно',
+          val => val.length >= 6 || 'Ожидается минимум 6 символов',
+          val => val.length <= 25 || 'Сократите пароль до 25 символов',
           ]"
         lazy-rules
       >
@@ -64,7 +66,7 @@
         class="col q-ml-md q-mr-md"
         type="password"
         :rules="[
-          val => !!val || 'Это обязательное поле',
+          val => !!val || 'Поле обязательно',
           val => isPasswordsMatch(val) || 'Пароли не совпадают'
           ]"
         lazy-rules
@@ -83,7 +85,8 @@
         ref="name"
         lazy-rules
         :rules="[
-          val => !!val || 'Это обязательное поле',
+          val => !!val || 'Поле обязательно',
+          val => val.length <= 25 || 'Сократите имя до 25 символов',
           ]"
       />
     </div>
@@ -96,7 +99,8 @@
         ref="surname"
         lazy-rules
         :rules="[
-          val => !!val || 'Это обязательное поле',
+          val => !!val || 'Поле обязательно',
+          val => val.length <= 25 || 'Сократите имя до 25 символов',
           ]"
       />
     </div>
@@ -154,7 +158,8 @@ export default {
       return re.test(String(email).toLowerCase());
     },
     isValidTelNumber(tel) {
-      const telNumber = /^((\+7|7|8)+([0-9]){10})$/;
+      //const telNumber = /^((\+7|7|8)+([0-9]){10})$/;
+      const telNumber = /^((8|7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
       return telNumber.test(String(tel));
     },
     isPasswordsMatch(password2) {

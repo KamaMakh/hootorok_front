@@ -46,6 +46,19 @@ module.exports = () => ({
       'QItemSection',
       'QItemLabel',
       'QSelect',
+
+      'QFooter',
+      'QTabs',
+      'QTab',
+      'QRouteTab',
+      'QCheckbox',
+      'QCard',
+      'QCardSection',
+      'QInput',
+      'QBanner',
+      'QTabPanels',
+      'QTabPanel',
+      'QDialog',
     ],
 
     directives: [
@@ -56,6 +69,7 @@ module.exports = () => ({
     plugins: [
       'Notify',
       'Cookies',
+      'LocalStorage',
     ],
   },
 

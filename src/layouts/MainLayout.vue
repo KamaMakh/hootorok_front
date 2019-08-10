@@ -62,25 +62,25 @@
     <q-page-container>
       <router-view />
 
-      <q-footer elevated class="bg-primary text-left q-py-lg q-px-md shadow-6">
-        <div class="row items-center absolute-center">
+      <footer elevated class="bg-primary text-left q-py-lg q-px-md shadow-6">
+        <div class="row items-center justify-center text-center q-gutter-md">
           <router-link
             :to="{ name: 'contacts'}"
-            class="standard-link text-white q-mr-md"
+            class="standard-link text-white"
             v-text="$t('contacts')"
           />
           <router-link
             :to="{ name: 'about'}"
-            class="standard-link text-white q-mr-md"
+            class="standard-link text-white"
             v-text="$t('about')"
           />
           <router-link
             :to="{ name: 'info'}"
-            class="standard-link text-white q-mr-md"
+            class="standard-link text-white"
             v-text="$t('info')"
           />
         </div>
-      </q-footer>
+      </footer>
     </q-page-container>
   </q-layout>
 </template>

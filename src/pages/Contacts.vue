@@ -1,5 +1,5 @@
 <template>
-  <q-page class="q-px-md q-pb-md">
+  <q-page padding>
     <h1 class="text-h2" v-text="$t('contacts')"/>
   </q-page>
 </template>

@@ -46,6 +46,7 @@ module.exports = () => ({
       'QItemSection',
       'QItemLabel',
       'QSelect',
+      'QDialog',
     ],
 
     directives: [
@@ -56,6 +57,7 @@ module.exports = () => ({
     plugins: [
       'Notify',
       'Cookies',
+      'Dialog',
     ],
   },
 

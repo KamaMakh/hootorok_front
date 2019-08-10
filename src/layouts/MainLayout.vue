@@ -15,16 +15,30 @@
         <q-toolbar-title/>
 
         <div class="row items-center">
-          <router-link
-            :to="{ name: 'login' }"
-            class="standard-link text-white q-ml-md"
-            v-text="$t('login')"
-          />
-          <router-link
-            :to="{ name: 'registration' }"
-            class="standard-link text-white q-ml-md"
-            v-text="$t('registration')"
-          />
+          <div v-if="isAuth">
+              <router-link
+                      :to="{ name: 'cabinet' }"
+                      class="standard-link text-white q-ml-md"
+                      v-text="$t('cabinet')"
+              />
+              <router-link
+                      :to="{ name: 'logout' }"
+                      class="standard-link text-white q-ml-md"
+                      v-text="$t('logout')"
+              />
+          </div>
+          <div v-else>
+              <router-link
+                      :to="{ name: 'login' }"
+                      class="standard-link text-white q-ml-md"
+                      v-text="$t('login')"
+              />
+              <router-link
+                      :to="{ name: 'registration' }"
+                      class="standard-link text-white q-ml-md"
+                      v-text="$t('registration')"
+              />
+          </div>
           <q-select
             v-model="lang"
             :options="langOptions"
@@ -75,12 +89,14 @@
 </template>
 
 <script>
-import { openURL } from 'quasar';
+import { openURL, Dialog } from 'quasar';
+import axios from 'axios';
 
 export default {
   name: 'MainLayout',
   data() {
     return {
+      isAuth: false,
       leftDrawerOpen: this.$q.platform.is.desktop,
       langOptions: [{
         label: 'RU',
@@ -90,6 +106,16 @@ export default {
         value: 'en-us',
       }],
     };
+  },
+  beforeRouteEnter(to, from, next) {
+    next(vm => vm.isAuth = true);
+    // Promise.all([axios.get('api address/auth/check')])
+    //   .then((values) => {
+    //     next(vm => vm.checkAuth(values[0]));
+    //   })
+    //   .catch((error) => {
+    //     next(vm => vm.showErrorMessage(error));
+    //   });
   },
   computed: {
     lang: {
@@ -108,6 +134,15 @@ export default {
     },
   },
   methods: {
+    checkAuth(info) {
+      this.isAuth = info.data;
+    },
+    showErrorMessage(errorMessage) {
+      Dialog.create({
+        title: 'Error',
+        message: 'Что-то пошло не так',
+      });
+    },
     openURL,
   },
 };

@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'Info',
+  name: 'PasswordReset',
 };
 </script>
 

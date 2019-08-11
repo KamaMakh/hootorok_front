@@ -36,7 +36,7 @@
           <q-btn color="primary" v-bind:label="$t('enter')" type="submit" />
         </div>
         <div>
-          <router-link :to="'/auth/forgot-password'" v-text="$t('forgot_password')" />
+          <router-link :to="{ name: 'passwordreset' }" v-text="$t('forgot_password')" />
         </div>
         <div>
           <router-link :to="{ name: 'registration' }" v-text="$t('registration')" />

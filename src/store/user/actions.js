@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { registerUrl } from 'src/store/urls';
+import { registerUrl, resetPasswordUrl } from 'src/store/urls';
 
 import onError from 'src/store/onError';
 
@@ -15,6 +15,18 @@ function register({ commit }, data) {
   });
 }
 
+function resetPassword({ commit }, data) {
+  return new Promise((resolve, reject) => {
+    axios.post(resetPasswordUrl, data)
+      .then(() => {
+        commit('resetUser');
+
+        resolve();
+      })
+      .catch(error => onError(error, reject));
+  });
+}
+
 export {
-  register,
+  register, resetPassword,
 };

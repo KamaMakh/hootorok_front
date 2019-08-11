@@ -43,41 +43,25 @@
 
 <script>
 export default {
-  name: 'Registration',
+  name: 'PasswordReset',
   data() {
     return {
       formData: {
         email: '',
-        password: '',
-        password2: '',
-        first_name: '',
-        last_name: '',
-        phone_number: '',
-        subscribed: false,
       },
-      showPassword: true,
-      showPassword2: true,
-      tab: 'Login',
     };
   },
   methods: {
     submitForm() {
       this.$refs.email.validate();
-      this.$refs.password.validate();
-      this.$refs.password2.validate();
-      this.$refs.first_name.validate();
-      this.$refs.last_name.validate();
-      this.$refs.phone_number.validate();
       if (
         !this.$refs.email.hasError
-        && !this.$refs.password.hasError
-        && !this.$refs.password2.hasError
-        && !this.$refs.first_name.hasError
-        && !this.$refs.last_name.hasError
-        && !this.$refs.phone_number.hasError
       ) {
-        this.$store.dispatch('user/register', this.formData)
-          .then(() => this.$router.push({ name: 'booking' }))
+        this.$store.dispatch('user/resetPassword', this.formData)
+          .then(() => this.$q.notify({
+            icon: 'close',
+            message: 'Данные о смене пароля отправлены на email',
+          }))
           .catch((error) => {
             this.$q.notify({
               icon: 'close',

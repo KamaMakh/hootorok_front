@@ -184,11 +184,6 @@ export default {
     this.registerUser();
   },
   computed: {
-    // isValidTelNumber() {
-    //   // eslint-disable-next-line
-    //   const telNumber = /^((8|7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
-    //   return telNumber.test(String(this.$refs.tel.value));
-    // },
     isValidEmailAddress() {
     // eslint-disable-next-line
       const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

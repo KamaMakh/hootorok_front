@@ -4,8 +4,8 @@
       <q-banner class="bg-grey-3">
         <div
           v-text="$t('authorization')"
-          class="text-center font-size_20">
-          </div>
+          class="text-center font-size_20"
+        />
       </q-banner>
       <form @submit.prevent="submitForm" class="q-pa-md">
         <div class="q-gutter-md">
@@ -18,7 +18,7 @@
             lazy-rules
             :rules="[
               val => !!val || $t('required_field')
-              ]"
+            ]"
           />
           <q-input
             ref="password"
@@ -29,7 +29,7 @@
             :rules="[
               val => !!val || $t('required_field'),
               val => val.length >= 6 || $t('six_characters_min')
-              ]"
+            ]"
             lazy-rules
           />
         <div class="row">

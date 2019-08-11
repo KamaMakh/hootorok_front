@@ -4,23 +4,26 @@
       <form @submit.prevent="submitForm" class="col">
         <div class="row q-mb-md">
           <q-banner class="bg-grey-3 col">
-            <div class="registrationHeader">Регистрация</div>
+            <div
+              class="registrationHeader"
+              v-text="$t('registration')"
+              ></div>
           </q-banner>
         </div>
         <div class="row q-mb-md">
           <q-input
             outlined
             v-model="formData.tel"
-            label="Телефон"
+            v-bind:label="$t('phone')"
             class="col q-ml-md q-mr-md"
             ref="tel"
             mask="# ### ### ## ##"
             fill-mask
-            hint="Формат: 8 ### ### ## ##"
+            v-bind:hint="$t('phone_layout')"
             lazy-rules
             :rules="[
-          val => !!val || 'Поле обязательно',
-          val => isValidTelNumber || 'Пожалуйста введите корректный номер телефона',
+          val => !!val || $t('required_field'),
+          val => isValidTelNumber || $t('enter_correct_tel_number'),
           ]"
           />
         </div>
@@ -33,8 +36,8 @@
             ref="email"
             lazy-rules
             :rules="[
-          val => !!val || 'Поле обязательно',
-          val => isValidEmailAddress || 'Невалидный e-mail'
+          val => !!val || $t('required_field'),
+          val => isValidEmailAddress || $t('enter_correct_email')
           ]"
           />
         </div>
@@ -43,13 +46,13 @@
             ref="password"
             outlined
             v-model="formData.password"
-            label="Пароль"
+            v-bind:label="$t('password')"
             class="col q-ml-md q-mr-md"
             :type="isPwd ? 'password' : 'text'"
             :rules="[
-          val => !!val || 'Поле обязательно',
-          val => val.length >= 6 || 'Ожидается минимум 6 символов',
-          val => val.length <= 25 || 'Сократите пароль до 25 символов',
+          val => !!val || $t('required_field'),
+          val => val.length >= 6 || $t('six_characters_min'),
+          val => val.length <= 25 || $t('twentyfive_characters_password'),
           ]"
             lazy-rules
           >
@@ -67,12 +70,13 @@
             ref="password2"
             outlined
             v-model="formData.password2"
-            label="Подтверждение пароля"
+            v-bind:label="$t('confirm_password')"
             class="col q-ml-md q-mr-md"
             :type="isPwd2 ? 'password' : 'text'"
             :rules="[
-          val => !!val || 'Поле обязательно',
-          val => this.$refs.password.value === this.$refs.password2.value || 'Пароли не совпадают'
+          val => !!val || $t('required_field'),
+          val => this.$refs.password.value === this.$refs.password2.value
+            || $t('passwords_should_match')
           ]"
             lazy-rules
           >
@@ -89,13 +93,13 @@
           <q-input
             outlined
             v-model="formData.name"
-            label="Имя"
+            v-bind:label="$t('name')"
             class="col q-ml-md q-mr-md"
             ref="name"
             lazy-rules
             :rules="[
-          val => !!val || 'Поле обязательно',
-          val => val.length <= 25 || 'Сократите имя до 25 символов',
+          val => !!val || $t('required_field'),
+          val => val.length <= 25 || $t('twentyfive_characters_name'),
           ]"
           />
         </div>
@@ -103,13 +107,13 @@
           <q-input
             outlined
             v-model="formData.surname"
-            label="Фамилия"
+            v-bind:label="$t('last_name')"
             class="col q-ml-md q-mr-md"
             ref="surname"
             lazy-rules
             :rules="[
-          val => !!val || 'Поле обязательно',
-          val => val.length <= 25 || 'Сократите имя до 25 символов',
+          val => !!val || $t('required_field'),
+          val => val.length <= 25 || $t('twentyfive_characters_lastname'),
           ]"
           />
         </div>
@@ -118,11 +122,15 @@
             class="q-ml-sm q-mb-md"
             right-label
             v-model="formData.subscribed"
-            label="Подписаться на рассылку об акциях и скидках"
+            v-bind:label="$t('subscribe_for_newsletter')"
           />
         </div>
         <div class="row">
-          <q-btn color="primary" label="Зарегистрироваться" type="submit" class="q-ml-md q-mb-md" />
+          <q-btn
+            color="primary"
+            v-bind:label="$t('register')"
+            type="submit"
+            class="q-ml-md q-mb-md" />
         </div>
       </form>
     </q-page>
@@ -151,7 +159,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions('auth', ['registerUser', 'handleAuthState']),
+    ...mapActions('auth', ['registerUser']),
     submitForm() {
       this.$refs.email.validate();
       this.$refs.password.validate();
@@ -167,12 +175,14 @@ export default {
         && !this.$refs.surname.hasError
         && !this.$refs.tel.hasError
       ) {
-        this.registerUser(this.formData);
+        this.$store.dispatch('auth/registerUser', this.formData)
+          .then(this.$router.push('/booking'))
+          .catch(err => console.log(err));
       }
     },
   },
   mounted() {
-    this.handleAuthState();
+    this.registerUser();
   },
   computed: {
     isValidTelNumber() {

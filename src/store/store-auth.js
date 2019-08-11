@@ -22,19 +22,19 @@ const mutations = {
 };
 
 const actions = {
-  // async registerUser({ commit }, payload) {
-  //   try {
-  //     const response = await axios.post('здесь мне нужен адрес api', { payload })
-  //     const data = response.data
-  //     commit('setLoggedIn', true);
-  //     this.$router.push('/booking');
-  //     console.log(payload);
-  //   } catch (error) {
-  //     console.log(error);
-  //     // popup with the error
-  //     showErrorMessage(error.message);
-  //   }
-  // },
+  async registerUser({ commit }, payload) {
+    try {
+      // const response = await axios.post('здесь мне нужен адрес api', { payload })
+      // const data = response.data
+      commit('setLoggedIn', true);
+      // this.$router.push('/booking');
+      console.log(payload);
+    } catch (error) {
+      console.log(error);
+      // popup with the error
+      // showErrorMessage(error.message);
+    }
+  },
 };
 
 const getters = {

@@ -3,6 +3,8 @@ export default {
   login: 'Login',
   password: 'Password',
   confirm_password: 'Confirm password',
+  password_reset: 'Password reset',
+  reset_password: 'Reset password',
   name: 'Name',
   last_name: 'Last name',
   registration: 'Registration',

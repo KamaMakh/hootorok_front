@@ -3,6 +3,8 @@ export default {
   login: 'Войти',
   password: 'Пароль',
   confirm_password: 'Подтверждение пароля',
+  password_reset: 'Восстановление пароля',
+  reset_password: 'Восстановить пароль',
   name: 'Имя',
   last_name: 'Фамилия',
   registration: 'Регистрация',

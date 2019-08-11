@@ -34,6 +34,7 @@ module.exports = () => ({
     components: [
       'QLayout',
       'QHeader',
+      'QFooter',
       'QDrawer',
       'QPageContainer',
       'QPage',
@@ -47,17 +48,9 @@ module.exports = () => ({
       'QItemLabel',
       'QSelect',
 
-      'QFooter',
-      'QTabs',
-      'QTab',
-      'QRouteTab',
       'QCheckbox',
-      'QCard',
-      'QCardSection',
       'QInput',
       'QBanner',
-      'QTabPanels',
-      'QTabPanel',
       'QDialog',
     ],
 
@@ -69,7 +62,7 @@ module.exports = () => ({
     plugins: [
       'Notify',
       'Cookies',
-      'LocalStorage',
+      'Dialog',
     ],
   },
 

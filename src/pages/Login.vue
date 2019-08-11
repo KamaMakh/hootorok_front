@@ -1,18 +1,18 @@
 <template>
-  <div class="q-mt-md q-mb-md">
-    <q-page class=" text-grey">
-      <form @submit.prevent="submitForm" class="col auth-tabs">
-        <div class="row q-mb-md">
-          <q-banner class="bg-grey-3 col">
-            <div v-text="$t('authorization')" class="registrationHeader"></div>
-          </q-banner>
-        </div>
-        <div class="row q-mb-md">
+  <q-page padding>
+    <div class="auth-tabs">
+      <q-banner class="bg-grey-3">
+        <div
+          v-text="$t('authorization')"
+          class="text-center font-size_20">
+          </div>
+      </q-banner>
+      <form @submit.prevent="submitForm" class="q-pa-md">
+        <div class="q-gutter-md">
           <q-input
             outlined
             v-model="formData.login"
             v-bind:label="$t('phone_or_email')"
-            class="col q-ml-md q-mr-md"
             ref="login"
             v-bind:hint="$t('phone_layout')"
             lazy-rules
@@ -20,40 +20,34 @@
               val => !!val || $t('required_field')
               ]"
           />
-        </div>
-        <div class="row q-mb-md">
           <q-input
             ref="password"
             outlined
             v-model="formData.password"
             v-bind:label="$t('password')"
-            class="col q-ml-md q-mr-md"
             type="password"
             :rules="[
               val => !!val || $t('required_field'),
               val => val.length >= 6 || $t('six_characters_min')
               ]"
             lazy-rules
-          >
-          </q-input>
-        </div>
+          />
         <div class="row">
-          <q-btn color="primary" v-bind:label="$t('enter')" type="submit" class="q-ml-md q-mb-md" />
+          <q-btn color="primary" v-bind:label="$t('enter')" type="submit" />
         </div>
-        <div class="row q-ml-md q-mb-md">
+        <div>
           <router-link :to="'/auth/forgot-password'" v-text="$t('forgot_password')" />
         </div>
-        <div class="row q-ml-md q-mb-md">
+        <div>
           <router-link :to="{ name: 'registration' }" v-text="$t('registration')" />
         </div>
+        </div>
       </form>
-    </q-page>
-  </div>
+    </div>
+  </q-page>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
-
 export default {
   name: 'Login',
   data() {
@@ -65,19 +59,22 @@ export default {
     };
   },
   methods: {
-    ...mapActions('auth', ['loginUser']),
     submitForm() {
       if (
         !this.$refs.login.hasError
         && !this.$refs.password.hasError
       ) {
-        this.$store.dispatch('auth/loginUser', this.formData)
-          .then(this.$router.push('/booking'))
-          .catch(err => console.log(err));
+        this.$store.dispatch('user/login', this.formData)
+          .then(() => this.$router.push({ name: 'booking' }))
+          .catch((error) => {
+            this.$q.notify({
+              icon: 'close',
+              color: 'negative',
+              message: error,
+            });
+          });
       }
     },
-  },
-  mounted() {
   },
 };
 </script>
@@ -87,9 +84,5 @@ export default {
   max-width: 500px;
   margin: 0 auto;
   border: 1px solid lightgrey;
-}
-.registrationHeader {
-  text-align: center;
-  font-size: 20px;
 }
 </style>

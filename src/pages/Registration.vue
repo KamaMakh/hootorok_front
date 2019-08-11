@@ -1,59 +1,56 @@
 <template>
   <q-page padding>
-    <div class="q-mt-md q-mb-md auth-tabs">
-      <q-banner class="bg-grey-3 col">
+    <div class="auth-tabs">
+      <q-banner class="bg-grey-3">
         <div
           class="text-center font-size_20"
           v-text="$t('registration')"
-        ></div>
+        />
       </q-banner>
       <form @submit.prevent="submitForm" class="q-pa-md">
         <div class="q-gutter-md">
           <q-input
             outlined
             v-model="formData.phone_number"
-            v-bind:label="$t('phone')"
-            class="col q-ml-md q-mr-md"
+            :label="$t('phone')"
             ref="phone_number"
             mask="# ### ### ## ##"
             fill-mask
-            v-bind:hint="$t('phone_layout')"
+            :hint="$t('phone_layout')"
             lazy-rules
             :rules="[
-          val => !!val || $t('required_field'),
-          ]"
+              val => !!val || $t('required_field'),
+            ]"
           />
           <q-input
             outlined
             v-model="formData.email"
             label="E-mail"
-            class="col q-ml-md q-mr-md"
             ref="email"
             lazy-rules
             :rules="[
-          val => !!val || $t('required_field'),
-          val => isValidEmailAddress || $t('enter_correct_email')
-          ]"
+              val => !!val || $t('required_field'),
+              val => isValidEmailAddress || $t('enter_correct_email')
+            ]"
           />
           <q-input
             ref="password"
             outlined
             v-model="formData.password"
-            v-bind:label="$t('password')"
-            class="col q-ml-md q-mr-md"
-            :type="isPwd ? 'password' : 'text'"
+            :label="$t('password')"
+            :type="showPassword ? 'password' : 'text'"
             :rules="[
-          val => !!val || $t('required_field'),
-          val => val.length >= 6 || $t('six_characters_min'),
-          val => val.length <= 25 || $t('twentyfive_characters_password'),
-          ]"
+              val => !!val || $t('required_field'),
+              val => val.length >= 6 || $t('six_characters_min'),
+              val => val.length <= 25 || $t('twentyfive_characters_password'),
+            ]"
             lazy-rules
           >
             <template v-slot:append>
               <q-icon
-                :name="isPwd ? 'visibility_off' : 'visibility'"
+                :name="showPassword ? 'visibility_off' : 'visibility'"
                 class="cursor-pointer"
-                @click="isPwd = !isPwd"
+                @click="showPassword = !showPassword"
               />
             </template>
           </q-input>
@@ -61,62 +58,59 @@
             ref="password2"
             outlined
             v-model="formData.password2"
-            v-bind:label="$t('confirm_password')"
-            class="col q-ml-md q-mr-md"
-            :type="isPwd2 ? 'password' : 'text'"
+            :label="$t('confirm_password')"
+            :type="showPassword2 ? 'password' : 'text'"
             :rules="[
-          val => !!val || $t('required_field'),
-          val => this.$refs.password.value === this.$refs.password2.value
+              val => !!val || $t('required_field'),
+              val => this.$refs.password.value === this.$refs.password2.value
             || $t('passwords_should_match')
-          ]"
+            ]"
             lazy-rules
           >
             <template v-slot:append>
               <q-icon
-                :name="isPwd2 ? 'visibility_off' : 'visibility'"
+                :name="showPassword2 ? 'visibility_off' : 'visibility'"
                 class="cursor-pointer"
-                @click="isPwd2 = !isPwd2"
+                @click="showPassword2 = !showPassword2"
               />
             </template>
           </q-input>
           <q-input
             outlined
             v-model="formData.name"
-            v-bind:label="$t('name')"
-            class="col q-ml-md q-mr-md"
+            :label="$t('name')"
             ref="first_name"
             lazy-rules
             :rules="[
-          val => !!val || $t('required_field'),
-          val => val.length <= 25 || $t('twentyfive_characters_name'),
-          ]"
+              val => !!val || $t('required_field'),
+              val => val.length <= 25 || $t('twentyfive_characters_name'),
+            ]"
           />
           <q-input
             outlined
             v-model="formData.last_name"
-            v-bind:label="$t('last_name')"
-            class="col q-ml-md q-mr-md"
+            :label="$t('last_name')"
             ref="last_name"
             lazy-rules
             :rules="[
-          val => !!val || $t('required_field'),
-          val => val.length <= 25 || $t('twentyfive_characters_lastname'),
-          ]"
+              val => !!val || $t('required_field'),
+              val => val.length <= 25 || $t('twentyfive_characters_lastname'),
+            ]"
           />
         </div>
         <div class="row">
           <q-checkbox
-            class="q-mb-md"
             right-label
             v-model="formData.subscribed"
-            v-bind:label="$t('subscribe_for_newsletter')"
+            :label="$t('subscribe_for_newsletter')"
           />
         </div>
-        <div class="row">
+        <div class="row q-mt-md">
           <q-btn
             color="primary"
-            v-bind:label="$t('register')"
-            type="submit"/>
+            :label="$t('register')"
+            type="submit"
+          />
         </div>
       </form>
     </div>
@@ -137,8 +131,8 @@ export default {
         phone_number: '',
         subscribed: false,
       },
-      isPwd: true,
-      isPwd2: true,
+      showPassword: true,
+      showPassword2: true,
       tab: 'Login',
     };
   },
@@ -159,8 +153,14 @@ export default {
         && !this.$refs.phone_number.hasError
       ) {
         this.$store.dispatch('user/register', this.formData)
-          .then(this.$router.push('/booking'))
-          .catch(err => console.log(err));
+          .then(() => this.$router.push({ name: 'booking' }))
+          .catch((error) => {
+            this.$q.notify({
+              icon: 'close',
+              color: 'negative',
+              message: error,
+            });
+          });
       }
     },
   },

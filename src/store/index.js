@@ -4,8 +4,6 @@ import { Cookies } from 'quasar';
 
 import user from './user';
 
-// import example from './module-example'
-
 Vue.use(Vuex);
 
 /*
@@ -35,6 +33,19 @@ export default function ({ ssrContext }) {
     // for dev mode only
     strict: process.env.DEV,
   });
+
+  if (process.env.DEV && module.hot) {
+    module.hot.accept(['./user'], () => {
+      // eslint-disable-next-line
+      const newUser = require('./user').default;
+
+      Store.hotUpdate({
+        modules: {
+          user: newUser,
+        },
+      });
+    });
+  }
 
   return Store;
 }

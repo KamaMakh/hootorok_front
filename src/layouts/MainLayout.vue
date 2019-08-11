@@ -9,14 +9,14 @@
           @click="leftDrawerOpen = !leftDrawerOpen"
           aria-label="Menu"
         >
-          <q-icon name="menu"/>
+          <q-icon name="menu" />
         </q-btn>
 
-        <q-toolbar-title/>
+        <q-toolbar-title />
 
         <div class="row items-center">
           <router-link
-            :to="{ name: 'login' }"
+            :to="{ name: 'auth' }"
             class="standard-link text-white q-ml-md"
             v-text="$t('login')"
           />
@@ -40,11 +40,7 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      bordered
-      content-class="bg-grey-2"
-    >
+    <q-drawer v-model="leftDrawerOpen" bordered content-class="bg-grey-2">
       <q-list>
         <q-item-label header>Essential Links</q-item-label>
         <q-item clickable tag="a" target="_blank" href="https://quasar.dev">

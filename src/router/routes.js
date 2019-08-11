@@ -9,8 +9,8 @@ const routes = [
         component: () => import('pages/Index.vue'),
       },
       {
-        path: 'login',
-        name: 'login',
+        path: 'auth',
+        name: 'auth',
         component: () => import('pages/Login.vue'),
       },
       {
@@ -37,6 +37,11 @@ const routes = [
         path: 'booking',
         name: 'booking',
         component: () => import('pages/Booking.vue'),
+      },
+      {
+        path: '/auth/forgot-password',
+        name: 'passwordreset',
+        component: () => import('pages/PasswordReset.vue'),
       },
     ],
   },

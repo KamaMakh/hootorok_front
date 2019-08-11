@@ -60,6 +60,8 @@ export default {
   },
   methods: {
     submitForm() {
+      this.$refs.login.validate();
+      this.$refs.password.validate();
       if (
         !this.$refs.login.hasError
         && !this.$refs.password.hasError

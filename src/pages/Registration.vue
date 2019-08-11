@@ -11,10 +11,10 @@
         <div class="q-gutter-md">
           <q-input
             outlined
-            v-model="formData.tel"
+            v-model="formData.phone_number"
             v-bind:label="$t('phone')"
             class="col q-ml-md q-mr-md"
-            ref="tel"
+            ref="phone_number"
             mask="# ### ### ## ##"
             fill-mask
             v-bind:hint="$t('phone_layout')"
@@ -84,7 +84,7 @@
             v-model="formData.name"
             v-bind:label="$t('name')"
             class="col q-ml-md q-mr-md"
-            ref="name"
+            ref="first_name"
             lazy-rules
             :rules="[
           val => !!val || $t('required_field'),
@@ -93,10 +93,10 @@
           />
           <q-input
             outlined
-            v-model="formData.surname"
+            v-model="formData.last_name"
             v-bind:label="$t('last_name')"
             class="col q-ml-md q-mr-md"
-            ref="surname"
+            ref="last_name"
             lazy-rules
             :rules="[
           val => !!val || $t('required_field'),
@@ -132,9 +132,9 @@ export default {
         email: '',
         password: '',
         password2: '',
-        name: '',
-        surname: '',
-        tel: '',
+        first_name: '',
+        last_name: '',
+        phone_number: '',
         subscribed: false,
       },
       isPwd: true,
@@ -147,18 +147,18 @@ export default {
       this.$refs.email.validate();
       this.$refs.password.validate();
       this.$refs.password2.validate();
-      this.$refs.name.validate();
-      this.$refs.surname.validate();
-      this.$refs.tel.validate();
+      this.$refs.first_name.validate();
+      this.$refs.last_name.validate();
+      this.$refs.phone_number.validate();
       if (
         !this.$refs.email.hasError
         && !this.$refs.password.hasError
         && !this.$refs.password2.hasError
-        && !this.$refs.name.hasError
-        && !this.$refs.surname.hasError
-        && !this.$refs.tel.hasError
+        && !this.$refs.first_name.hasError
+        && !this.$refs.last_name.hasError
+        && !this.$refs.phone_number.hasError
       ) {
-        this.$store.dispatch('auth/registerUser', this.formData)
+        this.$store.dispatch('user/register', this.formData)
           .then(this.$router.push('/booking'))
           .catch(err => console.log(err));
       }

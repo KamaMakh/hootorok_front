@@ -34,6 +34,7 @@ module.exports = () => ({
     components: [
       'QLayout',
       'QHeader',
+      'QFooter',
       'QDrawer',
       'QPageContainer',
       'QPage',

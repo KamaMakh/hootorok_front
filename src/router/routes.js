@@ -18,6 +18,21 @@ const routes = [
         name: 'registration',
         component: () => import('pages/Registration.vue'),
       },
+      {
+        path: 'contacts',
+        name: 'contacts',
+        component: () => import('pages/Contacts.vue'),
+      },
+      {
+        path: 'about',
+        name: 'about',
+        component: () => import('pages/About.vue'),
+      },
+      {
+        path: 'info',
+        name: 'info',
+        component: () => import('pages/Info.vue'),
+      },
     ],
   },
 ];

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { showErrorMessage } from 'src/utils/function-show-error-message.js';
+import { registerUrl } from 'src/store/urls.js';
 
 const state = {
   user: {
@@ -26,7 +27,7 @@ const actions = {
   // eslint-disable-next-line
   register({ commit }, payload) {
     axios
-      .post('auth/register', { payload })
+      .post(registerUrl, { payload })
       .then(response => console.log(response))
       .catch((error) => {
         showErrorMessage(error.message);

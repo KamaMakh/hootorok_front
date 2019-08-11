@@ -1,16 +1,14 @@
 <template>
-  <div class="q-mt-md q-mb-md">
-    <q-page class="auth-tabs text-grey">
-      <form @submit.prevent="submitForm" class="col">
-        <div class="row q-mb-md">
-          <q-banner class="bg-grey-3 col">
-            <div
-              class="registrationHeader"
-              v-text="$t('registration')"
-              ></div>
-          </q-banner>
-        </div>
-        <div class="row q-mb-md">
+  <q-page padding>
+    <div class="q-mt-md q-mb-md auth-tabs">
+      <q-banner class="bg-grey-3 col">
+        <div
+          class="registrationHeader"
+          v-text="$t('registration')"
+        ></div>
+      </q-banner>
+      <form @submit.prevent="submitForm" class="q-pa-md">
+        <div class="q-gutter-md">
           <q-input
             outlined
             v-model="formData.tel"
@@ -25,8 +23,6 @@
           val => !!val || $t('required_field'),
           ]"
           />
-        </div>
-        <div class="row q-mb-md">
           <q-input
             outlined
             v-model="formData.email"
@@ -39,8 +35,6 @@
           val => isValidEmailAddress || $t('enter_correct_email')
           ]"
           />
-        </div>
-        <div class="row q-mb-md">
           <q-input
             ref="password"
             outlined
@@ -63,8 +57,6 @@
               />
             </template>
           </q-input>
-        </div>
-        <div class="row q-mb-md">
           <q-input
             ref="password2"
             outlined
@@ -87,8 +79,6 @@
               />
             </template>
           </q-input>
-        </div>
-        <div class="row q-mb-md">
           <q-input
             outlined
             v-model="formData.name"
@@ -101,8 +91,6 @@
           val => val.length <= 25 || $t('twentyfive_characters_name'),
           ]"
           />
-        </div>
-        <div class="row">
           <q-input
             outlined
             v-model="formData.surname"
@@ -118,7 +106,7 @@
         </div>
         <div class="row">
           <q-checkbox
-            class="q-ml-sm q-mb-md"
+            class="q-mb-md"
             right-label
             v-model="formData.subscribed"
             v-bind:label="$t('subscribe_for_newsletter')"
@@ -128,17 +116,14 @@
           <q-btn
             color="primary"
             v-bind:label="$t('register')"
-            type="submit"
-            class="q-ml-md q-mb-md" />
+            type="submit"/>
         </div>
       </form>
-    </q-page>
-  </div>
+    </div>
+  </q-page>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
-
 export default {
   name: 'Registration',
   data() {
@@ -158,7 +143,6 @@ export default {
     };
   },
   methods: {
-    ...mapActions('auth', ['registerUser']),
     submitForm() {
       this.$refs.email.validate();
       this.$refs.password.validate();
@@ -179,9 +163,6 @@ export default {
           .catch(err => console.log(err));
       }
     },
-  },
-  mounted() {
-    this.registerUser();
   },
   computed: {
     isValidEmailAddress() {

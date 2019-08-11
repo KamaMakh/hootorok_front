@@ -109,11 +109,9 @@ export default {
       },
       set(lang) {
         this.$i18n.locale = lang;
-
         import(`quasar/lang/${lang}`).then((l) => {
           this.$q.lang.set(l.default);
         });
-
         this.$store.commit('setLang', lang);
       },
     },

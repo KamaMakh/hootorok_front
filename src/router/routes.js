@@ -1,4 +1,3 @@
-
 const routes = [
   {
     path: '/',
@@ -33,6 +32,11 @@ const routes = [
         path: 'info',
         name: 'info',
         component: () => import('pages/Info.vue'),
+      },
+      {
+        path: 'booking',
+        name: 'booking',
+        component: () => import('pages/Booking.vue'),
       },
     ],
   },

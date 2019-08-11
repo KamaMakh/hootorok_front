@@ -19,6 +19,12 @@ const routes = [
         name: 'registration',
         component: () => import('pages/Registration.vue'),
       },
+      {
+        path: 'booking',
+        name: 'booking',
+        component: () => import('pages/Booking.vue'),
+        props: true,
+      },
     ],
   },
 ];

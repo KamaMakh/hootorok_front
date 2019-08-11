@@ -26,4 +26,5 @@ export default {
   contacts: 'Контакты',
   about: 'О нас',
   info: 'Центр поддержки',
+  password_reset: 'Восстановление пароля',
 };

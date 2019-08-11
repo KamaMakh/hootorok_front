@@ -26,4 +26,5 @@ export default {
   contacts: 'Contacts',
   about: 'About',
   info: 'Info',
+  password_reset: 'Password Reset',
 };

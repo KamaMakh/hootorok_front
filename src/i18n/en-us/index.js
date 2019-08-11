@@ -18,4 +18,5 @@ export default {
   twentyfive_characters_name: 'Name should not be longer than 25 characters',
   twentyfive_characters_lastname: 'Last name should not be longer than 25 characters',
   subscribe_for_newsletter: 'Subscribe to the newsletter about promotions and discounts',
+  error: 'Error',
 };

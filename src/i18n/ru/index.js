@@ -18,4 +18,5 @@ export default {
   twentyfive_characters_name: 'Сократите имя до 25 символов',
   twentyfive_characters_lastname: 'Сократите фамилию до 25 символов',
   subscribe_for_newsletter: 'Подписаться на рассылку об акциях и скидках',
+  error: 'Ошибка',
 };

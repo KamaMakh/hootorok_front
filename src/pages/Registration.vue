@@ -3,7 +3,7 @@
     <div class="q-mt-md q-mb-md auth-tabs">
       <q-banner class="bg-grey-3 col">
         <div
-          class="registrationHeader"
+          class="text-center font-size_20"
           v-text="$t('registration')"
         ></div>
       </q-banner>
@@ -179,9 +179,5 @@ export default {
   max-width: 500px;
   margin: 0 auto;
   border: 1px solid lightgrey;
-}
-.registrationHeader {
-  text-align: center;
-  font-size: 20px;
 }
 </style>

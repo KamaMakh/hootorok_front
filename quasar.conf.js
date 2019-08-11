@@ -47,17 +47,9 @@ module.exports = () => ({
       'QItemLabel',
       'QSelect',
 
-      'QFooter',
-      'QTabs',
-      'QTab',
-      'QRouteTab',
       'QCheckbox',
-      'QCard',
-      'QCardSection',
       'QInput',
       'QBanner',
-      'QTabPanels',
-      'QTabPanel',
       'QDialog',
     ],
 

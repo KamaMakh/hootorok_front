@@ -9,10 +9,10 @@
           @click="leftDrawerOpen = !leftDrawerOpen"
           aria-label="Menu"
         >
-          <q-icon name="menu" />
+          <q-icon name="menu"/>
         </q-btn>
 
-        <q-toolbar-title />
+        <q-toolbar-title/>
 
         <div class="row items-center">
           <router-link
@@ -40,7 +40,11 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" bordered content-class="bg-grey-2">
+    <q-drawer
+      v-model="leftDrawerOpen"
+      bordered
+      content-class="bg-grey-2"
+    >
       <q-list>
         <q-item-label header>Essential Links</q-item-label>
         <q-item clickable tag="a" target="_blank" href="https://quasar.dev">
@@ -58,8 +62,24 @@
     <q-page-container>
       <router-view />
 
-      <footer class="bg-white text-default q-py-lg q-px-md shadow-6">
-        <div class="flex column items-center q-gutter-y-md" v-text="'Footer'" />
+      <footer elevated class="bg-primary text-left q-py-lg q-px-md shadow-6">
+        <div class="row items-center justify-center text-center q-gutter-md">
+          <router-link
+            :to="{ name: 'contacts'}"
+            class="standard-link text-white"
+            v-text="$t('contacts')"
+          />
+          <router-link
+            :to="{ name: 'about'}"
+            class="standard-link text-white"
+            v-text="$t('about')"
+          />
+          <router-link
+            :to="{ name: 'info'}"
+            class="standard-link text-white"
+            v-text="$t('info')"
+          />
+        </div>
       </footer>
     </q-page-container>
   </q-layout>
@@ -89,11 +109,9 @@ export default {
       },
       set(lang) {
         this.$i18n.locale = lang;
-
         import(`quasar/lang/${lang}`).then((l) => {
           this.$q.lang.set(l.default);
         });
-
         this.$store.commit('setLang', lang);
       },
     },

@@ -1,7 +1,7 @@
 <template>
   <q-page padding>
     <div class="auth-tabs">
-      <div class="q-gutter-md">
+      <div>
         <q-banner class="bg-grey-3">
           <div
             class="text-center font-size_20"
@@ -9,14 +9,9 @@
           >
           </div>
         </q-banner>
-        <div class="font-size_12 q-pl-md">
-          Если вы забыли пароль, введите e-mail указанный при регистрации.
-          Контрольная строка для смены пароля,
-          а также ваши регистрационные данные, будут высланы вам по e-mail.
-        </div>
+        <div class="font-size_12 q-pa-md" v-text="$t('forgot_password_message')"></div>
       </div>
       <form @submit.prevent="submitForm" class="q-pa-md">
-        <div class="q-gutter-md">
           <q-input
             outlined
             v-model="formData.email"
@@ -28,7 +23,6 @@
               val => isValidEmailAddress || $t('enter_correct_email')
             ]"
           />
-        </div>
         <div class="row q-mt-md">
           <q-btn
             color="primary"
@@ -60,6 +54,8 @@ export default {
         this.$store.dispatch('user/resetPassword', this.formData)
           .then(() => this.$q.notify({
             icon: 'close',
+            color: 'primary',
+            position: 'center',
             message: 'Данные о смене пароля отправлены на email',
           }))
           .catch((error) => {

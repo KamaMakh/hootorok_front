@@ -1,6 +1,5 @@
 import axios from 'axios';
-import { registerUrl, resetPasswordUrl } from 'src/store/urls';
-
+import { registerUrl, resetPasswordUrl, loginUrl } from 'src/store/urls';
 import onError from 'src/store/onError';
 
 function register({ commit }, data) {
@@ -15,11 +14,22 @@ function register({ commit }, data) {
   });
 }
 
-function resetPassword({ commit }, data) {
+function resetPassword(data) {
   return new Promise((resolve, reject) => {
     axios.post(resetPasswordUrl, data)
-      .then(() => {
-        commit('resetUser');
+      .then((response) => {
+        console.log(response);
+        resolve();
+      })
+      .catch(error => onError(error, reject));
+  });
+}
+
+function login({ commit }, data) {
+  return new Promise((resolve, reject) => {
+    axios.post(loginUrl, data)
+      .then((response) => {
+        commit('setUser', response.data.user);
 
         resolve();
       })
@@ -28,5 +38,5 @@ function resetPassword({ commit }, data) {
 }
 
 export {
-  register, resetPassword,
+  register, resetPassword, login,
 };

@@ -52,6 +52,11 @@ module.exports = () => ({
       'QInput',
       'QBanner',
       'QDialog',
+      'QCard',
+      'QCardSection',
+      'QCardActions',
+      'QSeparator',
+      'QBtnGroup',
     ],
 
     directives: [

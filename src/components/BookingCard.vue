@@ -62,7 +62,7 @@
 
 <script>
 import { date as qDate } from 'quasar';
-import GuestsSelect from './GuestsSelect';
+import GuestsSelect from 'components/GuestsSelect.vue';
 
 export default {
   name: 'BookingCard',
@@ -78,18 +78,12 @@ export default {
   data() {
     return {
       check: false,
-      arrivalDate: '',
-      departureDate: '',
+      arrivalDate: this.arrival || '',
+      departureDate: this.departure || '',
       maxDate: '2035/12/31',
-      adultsCount: 0,
-      childrenCount: 0,
+      adultsCount: this.adults || 0,
+      childrenCount: this.children || 0,
     };
-  },
-  created() {
-    if (this.arrival) this.arrivalDate = this.arrival;
-    if (this.departure) this.departureDate = this.departure;
-    if (this.adults) this.adultsCount = this.adults;
-    if (this.children) this.childrenCount = this.children;
   },
   methods: {
     dateFormat(date) {

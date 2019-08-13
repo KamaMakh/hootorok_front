@@ -3,8 +3,11 @@
     <template v-slot:control>
       <div class="self-center full-width no-outline" tabindex="0">
         <span>
-          {{ wordDeclension(adultCount.value, declensionsAdult) }}
-          {{ wordDeclension(childCount.value, declensionsChild) }}
+          {{ wordDeclension(adultCount.value, declensionsAdult) }}<!--
+          --><span v-if="childCount.value > 0">,
+            {{ wordDeclension(childCount.value, declensionsChild) }}
+          </span>
+
         </span>
       </div>
       <q-menu fit>
@@ -13,7 +16,7 @@
             <div>{{ $t('adult_label') }}</div>
             <div class="q-gutter-sm row items-center">
               <q-btn round icon="remove" size="sm" @click.native="dec(adultCount)" />
-              <div>{{ adultCount.value }}</div>
+              <div style="width: 1.5em" class="text-center">{{ adultCount.value }}</div>
               <q-btn round icon="add" size="sm" @click.native="inc(adultCount)" />
             </div>
           </div>
@@ -21,7 +24,7 @@
             <div>{{ $t('child_label') }}</div>
             <div class="q-gutter-sm row items-center">
               <q-btn round icon="remove" size="sm" @click.native="dec(childCount)" />
-              <div>{{ childCount.value }}</div>
+              <div style="width: 1.5em" class="text-center">{{ childCount.value }}</div>
               <q-btn round icon="add" size="sm" @click.native="inc(childCount)" />
             </div>
           </div>
@@ -33,7 +36,7 @@
 
 <script>
 export default {
-  name: 'DropdownMenu',
+  name: 'GuestsSelect',
   props: {
     adults: Number,
     children: Number,
@@ -92,8 +95,8 @@ export default {
         }
         return `${value} ${this.$t(declensions)[2]}`; // '5-20 Гостей'
       }
-      if (value === 1) return `${value} ${this.$t(declensions[0])}`;
-      return `${value} ${this.$t(declensions[1])}`;
+      if (value === 1) return `${value} ${this.$t(declensions)[0]}`;
+      return `${value} ${this.$t(declensions)[1]}`;
     },
   },
 };

@@ -4,7 +4,7 @@ export default {
   password: 'Пароль',
   confirm_password: 'Подтверждение пароля',
   name: 'Имя',
-  last_name: 'Фамилия',
+  second_name: 'Фамилия',
   registration: 'Регистрация',
   authorization: 'Авторизация',
   phone_or_email: 'Телефон или email',

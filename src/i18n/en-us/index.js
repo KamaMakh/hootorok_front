@@ -4,7 +4,7 @@ export default {
   password: 'Password',
   confirm_password: 'Confirm password',
   name: 'Name',
-  last_name: 'Last name',
+  second_name: 'Last name',
   registration: 'Registration',
   authorization: 'Authorization',
   phone_or_email: 'Phone or email',

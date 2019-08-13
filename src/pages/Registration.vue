@@ -14,7 +14,8 @@
             v-model="formData.phone_number"
             :label="$t('phone')"
             ref="phone_number"
-            mask="###########"
+            mask="# ### ### ## ##"
+            unmasked-value
             fill-mask
             :hint="$t('phone_layout')"
             lazy-rules
@@ -54,7 +55,7 @@
               />
             </template>
           </q-input>
-          <q-input
+          <!-- <q-input
             ref="password2"
             outlined
             v-model="formData.password2"
@@ -74,7 +75,7 @@
                 @click="showPassword2 = !showPassword2"
               />
             </template>
-          </q-input>
+          </q-input> -->
           <q-input
             outlined
             v-model="formData.first_name"
@@ -88,23 +89,23 @@
           />
           <q-input
             outlined
-            v-model="formData.last_name"
-            :label="$t('last_name')"
-            ref="last_name"
+            v-model="formData.second_name"
+            :label="$t('second_name')"
+            ref="second_name"
             lazy-rules
             :rules="[
               val => !!val || $t('required_field'),
-              val => val.length <= 25 || $t('twentyfive_characters_lastname'),
+              val => val.length <= 25 || $t('twentyfive_characters_secondname'),
             ]"
           />
         </div>
-        <div class="row">
+        <!-- <div class="row">
           <q-checkbox
             right-label
             v-model="formData.subscribed"
             :label="$t('subscribe_for_newsletter')"
           />
-        </div>
+        </div> -->
         <div class="row q-mt-md">
           <q-btn
             color="primary"
@@ -125,14 +126,14 @@ export default {
       formData: {
         email: '',
         password: '',
-        password2: '',
+        // password2: '',
         first_name: '',
-        last_name: '',
+        second_name: '',
         phone_number: '',
-        subscribed: false,
+        // subscribed: false,
       },
       showPassword: true,
-      showPassword2: true,
+      // showPassword2: true,
       tab: 'Login',
     };
   },
@@ -140,16 +141,16 @@ export default {
     submitForm() {
       this.$refs.email.validate();
       this.$refs.password.validate();
-      this.$refs.password2.validate();
+      // this.$refs.password2.validate();
       this.$refs.first_name.validate();
-      this.$refs.last_name.validate();
+      this.$refs.second_name.validate();
       this.$refs.phone_number.validate();
       if (
         !this.$refs.email.hasError
         && !this.$refs.password.hasError
-        && !this.$refs.password2.hasError
+        // && !this.$refs.password2.hasError
         && !this.$refs.first_name.hasError
-        && !this.$refs.last_name.hasError
+        && !this.$refs.second_name.hasError
         && !this.$refs.phone_number.hasError
       ) {
         this.$store.dispatch('user/register', this.formData)

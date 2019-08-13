@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="lHh Lpr lff">
     <q-header elevated>
       <q-toolbar>
         <q-btn
@@ -58,7 +58,7 @@
     <q-page-container>
       <router-view />
 
-      <footer elevated class="bg-primary text-left q-py-lg q-px-md shadow-6">
+      <q-footer elevated class="text-left q-pa-md">
         <div class="row items-center justify-center text-center q-gutter-md">
           <router-link
             :to="{ name: 'contacts'}"
@@ -76,7 +76,7 @@
             v-text="$t('info')"
           />
         </div>
-      </footer>
+      </q-footer>
     </q-page-container>
   </q-layout>
 </template>

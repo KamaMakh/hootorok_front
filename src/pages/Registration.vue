@@ -14,7 +14,7 @@
             v-model="formData.phone_number"
             :label="$t('phone')"
             ref="phone_number"
-            mask="# ### ### ## ##"
+            mask="###########"
             fill-mask
             :hint="$t('phone_layout')"
             lazy-rules
@@ -77,7 +77,7 @@
           </q-input>
           <q-input
             outlined
-            v-model="formData.name"
+            v-model="formData.first_name"
             :label="$t('name')"
             ref="first_name"
             lazy-rules

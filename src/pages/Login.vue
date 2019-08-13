@@ -11,9 +11,9 @@
         <div class="q-gutter-md">
           <q-input
             outlined
-            v-model="formData.login"
+            v-model="formData.phone_number"
             v-bind:label="$t('phone_or_email')"
-            ref="login"
+            ref="phone_number"
             v-bind:hint="$t('phone_layout')"
             lazy-rules
             :rules="[
@@ -53,17 +53,17 @@ export default {
   data() {
     return {
       formData: {
-        login: '',
+        phone_number: '',
         password: '',
       },
     };
   },
   methods: {
     submitForm() {
-      this.$refs.login.validate();
+      this.$refs.phone_number.validate();
       this.$refs.password.validate();
       if (
-        !this.$refs.login.hasError
+        !this.$refs.phone_number.hasError
         && !this.$refs.password.hasError
       ) {
         this.$store.dispatch('user/login', this.formData)

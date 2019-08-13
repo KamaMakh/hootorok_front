@@ -31,6 +31,8 @@
 </template>
 
 <script>
+const adultCountMin = 1;
+const childCountMin = 0;
 export default {
   name: 'GuestsSelect',
   props: {
@@ -42,12 +44,12 @@ export default {
   data() {
     return {
       adultCount: {
-        value: 0,
-        min: 1,
+        value: Math.max(this.adults, adultCountMin, 0),
+        min: adultCountMin,
       },
       childCount: {
-        value: 0,
-        min: 0,
+        value: Math.max(this.children, childCountMin, 0),
+        min: childCountMin,
       },
       maxCount: 128,
       declensionsChild: 'children',
@@ -61,12 +63,6 @@ export default {
       if (child === '') return adult;
       return [adult, child].join(', ');
     },
-  },
-  created() {
-    if (this.adults > this.adultCount.min) this.adultCount.value = this.adults;
-    else this.adultCount.value = this.adultCount.min || 0;
-    if (this.children > this.childCount.min) this.childCount.value = this.children;
-    else this.childCount.value = this.childCount.min || 0;
   },
   methods: {
     dec(counter) {

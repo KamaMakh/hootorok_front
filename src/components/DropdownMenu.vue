@@ -2,7 +2,9 @@
   <q-field :label="label" stack-label>
     <template v-slot:control>
       <div class="self-center full-width no-outline" tabindex="0">
-        {{ wordDeclension }}
+        <span v-for="(item, i) in items" :key="i">
+          {{ wordDeclension(item) }}
+        </span>
       </div>
       <q-menu fit>
         <div class="column">
@@ -27,7 +29,11 @@ export default {
     items: Array,
     declensions: Array,
     label: String,
-    value: String,
+  },
+  data() {
+    return {
+      counters: [],
+    };
   },
   computed: {
     counter() {
@@ -36,22 +42,22 @@ export default {
       }
       return '';
     },
-    wordDeclension() {
-      const value = this.counter;
-      const checkValue = value % 100;
-      if (checkValue % 10 === 1 && checkValue !== 11) {
-        return `${value} ${this.$t(this.declensions[0])}`; // '1 Гость'
-      } if (checkValue % 10 > 1 && checkValue % 10 < 5 && (checkValue < 10 || checkValue > 20)) {
-        return `${value} ${this.$t(this.declensions[1])}`; // '2-4 Гостя'
-      }
-      return `${value} ${this.$t(this.declensions[2])}`; // '5-20 Гостей'
-    },
+    // wordDeclension() {
+    //   const value = this.counter;
+    //   const checkValue = value % 100;
+    //   if (checkValue % 10 === 1 && checkValue !== 11) {
+    //     return `${value} ${this.$t(this.declensions[0])}`; // '1 Гость'
+    //   } if (checkValue % 10 > 1 && checkValue % 10 < 5 && (checkValue < 10 || checkValue > 20)) {
+    //     return `${value} ${this.$t(this.declensions[1])}`; // '2-4 Гостя'
+    //   }
+    //   return `${value} ${this.$t(this.declensions[2])}`; // '5-20 Гостей'
+    // },
   },
   created() {
     if (this.items) {
       // eslint-disable-next-line no-restricted-syntax
       for (const item of this.items) {
-        if (item.min) item.count = item.min;
+        if (item.count < (item.min || 0)) item.count = item.min || 0;
       }
     }
   },
@@ -65,6 +71,22 @@ export default {
       if (item.count < (item.max || 128)) {
         item.count += 1;
       }
+    },
+    wordDeclension(item) {
+      if (item.count === 0) return '';
+      const value = item.count;
+      if (this.$store.state.lang === 'ru') {
+        const checkValue = value % 100;
+        if (checkValue % 10 === 1 && checkValue !== 11) {
+          return `${value} ${this.$t(item.declensions[0])}`; // '1 Гость'
+        }
+        if (checkValue % 10 > 1 && checkValue % 10 < 5 && (checkValue < 10 || checkValue > 20)) {
+          return `${value} ${this.$t(item.declensions[1])}`; // '2-4 Гостя'
+        }
+        return `${value} ${this.$t(item.declensions[2])}`; // '5-20 Гостей'
+      }
+      if (value === 1) return `${value} ${this.$t(item.declensions[0])}`;
+      return `${value} ${this.$t(item.declensions[1])}`;
     },
   },
 };

@@ -78,20 +78,18 @@ export default {
       guests: [
         {
           label: 'adult',
+          declensions: ['adult1', 'adult2_4', 'adult5_9'],
           count: 0,
           min: 1,
         },
         {
           label: 'children',
+          declensions: ['children1', 'children2_4', 'children5_9'],
           count: 0,
         },
       ],
       guestsDeclension: ['guest', 'guest2_4', 'guest5_9'],
     };
-  },
-  mounted() {
-    // this.arrivalDate = this.today();
-    // this.departureDate = this.nextDay(this.arrivalDate);
   },
   methods: {
     dateFormat(date) {

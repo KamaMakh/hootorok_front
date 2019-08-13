@@ -1,7 +1,6 @@
 <template>
   <q-page class="flex flex-center">
-    <img alt="Quasar logo" src="~assets/quasar-logo-full.svg">
-    <BookingCard />
+    <booking-card />
   </q-page>
 </template>
 
@@ -9,7 +8,7 @@
 </style>
 
 <script>
-import BookingCard from '../components/BookingCard.vue';
+import BookingCard from '../components/BookingCard';
 
 export default {
   name: 'PageIndex',

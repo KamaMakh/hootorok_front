@@ -1,11 +1,11 @@
 <template>
   <q-card class="my-card q-pa-md" style="width: 390px">
     <q-card-section>
-      <div class="text-h6">{{$t('bookingCardLabel')}}</div>
+      <div class="text-h6">{{$t('booking_card_label')}}</div>
     </q-card-section>
     <q-card-actions class="q-pa-md column q-col-gutter-y-md">
       <div class="row justify-between q-col-gutter-x-md">
-        <q-field class="col" :label="$t('arrivalDate')" stack-label>
+        <q-field class="col" :label="$t('arrival_date')" stack-label>
           <template v-slot:control>
             <div class="self-center full-width no-outline" tabindex="0">
               {{arrivalDate}}
@@ -25,7 +25,7 @@
             </q-icon>
           </template>
         </q-field>
-        <q-field class="col" :label="$t('departureDate')" stack-label>
+        <q-field class="col" :label="$t('departure_date')" stack-label>
           <template v-slot:control>
             <div class="self-center full-width no-outline" tabindex="0">
               {{departureDate}}
@@ -45,15 +45,15 @@
           </template>
         </q-field>
       </div>
-      <DropdownMenu
-        :items="guests"
-        :declensions="guestsDeclension"
-        :label="$t('guestsLabel')"
+      <guests-select
+        :adults="adultsCount"
+        :children="childrenCount"
+        @change="onGuestsChange"
       />
       <q-btn
         class="q-mt-lg"
         color="primary"
-        :label="$t('checkPrices')"
+        :label="$t('check_prices')"
         @click="submit"
       />
     </q-card-actions>
@@ -62,12 +62,18 @@
 
 <script>
 import { date as qDate } from 'quasar';
-import DropdownMenu from './DropdownMenu';
+import GuestsSelect from './GuestsSelect';
 
 export default {
   name: 'BookingCard',
   components: {
-    DropdownMenu,
+    GuestsSelect,
+  },
+  props: {
+    arrival: String,
+    departure: String,
+    adults: Number,
+    children: Number,
   },
   data() {
     return {
@@ -75,21 +81,15 @@ export default {
       arrivalDate: '',
       departureDate: '',
       maxDate: '2035/12/31',
-      guests: [
-        {
-          label: 'adult',
-          declensions: ['adult1', 'adult2_4', 'adult5_9'],
-          count: 0,
-          min: 1,
-        },
-        {
-          label: 'children',
-          declensions: ['children1', 'children2_4', 'children5_9'],
-          count: 0,
-        },
-      ],
-      guestsDeclension: ['guest', 'guest2_4', 'guest5_9'],
+      adultsCount: 0,
+      childrenCount: 0,
     };
+  },
+  created() {
+    if (this.arrival) this.arrivalDate = this.arrival;
+    if (this.departure) this.departureDate = this.departure;
+    if (this.adults) this.adultsCount = this.adults;
+    if (this.children) this.childrenCount = this.children;
   },
   methods: {
     dateFormat(date) {
@@ -120,13 +120,18 @@ export default {
       this.arrivalDate = this.nextDay(this.arrivalDate);
       this.check = true;
     },
+    onGuestsChange(data) {
+      this.adultsCount = data.adults;
+      this.childrenCount = data.children;
+    },
     submit() {
       this.$router.push({
         name: 'booking',
         params: {
           arrivalDate: this.arrivalDate,
           departureDate: this.departureDate,
-          guests: this.guests,
+          adultsCount: this.adultsCount,
+          childrenCount: this.childrenCount,
         },
       });
     },

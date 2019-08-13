@@ -27,4 +27,19 @@ export default {
   about: 'О нас',
   info: 'Центр поддержки',
   password_reset: 'Восстановление пароля',
+
+  // BookingCard
+  booking_card_label: 'Бронируйте великолепный отдых',
+  arrival_date: 'Дата заезда',
+  departure_date: 'Дата выезда',
+  guests: 'Гости',
+  adult_label: 'Взрослые',
+  adult1: 'Взрослый',
+  adult2_4: 'Взрослых',
+  adult5_9: 'Взрослых',
+  child_label: 'Дети',
+  children1: 'Ребенок',
+  children2_4: 'Ребенка',
+  children5_9: 'Детей',
+  check_prices: 'Проверить цены',
 };

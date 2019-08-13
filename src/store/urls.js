@@ -3,6 +3,7 @@ const registerUrl = `${serverUrl}/auth/register`;
 const resetPasswordUrl = `${serverUrl}/auth/sendRecoveryHash`;
 const loginUrl = `${serverUrl}/auth/login`;
 const newPasswordUrl = `${serverUrl}/auth/setNewPassword`;
+const RecoveryHashUrl = `${serverUrl}/auth/checkRecoveryHash`;
 
 export {
   serverUrl,
@@ -10,4 +11,5 @@ export {
   resetPasswordUrl,
   loginUrl,
   newPasswordUrl,
+  RecoveryHashUrl,
 };

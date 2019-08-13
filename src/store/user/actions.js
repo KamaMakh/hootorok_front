@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {
-  registerUrl, resetPasswordUrl, loginUrl, newPasswordUrl,
+  registerUrl, resetPasswordUrl, loginUrl, newPasswordUrl, RecoveryHashUrl,
 } from 'src/store/urls';
 
 import onError from 'src/store/onError';
@@ -52,6 +52,18 @@ function setNewPassword(data) {
   });
 }
 
+function checkRecoveryHash(data) {
+  return new Promise((resolve, reject) => {
+    axios.post(RecoveryHashUrl, data)
+      .then((response) => {
+        console.log(response);
+
+        resolve();
+      })
+      .catch(error => onError(error, reject));
+  });
+}
+
 export {
-  register, resetPassword, login, setNewPassword,
+  register, resetPassword, login, setNewPassword, checkRecoveryHash,
 };

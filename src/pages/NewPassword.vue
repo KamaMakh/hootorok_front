@@ -1,6 +1,9 @@
 <template>
   <q-page padding>
-    <div class="auth-tabs">
+    <div
+      class="auth-tabs"
+      v-if="!this.error"
+      >
       <q-banner class="bg-grey-3">
         <div
           class="text-center font-size_20"
@@ -61,11 +64,42 @@
         </div>
       </form>
     </div>
+    <div
+      class="auth-tabs"
+      v-else
+      >
+      <q-banner class="bg-grey-3">
+        <div
+          class="text-center font-size_20"
+          v-text="$t('incorrect_token')"
+        />
+      </q-banner>
+    </div>
   </q-page>
 </template>
 
 <script>
 export default {
+  beforeMount() {
+    const securityToken = this.$route.query.token;
+    if (securityToken) {
+      this.$store.dispatch('user/checkRecoveryHash', securityToken).catch((error) => {
+        this.$router.push({ name: 'passwordreset' });
+        this.$q.notify({
+          icon: 'close',
+          color: 'negative',
+          message: error,
+        });
+      });
+    } else {
+      this.$router.push({ name: 'passwordreset' });
+      this.$q.notify({
+        icon: 'close',
+        color: 'negative',
+        message: 'Не корректный или не валидный токен',
+      });
+    }
+  },
   name: 'NewPassword',
   data() {
     return {
@@ -99,13 +133,6 @@ export default {
             });
           });
       }
-    },
-  },
-  computed: {
-    isValidEmailAddress() {
-    // eslint-disable-next-line
-      const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      return re.test(String(this.$refs.email.value).toLowerCase());
     },
   },
 };

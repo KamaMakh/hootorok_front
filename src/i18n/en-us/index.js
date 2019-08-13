@@ -33,4 +33,5 @@ export default {
   set_new_password: 'Set new password',
   new_password: 'New password',
   cabinet: 'Personal page',
+  incorrect_token: 'Token invalid',
 };

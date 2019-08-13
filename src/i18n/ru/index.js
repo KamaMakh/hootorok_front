@@ -32,4 +32,5 @@ export default {
   set_new_password: 'Установить пароль',
   new_password: 'Новый пароль',
   cabinet: 'Личный кабинет',
+  incorrect_token: 'Не корректный или не валидный токен',
 };

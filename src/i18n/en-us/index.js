@@ -27,4 +27,19 @@ export default {
   about: 'About',
   info: 'Info',
   password_reset: 'Password Reset',
+
+  // BookingCard
+  booking_card_label: 'Book a great holiday',
+  arrival_date: 'Date of arrival',
+  departure_date: 'Date of departure',
+  guests: 'Guests',
+  adult_label: 'Adults',
+  adult1: 'Adult',
+  adult2_4: 'Adults',
+  adult5_9: 'Adults',
+  child_label: 'Children',
+  children1: 'Child',
+  children2_4: 'Children',
+  children5_9: 'Children',
+  check_prices: 'Check prices',
 };

@@ -7,5 +7,11 @@
 <script>
 export default {
   name: 'Booking',
+  props: {
+    arrivalDate: String,
+    departureDate: String,
+    adultsCount: Number,
+    childrenCount: Number,
+  },
 };
 </script>

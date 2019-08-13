@@ -44,11 +44,11 @@ export default {
   data() {
     return {
       adultCount: {
-        value: Math.max(this.adults, adultCountMin, 0),
+        value: Math.max(this.adults, adultCountMin),
         min: adultCountMin,
       },
       childCount: {
-        value: Math.max(this.children, childCountMin, 0),
+        value: Math.max(this.children, childCountMin),
         min: childCountMin,
       },
       maxCount: 128,

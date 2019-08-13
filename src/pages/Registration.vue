@@ -39,7 +39,7 @@
             outlined
             v-model="formData.password"
             :label="$t('password')"
-            :type="showPassword ? 'password' : 'text'"
+            :type="hidePassword ? 'password' : 'text'"
             :rules="[
               val => !!val || $t('required_field'),
               val => val.length >= 6 || $t('six_characters_min'),
@@ -49,9 +49,9 @@
           >
             <template v-slot:append>
               <q-icon
-                :name="showPassword ? 'visibility_off' : 'visibility'"
+                :name="hidePassword ? 'visibility_off' : 'visibility'"
                 class="cursor-pointer"
-                @click="showPassword = !showPassword"
+                @click="hidePassword = !hidePassword"
               />
             </template>
           </q-input>
@@ -60,7 +60,7 @@
             outlined
             v-model="formData1.password2"
             :label="$t('confirm_password')"
-            :type="showPassword2 ? 'password' : 'text'"
+            :type="hidePassword2 ? 'password' : 'text'"
             :rules="[
               val => !!val || $t('required_field'),
               val => this.$refs.password.value === this.$refs.password2.value
@@ -70,9 +70,9 @@
           >
             <template v-slot:append>
               <q-icon
-                :name="showPassword2 ? 'visibility_off' : 'visibility'"
+                :name="hidePassword2 ? 'visibility_off' : 'visibility'"
                 class="cursor-pointer"
-                @click="showPassword2 = !showPassword2"
+                @click="hidePassword2 = !hidePassword2"
               />
             </template>
           </q-input>
@@ -135,8 +135,8 @@ export default {
         password2: '',
         // subscribed: false,
       },
-      showPassword: true,
-      showPassword2: true,
+      hidePassword: true,
+      hidePassword2: true,
       tab: 'Login',
     };
   },

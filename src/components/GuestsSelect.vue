@@ -51,8 +51,8 @@ export default {
         min: 0,
       },
       maxCount: 128,
-      declensionsChild: ['children1', 'children2_4', 'children5_9'],
-      declensionsAdult: ['adult1', 'adult2_4', 'adult5_9'],
+      declensionsChild: 'children',
+      declensionsAdult: 'adult',
     };
   },
   created() {
@@ -85,12 +85,12 @@ export default {
       if (this.$store.state.lang === 'ru') {
         const checkValue = value % 100;
         if (checkValue % 10 === 1 && checkValue !== 11) {
-          return `${value} ${this.$t(declensions[0])}`; // '1 Гость'
+          return `${value} ${this.$t(declensions)[0]}`; // '1 Гость'
         }
         if (checkValue % 10 > 1 && checkValue % 10 < 5 && (checkValue < 10 || checkValue > 20)) {
-          return `${value} ${this.$t(declensions[1])}`; // '2-4 Гостя'
+          return `${value} ${this.$t(declensions)[1]}`; // '2-4 Гостя'
         }
-        return `${value} ${this.$t(declensions[2])}`; // '5-20 Гостей'
+        return `${value} ${this.$t(declensions)[2]}`; // '5-20 Гостей'
       }
       if (value === 1) return `${value} ${this.$t(declensions[0])}`;
       return `${value} ${this.$t(declensions[1])}`;

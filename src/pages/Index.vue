@@ -8,7 +8,7 @@
 </style>
 
 <script>
-import BookingCard from 'components/BookingCard';
+import BookingCard from 'components/BookingCard.vue';
 
 export default {
   name: 'PageIndex',

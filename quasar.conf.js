@@ -46,6 +46,12 @@ module.exports = () => ({
       'QItemSection',
       'QItemLabel',
       'QSelect',
+      'QCard',
+      'QCardSection',
+      'QCardActions',
+      'QMarkupTable',
+      'QBtnToggle',
+      'QOptionGroup',
     ],
 
     directives: [

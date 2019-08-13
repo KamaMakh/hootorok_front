@@ -37,6 +37,7 @@ const routes = [
         path: 'booking',
         name: 'booking',
         component: () => import('pages/Booking.vue'),
+        props: true,
       },
       {
         path: '/auth/forgot-password',

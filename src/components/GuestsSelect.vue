@@ -3,11 +3,7 @@
     <template v-slot:control>
       <div class="self-center full-width no-outline" tabindex="0">
         <span>
-          {{ wordDeclension(adultCount.value, declensionsAdult) }}<!--
-          --><span v-if="childCount.value > 0">,
-            {{ wordDeclension(childCount.value, declensionsChild) }}
-          </span>
-
+          {{formattedText}}
         </span>
       </div>
       <q-menu fit>
@@ -57,6 +53,14 @@ export default {
       declensionsChild: 'children',
       declensionsAdult: 'adult',
     };
+  },
+  computed: {
+    formattedText() {
+      const adult = this.wordDeclension(this.adultCount.value, this.declensionsAdult);
+      const child = this.wordDeclension(this.childCount.value, this.declensionsChild);
+      if (child === '') return adult;
+      return [adult, child].join(', ');
+    },
   },
   created() {
     if (this.adults > this.adultCount.min) this.adultCount.value = this.adults;

@@ -47,21 +47,15 @@ module.exports = () => ({
       'QItemSection',
       'QItemLabel',
       'QSelect',
+
       'QCheckbox',
       'QInput',
       'QBanner',
       'QDialog',
-      'QCard',
-      'QCardSection',
-      'QCardActions',
-      'QDate',
-      'QField',
-      'QMenu',
     ],
 
     directives: [
       'Ripple',
-      'ClosePopup',
     ],
 
     // Quasar plugins

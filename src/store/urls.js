@@ -2,10 +2,12 @@ const serverUrl = process.env.DEV ? 'http://localhost:13579' : 'https://baza-hut
 const registerUrl = `${serverUrl}/auth/register`;
 const resetPasswordUrl = `${serverUrl}/auth/sendRecoveryHash`;
 const loginUrl = `${serverUrl}/auth/login`;
+const newPasswordUrl = `${serverUrl}/auth/setNewPassword`;
 
 export {
   serverUrl,
   registerUrl,
   resetPasswordUrl,
   loginUrl,
+  newPasswordUrl,
 };

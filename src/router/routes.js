@@ -43,6 +43,16 @@ const routes = [
         name: 'passwordreset',
         component: () => import('pages/PasswordReset.vue'),
       },
+      {
+        path: 'recovery',
+        name: 'newpassword',
+        component: () => import('pages/NewPassword.vue'),
+      },
+      {
+        path: 'cabinet',
+        name: 'cabinet',
+        component: () => import('pages/Cabinet.vue'),
+      },
     ],
   },
 ];

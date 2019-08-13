@@ -29,4 +29,7 @@ export default {
   info: 'Центр поддержки',
   password_reset: 'Восстановление пароля',
   reset_password: 'Восстановить пароль',
+  set_new_password: 'Установить пароль',
+  new_password: 'Новый пароль',
+  cabinet: 'Личный кабинет',
 };

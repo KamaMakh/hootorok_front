@@ -1,9 +1,13 @@
 <template>
   <q-page padding>
-    <h1 class="text-h2 text-center">Номера и домики</h1>
+    <h1 class="text-h2 text-center" v-text="$t('roomsAndHouses')"/>
     <div class="row">
       <div class="q-pa-md col-xs-12 col-sm-4 col-md-2">
-        <q-btn @click="sortArray" color="primary" label="Сортировка по цене за сутки"></q-btn>
+        <q-btn
+          @click="sortArray"
+          color="primary"
+          :label="$t('sortByPricePerDay')">
+        </q-btn>
         <q-option-group
           v-model="group"
           :options="housing"
@@ -17,8 +21,8 @@
           glossy
           toggle-color="primary"
           :options="[
-          {label: 'плитка', value: false},
-          {label: 'список', value: true},
+          {label: $t('tile'), value: false},
+          {label: $t('list'), value: true},
         ]">
         </q-btn-toggle>
       </div>
@@ -27,12 +31,12 @@
           <q-card class="card" v-for="item in result" :key="item.id">
             <img :src="item.img" class="image" @click="() => {console.log('click')}">
             <q-card-section>
-              <div class="text-h6">{{item.name}}</div>
-              <div class="text-h6">Корпус № {{item.housing}}</div>
+              <div class="text-h6">{{$t('roomNumber')}}{{item.id}}</div>
+              <div class="text-h6">{{$t('housing')}}{{item.housing}}</div>
             </q-card-section>
             <q-card-section>
-              <p>Цена за ночь {{item.price}}</p>
-              <p>Кол-во взрослых и детей: {{item.max}}</p>
+              <p>{{$t('pricePerDay')}}{{item.price}}</p>
+              <p>{{$t('person')}}{{item.max}}</p>
             </q-card-section>
           </q-card>
         </div>
@@ -40,18 +44,18 @@
           <q-markup-table>
             <thead>
             <tr>
-              <th class="text-left">Фото</th>
-              <th class="text-right">Номер</th>
-              <th class="text-right">Корпус</th>
-              <th class="text-right">Стоимость за сутки</th>
-              <th class="text-right">Максимальное кол-во взрослых</th>
+              <th class="text-left">{{$t('photo')}}</th>
+              <th class="text-right">{{$t('roomNumber')}}</th>
+              <th class="text-right">{{$t('housing')}}</th>
+              <th class="text-right">{{$t('pricePerDay')}}</th>
+              <th class="text-right">{{$t('person')}}</th>
             </tr>
             </thead>
             <tbody>
             <tr>
             <tr v-for="room in result" :key="room.id">
               <td class="text-left">photo</td>
-              <td class="text-right">{{room.name}}</td>
+              <td class="text-right">{{room.id}}</td>
               <td class="text-right">{{room.housing}}</td>
               <td class="text-right">{{room.price}}</td>
               <td class="text-right">{{room.max}}</td>

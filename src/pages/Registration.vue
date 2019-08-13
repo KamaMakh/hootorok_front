@@ -55,10 +55,10 @@
               />
             </template>
           </q-input>
-          <!-- <q-input
+          <q-input
             ref="password2"
             outlined
-            v-model="formData.password2"
+            v-model="formData1.password2"
             :label="$t('confirm_password')"
             :type="showPassword2 ? 'password' : 'text'"
             :rules="[
@@ -75,7 +75,7 @@
                 @click="showPassword2 = !showPassword2"
               />
             </template>
-          </q-input> -->
+          </q-input>
           <q-input
             outlined
             v-model="formData.first_name"
@@ -126,14 +126,17 @@ export default {
       formData: {
         email: '',
         password: '',
-        // password2: '',
         first_name: '',
         second_name: '',
         phone_number: '',
         // subscribed: false,
       },
+      formData1: {
+        password2: '',
+        // subscribed: false,
+      },
       showPassword: true,
-      // showPassword2: true,
+      showPassword2: true,
       tab: 'Login',
     };
   },
@@ -141,17 +144,18 @@ export default {
     submitForm() {
       this.$refs.email.validate();
       this.$refs.password.validate();
-      // this.$refs.password2.validate();
+      this.$refs.password2.validate();
       this.$refs.first_name.validate();
       this.$refs.second_name.validate();
       this.$refs.phone_number.validate();
       if (
         !this.$refs.email.hasError
         && !this.$refs.password.hasError
-        // && !this.$refs.password2.hasError
+        && !this.$refs.password2.hasError
         && !this.$refs.first_name.hasError
         && !this.$refs.second_name.hasError
         && !this.$refs.phone_number.hasError
+        && this.$refs.password.value === this.$refs.password2.value
       ) {
         this.$store.dispatch('user/register', this.formData)
           .then(() => this.$router.push({ name: 'booking' }))

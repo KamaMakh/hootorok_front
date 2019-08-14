@@ -89,7 +89,7 @@
 </template>
 
 <script>
-import { openURL, Dialog } from 'quasar';
+import { openURL } from 'quasar';
 
 export default {
   name: 'MainLayout',
@@ -121,7 +121,7 @@ export default {
       },
     },
     isAuth() {
-      return this.$store.getters.loggedIn;
+      return this.$store.getters['user/loggedIn'];
     },
   },
   methods: {

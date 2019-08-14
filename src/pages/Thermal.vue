@@ -1,8 +1,12 @@
 <template>
-  <q-page class="q-px-md q-pb-md">
-    <h2 class="text-h2 text-center" v-text="$t('thermal.title')"/>
+  <q-page padding>
+    <h2 class="text-h2 text-center" v-text="$t('thermal_springs')"/>
     <div class="q-pa-md">
-      <q-table :title="$t('thermal.table.title')" :columns="columns" :data="data" row-key="name"/>
+      <q-table
+      :title="$t('thermal_water_characteristics')"
+      :columns="columns"
+      :data="data"
+      row-key="name"/>
     </div>
     <p class="q-pa-md text-body1">
       Абзац посвящённый описанию и характеристикам бассейнов.
@@ -47,13 +51,13 @@ export default {
       columns: [
         {
           name: 'key',
-          label: 'Параметр',
+          label: this.$t('thermal_parameter'),
           field: 'parameter',
           align: 'left',
         },
         {
           name: 'value',
-          label: 'Значение',
+          label: this.$t('thermal_value'),
           field: 'value',
           align: 'left',
         },
@@ -63,6 +67,7 @@ export default {
     };
   },
   mounted() {
+
   },
 };
 </script>

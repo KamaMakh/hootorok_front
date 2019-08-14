@@ -21,7 +21,7 @@ const routes = [
       },
       {
         path: '/thermal',
-        name: 'Thermal',
+        name: 'thermal',
         component: () => import('pages/Thermal.vue'),
       },
     ],

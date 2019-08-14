@@ -4,39 +4,39 @@
 
         <div class="q-pa-md justify-end row">
             <div class="q-gutter-md" style="width: 80px; max-width: 100%;">
-                <q-select v-model="perPage" :options="options"/>
+              <q-select v-model="perPage" :options="options"/>
             </div>
         </div>
         <div class="q-pa-md row items-start q-gutter-md">
-            <q-card v-for="news in droppedList"
-                    v-bind:key="news.id"
-                    flat bordered
-                    class="my-card col-lg-3 col-md-4 col-xs-12"
-                    style="max-width: 300px">
-                <q-card-section>
-                    <div class="row items-center no-wrap">
-                        <div class="col">
-                            {{ news.short_text }}
-                        </div>
-                    </div>
-                </q-card-section>
+          <q-card v-for="news in droppedList"
+            v-bind:key="news.id"
+            flat bordered
+            class="my-card col-lg-3 col-md-4 col-xs-12"
+            style="max-width: 300px">
+              <q-card-section>
+                <div class="row items-center no-wrap">
+                  <div class="col">
+                    {{ news.short_text }}
+                  </div>
+                </div>
+              </q-card-section>
 
-                <q-card-section>
-                    <div class="text-subtitle2">{{ news.date }}</div>
-                </q-card-section>
+              <q-card-section>
+                <div class="text-subtitle2">{{ news.date }}</div>
+              </q-card-section>
 
-                <q-separator inset/>
+              <q-separator inset/>
 
-                <q-card-actions>
-                    <q-btn flat>
-                        <router-link
-                                :to="{ name: 'newsDetail', params: { id: news.id } }"
-                                class="standard-link text-black"
-                                v-text="$t('more')"
-                        />
-                    </q-btn>
-                </q-card-actions>
-            </q-card>
+              <q-card-actions>
+                <q-btn flat>
+                  <router-link
+                    :to="{ name: 'newsDetail', params: { id: news.id } }"
+                    class="standard-link text-black"
+                    v-text="$t('more')"
+                  />
+                </q-btn>
+            </q-card-actions>
+          </q-card>
         </div>
         <div class="q-pa-md justify-center row">
             <q-btn-group style="box-shadow: none">

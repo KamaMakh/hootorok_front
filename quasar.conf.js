@@ -67,7 +67,6 @@ module.exports = () => ({
     plugins: [
       'Notify',
       'Cookies',
-      'Dialog',
     ],
   },
 

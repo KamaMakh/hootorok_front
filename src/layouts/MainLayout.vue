@@ -16,28 +16,28 @@
 
         <div class="row items-center">
           <div v-if="isAuth">
-              <router-link
-                      :to="{ name: 'cabinet' }"
-                      class="standard-link text-white q-ml-md"
-                      v-text="$t('cabinet')"
-              />
-              <router-link
-                      :to="{ name: 'logout' }"
-                      class="standard-link text-white q-ml-md"
-                      v-text="$t('logout')"
-              />
+            <router-link
+              :to="{ name: 'cabinet' }"
+              class="standard-link text-white q-ml-md"
+              v-text="$t('cabinet')"
+            />
+            <router-link
+              :to="{ name: 'logout' }"
+              class="standard-link text-white q-ml-md"
+              v-text="$t('logout')"
+            />
           </div>
           <div v-else>
-              <router-link
-                      :to="{ name: 'login' }"
-                      class="standard-link text-white q-ml-md"
-                      v-text="$t('login')"
-              />
-              <router-link
-                      :to="{ name: 'registration' }"
-                      class="standard-link text-white q-ml-md"
-                      v-text="$t('registration')"
-              />
+            <router-link
+              :to="{ name: 'login' }"
+              class="standard-link text-white q-ml-md"
+              v-text="$t('login')"
+            />
+            <router-link
+              :to="{ name: 'registration' }"
+              class="standard-link text-white q-ml-md"
+              v-text="$t('registration')"
+            />
           </div>
           <q-select
             v-model="lang"
@@ -90,6 +90,7 @@
 
 <script>
 import { openURL } from 'quasar';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'MainLayout',
@@ -120,9 +121,9 @@ export default {
         this.$store.commit('setLang', lang);
       },
     },
-    isAuth() {
-      return this.$store.getters['user/loggedIn'];
-    },
+    ...mapGetters('user', {
+      isAuth: 'loggedIn',
+    }),
   },
   methods: {
     openURL,

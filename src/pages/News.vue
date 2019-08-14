@@ -154,12 +154,10 @@ export default {
     };
   },
   methods: {
-    setData(info) {
-      if (info.data.length) {
-        this.newsList = info.data;
-        this.newsCount = info.data.length;
-        this.dropList();
-      }
+    setData(values) {
+      this.newsList = values.news;
+      this.newsCount = values.newsTotal;
+      this.dropList();
     },
     dropList() {
       if (this.newsCount > 5) {

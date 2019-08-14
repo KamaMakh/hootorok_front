@@ -1,14 +1,14 @@
 <template>
-    <q-page class="q-px-md q-pb-md news-list">
+    <q-page padding class="news-list">
         <h1 class="text-h4" v-text="$t('news')"/>
 
         <div class="q-pa-md justify-end row">
             <div class="q-gutter-md" style="width: 80px; max-width: 100%;">
-                <q-select v-model="per_page" :options="options"/>
+                <q-select v-model="perPage" :options="options"/>
             </div>
         </div>
         <div class="q-pa-md row items-start q-gutter-md">
-            <q-card v-for="news in dropped_list"
+            <q-card v-for="news in droppedList"
                     v-bind:key="news.id"
                     flat bordered
                     class="my-card col-lg-3 col-md-4 col-xs-12"
@@ -40,31 +40,30 @@
         </div>
         <div class="q-pa-md justify-center row">
             <q-btn-group style="box-shadow: none">
-                <q-btn outline
-                       color="blue q-mr-sm text-lowercase"
-                       icon="arrow_back"
-                       :disabled="min_disabled"
-                       @click="changePage(-1)"
-                       :label="$t('prev_ten')" />
-                <q-btn outline
-                       color="blue q-ml-sm text-lowercase"
-                       icon-right="arrow_forward"
-                       :disabled="max_disabled"
-                       @click="changePage(1)"
-                       :label="$t('next_ten')"/>
+              <q-btn outline
+                color="blue q-mr-sm text-lowercase"
+                icon="arrow_back"
+                :disabled="currentPage <= 0"
+                @click="changePage(-1)"
+                :label="$t('prev') + ' ' + perPage" />
+              <q-btn outline
+                color="blue q-ml-sm text-lowercase"
+                icon-right="arrow_forward"
+                :disabled="currentPage * perPage + perPage >= newsCount"
+                @click="changePage(1)"
+                :label="$t('next') + ' ' + perPage"/>
             </q-btn-group>
         </div>
     </q-page>
 </template>
 
 <script>
-import { Dialog } from 'quasar';
-
 export default {
   name: 'News',
   beforeRouteEnter(from, to, next) {
     // eslint-disable-next-line
-    let info = {};
+    // удалим когда будет готов бэк
+    const info = {};
     info.data = [
       {
         short_text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
@@ -143,67 +142,61 @@ export default {
       },
     ];
     next(vm => vm.setData(info));
-
-    // Promise.all([axios.get('api address/getNews')])
-    //   .then((values) => {
-    //     next(vm => vm.setData(values[0]));
-    //   })
-    //   .catch((error) => {
-    //     next(vm => vm.showErrorMessage(error));
-    //   });
   },
   data() {
     return {
-      news_list: [],
-      dropped_list: [],
+      newsList: [],
+      droppedList: [],
       options: [5, 10, 30],
-      per_page: 10,
-      news_count: 0,
-      current_page: 0,
-      min_disabled: true,
-      max_disabled: false,
+      perPage: 10,
+      newsCount: 0,
+      currentPage: 0,
     };
   },
   methods: {
     setData(info) {
       if (info.data.length) {
-        this.news_list = info.data;
-        this.news_count = info.data.length;
+        this.newsList = info.data;
+        this.newsCount = info.data.length;
         this.dropList();
       }
     },
-    showErrorMessage(errorMessage) {
-      Dialog.create({
-        title: 'Error',
-        message: errorMessage,
-      });
-    },
     dropList() {
-      if (this.news_count > 5) {
-        const listFrom = this.per_page * this.current_page;
-        this.dropped_list = this.news_list.slice(listFrom, listFrom + this.per_page);
+      if (this.newsCount > 5) {
+        const listFrom = this.perPage * this.currentPage;
+        this.droppedList = this.newsList.slice(listFrom, listFrom + this.perPage);
       } else {
-        this.dropped_list = this.news_list;
-        this.max_disabled = true;
+        this.droppedList = this.newsList;
       }
     },
     changePage(type) {
       if (type === 1) {
-        this.current_page += 1;
+        this.currentPage += 1;
       } else if (type === -1) {
-        this.current_page -= 1;
+        this.currentPage -= 1;
       } else {
-        this.current_page = 0;
+        this.currentPage = 0;
       }
-      this.max_disabled = this.current_page * this.per_page + this.per_page >= this.news_count;
-      this.min_disabled = this.current_page <= 0;
       this.dropList();
     },
   },
   watch: {
-    per_page() {
+    perPage() {
       this.changePage();
     },
+  },
+  computed() {
+    this.$store.dispatch('content/getNews', { offset: 10, limit: 10 })
+      .then((values) => {
+        this.setData(values);
+      })
+      .catch((error) => {
+        this.$q.notify({
+          icon: 'close',
+          color: 'negative',
+          message: error,
+        });
+      });
   },
 };
 </script>

@@ -50,7 +50,7 @@ const routes = [
       },
       {
         path: '/news/:id',
-        name: 'newsDetail',
+        name: 'news-detail',
         component: () => import('pages/News.vue'),
       },
     ],

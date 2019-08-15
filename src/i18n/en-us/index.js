@@ -4,7 +4,7 @@ export default {
   password: 'Password',
   confirm_password: 'Confirm password',
   name: 'Name',
-  last_name: 'Last name',
+  second_name: 'Last name',
   registration: 'Registration',
   authorization: 'Authorization',
   phone_or_email: 'Phone or email',
@@ -27,4 +27,16 @@ export default {
   about: 'About',
   info: 'Info',
   password_reset: 'Password Reset',
+  info_about_hutorok: 'Info About Hutorok',
+
+  // BookingCard
+  booking_card_label: 'Book a great holiday',
+  arrival_date: 'Date of arrival',
+  departure_date: 'Date of departure',
+  guests: 'Guests',
+  adult_label: 'Adults',
+  adult: ['Adult', 'Adults'],
+  child_label: 'Children',
+  children: ['Child', 'Children'],
+  check_prices: 'Check prices',
 };

@@ -39,6 +39,21 @@ const routes = [
         component: () => import('pages/Booking.vue'),
       },
       {
+        path: 'thermal',
+        name: 'thermal',
+        component: () => import('pages/Thermal.vue'),
+      },
+      {
+        path: 'rooms',
+        name: 'rooms',
+        component: () => import('pages/Rooms.vue'),
+      },
+      {
+        path: 'maps',
+        name: 'maps',
+        component: () => import('pages/Maps.vue'),
+      },
+      {
         path: '/auth/forgot-password',
         name: 'passwordreset',
         component: () => import('pages/PasswordReset.vue'),

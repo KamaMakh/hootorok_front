@@ -22,4 +22,5 @@ export default {
   contacts: 'Contacts',
   about: 'About',
   info: 'Info',
+  recommend_title: 'Recommended',
 };

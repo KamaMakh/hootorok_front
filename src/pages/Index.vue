@@ -1,6 +1,6 @@
 <template>
   <q-page class="flex flex-center">
-    <img alt="Quasar logo" src="~assets/quasar-logo-full.svg">
+    <recommend />
   </q-page>
 </template>
 
@@ -8,7 +8,12 @@
 </style>
 
 <script>
+import Recommend from 'components/Recommend.vue';
+
 export default {
   name: 'PageIndex',
+  components: {
+    Recommend,
+  },
 };
 </script>

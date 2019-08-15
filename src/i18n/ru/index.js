@@ -22,4 +22,5 @@ export default {
   contacts: 'Контакты',
   about: 'О нас',
   info: 'Центр поддержки',
+  recommend_title: 'Рекомендуем Вам',
 };

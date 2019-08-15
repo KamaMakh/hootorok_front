@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="lHh Lpr lff">
     <q-header elevated>
       <q-toolbar>
         <q-btn
@@ -15,16 +15,30 @@
         <q-toolbar-title />
 
         <div class="row items-center">
-          <router-link
-            :to="{ name: 'auth' }"
-            class="standard-link text-white q-ml-md"
-            v-text="$t('login')"
-          />
-          <router-link
-            :to="{ name: 'registration' }"
-            class="standard-link text-white q-ml-md"
-            v-text="$t('registration')"
-          />
+          <template v-if="loggedIn">
+            <router-link
+              :to="{ name: 'cabinet' }"
+              class="standard-link text-white q-ml-md"
+              v-text="$t('cabinet')"
+            />
+            <router-link
+              :to="{ name: 'logout' }"
+              class="standard-link text-white q-ml-md"
+              v-text="$t('logout')"
+            />
+          </template>
+          <template v-else>
+            <router-link
+              :to="{ name: 'login' }"
+              class="standard-link text-white q-ml-md"
+              v-text="$t('login')"
+            />
+            <router-link
+              :to="{ name: 'registration' }"
+              class="standard-link text-white q-ml-md"
+              v-text="$t('registration')"
+            />
+          </template>
           <q-select
             v-model="lang"
             :options="langOptions"
@@ -58,7 +72,7 @@
     <q-page-container>
       <router-view />
 
-      <footer elevated class="bg-primary text-left q-py-lg q-px-md shadow-6">
+      <q-footer elevated class="text-left q-pa-md">
         <div class="row items-center justify-center text-center q-gutter-md">
           <router-link
             :to="{ name: 'contacts'}"
@@ -76,13 +90,14 @@
             v-text="$t('info')"
           />
         </div>
-      </footer>
+      </q-footer>
     </q-page-container>
   </q-layout>
 </template>
 
 <script>
 import { openURL } from 'quasar';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'MainLayout',
@@ -111,6 +126,7 @@ export default {
         this.$store.commit('setLang', lang);
       },
     },
+    ...mapGetters('user', ['loggedIn']),
   },
   methods: {
     openURL,

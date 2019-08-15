@@ -10,13 +10,23 @@ const routes = [
       },
       {
         path: 'auth',
-        name: 'auth',
+        name: 'login',
         component: () => import('pages/Login.vue'),
       },
       {
         path: 'registration',
         name: 'registration',
         component: () => import('pages/Registration.vue'),
+      },
+      {
+        path: 'cabinet',
+        name: 'cabinet',
+        component: () => import('pages/Cabinet.vue'),
+      },
+      {
+        path: 'logout',
+        name: 'logout',
+        component: () => import('pages/Logout.vue'),
       },
       {
         path: 'contacts',
@@ -37,10 +47,11 @@ const routes = [
         path: 'booking',
         name: 'booking',
         component: () => import('pages/Booking.vue'),
+        props: true,
       },
       {
         path: '/auth/forgot-password',
-        name: 'passwordreset',
+        name: 'password-reset',
         component: () => import('pages/PasswordReset.vue'),
       },
       {

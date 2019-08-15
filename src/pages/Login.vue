@@ -32,15 +32,15 @@
             ]"
             lazy-rules
           />
-        <div class="row">
-          <q-btn color="primary" v-bind:label="$t('enter')" type="submit" />
-        </div>
-        <div>
-          <router-link :to="{ name: 'passwordreset' }" v-text="$t('forgot_password')" />
-        </div>
-        <div>
-          <router-link :to="{ name: 'registration' }" v-text="$t('registration')" />
-        </div>
+          <div class="row">
+            <q-btn color="primary" v-bind:label="$t('enter')" type="submit" />
+          </div>
+          <div>
+            <router-link :to="{ name: 'password-reset' }" v-text="$t('forgot_password')" />
+          </div>
+          <div>
+            <router-link :to="{ name: 'registration' }" v-text="$t('registration')" />
+          </div>
         </div>
       </form>
     </div>

@@ -6,6 +6,8 @@ export default {
   name: 'Имя',
   second_name: 'Фамилия',
   registration: 'Регистрация',
+  cabinet: 'Личный кабинет',
+  logout: 'Выход',
   authorization: 'Авторизация',
   phone_or_email: 'Телефон или email',
   phone_layout: 'Формат: 8 ### ### ## ##',
@@ -27,8 +29,6 @@ export default {
   about: 'О нас',
   info: 'Центр поддержки',
   password_reset: 'Восстановление пароля',
-
-  // BookingCard
   booking_card_label: 'Бронируйте великолепный отдых',
   arrival_date: 'Дата заезда',
   departure_date: 'Дата выезда',

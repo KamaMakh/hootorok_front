@@ -7,7 +7,7 @@ function register({ commit }, data) {
   return new Promise((resolve, reject) => {
     axios.post(registerUrl, data)
       .then((response) => {
-        commit('setUser', response.data.data);
+        commit('setUser', response.data.user[0]);
 
         resolve();
       })

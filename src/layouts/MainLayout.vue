@@ -15,16 +15,30 @@
         <q-toolbar-title />
 
         <div class="row items-center">
-          <router-link
-            :to="{ name: 'auth' }"
-            class="standard-link text-white q-ml-md"
-            v-text="$t('login')"
-          />
-          <router-link
-            :to="{ name: 'registration' }"
-            class="standard-link text-white q-ml-md"
-            v-text="$t('registration')"
-          />
+          <template v-if="loggedIn">
+            <router-link
+              :to="{ name: 'cabinet' }"
+              class="standard-link text-white q-ml-md"
+              v-text="$t('cabinet')"
+            />
+            <router-link
+              :to="{ name: 'logout' }"
+              class="standard-link text-white q-ml-md"
+              v-text="$t('logout')"
+            />
+          </template>
+          <template v-else>
+            <router-link
+              :to="{ name: 'login' }"
+              class="standard-link text-white q-ml-md"
+              v-text="$t('login')"
+            />
+            <router-link
+              :to="{ name: 'registration' }"
+              class="standard-link text-white q-ml-md"
+              v-text="$t('registration')"
+            />
+          </template>
           <q-select
             v-model="lang"
             :options="langOptions"
@@ -83,6 +97,7 @@
 
 <script>
 import { openURL } from 'quasar';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'MainLayout',
@@ -111,6 +126,7 @@ export default {
         this.$store.commit('setLang', lang);
       },
     },
+    ...mapGetters('user', ['loggedIn']),
   },
   methods: {
     openURL,

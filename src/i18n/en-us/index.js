@@ -27,4 +27,13 @@ export default {
   about: 'About',
   info: 'Info',
   password_reset: 'Password Reset',
+  reference_information: 'Reference information',
+  booking: 'Booking',
+  payment: 'Payment',
+  faq: 'Faq',
+  question: 'Question',
+  feedback: 'Feedback',
+  number_characters_question: 'Please correct the question',
+  send_message: 'Send',
+  request_sent: 'Request sent',
 };

@@ -27,4 +27,13 @@ export default {
   about: 'О нас',
   info: 'Центр поддержки',
   password_reset: 'Восстановление пароля',
+  reference_information: 'Справочная информация',
+  booking: 'Бронирование',
+  payment: 'Оплата',
+  faq: 'Вопрос-Ответ',
+  question: 'Вопрос',
+  feedback: 'Обратная связь',
+  number_characters_question: 'Скорректируйте, пожалуйста, вопрос',
+  send_message: 'Отправить',
+  request_sent: 'Запрос отправлен',
 };

@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    <h1 class="text-h2" v-text="$t('booking')"/>
+    <h1 class="text-h2" v-text="$t('payment')"/>
     <p>Описание условия доставки1</p>
     <p>Описание условия доставки2</p>
     <p>Описание условия доставки3</p>
@@ -9,6 +9,6 @@
 
 <script>
 export default {
-  name: 'Booking',
+  name: 'Payment',
 };
 </script>

@@ -53,9 +53,6 @@ module.exports = () => ({
       'QBanner',
       'QDialog',
 
-      'QCard',
-      'QCardSection',
-      'QCardActions',
       'QCarousel',
       'QCarouselControl',
       'QCarouselSlide',

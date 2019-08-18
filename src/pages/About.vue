@@ -1,24 +1,33 @@
 <template>
-  <q-page padding>
+  <q-page padding class="q-ma-md text-center">
     <h1 class="text-h2" v-text="$t('about')"/>
-    <p class="text-body1 q-py-sm">
-    Краткое описание базы
+    <p class="text-body1 q-pb-md">
+      {{ aboutInfo.name }}
     </p>
-    <div id="map" style="width: 100%; height: 500px"></div>
-    <p class="text-body1 text-weight-bold q-py-sm text-center">
-    Контакты
+      <ya-map />
+    <p class="text-body1 text-weight-bold q-pt-md">
+      {{ "Телефон: " + aboutInfo.phone }} <br>
+      {{ "E-mail: " + aboutInfo.email }} <br>
+      {{ "Адрес: " + aboutInfo.address.street + ' : ' + aboutInfo.address.suite  }}
     </p>
 
   </q-page>
 </template>
 
 <script>
+import YaMap from 'components/YaMap.vue';
+import { mapGetters, mapActions } from 'vuex';
+
 export default {
   name: 'About',
-  data() {
-    return {};
+  components: {
+    YaMap,
   },
-  methods: {},
+  computed: mapGetters('about', ['aboutInfo']),
+  methods: mapActions('about', ['getAboutInfo']),
+  async mounted() {
+    this.getAboutInfo();
+  },
 };
 </script>
 

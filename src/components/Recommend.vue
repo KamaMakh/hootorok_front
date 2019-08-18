@@ -15,13 +15,13 @@
         navigation
         height="auto"
       >
-        <q-carousel-slide :name="item.id"
-        v-for="item in allServices" :key="item.id">
-          <router-link :to="'/services/' + item.id">
+        <q-carousel-slide :name="service.id"
+        v-for="service in allServices" :key="service.id">
+          <router-link class="none-decor" :to="'/services/' + service.id">
             <div class="full-height full-width">
-              <div><img :src="item.url"></div>
-              <div class="text-h4 q-py-md">{{ item.title }}</div>
-              <div class="text-body1 q-pb-lg">{{ item.description }}</div>
+              <div><img :src="service.url"></div>
+              <div class="text-h4 q-py-md">{{ service.name }}</div>
+              <div class="text-body1 q-pb-lg">{{ service.description }}</div>
             </div>
           </router-link>
         </q-carousel-slide>
@@ -40,20 +40,19 @@ export default {
     };
   },
   name: 'Recommend',
-  computed: mapGetters('service', ['allServices']),
-  methods: mapActions('service', ['getServices']),
+  computed: mapGetters('content', ['allServices']),
+  methods: mapActions('content', ['getServices']),
   async mounted() {
     this.getServices();
   },
   updated() {
-    // eslint-disable-next-line
-    if (isNaN(this.slide)) this.slide = this.allServices[0].id;
+    if (Number.isNaN(Number(this.slide))) this.slide = this.allServices[0].id;
   },
 };
 </script>
 
-<style scoped>
-a {
+<style>
+.none-decor {
   text-decoration: none;
 }
 </style>

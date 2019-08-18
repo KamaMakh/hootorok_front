@@ -2,7 +2,7 @@
   <q-page padding class="q-ma-md text-center">
     <h1 class="text-h2" v-text="$t('about')"/>
     <p class="text-body1 q-pb-md">
-      {{ aboutInfo.name }}
+      {{ aboutInfo.description }}
     </p>
       <ya-map />
     <p class="text-body1 text-weight-bold q-pt-md">
@@ -23,8 +23,8 @@ export default {
   components: {
     YaMap,
   },
-  computed: mapGetters('about', ['aboutInfo']),
-  methods: mapActions('about', ['getAboutInfo']),
+  computed: mapGetters('content', ['aboutInfo']),
+  methods: mapActions('content', ['getAboutInfo']),
   async mounted() {
     this.getAboutInfo();
   },

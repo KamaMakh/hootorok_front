@@ -3,7 +3,7 @@ import Vuex from 'vuex';
 import { Cookies } from 'quasar';
 
 import user from './user';
-import about from './about';
+import content from './content';
 
 Vue.use(Vuex);
 
@@ -18,7 +18,7 @@ export default function ({ ssrContext }) {
   const Store = new Vuex.Store({
     modules: {
       user,
-      about,
+      content,
     },
     state: {
       lang: cookies.get('lang') || 'ru',

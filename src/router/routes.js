@@ -24,6 +24,12 @@ const routes = [
         name: 'rooms',
         component: () => import('pages/Rooms.vue'),
       },
+      {
+        path: 'rooms/:id',
+        name: 'roomItem',
+        props: true,
+        component: () => import('pages/RoomItem.vue'),
+      },
     ],
   },
 ];

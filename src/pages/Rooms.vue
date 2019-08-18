@@ -29,9 +29,16 @@
       <div class="col-xs-12 col-sm-8 col-md-10">
         <div class="q-pa-md row items-start q-gutter-md" v-if="!isList">
           <q-card class="card" v-for="item in result" :key="item.id">
-            <img :src="item.img" class="image" @click="() => {console.log('click')}">
+            <img :src="item.img" class="image">
             <q-card-section>
-              <div class="text-h6">{{$t('roomNumber')}}{{item.id}}</div>
+              <div class="text-h6"
+                   @click="$router.push({
+                  name: 'roomItem',
+                  params: {
+                  id: item.id,
+                  },
+                  })"
+              >{{$t('roomNumber')}}{{item.id}}</div>
               <div class="text-h6">{{$t('housing')}}{{item.housing}}</div>
             </q-card-section>
             <q-card-section>
@@ -53,12 +60,18 @@
             </thead>
             <tbody>
             <tr>
-            <tr v-for="room in result" :key="room.id">
+            <tr v-for="item in result" :key="item.id"
+                @click="$router.push({
+                name: 'roomItem',
+                params: {
+                id: item.id,
+                },
+                })">
               <td class="text-left">photo</td>
-              <td class="text-right">{{room.id}}</td>
-              <td class="text-right">{{room.housing}}</td>
-              <td class="text-right">{{room.price}}</td>
-              <td class="text-right">{{room.max}}</td>
+              <td class="text-right">{{item.id}}</td>
+              <td class="text-right">{{item.housing}}</td>
+              <td class="text-right">{{item.price}}</td>
+              <td class="text-right">{{item.max}}</td>
             </tr>
             </tbody>
           </q-markup-table>

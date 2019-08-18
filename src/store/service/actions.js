@@ -1,7 +1,5 @@
 import axios from 'axios';
-import { registerUrl, servicesUrl } from 'src/store/urls';
-
-import onError from 'src/store/onError';
+import { servicesUrl } from 'src/store/urls';
 
 
 function getServices({ commit }) {
@@ -15,20 +13,6 @@ function getServices({ commit }) {
   });
 }
 
-
-function register({ commit }, data) {
-  return new Promise((resolve, reject) => {
-    axios.post(registerUrl, data)
-      .then((response) => {
-        commit('setUser', response.data.user);
-
-        resolve();
-      })
-      .catch(error => onError(error, reject));
-  });
-}
-
 export {
-  register,
   getServices,
 };

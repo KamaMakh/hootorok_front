@@ -33,7 +33,8 @@ export default {
   faq: 'Вопрос-Ответ',
   question: 'Вопрос',
   feedback: 'Обратная связь',
-  number_characters_question: 'Скорректируйте, пожалуйста, вопрос',
-  send_message: 'Отправить',
+  correct_question_message: 'Скорректируйте, пожалуйста, вопрос',
+  send: 'Отправить',
   request_sent: 'Запрос отправлен',
+  eleven_numbers_min: 'Ожидается 11 цифр',
 };

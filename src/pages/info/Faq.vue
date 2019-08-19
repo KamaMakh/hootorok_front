@@ -42,12 +42,13 @@
             :label="$t('phone')"
             ref="phone_number"
             mask="# ### ### ## ##"
+            unmasked-value
             fill-mask
             :hint="$t('phone_layout')"
             lazy-rules
             :rules="[
               val => !!val || $t('required_field'),
-              val => isValidPhoneNumber || $t('enter_correct_tel_number'),
+              val => val.length === 11 || $t('eleven_numbers_min')
             ]"
           />
           <q-input
@@ -61,16 +62,12 @@
               val => isValidEmailAddress || $t('enter_correct_email'),
             ]"
           />
-          <div class="submitWrapper row q-mt-md">
+          <div class="relative-position row q-mt-md">
             <q-btn
               color="primary"
-              :label="$t('send_message')"
+              :label="$t('send')"
               type="submit"
             />
-            <p class="requestSent text-green"
-              v-if="showMessage"
-            >{{$t('request_sent')}}
-            </p>
           </div>
         </div>
       </form>
@@ -79,6 +76,9 @@
 </template>
 
 <script>
+
+import EmailValidationMixin from 'components/helpers/emailValidationMixin.vue';
+
 export default {
   name: 'Faq',
   data() {
@@ -89,7 +89,6 @@ export default {
         phone_number: '',
         email: '',
       },
-      showMessage: false,
     };
   },
   methods: {
@@ -104,11 +103,12 @@ export default {
           && !this.$refs.phone_number.hasError
           && !this.$refs.email.hasError
       ) {
-        this.showMessage = true;
         this.$store.dispatch('/sendMessage', this.formData)
-          .then(function showMessage() {
-            this.showMessage = true;
-          })
+          .then(() => this.$q.notify({
+            icon: 'done',
+            color: 'positive',
+            message: this.$t('request_sent'),
+          }))
           .catch((error) => {
             this.$q.notify({
               icon: 'close',
@@ -119,17 +119,8 @@ export default {
       }
     },
   },
-  computed: {
-    isValidEmailAddress() {
-      // eslint-disable-next-line
-      const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      return re.test(this.$refs.email.value);
-    },
-    isValidPhoneNumber() {
-      const re = /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){11}(\s*)?$/;
-      return re.test(this.$refs.phone_number.value);
-    },
-  },
+  mixins: [EmailValidationMixin],
+
 };
 </script>
 
@@ -138,12 +129,5 @@ export default {
     max-width: 500px;
     margin: 0 auto;
     border: 1px solid lightgrey;
-  }
-  .submitWrapper{
-    position: relative;
-  }
-  .requestSent{
-    position: absolute;
-    right: 0;
   }
 </style>

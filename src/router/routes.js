@@ -31,10 +31,10 @@ const routes = [
       {
         path: 'info',
         name: 'info',
-        component: () => import('pages/Info.vue'),
+        component: () => import('pages/info/Info.vue'),
       },
       {
-        path: 'info/booking',
+        path: 'booking',
         name: 'booking',
         component: () => import('pages/Booking.vue'),
       },
@@ -46,12 +46,17 @@ const routes = [
       {
         path: 'info/payment',
         name: 'payment',
-        component: () => import('pages/Payment.vue'),
+        component: () => import('pages/info/Payment.vue'),
       },
       {
         path: 'info/faq',
         name: 'faq',
-        component: () => import('pages/Faq.vue'),
+        component: () => import('pages/info/Faq.vue'),
+      },
+      {
+        path: 'info/booking-info',
+        name: 'booking-info',
+        component: () => import('pages/info/BookingInfo.vue'),
       },
     ],
   },

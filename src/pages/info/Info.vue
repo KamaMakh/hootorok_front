@@ -1,7 +1,7 @@
 <template>
   <q-page padding>
     <h2 v-text="$t('reference_information')"/>
-      <router-link to="info/booking">
+      <router-link to="info/booking-info">
         <p v-text="$t('booking')"></p>
       </router-link>
       <router-link to="info/payment">

@@ -33,7 +33,8 @@ export default {
   faq: 'Faq',
   question: 'Question',
   feedback: 'Feedback',
-  number_characters_question: 'Please correct the question',
-  send_message: 'Send',
+  correct_question_message: 'Please correct the question',
+  send: 'Send',
   request_sent: 'Request sent',
+  eleven_numbers_min: 'Expected 11 digits',
 };

@@ -1,63 +1,65 @@
 <template>
-    <q-page padding class="news-list">
-      <h1 class="text-h4" v-text="$t('news')"/>
+  <q-page padding>
+    <h1 class="text-h4" v-text="$t('news')"/>
 
-      <div class="q-pa-md justify-end row">
-        <div class="q-gutter-md" style="width: 80px; max-width: 100%;">
-          <q-select v-model="perPage" :options="options"/>
-        </div>
+    <div class="q-pa-md justify-end row">
+      <div class="q-gutter-md" style="width: 80px; max-width: 100%;">
+        <q-select v-model="perPage" :options="options" outlined dense/>
       </div>
-      <div class="q-pa-md row items-start q-gutter-md">
-        <q-card
-          flat
-          bordered
-          v-for="news in droppedList"
-          :key="news.id"
-          class="my-card col-lg-3 col-md-4 col-xs-12"
-          style="max-width: 300px"
-        >
-          <q-card-section>
-            <div class="row items-center no-wrap">
-              <div class="col">
-                {{ news.short_text }}
-              </div>
+    </div>
+    <div class="q-pa-md row items-start justify-center q-gutter-md">
+      <q-card
+        flat
+        bordered
+        v-for="news in droppedList"
+        :key="news.id"
+        class="col-lg-3 col-md-4 col-xs-12"
+        style="max-width: 300px"
+      >
+        <q-card-section>
+          <div class="row items-center no-wrap">
+            <div class="col">
+              {{ news.short_text }}
             </div>
-          </q-card-section>
+          </div>
+        </q-card-section>
 
-          <q-card-section>
-            <div class="text-subtitle2">{{ news.date }}</div>
-          </q-card-section>
+        <q-card-section>
+          <div class="text-subtitle2">{{ news.date }}</div>
+        </q-card-section>
 
-          <q-separator inset/>
+        <q-separator inset/>
 
-          <q-card-actions>
-            <q-btn flat>
-              <router-link
-                :to="{ name: 'newsDetail', params: { id: news.id } }"
-                class="standard-link text-black"
-                v-text="$t('more')"
-              />
-            </q-btn>
-          </q-card-actions>
-        </q-card>
-      </div>
-        <div class="q-pa-md justify-center row">
-          <q-btn-group style="box-shadow: none">
-            <q-btn outline
-              color="blue q-mr-sm text-lowercase"
-              icon="arrow_back"
-              :disabled="currentPage <= 0"
-              @click="changePage(-1)"
-              :label="$t('prev') + ' ' + perPage" />
-            <q-btn outline
-              color="blue q-ml-sm text-lowercase"
-              icon-right="arrow_forward"
-              :disabled="currentPage * perPage + perPage >= newsCount"
-              @click="changePage(1)"
-              :label="$t('next') + ' ' + perPage"/>
-          </q-btn-group>
-        </div>
-    </q-page>
+        <q-card-actions>
+          <q-btn flat>
+            <router-link
+              :to="{ name: 'news-detail', params: { id: news.id } }"
+              class="standard-link text-black"
+              v-text="$t('more')"
+            />
+          </q-btn>
+        </q-card-actions>
+      </q-card>
+    </div>
+    <div class="q-pa-md justify-center row">
+      <q-btn-group unelevated>
+        <q-btn outline
+          class="q-mr-sm text-lowercase"
+          color="blue"
+          icon="arrow_back"
+          :disabled="prevDisable"
+          @click="changePage(-1)"
+          :label="`${$t('prev')} ${perPage}`" />
+        <q-btn outline
+          class="q-mr-sm text-lowercase"
+          color="blue"
+          icon-right="arrow_forward"
+          :disabled="nextDisable"
+          @click="changePage(1)"
+          :label="`${$t('next')} ${perPage}`"/>
+      </q-btn-group>
+    </div>
+  </q-page>
 </template>
 
 <script>
@@ -66,8 +68,10 @@ export default {
   beforeRouteEnter(from, to, next) {
     // eslint-disable-next-line
     // удалим когда будет готов бэк
-    const info = {};
-    info.data = [
+    const info = {
+      newsTotal: 15,
+    };
+    info.news = [
       {
         short_text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         date: '05.08.2019',
@@ -186,18 +190,24 @@ export default {
       this.changePage();
     },
   },
-  computed() {
-    this.$store.dispatch('content/getNews', { offset: 10, limit: 10 })
-      .then((values) => {
-        this.setData(values);
-      })
-      .catch((error) => {
-        this.$q.notify({
-          icon: 'close',
-          color: 'negative',
-          message: error,
-        });
-      });
+  computed: {
+    // this.$store.dispatch('content/getNews', { offset: 10, limit: 10 })
+    //   .then((values) => {
+    //     this.setData(values);
+    //   })
+    //   .catch((error) => {
+    //     this.$q.notify({
+    //       icon: 'close',
+    //       color: 'negative',
+    //       message: error,
+    //     });
+    //   });
+    prevDisable() {
+      return this.currentPage <= 0;
+    },
+    nextDisable() {
+      return this.currentPage * this.perPage + this.perPage >= this.newsCount;
+    },
   },
 };
 </script>

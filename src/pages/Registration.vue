@@ -15,6 +15,7 @@
             :label="$t('phone')"
             ref="phone_number"
             mask="# ### ### ## ##"
+            unmasked-value
             fill-mask
             :hint="$t('phone_layout')"
             lazy-rules
@@ -38,7 +39,7 @@
             outlined
             v-model="formData.password"
             :label="$t('password')"
-            :type="showPassword ? 'password' : 'text'"
+            :type="hidePassword ? 'password' : 'text'"
             :rules="[
               val => !!val || $t('required_field'),
               val => val.length >= 6 || $t('six_characters_min'),
@@ -48,18 +49,18 @@
           >
             <template v-slot:append>
               <q-icon
-                :name="showPassword ? 'visibility_off' : 'visibility'"
+                :name="hidePassword ? 'visibility_off' : 'visibility'"
                 class="cursor-pointer"
-                @click="showPassword = !showPassword"
+                @click="hidePassword = !hidePassword"
               />
             </template>
           </q-input>
           <q-input
             ref="password2"
             outlined
-            v-model="formData.password2"
+            v-model="formData1.password2"
             :label="$t('confirm_password')"
-            :type="showPassword2 ? 'password' : 'text'"
+            :type="hidePassword2 ? 'password' : 'text'"
             :rules="[
               val => !!val || $t('required_field'),
               val => this.$refs.password.value === this.$refs.password2.value
@@ -69,15 +70,15 @@
           >
             <template v-slot:append>
               <q-icon
-                :name="showPassword2 ? 'visibility_off' : 'visibility'"
+                :name="hidePassword2 ? 'visibility_off' : 'visibility'"
                 class="cursor-pointer"
-                @click="showPassword2 = !showPassword2"
+                @click="hidePassword2 = !hidePassword2"
               />
             </template>
           </q-input>
           <q-input
             outlined
-            v-model="formData.name"
+            v-model="formData.first_name"
             :label="$t('name')"
             ref="first_name"
             lazy-rules
@@ -88,23 +89,23 @@
           />
           <q-input
             outlined
-            v-model="formData.last_name"
-            :label="$t('last_name')"
-            ref="last_name"
+            v-model="formData.second_name"
+            :label="$t('second_name')"
+            ref="second_name"
             lazy-rules
             :rules="[
               val => !!val || $t('required_field'),
-              val => val.length <= 25 || $t('twentyfive_characters_lastname'),
+              val => val.length <= 25 || $t('twentyfive_characters_secondname'),
             ]"
           />
         </div>
-        <div class="row">
+        <!-- <div class="row">
           <q-checkbox
             right-label
             v-model="formData.subscribed"
             :label="$t('subscribe_for_newsletter')"
           />
-        </div>
+        </div> -->
         <div class="row q-mt-md">
           <q-btn
             color="primary"
@@ -125,14 +126,17 @@ export default {
       formData: {
         email: '',
         password: '',
-        password2: '',
         first_name: '',
-        last_name: '',
+        second_name: '',
         phone_number: '',
-        subscribed: false,
+        // subscribed: false,
       },
-      showPassword: true,
-      showPassword2: true,
+      formData1: {
+        password2: '',
+        // subscribed: false,
+      },
+      hidePassword: true,
+      hidePassword2: true,
       tab: 'Login',
     };
   },
@@ -142,15 +146,16 @@ export default {
       this.$refs.password.validate();
       this.$refs.password2.validate();
       this.$refs.first_name.validate();
-      this.$refs.last_name.validate();
+      this.$refs.second_name.validate();
       this.$refs.phone_number.validate();
       if (
         !this.$refs.email.hasError
         && !this.$refs.password.hasError
         && !this.$refs.password2.hasError
         && !this.$refs.first_name.hasError
-        && !this.$refs.last_name.hasError
+        && !this.$refs.second_name.hasError
         && !this.$refs.phone_number.hasError
+        && this.$refs.password.value === this.$refs.password2.value
       ) {
         this.$store.dispatch('user/register', this.formData)
           .then(() => this.$router.push({ name: 'booking' }))

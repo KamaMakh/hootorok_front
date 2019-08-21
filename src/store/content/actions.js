@@ -5,9 +5,10 @@ import onError from 'src/store/onError';
 
 function getServices({ commit }) {
   return new Promise((resolve, reject) => {
-    axios.get(servicesUrl)
+    axios.post(servicesUrl)
       .then((response) => {
         commit('setServices', response.data);
+        console.log(response.data);
         resolve();
       })
       .catch(error => onError(error, reject));

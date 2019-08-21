@@ -19,7 +19,7 @@
         v-for="service in allServices" :key="service.id">
           <router-link class="none-decor" :to="'/services/' + service.id">
             <div class="full-height full-width">
-              <div><img :src="service.url"></div>
+              <div><img src="../statics/adygeja.jpg"></div>
               <div class="text-h4 q-py-md">{{ service.name }}</div>
               <div class="text-body1 q-pb-lg">{{ service.description }}</div>
             </div>

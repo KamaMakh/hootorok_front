@@ -7,7 +7,7 @@ function getAboutInfo({ commit }) {
   return new Promise((resolve, reject) => {
     axios.get(aboutInfoUrl)
       .then((response) => {
-        commit('setInfo', response.data);
+        commit('setAboutInfo', response.data);
 
         resolve();
       })

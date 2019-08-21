@@ -1,7 +1,7 @@
-function setInfo(state, aboutInfo) {
+function setAboutInfo(state, aboutInfo) {
   state.aboutInfo = aboutInfo;
 }
 
 export {
-  setInfo,
+  setAboutInfo,
 };

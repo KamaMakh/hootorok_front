@@ -19,7 +19,6 @@
 
 <script>
 import { yandexMap, ymapMarker } from 'vue-yandex-maps';
-import { mapActions } from 'vuex';
 
 export default {
   name: 'About',
@@ -46,13 +45,11 @@ export default {
   }),
   computed: {
     aboutInfo() {
-      console.log(this.settings);
       return this.$store.state.content.aboutInfo;
     },
   },
-  methods: mapActions('content', ['getAboutInfo']),
   async mounted() {
-    this.getAboutInfo();
+    this.$store.dispatch('content/getAboutInfo');
   },
 };
 </script>

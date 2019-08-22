@@ -39,9 +39,9 @@ const routes = [
         component: () => import('pages/Booking.vue'),
       },
       {
-        path: 'service/:id',
-        name: 'service',
-        component: () => import('pages/Service.vue'),
+        path: 'services/:id',
+        name: 'services',
+        component: () => import('pages/Services.vue'),
       },
     ],
   },

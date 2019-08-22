@@ -17,7 +17,7 @@
       >
         <q-carousel-slide :name="index" v-for="(serviceItem, index) in allServices"
          :key="serviceItem.id">
-          <router-link class="none-decor" :to="'/service/' + serviceItem.id">
+          <router-link class="none-decor" :to="{name: 'service', params: {id: serviceItem.id}}">
             <div class="full-height full-width">
               <div><img src="../statics/adygeja.jpg"></div>
               <div class="text-h4 q-py-md">{{ serviceItem.name }}</div>

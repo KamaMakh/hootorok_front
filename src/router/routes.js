@@ -30,6 +30,13 @@ const routes = [
         props: true,
         component: () => import('pages/RoomItem.vue'),
       },
+      {
+        path: 'housings',
+        name: 'housings',
+        props: true,
+        component: () => import('pages/Housings.vue'),
+      },
+
     ],
   },
 ];

@@ -39,7 +39,11 @@
                   },
                   })"
               >{{$t('roomNumber')}}{{item.id}}</div>
-              <div class="text-h6">{{$t('housing')}}{{item.housing}}</div>
+              <div class="text-h6"
+                   @click="$router.push({
+                  name: 'housings',
+                  })"
+              >{{$t('housing')}}{{item.housing}}</div>
             </q-card-section>
             <q-card-section>
               <p>{{$t('pricePerDay')}}{{item.price}}</p>
@@ -60,18 +64,23 @@
             </thead>
             <tbody>
             <tr>
-            <tr v-for="item in result" :key="item.id"
-                @click="$router.push({
+            <tr v-for="item in result" :key="item.id">
+              <td class="text-left">
+                  <img :src="item.img" class="small_image">
+              </td>
+              <td class="text-right"
+                  @click="$router.push({
                 name: 'roomItem',
                 params: {
                 id: item.id,
                 },
-                })">
-              <td class="text-left">
-                  <img :src="item.img" class="small_image">
-              </td>
-              <td class="text-right">{{item.id}}</td>
-              <td class="text-right">{{item.housing}}</td>
+                })"
+              >{{item.id}}</td>
+              <td class="text-right"
+                  @click="$router.push({
+                  name: 'housings',
+                  })"
+              >{{item.housing}}</td>
               <td class="text-right">{{item.price}}</td>
               <td class="text-right">{{item.max}}</td>
             </tr>
@@ -204,7 +213,8 @@ export default {
 <style lang="stylus" scoped>
   .card{
     width: 250px;
-    height: 320px ;
+    height: 320px;
+    cursor: pointer;
   }
   .image{
     width: 250px;

@@ -23,4 +23,5 @@ export default {
   about: 'About',
   info: 'Info',
   recommend_title: 'Recommended',
+  service: 'Service',
 };

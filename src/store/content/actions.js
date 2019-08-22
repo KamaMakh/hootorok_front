@@ -7,8 +7,7 @@ function getServices({ commit }) {
   return new Promise((resolve, reject) => {
     axios.post(servicesUrl)
       .then((response) => {
-        commit('setServices', response.data);
-        console.log(response.data);
+        commit('setServices', response.data.services);
         resolve();
       })
       .catch(error => onError(error, reject));

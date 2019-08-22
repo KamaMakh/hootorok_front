@@ -15,13 +15,13 @@
         navigation
         height="auto"
       >
-        <q-carousel-slide :name="service.id"
-        v-for="service in allServices" :key="service.id">
-          <router-link class="none-decor" :to="'/services/' + service.id">
+        <q-carousel-slide :name="index" v-for="(serviceItem, index) in allServices"
+         :key="serviceItem.id">
+          <router-link class="none-decor" :to="'/service/' + serviceItem.id">
             <div class="full-height full-width">
               <div><img src="../statics/adygeja.jpg"></div>
-              <div class="text-h4 q-py-md">{{ service.name }}</div>
-              <div class="text-body1 q-pb-lg">{{ service.description }}</div>
+              <div class="text-h4 q-py-md">{{ serviceItem.name }}</div>
+              <div class="text-body1 q-pb-xl">{{ serviceItem.description }}</div>
             </div>
           </router-link>
         </q-carousel-slide>
@@ -31,22 +31,21 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
 
 export default {
   data() {
     return {
-      slide: NaN,
+      slide: 0,
     };
   },
   name: 'Recommend',
-  computed: mapGetters('content', ['allServices']),
-  methods: mapActions('content', ['getServices']),
-  async mounted() {
-    this.getServices();
+  computed: {
+    allServices() {
+      return this.$store.state.content.services;
+    },
   },
-  updated() {
-    if (Number.isNaN(Number(this.slide))) this.slide = this.allServices[0].id;
+  async mounted() {
+    this.$store.dispatch('content/getServices');
   },
 };
 </script>

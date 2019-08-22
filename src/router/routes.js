@@ -38,6 +38,11 @@ const routes = [
         name: 'booking',
         component: () => import('pages/Booking.vue'),
       },
+      {
+        path: 'service/:id',
+        name: 'service',
+        component: () => import('pages/Service.vue'),
+      },
     ],
   },
 ];

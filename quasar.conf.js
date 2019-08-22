@@ -56,10 +56,15 @@ module.exports = () => ({
       'QTh',
       'QTr',
       'QTd',
+      'QDialog',
+      'QCarousel',
+      'QCarouselControl',
+      'QCarouselSlide',
     ],
 
     directives: [
       'Ripple',
+      'ClosePopup',
     ],
 
     // Quasar plugins

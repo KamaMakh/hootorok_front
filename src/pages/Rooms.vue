@@ -29,7 +29,7 @@
       <div class="col-xs-12 col-sm-8 col-md-10">
         <div class="q-pa-md row items-start q-gutter-md" v-if="!isList">
           <q-card class="card" v-for="item in result" :key="item.id">
-            <img :src="item.img" class="image">
+            <img :src="item.img[0]" class="image" @click="showCarousel(item)">
             <q-card-section>
               <div class="text-h6"
                    @click="$router.push({
@@ -49,6 +49,24 @@
               <p>{{$t('pricePerDay')}}{{item.price}}</p>
               <p>{{$t('person')}}{{item.max}}</p>
             </q-card-section>
+            <q-dialog v-model="item.showAllPhoto" >
+              <div class="carousel">
+                <q-carousel
+                  animated
+                  v-model="item.slide"
+                  arrows
+                  navigation
+                  infinite
+                >
+                  <q-carousel-slide
+                    v-for="(image, index) in item.img"
+                    :img-src="image"
+                    :key="index"
+                    :name="index + 1"
+                  ></q-carousel-slide>
+                </q-carousel>
+              </div>
+            </q-dialog>
           </q-card>
         </div>
         <div class="q-pa-md" v-else>
@@ -66,7 +84,7 @@
             <tr>
             <tr v-for="item in result" :key="item.id">
               <td class="text-left">
-                  <img :src="item.img" class="small_image">
+                  <img :src="item.img[0]" class="small_image" @click="showCarousel(item)">
               </td>
               <td class="text-right"
                   @click="$router.push({
@@ -83,6 +101,24 @@
               >{{item.housing}}</td>
               <td class="text-right">{{item.price}}</td>
               <td class="text-right">{{item.max}}</td>
+              <q-dialog v-model="item.showAllPhoto" >
+                <div class="carousel">
+                  <q-carousel
+                    animated
+                    v-model="item.slide"
+                    arrows
+                    navigation
+                    infinite
+                  >
+                    <q-carousel-slide
+                      v-for="(image, index) in item.img"
+                      :img-src="image"
+                      :key="index"
+                      :name="index + 1"
+                    ></q-carousel-slide>
+                  </q-carousel>
+                </div>
+              </q-dialog>
             </tr>
             </tbody>
           </q-markup-table>
@@ -100,67 +136,108 @@ export default {
       rooms: [
         {
           name: 'Номер 1',
-          img: 'https://cdn.quasar.dev/img/mountains.jpg',
+          img: ['https://cdn.quasar.dev/img/mountains.jpg',
+            'https://cdn.quasar.dev/img/parallax2.jpg',
+            'https://cdn.quasar.dev/img/parallax1.jpg'],
           id: 1,
           price: 7500,
           housing: 1,
           max: 4,
+          showAllPhoto: false,
+          slide: 1,
         },
         {
           name: 'Номер 2',
-          img: 'https://cdn.quasar.dev/img/mountains.jpg',
+          img: [
+            'https://cdn.quasar.dev/img/parallax2.jpg',
+            'https://cdn.quasar.dev/img/mountains.jpg',
+          ],
           id: 2,
           price: 1500,
           housing: 1,
           max: 5,
+          showAllPhoto: false,
+          slide: 1,
         },
         {
           name: 'Номер 3',
-          img: 'https://cdn.quasar.dev/img/mountains.jpg',
+          img: [
+            'https://cdn.quasar.dev/img/mountains.jpg',
+            'https://cdn.quasar.dev/img/parallax1.jpg',
+          ],
           id: 3,
           price: 250,
           housing: 2,
           max: 4,
+          showAllPhoto: false,
+          slide: 1,
         },
         {
           name: 'Номер 4',
-          img: 'https://cdn.quasar.dev/img/mountains.jpg',
+          img: [
+            'https://cdn.quasar.dev/img/parallax1.jpg',
+            'https://cdn.quasar.dev/img/quasar.jpg',
+          ],
           id: 4,
           price: 300,
           housing: 3,
           max: 3,
+          showAllPhoto: false,
+          slide: 1,
         },
         {
           name: 'Номер 5',
-          img: 'https://cdn.quasar.dev/img/mountains.jpg',
+          img: [
+            'https://cdn.quasar.dev/img/parallax2.jpg',
+            'https://cdn.quasar.dev/img/parallax2.jpg',
+            'https://cdn.quasar.dev/img/mountains.jpg',
+          ],
           id: 5,
           price: 1500,
           housing: 2,
           max: 4,
+          showAllPhoto: false,
+          slide: 1,
         },
         {
           name: 'Номер 6',
-          img: 'https://cdn.quasar.dev/img/mountains.jpg',
+          img: [
+            'https://cdn.quasar.dev/img/mountains.jpg',
+            'https://cdn.quasar.dev/img/parallax1.jpg',
+          ],
           id: 6,
           price: 500,
           housing: 3,
           max: 6,
+          showAllPhoto: false,
+          slide: 1,
         },
         {
           name: 'Номер 7',
-          img: 'https://cdn.quasar.dev/img/mountains.jpg',
+          img: [
+            'https://cdn.quasar.dev/img/quasar.jpg',
+            'https://cdn.quasar.dev/img/mountains.jpg',
+          ],
           id: 7,
           price: 2500,
           housing: 1,
           max: 2,
+          showAllPhoto: false,
+          slide: 1,
         },
         {
           name: 'Номер 8',
-          img: 'https://cdn.quasar.dev/img/mountains.jpg',
+          img: [
+            'https://cdn.quasar.dev/img/parallax1.jpg',
+            'https://cdn.quasar.dev/img/mountains.jpg',
+            'https://cdn.quasar.dev/img/parallax1.jpg',
+          ],
           id: 8,
           price: 1500,
           housing: 1,
           max: 3,
+          showAllPhoto: false,
+          slide: 1,
         },
       ],
       result: [],
@@ -203,6 +280,10 @@ export default {
         this.isSort = !this.isSort;
       }
     },
+    showCarousel(obj) {
+      obj.showAllPhoto = true;
+      console.log('id', obj);
+    },
   },
   created() {
     this.showAll();
@@ -223,5 +304,9 @@ export default {
   .small_image{
     width: 120px;
     height: 75px;
+  }
+  .carousel{
+    width: 560px;
+    height: 400px;
   }
 </style>

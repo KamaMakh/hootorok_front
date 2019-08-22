@@ -67,7 +67,9 @@
                 id: item.id,
                 },
                 })">
-              <td class="text-left">photo</td>
+              <td class="text-left">
+                  <img :src="item.img" class="small_image">
+              </td>
               <td class="text-right">{{item.id}}</td>
               <td class="text-right">{{item.housing}}</td>
               <td class="text-right">{{item.price}}</td>
@@ -207,5 +209,9 @@ export default {
   .image{
     width: 250px;
     height: 150px;
+  }
+  .small_image{
+    width: 120px;
+    height: 75px;
   }
 </style>

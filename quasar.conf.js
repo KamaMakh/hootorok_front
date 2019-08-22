@@ -52,6 +52,10 @@ module.exports = () => ({
       'QMarkupTable',
       'QBtnToggle',
       'QOptionGroup',
+      'QTable',
+      'QTh',
+      'QTr',
+      'QTd',
     ],
 
     directives: [

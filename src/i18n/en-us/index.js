@@ -30,4 +30,15 @@ export default {
   info: 'Info',
   forgot_password_message: 'If you have forgotten your password, enter the e-mail address provided during registration. A control string for changing the password and your registration data will be sent to you by e-mail.',
   password_reset_data_sent: 'The information about password reset sent by email',
+
+  // BookingCard
+  booking_card_label: 'Book a great holiday',
+  arrival_date: 'Date of arrival',
+  departure_date: 'Date of departure',
+  guests: 'Guests',
+  adult_label: 'Adults',
+  adult: ['Adult', 'Adults'],
+  child_label: 'Children',
+  children: ['Child', 'Children'],
+  check_prices: 'Check prices',
 };

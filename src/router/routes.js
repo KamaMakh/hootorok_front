@@ -9,7 +9,7 @@ const routes = [
         component: () => import('pages/Index.vue'),
       },
       {
-        path: 'login',
+        path: 'auth',
         name: 'login',
         component: () => import('pages/Login.vue'),
       },
@@ -17,6 +17,16 @@ const routes = [
         path: 'registration',
         name: 'registration',
         component: () => import('pages/Registration.vue'),
+      },
+      {
+        path: 'cabinet',
+        name: 'cabinet',
+        component: () => import('pages/Cabinet.vue'),
+      },
+      {
+        path: 'logout',
+        name: 'logout',
+        component: () => import('pages/Logout.vue'),
       },
       {
         path: 'contacts',
@@ -37,6 +47,12 @@ const routes = [
         path: 'booking',
         name: 'booking',
         component: () => import('pages/Booking.vue'),
+        props: true,
+      },
+      {
+        path: '/auth/forgot-password',
+        name: 'password-reset',
+        component: () => import('pages/PasswordReset.vue'),
       },
       {
         path: 'services/:id',

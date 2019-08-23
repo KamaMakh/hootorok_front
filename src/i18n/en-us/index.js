@@ -27,6 +27,7 @@ export default {
   about: 'About',
   info: 'Info',
   password_reset: 'Password Reset',
+  housing_facilities: 'Housing facilities',
 
   // BookingCard
   booking_card_label: 'Book a great holiday',

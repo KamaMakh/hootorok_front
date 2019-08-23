@@ -27,6 +27,7 @@ export default {
   about: 'О нас',
   info: 'Центр поддержки',
   password_reset: 'Восстановление пароля',
+  housing_facilities: 'Корпуса базы отдыха',
 
   // BookingCard
   booking_card_label: 'Бронируйте великолепный отдых',

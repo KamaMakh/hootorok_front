@@ -2,7 +2,7 @@
   <q-page padding>
     <h1 class="text-h2 text-center" v-text="$t('roomsAndHouses')"/>
     <div class="row">
-      <div class="q-pa-md col-xs-12 col-sm-4 col-md-2">
+      <div class="q-pa-md col-xs-12 col-sm-4 col-md-3">
         <q-btn
           @click="sortArray"
           color="primary"
@@ -15,19 +15,29 @@
           @input="group === 0 ? showAll() : filterData(group)">
         </q-option-group>
         <q-btn-toggle
-          v-model="isList"
+          v-model="view"
           size="sm"
           push
           glossy
           toggle-color="primary"
           :options="[
-          {label: $t('tile'), value: false},
-          {label: $t('list'), value: true},
+          { value: 'one', slot: 'one'},
+          { value: 'two', slot: 'two'},
         ]">
+          <template v-slot:one>
+            <div>
+              <q-icon name="view_module"/>
+            </div>
+          </template>
+          <template v-slot:two>
+            <div>
+              <q-icon name="view_headline"/>
+            </div>
+          </template>
         </q-btn-toggle>
       </div>
-      <div class="col-xs-12 col-sm-8 col-md-10">
-        <div class="q-pa-md row items-start q-gutter-md" v-if="!isList">
+      <div class="col-xs-12 col-sm-8 col-md-9">
+        <div class="q-pa-md row items-start q-gutter-md" v-if="view === 'one'">
           <q-card class="card" v-for="item in result" :key="item.id">
             <img :src="item.img[0]" class="image" @click="showCarousel(item)">
             <q-card-section>
@@ -69,7 +79,7 @@
             </q-dialog>
           </q-card>
         </div>
-        <div class="q-pa-md" v-else>
+        <div class="q-pa-md" v-if="view === 'two'">
           <q-markup-table>
             <thead>
             <tr>
@@ -242,7 +252,7 @@ export default {
       ],
       result: [],
       isSort: false,
-      isList: false,
+      view: 'one',
       group: 0,
       housing: [
         {

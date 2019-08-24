@@ -1,12 +1,12 @@
 <template>
   <q-page padding>
-    <h1 class="text-h2 text-center" v-text="$t('roomsAndHouses')"/>
+    <h1 class="text-h2 text-center" v-text="$t('rooms_and_houses')"/>
     <div class="row">
       <div class="q-pa-md col-xs-12 col-sm-4 col-md-3">
         <q-btn
           @click="sortArray"
           color="primary"
-          :label="$t('sortByPricePerDay')">
+          :label="$t('sort_by_price_per_day')">
         </q-btn>
         <q-option-group
           v-model="group"
@@ -43,12 +43,12 @@
             <q-card-section>
               <div class="text-h6"
                    @click="$router.push({
-                  name: 'roomItem',
+                  name: 'room',
                   params: {
                   id: item.id,
                   },
                   })"
-              >{{$t('roomNumber')}}{{item.id}}</div>
+              >{{$t('room_number')}}{{item.id}}</div>
               <div class="text-h6"
                    @click="$router.push({
                   name: 'housings',
@@ -56,8 +56,8 @@
               >{{$t('housing')}}{{item.housing}}</div>
             </q-card-section>
             <q-card-section>
-              <p>{{$t('pricePerDay')}}{{item.price}}</p>
-              <p>{{$t('person')}}{{item.max}}</p>
+              <p>{{$t('price_per_day')}}{{item.price}}</p>
+              <p>{{$t('number_of_adults_and_children')}}{{item.max}}</p>
             </q-card-section>
             <q-dialog v-model="item.showAllPhoto" >
               <div class="carousel">
@@ -84,10 +84,10 @@
             <thead>
             <tr>
               <th class="text-left">{{$t('photo')}}</th>
-              <th class="text-right">{{$t('roomNumber')}}</th>
+              <th class="text-right">{{$t('room_number')}}</th>
               <th class="text-right">{{$t('housing')}}</th>
-              <th class="text-right">{{$t('pricePerDay')}}</th>
-              <th class="text-right">{{$t('person')}}</th>
+              <th class="text-right">{{$t('price_per_day')}}</th>
+              <th class="text-right">{{$t('number_of_adults_and_children')}}</th>
             </tr>
             </thead>
             <tbody>
@@ -98,7 +98,7 @@
               </td>
               <td class="text-right"
                   @click="$router.push({
-                name: 'roomItem',
+                name: 'room',
                 params: {
                 id: item.id,
                 },

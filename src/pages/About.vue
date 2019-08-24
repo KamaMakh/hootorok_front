@@ -1,19 +1,28 @@
 <template>
   <q-page padding class="q-ma-md text-center">
-    <h1 class="text-h2" v-text="$t('about')"/>
-    <p class="text-body1 q-pb-md">
-      {{ aboutInfo.description }}
-    </p>
-      <yandex-map :coords="coords" :settings="settings"
-                  :zoom="zoom" :controls="controls">
-        <ymap-marker :coords="coords"></ymap-marker>
+    <div class="row">
+      <h1 class="text-h2 col-12" v-text="$t('about')"/>
+      <p class="text-body1 q-pb-md">
+        {{ aboutInfo.description }}
+      </p>
+      <yandex-map class="col-12"
+        :coords="coords"
+        :settings="settings"
+        :zoom="zoom"
+        :controls="controls"
+        :options="options"
+        >
+        <ymap-marker
+          :coords="coords"
+        >
+        </ymap-marker>
       </yandex-map>
-    <p class="text-body1 text-weight-bold q-pt-md">
-      {{ "Телефон: " + aboutInfo.phone }} <br>
-      {{ "E-mail: " + aboutInfo.email }} <br>
-      {{ "Адрес: " + aboutInfo.address.street + ' : ' + aboutInfo.address.suite  }}
-    </p>
-
+      <p class="col-12 text-body1 text-weight-bold q-pt-md">
+        {{ "Телефон: " + aboutInfo.phone }} <br>
+        {{ "E-mail: " + aboutInfo.email }} <br>
+        {{ "Адрес: " + aboutInfo.address.street + ' : ' + aboutInfo.address.suite  }}
+      </p>
+    </div>
   </q-page>
 </template>
 
@@ -31,6 +40,9 @@ export default {
       lang: 'ru_RU',
       coordorder: 'latlong',
       version: '2.1',
+    },
+    options: {
+      autoFitToViewport: 'always',
     },
     controls: [
       'fullscreenControl',
@@ -56,6 +68,6 @@ export default {
 
 <style scoped>
 .ymap-container {
-  height: 600px;
+  height: 500px;
 }
 </style>

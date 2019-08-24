@@ -1,28 +1,27 @@
 <template>
-  <div class="q-pa-md text-center full-width">
+  <div class="q-px-md text-center">
     <h1 class="text-h3" v-text="$t('recommend_title')"/>
-    <div class="q-pa-md">
+    <div class="row justify-center">
       <q-carousel
+        class="rounded-borders col-sm-12"
         v-model="slide"
         transition-prev="slide-right"
         transition-next="slide-left"
         animated
         control-color="primary"
-        class="rounded-borders"
         :autoplay="2500"
         arrows
         infinite
         navigation
         height="auto"
       >
-        <q-carousel-slide :name="index" v-for="(serviceItem, index) in allServices"
-         :key="serviceItem.id">
+        <q-carousel-slide class="q-pa-none"
+          :name="index" v-for="(serviceItem, index) in allServices"
+          :key="serviceItem.id">
           <router-link class="none-decor" :to="{name: 'services', params: {id: serviceItem.id}}">
-            <div class="full-height full-width">
-              <div><img src="../statics/adygeja.jpg"></div>
+              <div><img  class="full-width" src="../statics/adygeja.jpg"></div>
               <div class="text-h4 q-py-md">{{ serviceItem.name }}</div>
               <div class="text-body1 q-pb-xl">{{ serviceItem.description }}</div>
-            </div>
           </router-link>
         </q-carousel-slide>
       </q-carousel>
@@ -51,6 +50,9 @@ export default {
 </script>
 
 <style>
+.q-carousel__control.q-btn {
+  top: 42%;
+}
 .none-decor {
   text-decoration: none;
 }

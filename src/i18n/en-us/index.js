@@ -26,9 +26,9 @@ export default {
   contacts: 'Contacts',
   about: 'About',
   info: 'Info',
+  recommend_title: 'Recommended',
+  service: 'Service',
   password_reset: 'Password Reset',
-
-  // BookingCard
   booking_card_label: 'Book a great holiday',
   arrival_date: 'Date of arrival',
   departure_date: 'Date of departure',

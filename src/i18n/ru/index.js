@@ -28,6 +28,8 @@ export default {
   contacts: 'Контакты',
   about: 'О нас',
   info: 'Центр поддержки',
+  recommend_title: 'Рекомендуем вам',
+  service: 'Сервис',
   password_reset: 'Восстановление пароля',
   booking_card_label: 'Бронируйте великолепный отдых',
   arrival_date: 'Дата заезда',

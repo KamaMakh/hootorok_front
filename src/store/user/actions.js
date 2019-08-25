@@ -2,6 +2,7 @@ import { axios } from 'boot/axios';
 import {
   registerUrl,
   loginUrl,
+  logoutUrl,
   checkAuthUrl,
 } from 'src/store/urls';
 
@@ -31,6 +32,18 @@ function login({ commit }, data) {
   });
 }
 
+function logout({ commit }) {
+  return new Promise((resolve, reject) => {
+    axios.post(logoutUrl)
+      .then(() => {
+        commit('resetUser');
+
+        resolve();
+      })
+      .catch(error => onError(error, reject));
+  });
+}
+
 function checkUser({ commit }) {
   return new Promise((resolve, reject) => {
     axios.post(checkAuthUrl)
@@ -52,5 +65,6 @@ function checkUser({ commit }) {
 export {
   register,
   login,
+  logout,
   checkUser,
 };

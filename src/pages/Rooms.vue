@@ -7,6 +7,7 @@
           @click="sortArray"
           color="primary"
           :label="$t('sort_by_price_per_day')">
+          <q-icon :name="this.iconBtn"/>
         </q-btn>
         <q-option-group
           v-model="group"
@@ -251,7 +252,7 @@ export default {
         },
       ],
       result: [],
-      isSort: false,
+      isSort: true,
       view: 'one',
       group: 0,
       housing: [
@@ -272,6 +273,7 @@ export default {
           value: 3,
         },
       ],
+      iconBtn: 'arrow_upward',
     };
   },
   methods: {
@@ -285,9 +287,11 @@ export default {
       if (this.isSort) {
         this.result.sort((a, b) => a.price - b.price);
         this.isSort = !this.isSort;
+        this.iconBtn = 'arrow_downward';
       } else {
         this.result.sort((a, b) => b.price - a.price);
         this.isSort = !this.isSort;
+        this.iconBtn = 'arrow_upward';
       }
     },
     showCarousel(obj) {

@@ -1,5 +1,9 @@
-import axios from 'axios';
-import { registerUrl, loginUrl } from 'src/store/urls';
+import { axios } from 'boot/axios';
+import {
+  registerUrl,
+  loginUrl,
+  checkAuthUrl,
+} from 'src/store/urls';
 
 import onError from 'src/store/onError';
 
@@ -27,6 +31,26 @@ function login({ commit }, data) {
   });
 }
 
+function checkUser({ commit }) {
+  return new Promise((resolve, reject) => {
+    axios.post(checkAuthUrl)
+      .then((response) => {
+        const user = response.data.data;
+
+        if (user) {
+          commit('setUser', user);
+        } else {
+          commit('resetUser');
+        }
+
+        resolve();
+      })
+      .catch(error => onError(error, reject));
+  });
+}
+
 export {
-  register, login,
+  register,
+  login,
+  checkUser,
 };

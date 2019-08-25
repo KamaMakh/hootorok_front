@@ -40,4 +40,8 @@ export default {
   child_label: 'Дети',
   children: ['Ребенок', 'Ребенка', 'Детей'],
   check_prices: 'Проверить цены',
+  meet_hutorok: 'Познакомьтесь с базой отдыха Хуторок',
+  virtual_walk: 'Виртуальная прогулка по базе',
+  cosy_houses_and_comfort_rooms: 'Уютные домики и комфортные номера',
+  pools_with_thermal_water: 'Бассейны с термальной водой',
 };

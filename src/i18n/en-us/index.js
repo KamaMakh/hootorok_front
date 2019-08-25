@@ -38,4 +38,8 @@ export default {
   child_label: 'Children',
   children: ['Child', 'Children'],
   check_prices: 'Check prices',
+  meet_hutorok: 'Meet the Hutorok family hotel',
+  virtual_walk_around_hotel: 'Virtuak walk around family hotel',
+  cosy_houses_and_comfort_rooms: 'Cosy houses and comfort rooms',
+  pools_with_thermal_water: 'Swimming pools with thermal water',
 };

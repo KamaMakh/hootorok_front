@@ -71,6 +71,21 @@ const routes = [
         name: 'services',
         component: () => import('pages/Services.vue'),
       },
+      {
+        path: 'thermal',
+        name: 'thermal',
+        component: () => import('pages/DummyPage.vue'),
+      },
+      {
+        path: 'rooms',
+        name: 'rooms',
+        component: () => import('pages/DummyPage.vue'),
+      },
+      {
+        path: 'map',
+        name: 'map',
+        component: () => import('pages/DummyPage.vue'),
+      },
     ],
   },
 ];

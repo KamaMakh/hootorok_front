@@ -76,6 +76,7 @@ module.exports = () => ({
   supportIE: false,
 
   build: {
+    transpileDependencies: [/vue-yandex-maps/],
     scopeHoisting: true,
     // vueRouterMode: 'history',
     // vueCompiler: true,

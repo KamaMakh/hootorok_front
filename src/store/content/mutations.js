@@ -1,13 +1,12 @@
-function setContent(state, content) {
-  state.content = content;
+function setAllNews(state, news) {
+  state.allNews = news;
 }
 
-export {
-  setContent,
 function setServices(state, services) {
   state.services = services;
 }
 
 export {
   setServices,
+  setAllNews,
 };

@@ -1,4 +1,4 @@
 export default {
-  content: {},
+  allNews: [],
   services: [],
 };

@@ -11,7 +11,7 @@
       <q-card
         flat
         bordered
-        v-for="news in droppedList"
+        v-for="news in allNews"
         :key="news.id"
         class="col-lg-3 col-md-4 col-xs-12"
         style="max-width: 300px"
@@ -19,13 +19,13 @@
         <q-card-section>
           <div class="row items-center no-wrap">
             <div class="col">
-              {{ news.short_text }}
+              {{ news.title }}
             </div>
           </div>
         </q-card-section>
 
         <q-card-section>
-          <div class="text-subtitle2">{{ news.date }}</div>
+          <div class="text-subtitle2">{{ news.created_at }}</div>
         </q-card-section>
 
         <q-separator inset/>
@@ -63,117 +63,21 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
+
 export default {
   name: 'News',
-  beforeRouteEnter(from, to, next) {
-    // eslint-disable-next-line
-    // удалим когда будет готов бэк
-    const info = {
-      newsTotal: 15,
-    };
-    info.news = [
-      {
-        short_text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        date: '05.08.2019',
-        id: 1,
-      },
-      {
-        short_text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        date: '06.08.2019',
-        id: 2,
-      },
-      {
-        short_text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        date: '06.08.2019',
-        id: 3,
-      },
-      {
-        short_text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        date: '05.08.2019',
-        id: 4,
-      },
-      {
-        short_text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        date: '06.08.2019',
-        id: 5,
-      },
-      {
-        short_text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        date: '06.08.2019',
-        id: 6,
-      },
-      {
-        short_text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        date: '05.08.2019',
-        id: 7,
-      },
-      {
-        short_text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        date: '06.08.2019',
-        id: 8,
-      },
-      {
-        short_text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        date: '06.08.2019',
-        id: 9,
-      },
-      {
-        short_text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        date: '05.08.2019',
-        id: 10,
-      },
-      {
-        short_text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        date: '06.08.2019',
-        id: 11,
-      },
-      {
-        short_text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        date: '06.08.2019',
-        id: 12,
-      },
-      {
-        short_text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        date: '05.08.2019',
-        id: 13,
-      },
-      {
-        short_text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        date: '06.08.2019',
-        id: 14,
-      },
-      {
-        short_text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        date: '06.08.2019',
-        id: 15,
-      },
-    ];
-    next(vm => vm.setData(info));
-  },
   data() {
     return {
       newsList: [],
       droppedList: [],
       options: [5, 10, 30],
       perPage: 10,
-      newsCount: 0,
+      newsCount: 60, // нужно что бы с бэка приходило
       currentPage: 0,
     };
   },
   methods: {
-    setData(values) {
-      this.newsList = values.news;
-      this.newsCount = values.newsTotal;
-      this.dropList();
-    },
-    dropList() {
-      if (this.newsCount > 5) {
-        const listFrom = this.perPage * this.currentPage;
-        this.droppedList = this.newsList.slice(listFrom, listFrom + this.perPage);
-      } else {
-        this.droppedList = this.newsList;
-      }
-    },
     changePage(type) {
       if (type === 1) {
         this.currentPage += 1;
@@ -182,8 +86,14 @@ export default {
       } else {
         this.currentPage = 0;
       }
-      this.dropList();
+      this.getAllNews({
+        offset: this.perPage * this.currentPage,
+        limit: this.perPage,
+      });
     },
+    ...mapActions([
+      'getAllNews',
+    ]),
   },
   watch: {
     perPage() {
@@ -191,17 +101,9 @@ export default {
     },
   },
   computed: {
-    // this.$store.dispatch('content/getNews', { offset: 10, limit: 10 })
-    //   .then((values) => {
-    //     this.setData(values);
-    //   })
-    //   .catch((error) => {
-    //     this.$q.notify({
-    //       icon: 'close',
-    //       color: 'negative',
-    //       message: error,
-    //     });
-    //   });
+    ...mapGetters('content', {
+      allNews: 'getAllNews',
+    }),
     prevDisable() {
       return this.currentPage <= 0;
     },

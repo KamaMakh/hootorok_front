@@ -1,5 +1,5 @@
-function getContent(state) {
-  return state.content.body;
+function getAllNews(state) {
+  return state.allNews;
 }
 
 function allServices(state) {
@@ -7,6 +7,6 @@ function allServices(state) {
 }
 
 export {
-  getContent,
+  getAllNews,
   allServices,
 };

@@ -1,13 +1,15 @@
 import axios from 'axios';
-import { aboutInfoUrl } from 'src/store/urls';
+import { onePageUrl } from 'src/store/urls';
 
 import onError from 'src/store/onError';
 
-function getAboutInfo({ commit }) {
+function getOnePage({ commit }, textId) {
   return new Promise((resolve, reject) => {
-    axios.get(aboutInfoUrl)
+    axios.post(onePageUrl, {
+      text_id: textId,
+    })
       .then((response) => {
-        commit('setAboutInfo', response.data);
+        commit('setOnePage', response.data.data);
 
         resolve();
       })
@@ -16,5 +18,5 @@ function getAboutInfo({ commit }) {
 }
 
 export {
-  getAboutInfo,
+  getOnePage,
 };

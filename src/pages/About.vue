@@ -1,67 +1,39 @@
 <template>
   <q-page padding class="q-ma-md text-center">
-    <div class="row">
-      <h1 class="text-h2 col-12" v-text="$t('about')"/>
-      <p class="text-body1 q-pb-md">
-        {{ aboutInfo.description }}
+    <div>
+      <h1 class="text-h2" v-text="$t('about')"/>
+      <q-img
+        class="q-px-xs"
+        :src="aboutInfo.content_images[1]"
+        :ratio="16/6"
+      />
+      <p class="text-body1 text-weight-bold q-pt-md">
+        {{ aboutInfo.title }}
       </p>
-      <yandex-map class="col-12"
-        :coords="coords"
-        :settings="settings"
-        :zoom="zoom"
-        :controls="controls"
-        :options="options"
-        >
-        <ymap-marker
-          :coords="coords"
-        >
-        </ymap-marker>
-      </yandex-map>
-      <p class="col-12 text-body1 text-weight-bold q-pt-md">
-        {{ "Телефон: " + aboutInfo.phone }} <br>
-        {{ "E-mail: " + aboutInfo.email }} <br>
-        {{ "Адрес: " + aboutInfo.address.street + ' : ' + aboutInfo.address.suite  }}
-      </p>
+      <div class="text-body1 space-pre">{{ aboutInfo.content }}</div>
+      <ya-map :coords = "coords"></ya-map>
     </div>
   </q-page>
 </template>
 
 <script>
-import { yandexMap, ymapMarker } from 'vue-yandex-maps';
+import YaMap from 'components/YaMap';
 
 export default {
   name: 'About',
-  components: { yandexMap, ymapMarker },
-  data: () => ({
-    zoom: 10,
-    coords: [60, 30],
-    settings: {
-      apiKey: 'bff47474-50d8-4300-80b7-d342d8cfc443',
-      lang: 'ru_RU',
-      coordorder: 'latlong',
-      version: '2.1',
-    },
-    options: {
-      autoFitToViewport: 'always',
-    },
-    controls: [
-      'fullscreenControl',
-      'geolocationControl',
-      'routeEditor',
-      'rulerControl',
-      'trafficControl',
-      'typeSelector',
-      'zoomControl',
-      'routeButtonControl',
-    ],
-  }),
+  components: { YaMap },
+  data() {
+    return {
+      coords: [60, 30],
+    };
+  },
   computed: {
     aboutInfo() {
-      return this.$store.state.content.aboutInfo;
+      return this.$store.state.content.onePage;
     },
   },
   async mounted() {
-    this.$store.dispatch('content/getAboutInfo');
+    this.$store.dispatch('content/getOnePage', 'about_rest');
   },
 };
 </script>
@@ -69,5 +41,8 @@ export default {
 <style scoped>
 .ymap-container {
   height: 500px;
+}
+.space-pre {
+  white-space: pre-wrap;
 }
 </style>

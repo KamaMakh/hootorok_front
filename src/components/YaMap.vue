@@ -1,46 +1,52 @@
 <template>
-  <div class="flex-block column justify-center" id="yandex-map"></div>
+  <yandex-map class="q-py-md"
+    :coords="coords"
+    :settings="settings"
+    :zoom="zoom"
+    :controls="controls"
+    :options="options"
+    >
+    <ymap-marker
+      :coords="coords"
+    >
+    </ymap-marker>
+  </yandex-map>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      name: 'YaMap',
-      map: null,
-      coordinates: [52.44, 69.73],
-    };
-  },
-  mounted() {
-    this.initializeYandexMap();
-  },
-  methods: {
-    initializeYandexMap() {
-      // eslint-disable-next-line
-      ymaps.ready(() => {
-        // eslint-disable-next-line
-        this.map = new ymaps.Map('yandex-map', {
-          center: [60.00, 30.00],
-          zoom: 10,
-          controls: ['fullscreenControl'],
-        });
-        // eslint-disable-next-line
-        let myPlacemark = new ymaps.Placemark([60.00, 30.00], {
-          balloonContent: '<strong>База отдыха "Хуторок"</strong>',
-        });
+import { yandexMap, ymapMarker } from 'vue-yandex-maps';
 
-        this.map.geoObjects
-          .add(myPlacemark);
-        this.map.controls.remove('searchControl');
-      });
-    },
+export default {
+  name: 'YaMap',
+  components: { yandexMap, ymapMarker },
+  props: {
+    coords: Array,
   },
+  data: () => ({
+    zoom: 10,
+    settings: {
+      apiKey: 'bff47474-50d8-4300-80b7-d342d8cfc443',
+      lang: 'ru_RU',
+      coordorder: 'latlong',
+      version: '2.1',
+    },
+    options: {
+      autoFitToViewport: 'always',
+    },
+    controls: [
+      'fullscreenControl',
+      'geolocationControl',
+      'trafficControl',
+      'typeSelector',
+      'zoomControl',
+      'routeButtonControl',
+    ],
+  }),
 };
 </script>
 
 <style scoped>
-#yandex-map {
-  width: 100%;
-  height: 600px;
+.ymap-container {
+  height: 500px;
 }
 </style>

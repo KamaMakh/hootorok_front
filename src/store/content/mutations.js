@@ -1,7 +1,7 @@
-function setAboutInfo(state, aboutInfo) {
-  state.aboutInfo = aboutInfo;
+function setOnePage(state, onePage) {
+  state.onePage = onePage;
 }
 
 export {
-  setAboutInfo,
+  setOnePage,
 };

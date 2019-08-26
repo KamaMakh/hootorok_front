@@ -57,6 +57,7 @@ module.exports = () => ({
       'QDate',
       'QField',
       'QMenu',
+      'QImg',
     ],
 
     directives: [

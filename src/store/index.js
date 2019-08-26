@@ -23,7 +23,11 @@ export default function ({ ssrContext }) {
     state: {
       lang: cookies.get('lang') || 'ru',
     },
-
+    getters: {
+      loggedIn(state) {
+        return Boolean(state.user.user.id);
+      },
+    },
     mutations: {
       setLang(state, lang) {
         cookies.set('lang', lang);

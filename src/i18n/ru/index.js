@@ -28,6 +28,8 @@ export default {
   contacts: 'Контакты',
   about: 'О нас',
   info: 'Центр поддержки',
+  recommend_title: 'Рекомендуем вам',
+  service: 'Сервис',
   password_reset: 'Восстановление пароля',
   booking_card_label: 'Бронируйте великолепный отдых',
   arrival_date: 'Дата заезда',
@@ -42,4 +44,8 @@ export default {
   more: 'Подробнее',
   prev: 'Предыдущие',
   next: 'Следующие',
+  meet_hutorok: 'Познакомьтесь с базой отдыха Хуторок',
+  virtual_walk: 'Виртуальная прогулка по базе',
+  cosy_houses_and_comfort_rooms: 'Уютные домики и комфортные номера',
+  pools_with_thermal_water: 'Бассейны с термальной водой',
 };

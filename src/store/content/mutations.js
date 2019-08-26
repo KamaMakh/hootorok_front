@@ -4,4 +4,10 @@ function setContent(state, content) {
 
 export {
   setContent,
+function setServices(state, services) {
+  state.services = services;
+}
+
+export {
+  setServices,
 };

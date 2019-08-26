@@ -1,14 +1,15 @@
 <template>
-  <q-page padding>
-    <!-- content -->
-  </q-page>
+  <q-page></q-page>
 </template>
 
 <script>
 export default {
-  // name: 'PageName',
+  name: 'Logout',
+  created() {
+    this.$store.dispatch('user/logout')
+      .then(() => {
+        this.$router.push({ name: 'home' });
+      });
+  },
 };
 </script>
-
-<style>
-</style>

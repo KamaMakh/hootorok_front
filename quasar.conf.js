@@ -51,6 +51,10 @@ module.exports = () => ({
       'QCheckbox',
       'QInput',
       'QBanner',
+      'QDialog',
+      'QCarousel',
+      'QCarouselControl',
+      'QCarouselSlide',
       'QCard',
       'QCardSection',
       'QCardActions',
@@ -59,6 +63,7 @@ module.exports = () => ({
       'QMenu',
       'QSeparator',
       'QBtnGroup',
+      'QImg',
     ],
 
     directives: [

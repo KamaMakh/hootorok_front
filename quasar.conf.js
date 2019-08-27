@@ -53,6 +53,7 @@ module.exports = () => ({
       'QCarousel',
       'QCarouselControl',
       'QCarouselSlide',
+      'QImg',
     ],
 
     directives: [

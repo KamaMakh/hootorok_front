@@ -1,6 +1,10 @@
 <template>
-  <q-page padding>
+  <q-page padding v-if="!loading">
     <h2 class="text-h2 text-center" v-text="$t('thermal_springs')"/>
+    <p class="q-pa-md text-body1">
+      {{ page.content }}
+    </p>
+    <q-img :src='page.main_image'/>
     <div class="q-pa-md">
       <q-table
       :title="$t('thermal_water_characteristics')"
@@ -8,9 +12,6 @@
       :data="data"
       row-key="name"/>
     </div>
-    <p class="q-pa-md text-body1">
-      Абзац посвящённый описанию и характеристикам бассейнов.
-    </p>
     <div class="q-pa-md">
       <q-carousel
         v-model="slide"
@@ -19,24 +20,14 @@
         animated
         control-color="white"
         navigation
+        infinite
         padding
         arrows
-        class="bg-primary text-white shadow-1 rounded-borders"
+        class="text-white shadow-1 rounded-borders"
       >
-        <q-carousel-slide name="waterpool-1" class="column no-wrap flex-center">
-          <div class="q-mt-md text-center">
-            Фото бассейна 1
-          </div>
-        </q-carousel-slide>
-        <q-carousel-slide name="waterpool-2" class="column no-wrap flex-center">
-          <div class="q-mt-md text-center">
-            Фото бассейна 2
-          </div>
-        </q-carousel-slide>
-        <q-carousel-slide name="waterpool-3" class="column no-wrap flex-center">
-          <div class="q-mt-md text-center">
-             Фото бассейна 3
-          </div>
+        <q-carousel-slide v-for="(img,index) in page.content_images"
+        :key="index" :img-src="img" :name="index">
+
         </q-carousel-slide>
       </q-carousel>
     </div>
@@ -62,12 +53,19 @@ export default {
           align: 'left',
         },
       ],
-      data: [], // TODO получить данные с сервера
-      slide: 'waterpool-1',
+      loading: true,
+      slide: 0,
     };
   },
+  computed: {
+    page() {
+      return this.$store.getters['content/getPage']('about_termal');
+    },
+  },
   mounted() {
-
+    this.$store.dispatch('content/getOnePage', 'about_termal').then(() => {
+      this.loading = false;
+    });
   },
 };
 </script>

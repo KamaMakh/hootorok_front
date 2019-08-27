@@ -35,6 +35,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'Thermal',
   data() {
@@ -58,8 +60,9 @@ export default {
     };
   },
   computed: {
+    ...mapGetters('content', ['getPage']),
     page() {
-      return this.$store.getters['content/getPage']('about_termal');
+      return this.getPage('about_termal');
     },
   },
   mounted() {

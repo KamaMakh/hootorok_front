@@ -1,5 +1,7 @@
 function setPage(state, page) {
-  state.pages[page.text_id] = page;
+  const tempState = Object.assign({}, state.pages);
+  tempState[page.text_id] = page;
+  state.pages = tempState;
 }
 
 export {

@@ -40,7 +40,7 @@ export default {
   child_label: 'Дети',
   children: ['Ребенок', 'Ребенка', 'Детей'],
   check_prices: 'Проверить цены',
-  news: 'Новости и акции',
+  news_and_campaigns: 'Новости и акции',
   more: 'Подробнее',
   prev: 'Предыдущие',
   next: 'Следующие',

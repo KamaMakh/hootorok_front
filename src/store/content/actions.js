@@ -2,11 +2,11 @@ import axios from 'axios';
 import { servicesUrl, newsUrl } from 'src/store/urls';
 import onError from 'src/store/onError';
 
-function getAllNews({ commit }, data) {
+function getNews({ commit }, data) {
   return new Promise((resolve, reject) => {
     axios.post(newsUrl, data)
       .then((response) => {
-        commit('setAllNews', response.data.data);
+        commit('setNews', response.data.data);
         resolve();
       })
       .catch(error => onError(error, reject));
@@ -25,6 +25,6 @@ function getServices({ commit }) {
 }
 
 export {
-  getAllNews,
+  getNews,
   getServices,
 };

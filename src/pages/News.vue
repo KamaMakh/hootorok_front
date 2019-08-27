@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    <h1 class="text-h4" v-text="$t('news')"/>
+    <h1 class="text-h4" v-text="$t('news_and_campaigns')"/>
 
     <div class="q-pa-md justify-end row">
       <div class="q-gutter-md" style="width: 80px; max-width: 100%;">
@@ -11,21 +11,21 @@
       <q-card
         flat
         bordered
-        v-for="news in allNews"
-        :key="news.id"
+        v-for="item in news"
+        :key="item.id"
         class="col-lg-3 col-md-4 col-xs-12"
         style="max-width: 300px"
       >
         <q-card-section>
           <div class="row items-center no-wrap">
             <div class="col">
-              {{ news.title }}
+              {{ item.title }}
             </div>
           </div>
         </q-card-section>
 
         <q-card-section>
-          <div class="text-subtitle2">{{ news.created_at }}</div>
+          <div class="text-subtitle2">{{ item.created_at }}</div>
         </q-card-section>
 
         <q-separator inset/>
@@ -33,7 +33,7 @@
         <q-card-actions>
           <q-btn flat>
             <router-link
-              :to="{ name: 'news-detail', params: { id: news.id } }"
+              :to="{ name: 'news-detail', params: { id: item.id } }"
               class="standard-link text-black"
               v-text="$t('more')"
             />
@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapState } from 'vuex';
 
 export default {
   name: 'News',
@@ -86,31 +86,26 @@ export default {
       } else {
         this.currentPage = 0;
       }
-      this.getAllNews({
+      this.$store.dispatch('content/getNews', {
         offset: this.perPage * this.currentPage,
         limit: this.perPage,
       });
     },
-    ...mapActions([
-      'getAllNews',
-    ]),
   },
   watch: {
     perPage() {
       this.changePage();
     },
   },
-  computed: {
-    ...mapGetters('content', {
-      allNews: 'getAllNews',
-    }),
+  computed: mapState({
+    news: state => state.news,
     prevDisable() {
       return this.currentPage <= 0;
     },
     nextDisable() {
       return this.currentPage * this.perPage + this.perPage >= this.newsCount;
     },
-  },
+  }),
 };
 </script>
 

@@ -1,5 +1,5 @@
-function setAllNews(state, news) {
-  state.allNews = news;
+function setNews(state, news) {
+  state.news = news;
 }
 
 function setServices(state, services) {
@@ -8,5 +8,5 @@ function setServices(state, services) {
 
 export {
   setServices,
-  setAllNews,
+  setNews,
 };

@@ -46,17 +46,19 @@
         <q-btn outline
           class="q-mr-sm text-lowercase"
           color="blue"
-          icon="arrow_back"
           :disabled="prevDisable"
-          @click="changePage(-1)"
-          :label="`${$t('prev')} ${perPage}`" />
+          @click="changePage(-1)">
+          <q-icon center name="arrow_back" />
+          <div class="xs-hide">{{ `${$t('prev')} ${perPage}` }}</div>
+        </q-btn>
         <q-btn outline
           class="q-mr-sm text-lowercase"
           color="blue"
-          icon-right="arrow_forward"
           :disabled="nextDisable"
-          @click="changePage(1)"
-          :label="`${$t('next')} ${perPage}`"/>
+          @click="changePage(1)">
+          <div class="xs-hide">{{ `${$t('next')} ${perPage}` }}</div>
+          <q-icon center name="arrow_forward" />
+        </q-btn>
       </q-btn-group>
     </div>
   </q-page>
@@ -73,15 +75,11 @@ export default {
       droppedList: [],
       options: [5, 10, 30],
       perPage: 10,
-      newsCount: 60, // нужно что бы с бэка приходило
       currentPage: 0,
     };
   },
   async mounted() {
-    this.$store.dispatch('content/getNews', {
-      offset: this.perPage * this.currentPage,
-      limit: this.perPage,
-    });
+    this.getNews();
   },
   methods: {
     changePage(type) {
@@ -92,6 +90,9 @@ export default {
       } else {
         this.currentPage = 0;
       }
+      this.getNews();
+    },
+    getNews() {
       this.$store.dispatch('content/getNews', {
         offset: this.perPage * this.currentPage,
         limit: this.perPage,
@@ -104,14 +105,15 @@ export default {
     },
   },
   computed: {
-    ...mapState('content', {
-      news: 'news',
-    }),
+    ...mapState('content', [
+      'news',
+      'newsTotal',
+    ]),
     prevDisable() {
       return this.currentPage <= 0;
     },
     nextDisable() {
-      return this.currentPage * this.perPage + this.perPage >= this.newsCount;
+      return this.currentPage * this.perPage + this.perPage >= this.newsTotal;
     },
   },
 };

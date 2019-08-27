@@ -6,7 +6,11 @@ function getNews({ commit }, data) {
   return new Promise((resolve, reject) => {
     axios.post(newsUrl, data)
       .then((response) => {
-        commit('setNews', response.data.data);
+        const payload = {
+          news: response.data.data,
+          total: response.data.total,
+        };
+        commit('setNews', payload);
         resolve();
       })
       .catch(error => onError(error, reject));

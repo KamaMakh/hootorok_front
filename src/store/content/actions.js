@@ -1,7 +1,21 @@
 import axios from 'axios';
-import { servicesUrl } from 'src/store/urls';
-
+import { servicesUrl, newsUrl } from 'src/store/urls';
 import onError from 'src/store/onError';
+
+function getNews({ commit }, data) {
+  return new Promise((resolve, reject) => {
+    axios.post(newsUrl, data)
+      .then((response) => {
+        const payload = {
+          news: response.data.data,
+          total: response.data.total,
+        };
+        commit('setNews', payload);
+        resolve();
+      })
+      .catch(error => onError(error, reject));
+  });
+}
 
 function getServices({ commit }) {
   return new Promise((resolve, reject) => {
@@ -15,5 +29,6 @@ function getServices({ commit }) {
 }
 
 export {
+  getNews,
   getServices,
 };

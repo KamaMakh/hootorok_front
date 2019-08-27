@@ -67,6 +67,16 @@ const routes = [
         component: () => import('pages/PasswordReset.vue'),
       },
       {
+        path: '/news',
+        name: 'news',
+        component: () => import('pages/News.vue'),
+      },
+      {
+        path: '/news/:id',
+        name: 'news-detail',
+        component: () => import('pages/News.vue'),
+      },
+      {
         path: 'services/:id',
         name: 'services',
         component: () => import('pages/Services.vue'),

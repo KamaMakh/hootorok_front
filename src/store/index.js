@@ -51,6 +51,17 @@ export default function ({ ssrContext }) {
         },
       });
     });
+
+    module.hot.accept(['./content'], () => {
+      // eslint-disable-next-line
+      const newContent = require('./content').default;
+
+      Store.hotUpdate({
+        modules: {
+          user: newContent,
+        },
+      });
+    });
   }
 
   return Store;

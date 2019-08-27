@@ -61,6 +61,8 @@ module.exports = () => ({
       'QDate',
       'QField',
       'QMenu',
+      'QSeparator',
+      'QBtnGroup',
       'QImg',
     ],
 
@@ -73,7 +75,6 @@ module.exports = () => ({
     plugins: [
       'Notify',
       'Cookies',
-      'Dialog',
     ],
   },
 

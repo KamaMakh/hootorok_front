@@ -1,5 +1,6 @@
 function setOnePage(state, onePage) {
-  state.onePage = onePage;
+  const newPages = Object.assign({}, state.pages, { [onePage.id]: onePage.page });
+  state.pages = newPages;
 }
 
 export {

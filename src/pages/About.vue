@@ -4,22 +4,32 @@
       <h1 class="text-h2" v-text="$t('about')"/>
       <q-img
         class="q-px-xs"
-        :src="aboutInfo.content_images[1]"
-        :ratio="16/6"
+        :src="onePage.main_image"
+        style="max-height: 125px; max-width: 350px"
       />
       <p class="text-body1 text-weight-bold q-pt-md">
-        {{ aboutInfo.title }}
+        {{ onePage.title }}
       </p>
-      <div class="text-body1 space-pre">{{ aboutInfo.content }}</div>
+      <div class="text-body1 space-pre">{{ onePage.content }}</div>
+      <div v-for="img in onePage.content_images" v-bind:key="img">
+        <q-img
+        :src="img"
+        :ratio="4/2"
+      />
+      </div>
       <ya-map :coords = "coords"></ya-map>
     </div>
   </q-page>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import YaMap from 'components/YaMap';
 
 export default {
+  preFetch({ store }) {
+    return store.dispatch('content/getPage', 'about_rest');
+  },
   name: 'About',
   components: { YaMap },
   data() {
@@ -28,12 +38,9 @@ export default {
     };
   },
   computed: {
-    aboutInfo() {
-      return this.$store.state.content.onePage;
-    },
-  },
-  async mounted() {
-    this.$store.dispatch('content/getOnePage', 'about_rest');
+    ...mapState({
+      onePage: state => state.content.pages.about_rest,
+    }),
   },
 };
 </script>

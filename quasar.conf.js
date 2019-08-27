@@ -70,8 +70,11 @@ module.exports = () => ({
       'Notify',
       'Cookies',
       'Dialog',
+      'LoadingBar',
     ],
   },
+
+  preFetch: true,
 
   supportIE: false,
 

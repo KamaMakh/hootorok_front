@@ -8,6 +8,7 @@
     >
     <ymap-marker
       :coords="coords"
+      marker-id="1"
     >
     </ymap-marker>
   </yandex-map>
@@ -34,12 +35,8 @@ export default {
       autoFitToViewport: 'always',
     },
     controls: [
-      'fullscreenControl',
       'geolocationControl',
-      'trafficControl',
-      'typeSelector',
       'zoomControl',
-      'routeButtonControl',
     ],
   }),
 };

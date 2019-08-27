@@ -1,3 +1,3 @@
 export default {
-  onePage: {},
+  pages: {},
 };

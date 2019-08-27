@@ -6,6 +6,8 @@ export default {
   name: 'Имя',
   second_name: 'Фамилия',
   registration: 'Регистрация',
+  cabinet: 'Личный кабинет',
+  logout: 'Выход',
   authorization: 'Авторизация',
   phone_or_email: 'Телефон или email',
   phone_layout: 'Формат: 8 ### ### ## ##',
@@ -26,6 +28,8 @@ export default {
   contacts: 'Контакты',
   about: 'О нас',
   info: 'Центр поддержки',
+  recommend_title: 'Рекомендуем вам',
+  service: 'Сервис',
   password_reset: 'Восстановление пароля',
   housing_facilities: 'Корпуса базы отдыха',
 
@@ -39,4 +43,8 @@ export default {
   child_label: 'Дети',
   children: ['Ребенок', 'Ребенка', 'Детей'],
   check_prices: 'Проверить цены',
+  meet_hutorok: 'Познакомьтесь с базой отдыха Хуторок',
+  virtual_walk: 'Виртуальная прогулка по базе',
+  cosy_houses_and_comfort_rooms: 'Уютные домики и комфортные номера',
+  pools_with_thermal_water: 'Бассейны с термальной водой',
 };

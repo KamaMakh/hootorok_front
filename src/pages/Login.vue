@@ -11,9 +11,9 @@
         <div class="q-gutter-md">
           <q-input
             outlined
-            v-model="formData.phone_number"
+            v-model="formData.login"
             v-bind:label="$t('phone_or_email')"
-            ref="phone_number"
+            ref="login"
             v-bind:hint="$t('phone_layout')"
             lazy-rules
             :rules="[
@@ -32,15 +32,15 @@
             ]"
             lazy-rules
           />
-        <div class="row">
-          <q-btn color="primary" v-bind:label="$t('enter')" type="submit" />
-        </div>
-        <div>
-          <router-link :to="{ name: 'passwordreset' }" v-text="$t('forgot_password')" />
-        </div>
-        <div>
-          <router-link :to="{ name: 'registration' }" v-text="$t('registration')" />
-        </div>
+          <div class="row">
+            <q-btn color="primary" v-bind:label="$t('enter')" type="submit" />
+          </div>
+          <div>
+            <router-link :to="{ name: 'password-reset' }" v-text="$t('forgot_password')" />
+          </div>
+          <div>
+            <router-link :to="{ name: 'registration' }" v-text="$t('registration')" />
+          </div>
         </div>
       </form>
     </div>
@@ -53,17 +53,17 @@ export default {
   data() {
     return {
       formData: {
-        phone_number: '',
+        login: '',
         password: '',
       },
     };
   },
   methods: {
     submitForm() {
-      this.$refs.phone_number.validate();
+      this.$refs.login.validate();
       this.$refs.password.validate();
       if (
-        !this.$refs.phone_number.hasError
+        !this.$refs.login.hasError
         && !this.$refs.password.hasError
       ) {
         this.$store.dispatch('user/login', this.formData)

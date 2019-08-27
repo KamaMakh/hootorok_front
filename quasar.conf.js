@@ -47,17 +47,21 @@ module.exports = () => ({
       'QItemSection',
       'QItemLabel',
       'QSelect',
-
+      'QDialog',
       'QCheckbox',
       'QInput',
       'QBanner',
       'QDialog',
+      'QCarousel',
+      'QCarouselControl',
+      'QCarouselSlide',
       'QCard',
       'QCardSection',
       'QCardActions',
       'QDate',
       'QField',
       'QMenu',
+      'QImg',
     ],
 
     directives: [

@@ -1,5 +1,5 @@
 <template>
-  <q-card class="my-card q-pa-md" style="width: 390px">
+  <q-card class="my-card q-pa-md">
     <q-card-section>
       <div class="text-h6">{{$t('booking_card_label')}}</div>
     </q-card-section>

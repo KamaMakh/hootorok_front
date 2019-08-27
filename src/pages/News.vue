@@ -77,6 +77,12 @@ export default {
       currentPage: 0,
     };
   },
+  async mounted() {
+    this.$store.dispatch('content/getNews', {
+      offset: this.perPage * this.currentPage,
+      limit: this.perPage,
+    });
+  },
   methods: {
     changePage(type) {
       if (type === 1) {
@@ -97,15 +103,17 @@ export default {
       this.changePage();
     },
   },
-  computed: mapState({
-    news: state => state.news,
+  computed: {
+    ...mapState('content', {
+      news: 'news',
+    }),
     prevDisable() {
       return this.currentPage <= 0;
     },
     nextDisable() {
       return this.currentPage * this.perPage + this.perPage >= this.newsCount;
     },
-  }),
+  },
 };
 </script>
 

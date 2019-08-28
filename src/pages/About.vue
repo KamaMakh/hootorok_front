@@ -33,7 +33,7 @@ import YaMap from 'components/YaMap';
 
 export default {
   preFetch({ store }) {
-    return store.dispatch('content/getPage', 'about_rest');
+    return store.dispatch('content/getOnePage', 'about_rest');
   },
   name: 'About',
   components: { YaMap },

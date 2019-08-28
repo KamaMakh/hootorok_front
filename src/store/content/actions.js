@@ -9,10 +9,18 @@ import {
 
 function getOnePage({ commit }, textId) {
   return new Promise((resolve, reject) => {
-    axios.post(getOnePageUrl, { text_id: textId }).then((response) => {
-      commit('setPage', response.data.data);
-      resolve();
-    }).catch(error => onError(error, reject));
+    axios.post(getOnePageUrl, { text_id: textId })
+      .then((response) => {
+        const payload = {
+          id: textId,
+          page: response.data.data,
+        };
+
+        commit('setPage', payload);
+
+        resolve();
+      })
+      .catch(error => onError(error, reject));
   });
 }
 
@@ -36,6 +44,7 @@ function getServices({ commit }) {
     axios.post(servicesUrl)
       .then((response) => {
         commit('setServices', response.data.data);
+
         resolve();
       })
       .catch(error => onError(error, reject));

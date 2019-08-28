@@ -79,12 +79,17 @@ module.exports = () => ({
     plugins: [
       'Notify',
       'Cookies',
+      'Dialog',
+      'LoadingBar',
     ],
   },
+
+  preFetch: true,
 
   supportIE: false,
 
   build: {
+    transpileDependencies: [/vue-yandex-maps/],
     scopeHoisting: true,
     // vueRouterMode: 'history',
     // vueCompiler: true,

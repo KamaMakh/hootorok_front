@@ -1,7 +1,6 @@
-function setPage(state, page) {
-  const tempState = Object.assign({}, state.pages);
-  tempState[page.text_id] = page;
-  state.pages = tempState;
+function setPage(state, onePage) {
+  const newPages = Object.assign({}, state.pages, { [onePage.id]: onePage.page });
+  state.pages = newPages;
 }
 
 function setNews(state, data) {

@@ -34,6 +34,7 @@ module.exports = () => ({
     components: [
       'QLayout',
       'QHeader',
+      'QFooter',
       'QDrawer',
       'QPageContainer',
       'QPage',
@@ -50,14 +51,28 @@ module.exports = () => ({
       'QTh',
       'QTr',
       'QTd',
+      'QDialog',
+      'QCheckbox',
+      'QInput',
+      'QBanner',
+      'QDialog',
       'QCarousel',
       'QCarouselControl',
       'QCarouselSlide',
+      'QCard',
+      'QCardSection',
+      'QCardActions',
+      'QDate',
+      'QField',
+      'QMenu',
+      'QSeparator',
+      'QBtnGroup',
       'QImg',
     ],
 
     directives: [
       'Ripple',
+      'ClosePopup',
     ],
 
     // Quasar plugins

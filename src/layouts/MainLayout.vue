@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="lHh Lpr lff">
     <q-header elevated>
       <q-toolbar>
         <q-btn
@@ -9,22 +9,36 @@
           @click="leftDrawerOpen = !leftDrawerOpen"
           aria-label="Menu"
         >
-          <q-icon name="menu"/>
+          <q-icon name="menu" />
         </q-btn>
 
-        <q-toolbar-title/>
+        <q-toolbar-title />
 
         <div class="row items-center">
-          <router-link
-            :to="{ name: 'login' }"
-            class="standard-link text-white q-ml-md"
-            v-text="$t('login')"
-          />
-          <router-link
-            :to="{ name: 'registration' }"
-            class="standard-link text-white q-ml-md"
-            v-text="$t('registration')"
-          />
+          <template v-if="loggedIn">
+            <router-link
+              :to="{ name: 'cabinet' }"
+              class="standard-link text-white q-ml-md"
+              v-text="$t('cabinet')"
+            />
+            <router-link
+              :to="{ name: 'logout' }"
+              class="standard-link text-white q-ml-md"
+              v-text="$t('logout')"
+            />
+          </template>
+          <template v-else>
+            <router-link
+              :to="{ name: 'login' }"
+              class="standard-link text-white q-ml-md"
+              v-text="$t('login')"
+            />
+            <router-link
+              :to="{ name: 'registration' }"
+              class="standard-link text-white q-ml-md"
+              v-text="$t('registration')"
+            />
+          </template>
           <q-select
             v-model="lang"
             :options="langOptions"
@@ -40,11 +54,7 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      bordered
-      content-class="bg-grey-2"
-    >
+    <q-drawer v-model="leftDrawerOpen" bordered content-class="bg-grey-2">
       <q-list>
         <q-item-label header>Essential Links</q-item-label>
         <q-item clickable tag="a" target="_blank" href="https://quasar.dev">
@@ -62,20 +72,32 @@
     <q-page-container>
       <router-view />
 
-      <footer
-        class="bg-white text-default q-py-lg q-px-md shadow-6"
-      >
-        <div
-          class="flex column items-center q-gutter-y-md"
-          v-text="'Footer'"
-        />
-      </footer>
+      <q-footer elevated class="text-left q-pa-md">
+        <div class="row items-center justify-center text-center q-gutter-md">
+          <router-link
+            :to="{ name: 'contacts'}"
+            class="standard-link text-white"
+            v-text="$t('contacts')"
+          />
+          <router-link
+            :to="{ name: 'about'}"
+            class="standard-link text-white"
+            v-text="$t('about')"
+          />
+          <router-link
+            :to="{ name: 'info'}"
+            class="standard-link text-white"
+            v-text="$t('info')"
+          />
+        </div>
+      </q-footer>
     </q-page-container>
   </q-layout>
 </template>
 
 <script>
 import { openURL } from 'quasar';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'MainLayout',
@@ -98,14 +120,13 @@ export default {
       },
       set(lang) {
         this.$i18n.locale = lang;
-
         import(`quasar/lang/${lang}`).then((l) => {
           this.$q.lang.set(l.default);
         });
-
         this.$store.commit('setLang', lang);
       },
     },
+    ...mapGetters(['loggedIn']),
   },
   methods: {
     openURL,

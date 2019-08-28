@@ -52,13 +52,13 @@ export default {
       columns: [
         {
           name: 'key',
-          label: this.$t('thermal_parameter'),
+          label: this.$t('parameter'),
           field: 'parameter',
           align: 'left',
         },
         {
           name: 'value',
-          label: this.$t('thermal_value'),
+          label: this.$t('value'),
           field: 'value',
           align: 'left',
         },

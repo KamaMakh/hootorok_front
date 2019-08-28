@@ -4,7 +4,6 @@ function getPage(state) {
   };
 }
 
-
 export {
   getPage,
 };

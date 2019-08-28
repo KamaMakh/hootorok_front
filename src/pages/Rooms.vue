@@ -252,7 +252,7 @@ export default {
         },
       ],
       result: [],
-      isSort: true,
+      isDesc: true,
       view: 'one',
       group: 0,
       housing: [
@@ -284,13 +284,13 @@ export default {
       this.result = this.rooms.filter(obj => obj.housing === index);
     },
     sortArray() {
-      if (this.isSort) {
+      if (this.isDesc) {
         this.result.sort((a, b) => a.price - b.price);
-        this.isSort = !this.isSort;
+        this.isDesc = !this.isDesc;
         this.iconBtn = 'arrow_downward';
       } else {
         this.result.sort((a, b) => b.price - a.price);
-        this.isSort = !this.isSort;
+        this.isDesc = !this.isDesc;
         this.iconBtn = 'arrow_upward';
       }
     },

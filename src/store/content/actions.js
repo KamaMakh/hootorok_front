@@ -1,6 +1,20 @@
-import axios from 'axios';
-import { servicesUrl, newsUrl } from 'src/store/urls';
+import { axios } from 'boot/axios';
 import onError from 'src/store/onError';
+import {
+  servicesUrl,
+  newsUrl,
+  getOnePageUrl,
+} from 'src/store/urls';
+
+
+function getOnePage({ commit }, textId) {
+  return new Promise((resolve, reject) => {
+    axios.post(getOnePageUrl, { text_id: textId }).then((response) => {
+      commit('setPage', response.data.data);
+      resolve();
+    }).catch(error => onError(error, reject));
+  });
+}
 
 function getNews({ commit }, data) {
   return new Promise((resolve, reject) => {
@@ -29,6 +43,7 @@ function getServices({ commit }) {
 }
 
 export {
+  getOnePage,
   getNews,
   getServices,
 };

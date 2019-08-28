@@ -1,7 +1,9 @@
-function allServices(state) {
-  return state.services;
+function getPage(state) {
+  return function getPageById(textId) {
+    return state.pages[textId];
+  };
 }
 
 export {
-  allServices,
+  getPage,
 };

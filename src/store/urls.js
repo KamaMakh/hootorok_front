@@ -4,6 +4,7 @@ const servicesUrl = `${serverUrl}/pages/getAllServices`;
 const loginUrl = `${serverUrl}/auth/login`;
 const logoutUrl = `${serverUrl}/auth/logout`;
 const checkAuthUrl = `${serverUrl}/auth/check`;
+const getAllHousingsUrl = `${serverUrl}/housings/getAllHousings`;
 
 export {
   serverUrl,
@@ -12,4 +13,5 @@ export {
   loginUrl,
   logoutUrl,
   checkAuthUrl,
+  getAllHousingsUrl,
 };

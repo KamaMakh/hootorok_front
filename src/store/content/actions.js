@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { servicesUrl } from 'src/store/urls';
-
 import onError from 'src/store/onError';
+import { servicesUrl, getAllHousingsUrl } from '../urls';
+
 
 function getServices({ commit }) {
   return new Promise((resolve, reject) => {
@@ -14,6 +14,18 @@ function getServices({ commit }) {
   });
 }
 
+function getAllHousings({ commit }, data) {
+  return new Promise((resolve, reject) => {
+    axios.post(getAllHousingsUrl, data).then((response) => {
+      commit('setHousings', response.data.data);
+      resolve();
+    }).catch((error) => {
+      onError(error, reject);
+    });
+  });
+}
+
 export {
   getServices,
+  getAllHousings,
 };

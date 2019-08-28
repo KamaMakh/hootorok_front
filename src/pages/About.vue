@@ -1,24 +1,29 @@
 <template>
-  <q-page padding class="q-ma-md text-center">
-    <div>
-      <h1 class="text-h2" v-text="$t('about')"/>
+  <q-page padding class="text-center">
+    <h1 class="text-h2" v-text="$t('about')"/>
+    <q-img
+      class="q-px-xs"
+      :src="onePage.main_image"
+      style="max-height: 125px; max-width: 350px"
+    />
+    <p
+      class="text-body1 text-weight-bold q-pt-md"
+      v-text="onePage.title"
+    />
+    <div
+      class="text-body1 space-pre"
+      v-text="onePage.content"
+    />
+    <div
+      v-for="img in onePage.content_images"
+      :key="img"
+    >
       <q-img
-        class="q-px-xs"
-        :src="onePage.main_image"
-        style="max-height: 125px; max-width: 350px"
-      />
-      <p class="text-body1 text-weight-bold q-pt-md">
-        {{ onePage.title }}
-      </p>
-      <div class="text-body1 space-pre">{{ onePage.content }}</div>
-      <div v-for="img in onePage.content_images" v-bind:key="img">
-        <q-img
         :src="img"
         :ratio="4/2"
       />
-      </div>
-      <ya-map :coords = "coords"></ya-map>
     </div>
+    <ya-map :coords="coords"/>
   </q-page>
 </template>
 

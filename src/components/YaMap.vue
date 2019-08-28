@@ -1,16 +1,17 @@
 <template>
-  <yandex-map class="q-py-md"
+  <yandex-map
+    v-if="showMap"
+    class="q-py-md"
     :coords="coords"
     :settings="settings"
     :zoom="zoom"
     :controls="controls"
     :options="options"
-    >
+  >
     <ymap-marker
       :coords="coords"
       marker-id="1"
-    >
-    </ymap-marker>
+    />
   </yandex-map>
 </template>
 
@@ -23,7 +24,11 @@ export default {
   props: {
     coords: Array,
   },
+  mounted() {
+    this.showMap = true;
+  },
   data: () => ({
+    showMap: false,
     zoom: 10,
     settings: {
       apiKey: 'bff47474-50d8-4300-80b7-d342d8cfc443',

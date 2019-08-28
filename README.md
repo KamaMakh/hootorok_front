@@ -1,26 +1,18 @@
 # Hutorok site (hutorok)
 
-New site of recreation center Hutorok
+Фронтальная часть сайта базы отдыха «Хуторок»
 
-## Install the dependencies
+## Установка зависимостей
 ```bash
 npm install
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
+### Запуск проекта
 ```bash
-quasar dev
+quasar dev -m ssr
 ```
 
-### Lint the files
-```bash
-npm run lint
-```
-
-### Build the app for production
+### Сборка на продакш
 ```bash
 quasar build
 ```
-
-### Customize the configuration
-See [Configuring quasar.conf.js](https://quasar.dev/quasar-cli/quasar-conf-js).

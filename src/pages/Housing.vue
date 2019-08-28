@@ -1,18 +1,18 @@
 <template>
   <q-page padding>
-    <h1 class="text-h2" v-text="$t('housing_facilities')"/>
+    <h1 class="text-h2 text-center" v-text="$t('housing_facilities')"/>
     <div class="row">
-      <q-card class="text-default" v-for="housing in housings" :key="housing.id">
-        <router-link :to="{ name: 'rooms' }" class="card-link text-h4 text-default">
+      <q-card class="text-default q-my-md" v-for="(housing,i) in housings" :key="housing.id">
+        <router-link :to="{ name: 'rooms' }" class="card-link text-h4 text-default q-py-md">
           Заголовок
         </router-link>
         <q-carousel
-          v-model="slide"
+          v-model="housingsSlides[i]"
           animated
           arrows
           navigation
           infinite
-          :fullscreen.sync="fullscreen"
+          :fullscreen.sync="housingsFullscreens[i]"
         >
           <q-carousel-slide
             :name="index"
@@ -27,8 +27,8 @@
             >
               <q-btn
                 push round dense color="white" text-color="primary"
-                :icon="fullscreen ? 'fullscreen_exit' : 'fullscreen'"
-                @click="fullscreen = !fullscreen"
+                :icon="housingsFullscreens[i] ? 'fullscreen_exit' : 'fullscreen'"
+                @click="changeFullscreen(i)"
               />
             </q-carousel-control>
           </template>
@@ -46,15 +46,24 @@ export default {
   name: 'housing',
   data() {
     return {
-      slide: 0,
+      housingsSlides: [],
+      housingsFullscreens: [],
       fullscreen: false,
     };
   },
   computed: {
     ...mapState('content', ['housings']),
   },
+  methods: {
+    changeFullscreen(index) {
+      this.$set(this.housingsFullscreens, index, !this.housingsFullscreens[index]);
+    },
+  },
   async mounted() {
-    this.$store.dispatch('content/getAllHousings');
+    this.$store.dispatch('content/getAllHousings').then(() => {
+      this.housingsSlides = Array.from({ length: this.housings.length }, () => 0);
+      this.housingsFullscreens = Array.from({ length: this.housings.length }, () => false);
+    });
   },
 };
 </script>
@@ -62,5 +71,6 @@ export default {
 <style scoped lang='stylus'>
 .card-link
   text-decoration none
+  display block
   text-align center
 </style>

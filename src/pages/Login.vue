@@ -12,9 +12,9 @@
           <q-input
             outlined
             v-model="formData.login"
-            v-bind:label="$t('phone_or_email')"
+            :label="$t('phone_or_email')"
             ref="login"
-            v-bind:hint="$t('phone_layout')"
+            :hint="$t('phone_layout')"
             lazy-rules
             :rules="[
               val => !!val || $t('required_field')
@@ -24,7 +24,7 @@
             ref="password"
             outlined
             v-model="formData.password"
-            v-bind:label="$t('password')"
+            :label="$t('password')"
             type="password"
             :rules="[
               val => !!val || $t('required_field'),
@@ -33,7 +33,7 @@
             lazy-rules
           />
           <div class="row">
-            <q-btn color="primary" v-bind:label="$t('enter')" type="submit" />
+            <q-btn color="primary" :label="$t('enter')" type="submit" />
           </div>
           <div>
             <router-link :to="{ name: 'password-reset' }" v-text="$t('forgot_password')" />
@@ -81,7 +81,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .auth-tabs {
   max-width: 500px;
   margin: 0 auto;

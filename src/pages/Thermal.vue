@@ -1,16 +1,21 @@
 <template>
   <q-page padding v-if="!loading">
-    <h2 class="text-h2 text-center" v-text="$t('thermal_springs')"/>
-    <p class="q-pa-md text-body1">
-      {{ page.content }}
-    </p>
+    <h2
+      class="text-h2 text-center"
+      v-text="$t('thermal_springs')"
+    />
+    <p
+      class="q-pa-md text-body1"
+      v-text="page.content"
+    />
     <q-img :src='page.main_image'/>
     <div class="q-pa-md">
       <q-table
-      :title="$t('thermal_water_characteristics')"
-      :columns="columns"
-      :data="data"
-      row-key="name"/>
+        :title="$t('thermal_water_characteristics')"
+        :columns="columns"
+        :data="data"
+        row-key="name"
+      />
     </div>
     <div class="q-pa-md">
       <q-carousel
@@ -25,10 +30,12 @@
         arrows
         class="text-white shadow-1 rounded-borders"
       >
-        <q-carousel-slide v-for="(img,index) in page.content_images"
-        :key="index" :img-src="img" :name="index">
-
-        </q-carousel-slide>
+        <q-carousel-slide
+          v-for="(img,index) in page.content_images"
+          :key="index"
+          :img-src="img"
+          :name="index"
+        />
       </q-carousel>
     </div>
   </q-page>
@@ -41,6 +48,7 @@ export default {
   name: 'Thermal',
   data() {
     return {
+      data: [],
       columns: [
         {
           name: 'key',
@@ -66,9 +74,10 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch('content/getOnePage', 'about_termal').then(() => {
-      this.loading = false;
-    });
+    this.$store.dispatch('content/getOnePage', 'about_termal')
+      .then(() => {
+        this.loading = false;
+      });
   },
 };
 </script>

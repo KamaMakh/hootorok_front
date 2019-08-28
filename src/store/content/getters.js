@@ -1,5 +1,5 @@
 function getPage(state) {
-  return function id(textId) {
+  return function getPageById(textId) {
     return state.pages[textId];
   };
 }

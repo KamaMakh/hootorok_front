@@ -50,4 +50,5 @@ export default {
   virtual_walk_around_hotel: 'Virtuak walk around family hotel',
   cosy_houses_and_comfort_rooms: 'Cosy houses and comfort rooms',
   pools_with_thermal_water: 'Swimming pools with thermal water',
+  list_of_services: 'List of services',
 };

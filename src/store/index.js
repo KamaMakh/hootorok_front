@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import { Cookies } from 'quasar';
 
 import user from './user';
+import content from './content';
 
 Vue.use(Vuex);
 
@@ -17,11 +18,16 @@ export default function ({ ssrContext }) {
   const Store = new Vuex.Store({
     modules: {
       user,
+      content,
     },
     state: {
       lang: cookies.get('lang') || 'ru',
     },
-
+    getters: {
+      loggedIn(state) {
+        return Boolean(state.user.user.id);
+      },
+    },
     mutations: {
       setLang(state, lang) {
         cookies.set('lang', lang);
@@ -38,10 +44,13 @@ export default function ({ ssrContext }) {
     module.hot.accept(['./user'], () => {
       // eslint-disable-next-line
       const newUser = require('./user').default;
+      // eslint-disable-next-line
+      const newContent = require('./content').default;
 
       Store.hotUpdate({
         modules: {
           user: newUser,
+          content: newContent,
         },
       });
     });

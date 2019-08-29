@@ -103,7 +103,7 @@ export default {
   name: 'MainLayout',
   data() {
     return {
-      leftDrawerOpen: this.$q.platform.is.desktop,
+      leftDrawerOpen: false,
       langOptions: [{
         label: 'RU',
         value: 'ru',
@@ -126,7 +126,7 @@ export default {
         this.$store.commit('setLang', lang);
       },
     },
-    ...mapGetters('user', ['loggedIn']),
+    ...mapGetters(['loggedIn']),
   },
   methods: {
     openURL,

@@ -11,10 +11,10 @@
         <div class="q-gutter-md">
           <q-input
             outlined
-            v-model="formData.phone_number"
-            v-bind:label="$t('phone_or_email')"
-            ref="phone_number"
-            v-bind:hint="$t('phone_layout')"
+            v-model="formData.login"
+            :label="$t('phone_or_email')"
+            ref="login"
+            :hint="$t('phone_layout')"
             lazy-rules
             :rules="[
               val => !!val || $t('required_field')
@@ -24,7 +24,7 @@
             ref="password"
             outlined
             v-model="formData.password"
-            v-bind:label="$t('password')"
+            :label="$t('password')"
             type="password"
             :rules="[
               val => !!val || $t('required_field'),
@@ -33,7 +33,7 @@
             lazy-rules
           />
           <div class="row">
-            <q-btn color="primary" v-bind:label="$t('enter')" type="submit" />
+            <q-btn color="primary" :label="$t('enter')" type="submit" />
           </div>
           <div>
             <router-link :to="{ name: 'password-reset' }" v-text="$t('forgot_password')" />
@@ -53,17 +53,17 @@ export default {
   data() {
     return {
       formData: {
-        phone_number: '',
+        login: '',
         password: '',
       },
     };
   },
   methods: {
     submitForm() {
-      this.$refs.phone_number.validate();
+      this.$refs.login.validate();
       this.$refs.password.validate();
       if (
-        !this.$refs.phone_number.hasError
+        !this.$refs.login.hasError
         && !this.$refs.password.hasError
       ) {
         this.$store.dispatch('user/login', this.formData)
@@ -81,7 +81,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .auth-tabs {
   max-width: 500px;
   margin: 0 auto;

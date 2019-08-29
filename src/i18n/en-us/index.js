@@ -8,6 +8,10 @@ export default {
   name: 'Name',
   second_name: 'Last name',
   registration: 'Registration',
+  thermal_water_characteristics: 'Thermal water characteristics',
+  thermal_springs: 'Thermal springs',
+  parameter: 'Parameter',
+  value: 'Value',
   authorization: 'Authorization',
   phone_or_email: 'Phone or email',
   phone_layout: 'Layout: 8 ### ### ## ##',
@@ -32,6 +36,8 @@ export default {
   password_reset_data_sent: 'The information about password reset sent by email',
 
   // BookingCard
+  recommend_title: 'Recommended',
+  service: 'Service',
   booking_card_label: 'Book a great holiday',
   arrival_date: 'Date of arrival',
   departure_date: 'Date of departure',
@@ -41,4 +47,12 @@ export default {
   child_label: 'Children',
   children: ['Child', 'Children'],
   check_prices: 'Check prices',
+  news_and_campaigns: 'News and promotions',
+  more: 'More',
+  prev: 'Previous',
+  next: 'Next',
+  meet_hutorok: 'Meet the Hutorok family hotel',
+  virtual_walk_around_hotel: 'Virtuak walk around family hotel',
+  cosy_houses_and_comfort_rooms: 'Cosy houses and comfort rooms',
+  pools_with_thermal_water: 'Swimming pools with thermal water',
 };

@@ -1,20 +1,24 @@
 <template>
-  <q-page padding>
-    <h1 class="text-h2 text-center" v-text="$t('housing_facilities')"/>
+  <q-page class="housing">
+    <h1 class="housing__title text-center" v-text="$t('housing_facilities')"/>
     <div class="row">
-      <q-card class="text-default q-my-md" v-for="(housing,i) in housings" :key="housing.id">
-        <router-link :to="{ name: 'rooms' }" class="card-link text-h4 text-default q-py-md">
+      <div class="q-mb-md housing__card" v-for="(housing,i) in housings" :key="housing.id">
+        <router-link :to="{ name: 'rooms' }" class="housing__link">
           Заголовок
         </router-link>
         <q-carousel
           v-model="housingsSlides[i]"
+          class="housing__carousel"
           animated
-          arrows
           navigation
+          height="60vh"
+          transition-prev="slide-right"
+          transition-next="slide-left"
           infinite
           :fullscreen.sync="housingsFullscreens[i]"
         >
           <q-carousel-slide
+            class="housing__slide"
             :name="index"
             v-for='(img,index) in housing.photos'
             :key="index"
@@ -33,8 +37,8 @@
             </q-carousel-control>
           </template>
         </q-carousel>
-        <p class="text-body1 q-pa-md" v-text="housing.description"  />
-      </q-card>
+        <p class="housing__description" v-text="housing.description"  />
+      </div>
     </div>
   </q-page>
 </template>
@@ -73,4 +77,23 @@ export default {
   text-decoration none
   display block
   text-align center
+.housing
+  &__title
+    font-size: 28px
+    margin 0
+    margin-bottom 17px
+  &__card
+    width 100%
+  &__link
+    font-size 20px
+    text-decoration none
+    text-align center
+    display block
+    margin-bottom 15px
+    color: $text_default
+  &__carousel
+    width: 100vw
+    margin-bottom 17px
+  &__description
+    font-size: 14px
 </style>

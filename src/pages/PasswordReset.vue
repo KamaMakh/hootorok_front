@@ -29,7 +29,7 @@
         <div class="row q-mt-md">
           <q-btn
             color="primary"
-            :label="$t('reset_password')"
+            :label="$t('send')"
             type="submit"
           />
         </div>

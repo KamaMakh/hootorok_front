@@ -69,7 +69,6 @@ export default {
   info: 'Центр поддержки',
   recommend_title: 'Рекомендуем вам',
   service: 'Сервис',
-  password_reset: 'Восстановление пароля',
   booking_card_label: 'Бронируйте великолепный отдых',
   arrival_date: 'Дата заезда',
   departure_date: 'Дата выезда',
@@ -88,6 +87,7 @@ export default {
   cosy_houses_and_comfort_rooms: 'Уютные домики и комфортные номера',
   pools_with_thermal_water: 'Бассейны с термальной водой',
   forgot_password_message: 'Если вы забыли пароль, введите e-mail указанный при регистрации. Контрольная строка для смены пароля, а также ваши регистрационные данные, будут высланы вам по e-mail.',
-  reset_password: 'Восстановить пароль',
+  send: 'Отправить',
+  password_reset: 'Восстановление пароля',
   change_password_success_send: 'Данные о смене пароля отправлены на email',
 };

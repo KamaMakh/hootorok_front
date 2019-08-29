@@ -1,115 +1,104 @@
 <template>
-  <q-page padding v-if="!loading">
-    <div class="q-pb-xl window-height text-white row justify-center items-center">
+  <q-page v-if="!loading">
+    <div
+      class="q-pb-xl window-height row justify-center"
+      :style="{ background: `url(${page.main_image})` }"
+      style="background: no-repeat; background-size: cover;"
+    >
       <div
         class="window-height full-width absolute"
-        :style="{background: `url(${page.main_image})`}"
-        style="top: 0; left: 0; background: no-repeat; background-size: cover;
-               filter: blur(2px);"
+        style="top: 0; left: 0; background: rgba(0, 0, 0, 0.3);"
       />
       <div
-        class="q-pa-lg-lg q-pa-sm relative-position"
-        :style="{background: 'rgba(0,0,0,0.4)'}"
-        style="min-width: 50vw;"
+        class="relative-position q-pt-xl"
       >
         <div
-          class="text-center q-ma-md"
-          :class="{'text-h2': $q.screen.gt.sm, 'text-h3': $q.screen.lt.md,
-                   'text-h4': $q.screen.lt.sm}"
-          style="font-weight: bold"
+          class="text-center q-ma-md text-h4"
           v-text="$t('thermal_springs')"
         />
-        <q-scroll-area
-          class="q-pa-md"
-          style="height: 60vh;"
-        >
-          <div
-            class="q-mx-auto text-justify"
-            :class="{'text-body1': $q.screen.gt.sm, 'text-body2': $q.screen.lt.md}"
-            style="text-indent: 1.5em"
-            v-for="(text, index) in page.content.split('    ').filter(element => element !== '')"
-            v-text="text"
-            :key="index"
-          />
-        </q-scroll-area>
+        <div
+          class="text-justify text-body2 q-pt-lg"
+          style="width: 80%; margin: auto;"
+          v-text="page.content.substring(0, 100)"
+        />
+        <!-- TODO: .substring(0, 100) is a temporary decision -->
       </div>
     </div>
-    <div class="q-pa-md q-mb-xl">
-      <h5 class="text-center">{{ $t('thermal_water_composition') }}</h5>
+    <div>
+      <h5 class="text-center" v-text="$t('thermal_water_composition')"/>
       <div
-        class="q-pa-md q-mx-auto row-md column-sm wrap q-gutter-y-md"
-        :class="{'q-gutter-md': $q.screen.gt.sm}"
+        class="q-px-md q-mb-xl q-mx-auto row-md column-sm wrap q-gutter-y-md"
+        :class="{ 'q-gutter-md': $q.screen.gt.sm }"
       >
         <q-table
-          class="col"
+          class="col thermal-table"
           dense
           flat
           hide-bottom
-          :pagination="{rowsPerPage: 50}"
+          :pagination="{ rowsPerPage: 50 }"
           :title="$t('cations')"
-          :columns="cations_columns"
-          :data="cations_data"
+          :columns="cationsColumns"
+          :data="cationsData"
           row-key="name"
         >
         </q-table>
         <q-table
-          class="col"
+          class="col thermal-table"
           dense
           flat
           hide-bottom
-          :pagination="{rowsPerPage: 50}"
+          :pagination="{ rowsPerPage: 50 }"
           :title="$t('anions')"
-          :columns="anions_columns"
-          :data="anions_data"
+          :columns="anionsColumns"
+          :data="anionsData"
           row-key="name"
         >
         </q-table>
         <q-table
-          class="col-12"
+          class="col-12 thermal-table"
           dense
           flat
           hide-bottom
           hide-header
           :title="$t('pool_depth')"
-          :columns="pool_columns"
-          :data="pool_data"
+          :columns="poolColumns"
+          :data="poolData"
           row-key="name"
         >
           <template v-slot:bottom-row>
             <q-tr>
-              <q-td colspan="100%" align="center">
-               {{$t('temperature')}}: 94℃
-              </q-td>
+              <q-td
+                colspan="100%"
+                align="center"
+                v-text="`${$t('temperature')}: 94℃`"
+              />
             </q-tr>
           </template>
         </q-table>
       </div>
     </div>
 
-    <div class="q-pa-md" style="height: 50vw">
-      <q-carousel
-        v-model="slide"
-        transition-next="slide-left"
-        transition-prev="slide-right"
-        animated
-        swipeable
-        control-color="white"
-        navigation
-        infinite
-        padding
-        arrows
-        class="text-white  absolute full-width"
-        style="left: 0; bottom: 0"
-        height="50vw"
-      >
-        <q-carousel-slide
-          v-for="(img,index) in page.content_images"
-          :key="index"
-          :img-src="img"
-          :name="index"
-        />
-      </q-carousel>
-    </div>
+    <q-carousel
+      v-model="slide"
+      transition-next="slide-left"
+      transition-prev="slide-right"
+      animated
+      swipeable
+      control-color="white"
+      navigation
+      infinite
+      padding
+      arrows
+      class="text-white full-width"
+      height="50vw"
+    >
+      <q-carousel-slide
+        v-for="(img,index) in page.content_images"
+        :key="index"
+        :img-src="img"
+        :name="index"
+      />
+    </q-carousel>
   </q-page>
 </template>
 
@@ -120,7 +109,7 @@ export default {
   name: 'Thermal',
   data() {
     return {
-      cations_columns: [
+      cationsColumns: [
         {
           name: 'key',
           label: this.$t('element'),
@@ -134,7 +123,7 @@ export default {
           align: 'left',
         },
       ],
-      cations_data: [
+      cationsData: [
         {
           parameter: `${this.$t('lithium')} (Li)`,
           value: '1,2',
@@ -196,7 +185,7 @@ export default {
           value: '< 0,05',
         },
       ],
-      anions_columns: [
+      anionsColumns: [
         {
           name: 'key',
           label: this.$t('element'),
@@ -210,7 +199,7 @@ export default {
           align: 'left',
         },
       ],
-      anions_data: [
+      anionsData: [
         {
           parameter: `${this.$t('fluorine')} (F)`,
           value: '4,0',
@@ -260,7 +249,7 @@ export default {
           value: '< 0,01',
         },
       ],
-      pool_columns: [
+      poolColumns: [
         {
           name: 'number',
           field: 'number',
@@ -282,7 +271,7 @@ export default {
           align: 'left',
         },
       ],
-      pool_data: [
+      poolData: [
         {
           number: `1 ${this.$t('building')}`,
           depth1: '1,50',
@@ -314,3 +303,8 @@ export default {
   },
 };
 </script>
+
+<style lang="stylus">
+.thermal-table .q-table__top
+  justify-content: center
+</style>

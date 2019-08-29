@@ -54,4 +54,5 @@ export default {
   pools_with_thermal_water: 'Бассейны с термальной водой',
   forgot_password_message: 'Если вы забыли пароль, введите e-mail указанный при регистрации. Контрольная строка для смены пароля, а также ваши регистрационные данные, будут высланы вам по e-mail.',
   reset_password: 'Восстановить пароль',
+  change_password_success_send: 'Данные о смене пароля отправлены на email',
 };

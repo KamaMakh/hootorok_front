@@ -34,8 +34,6 @@ export default {
   info: 'Info',
   forgot_password_message: 'If you have forgotten your password, enter the e-mail address provided during registration. A control string for changing the password and your registration data will be sent to you by e-mail.',
   password_reset_data_sent: 'The information about password reset sent by email',
-
-  // BookingCard
   recommend_title: 'Recommended',
   service: 'Service',
   booking_card_label: 'Book a great holiday',
@@ -55,4 +53,5 @@ export default {
   virtual_walk_around_hotel: 'Virtuak walk around family hotel',
   cosy_houses_and_comfort_rooms: 'Cosy houses and comfort rooms',
   pools_with_thermal_water: 'Swimming pools with thermal water',
+  change_password_success_send: 'Data about changing password successfully send on your email',
 };

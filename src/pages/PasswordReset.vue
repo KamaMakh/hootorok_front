@@ -9,7 +9,10 @@
           >
           </div>
         </q-banner>
-        <div class="font-size_12 q-pa-md" v-text="$t('forgot_password_message')"></div>
+        <div
+          class="font-size_12 q-pa-md"
+          v-text="$t('forgot_password_message')"
+        />
       </div>
       <form @submit.prevent="submitForm" class="q-pa-md">
           <q-input
@@ -48,15 +51,14 @@ export default {
   methods: {
     submitForm() {
       this.$refs.email.validate();
-      if (
-        !this.$refs.email.hasError
-      ) {
+
+      if (!this.$refs.email.hasError) {
         this.$store.dispatch('user/resetPassword', this.formData)
           .then(() => this.$q.notify({
             icon: 'close',
             color: 'primary',
             position: 'center',
-            message: 'Данные о смене пароля отправлены на email',
+            message: this.$t('change_password_success_send'),
           }))
           .catch((error) => {
             this.$q.notify({

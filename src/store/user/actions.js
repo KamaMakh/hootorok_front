@@ -21,11 +21,11 @@ function register({ commit }, data) {
   });
 }
 
-function resetPassword(data) {
+function resetPassword({ commit }, data) {
   return new Promise((resolve, reject) => {
     axios.post(resetPasswordUrl, data)
-      .then((response) => {
-        console.log(response);
+      .then(() => {
+        commit('resetUser');
         resolve();
       })
       .catch(error => onError(error, reject));

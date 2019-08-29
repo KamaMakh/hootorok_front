@@ -1,44 +1,44 @@
 <template>
   <q-page padding v-if="!loading">
-    <div
-      class="q-pb-xl window-height text-white column justify-center no-wrap"
-    >
-
-      <div class="window-height full-width absolute"
-           :style="{background: `url(${page.main_image})`}"
-           style="top: 0; left: 0; background: no-repeat; background-size: cover; z-index: -1"
-      >
-        <div class="window-height full-width absolute"
-             :style="{background: 'rgba(0,0,0,0.3)'}"
-             style="top: 0; left: 0;"
-        ></div>
-      </div>
+    <div class="q-pb-xl window-height text-white row justify-center items-center">
       <div
-        class="text-center q-my-md"
-        :class="{'text-h2': $q.screen.gt.sm, 'text-h3': $q.screen.lt.md,
-         'text-h4': $q.screen.lt.sm}"
-        v-text="$t('thermal_springs')"
+        class="window-height full-width absolute"
+        :style="{background: `url(${page.main_image})`}"
+        style="top: 0; left: 0; background: no-repeat; background-size: cover;
+               filter: blur(2px);"
       />
-      <q-scroll-area
-        class="q-pa-md"
-        style="height: 70vh;"
+      <div
+        class="q-pa-lg-lg q-pa-sm relative-position"
+        :style="{background: 'rgba(0,0,0,0.4)'}"
+        style="min-width: 50vw;"
       >
         <div
-          class="q-mx-auto text-justify"
-          :class="{'text-body1': $q.screen.gt.sm, 'text-body2': $q.screen.lt.md}"
-          style="max-width: 1200px; text-indent: 1em"
-          v-for="(text, index) in page.content.split('    ').filter(element => element !== '')"
-          v-text="text"
-          :key="index"
-        ></div>
-      </q-scroll-area>
+          class="text-center q-ma-md"
+          :class="{'text-h2': $q.screen.gt.sm, 'text-h3': $q.screen.lt.md,
+                   'text-h4': $q.screen.lt.sm}"
+          style="font-weight: bold"
+          v-text="$t('thermal_springs')"
+        />
+        <q-scroll-area
+          class="q-pa-md"
+          style="height: 60vh;"
+        >
+          <div
+            class="q-mx-auto text-justify"
+            :class="{'text-body1': $q.screen.gt.sm, 'text-body2': $q.screen.lt.md}"
+            style="text-indent: 1.5em"
+            v-for="(text, index) in page.content.split('    ').filter(element => element !== '')"
+            v-text="text"
+            :key="index"
+          />
+        </q-scroll-area>
+      </div>
     </div>
     <div class="q-pa-md q-mb-xl">
       <h5 class="text-center">{{ $t('thermal_water_composition') }}</h5>
       <div
         class="q-pa-md q-mx-auto row-md column-sm wrap q-gutter-y-md"
         :class="{'q-gutter-md': $q.screen.gt.sm}"
-        style="max-width: 1200px"
       >
         <q-table
           class="col"

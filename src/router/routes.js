@@ -77,7 +77,7 @@ const routes = [
         component: () => import('pages/News.vue'),
       },
       {
-        path: 'services/:id',
+        path: 'services',
         name: 'services',
         component: () => import('pages/Services.vue'),
       },

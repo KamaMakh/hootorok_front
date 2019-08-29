@@ -18,7 +18,7 @@ export default {
   element: 'Element',
   lithium: 'Lithium',
   ammonium: 'Ammonium',
-  sodium: 'sodium',
+  sodium: 'Sodium',
   potassium: 'Potassium',
   magnesium: 'Magnesium',
   calcium: 'Calcium',

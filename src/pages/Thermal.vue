@@ -232,7 +232,7 @@ export default {
           value: '1400,0',
         },
         {
-          parameter: `${this.$t('рydrosulfite')} (HS)`,
+          parameter: `${this.$t('hydrosulfite')} (HS)`,
           value: '< 0,005',
         },
         {

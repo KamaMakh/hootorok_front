@@ -45,11 +45,11 @@
     <div
     class="q-pa-xl about-content">
       <div
-        class="text-grey-7 text-body2">
-      <a
-      class="standard-link"
-      href="#">{{ $t('about_phone')+ ': +' + mainTelephone }}
-      </a>
+      class="text-body2">
+        <a
+        class="standard-link"
+        :href="'tel:+' + mainTelephone">{{ $t('about_phone')+ ': +' + mainTelephone }}
+        </a>
       </div>
 
     </div>

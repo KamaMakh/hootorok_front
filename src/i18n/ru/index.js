@@ -66,8 +66,6 @@ export default {
   error: 'Ошибка',
   contacts: 'Контакты',
   about: 'О нас',
-  about_title: 'База отдыха "Хуторок"',
-  about_phone: 'Телефон для справок',
   info: 'Центр поддержки',
   recommend_title: 'Рекомендуем вам',
   service: 'Сервис',
@@ -94,4 +92,6 @@ export default {
   password_reset: 'Восстановление пароля',
   change_password_success_send: 'Данные о смене пароля отправлены на email',
   display_by: 'Отображать по',
+  recreation_center_hutorok: 'База отдыха "Хуторок"',
+  phone_for_information: 'Телефон для справок',
 };

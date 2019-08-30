@@ -2,7 +2,7 @@
   <q-page class="text-center">
     <h1
       class="text-h5"
-      v-text="$t('about_title')"
+      v-text="$t('recreation_center_hutorok')"
     />
     <div
       class="text-justify text-grey-7 text-body2 q-px-md about-content"
@@ -10,7 +10,7 @@
     />
 
     <ya-map
-      class="q-pa-md ya-map"
+      class="q-px-md q-mt-md ya-map"
       :coords="coords"
     />
 
@@ -24,7 +24,7 @@
       control-color="white"
       infinite
       padding
-      class="full-width"
+      class="full-width q-mt-md"
       height="100vh"
     >
       <q-carousel-slide
@@ -36,7 +36,7 @@
     </q-carousel>
 
     <div class="q-py-lg text-body2">
-      {{ $t('about_phone') }}: <a
+      {{ $t('phone_for_information') }}: <a
         class="standard-link text-primary"
         :href="`tel:+${mainTelephone}`"
         v-text="`+${mainTelephone}`"

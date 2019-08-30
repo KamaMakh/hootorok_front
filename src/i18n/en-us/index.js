@@ -64,8 +64,6 @@ export default {
   error: 'Error',
   contacts: 'Contacts',
   about: 'About',
-  about_title: 'Recreation Center "Hutorok"',
-  about_phone: 'Phone',
   info: 'Info',
   recommend_title: 'Recommended',
   service: 'Service',
@@ -92,4 +90,6 @@ export default {
   password_reset: 'Password reset',
   change_password_success_send: 'Data about changing password successfully send on your email',
   display_by: 'Display by',
+  recreation_center_hutorok: 'Recreation Center "Hutorok"',
+  phone_for_information: 'Phone for infos',
 };

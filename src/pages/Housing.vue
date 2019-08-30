@@ -1,6 +1,9 @@
 <template>
   <q-page>
-    <h1 class="text-center text-h4" v-text="$t('housing_facilities')"/>
+    <h1
+      class="text-center text-h4"
+      v-text="$t('housing_facilities')"
+    />
     <div class="row">
       <div
         v-for="(housing, i) in housings"
@@ -59,12 +62,11 @@
 import { mapState } from 'vuex';
 
 export default {
-  name: 'housing',
+  name: 'Housings',
   data() {
     return {
       housingsSlides: [],
       housingsFullscreens: [],
-      fullscreen: false,
     };
   },
   computed: {
@@ -76,10 +78,18 @@ export default {
     },
   },
   async mounted() {
-    this.$store.dispatch('content/getAllHousings').then(() => {
-      this.housingsSlides = Array.from({ length: this.housings.length }, () => 0);
-      this.housingsFullscreens = Array.from({ length: this.housings.length }, () => false);
-    });
+    this.$store.dispatch('content/getAllHousings')
+      .then(() => {
+        this.housingsSlides = Array.from(
+          { length: this.housings.length },
+          () => 0,
+        );
+
+        this.housingsFullscreens = Array.from(
+          { length: this.housings.length },
+          () => false,
+        );
+      });
   },
 };
 </script>

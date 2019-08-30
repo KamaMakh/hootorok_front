@@ -68,7 +68,7 @@ const routes = [
       },
       {
         path: 'housings',
-        name: 'housing',
+        name: 'housings',
         component: () => import('pages/Housing.vue'),
       },
       {

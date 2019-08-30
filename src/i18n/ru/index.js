@@ -69,6 +69,7 @@ export default {
   info: 'Центр поддержки',
   recommend_title: 'Рекомендуем вам',
   service: 'Сервис',
+  housing_facilities: 'Корпуса базы отдыха',
   booking_card_label: 'Бронируйте великолепный отдых',
   arrival_date: 'Дата заезда',
   departure_date: 'Дата выезда',

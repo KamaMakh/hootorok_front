@@ -67,6 +67,7 @@ export default {
   info: 'Info',
   recommend_title: 'Recommended',
   service: 'Service',
+  housing_facilities: 'Housing facilities',
   booking_card_label: 'Book a great holiday',
   arrival_date: 'Date of arrival',
   departure_date: 'Date of departure',

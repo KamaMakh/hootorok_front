@@ -40,7 +40,7 @@
       <div class="col-xs-12 col-sm-8 col-md-9">
         <div class="q-pa-md row items-start q-gutter-md" v-if="view === 'one'">
           <q-card class="card" v-for="item in result" :key="item.id">
-            <img :src="item.img[0]" class="image" @click="showCarousel(item)">
+            <img src="https://cdn.quasar.dev/img/mountains.jpg" class="image" @click="showCarousel()">
             <q-card-section>
               <div class="text-h6"
                    @click="$router.push({
@@ -57,20 +57,20 @@
               >{{$t('housing')}}{{item.housing}}</div>
             </q-card-section>
             <q-card-section>
-              <p>{{$t('price_per_day')}}{{item.price}}</p>
-              <p>{{$t('number_of_adults_and_children')}}{{item.max}}</p>
+              <p>{{$t('number_of_adults_and_children')}}{{item.capacity}}</p>
+              <p>{{$t('price_per_day')}}{{price}}</p>
             </q-card-section>
-            <q-dialog v-model="item.showAllPhoto" >
+            <q-dialog v-model="showAllPhoto" >
               <div class="carousel">
                 <q-carousel
                   animated
-                  v-model="item.slide"
+                  v-model="slide"
                   arrows
                   navigation
                   infinite
                 >
                   <q-carousel-slide
-                    v-for="(image, index) in item.img"
+                    v-for="(image, index) in images"
                     :img-src="image"
                     :key="index"
                     :name="index + 1"
@@ -95,7 +95,7 @@
             <tr>
             <tr v-for="item in result" :key="item.id">
               <td class="text-left">
-                  <img :src="item.img[0]" class="small_image" @click="showCarousel(item)">
+                <img src="https://cdn.quasar.dev/img/mountains.jpg" class="small_image" @click="showCarousel()">
               </td>
               <td class="text-right"
                   @click="$router.push({
@@ -110,19 +110,19 @@
                   name: 'housings',
                   })"
               >{{item.housing}}</td>
-              <td class="text-right">{{item.price}}</td>
-              <td class="text-right">{{item.max}}</td>
-              <q-dialog v-model="item.showAllPhoto" >
+              <td class="text-right">{{price}}</td>
+              <td class="text-right">{{item.capacity}}</td>
+              <q-dialog v-model="showAllPhoto" >
                 <div class="carousel">
                   <q-carousel
                     animated
-                    v-model="item.slide"
+                    v-model="slide"
                     arrows
                     navigation
                     infinite
                   >
                     <q-carousel-slide
-                      v-for="(image, index) in item.img"
+                      v-for="(image, index) in images"
                       :img-src="image"
                       :key="index"
                       :name="index + 1"
@@ -140,6 +140,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'Rooms',
   data() {
@@ -254,6 +256,7 @@ export default {
       result: [],
       isDesc: true,
       view: 'one',
+      model: 'Все корпуса',
       group: 0,
       housing: [
         {
@@ -269,19 +272,25 @@ export default {
           value: 2,
         },
         {
-          label: 'Дом пасечника',
+          label: 'Третий корпус',
           value: 3,
         },
       ],
       iconBtn: 'arrow_upward',
+      price: '2500 руб',
+      showAllPhoto: false,
+      slide: 1,
+      images: ['https://cdn.quasar.dev/img/mountains.jpg',
+        'https://cdn.quasar.dev/img/parallax2.jpg',
+        'https://cdn.quasar.dev/img/parallax1.jpg'],
     };
   },
   methods: {
     showAll() {
-      this.result = this.rooms;
+      this.result = this.roomsList;
     },
     filterData(index) {
-      this.result = this.rooms.filter(obj => obj.housing === index);
+      this.result = this.roomsList.filter(obj => obj.housing === index);
     },
     sortArray() {
       if (this.isDesc) {
@@ -294,9 +303,8 @@ export default {
         this.iconBtn = 'arrow_upward';
       }
     },
-    showCarousel(obj) {
-      obj.showAllPhoto = true;
-      console.log('id', obj);
+    showCarousel() {
+      this.showAllPhoto = true;
     },
   },
   created() {
@@ -304,18 +312,27 @@ export default {
     this.$store.dispatch('rooms/fetchHousingList');
     this.$store.dispatch('rooms/fetchRoomsList');
   },
+  computed: {
+    ...mapGetters('rooms', ['getRoomsList', 'getHousingsList']),
+    roomsList() {
+      return this.getRoomsList;
+    },
+    housingList() {
+      return this.getHousingsList;
+    },
+  },
 };
 </script>
 
 <style lang="stylus" scoped>
   .card{
-    width: 250px;
-    height: 320px;
+    width: 300px;
+    height: 370px;
     cursor: pointer;
   }
   .image{
-    width: 250px;
-    height: 150px;
+    width: 300px;
+    height: 200px;
   }
   .small_image{
     width: 120px;

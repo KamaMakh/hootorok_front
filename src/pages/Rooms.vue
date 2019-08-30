@@ -301,6 +301,8 @@ export default {
   },
   created() {
     this.showAll();
+    this.$store.dispatch('rooms/fetchHousingList');
+    this.$store.dispatch('rooms/fetchRoomsList');
   },
 };
 </script>

@@ -28,7 +28,7 @@ module.exports = () => ({
   framework: {
     // iconSet: 'ionicons-v4',
     // lang: 'de', // Quasar language
-
+    cssAddon: true,
     // all: true, // --- includes everything; for dev only!
 
     components: [

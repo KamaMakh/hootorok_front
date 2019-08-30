@@ -22,6 +22,8 @@ export default function ({ ssrContext }) {
     },
     state: {
       lang: cookies.get('lang') || 'ru',
+      mainTelephone: '7 (918) 190-15-17',
+      coords: [44.421986, 40.739452],
     },
     getters: {
       loggedIn(state) {

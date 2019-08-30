@@ -92,4 +92,6 @@ export default {
   password_reset: 'Восстановление пароля',
   change_password_success_send: 'Данные о смене пароля отправлены на email',
   display_by: 'Отображать по',
+  recreation_center_hutorok: 'База отдыха "Хуторок"',
+  phone_for_information: 'Телефон для справок',
 };

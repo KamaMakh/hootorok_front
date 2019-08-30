@@ -1,7 +1,6 @@
 <template>
   <yandex-map
     v-if="showMap"
-    class="q-py-md"
     :coords="coords"
     :settings="settings"
     :zoom="zoom"

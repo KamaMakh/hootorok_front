@@ -22,6 +22,7 @@ export default function ({ ssrContext }) {
     },
     state: {
       lang: cookies.get('lang') || 'ru',
+      mainTelephone: '9-999-999-99-99',
     },
     getters: {
       loggedIn(state) {

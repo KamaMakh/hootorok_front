@@ -66,6 +66,8 @@ export default {
   error: 'Ошибка',
   contacts: 'Контакты',
   about: 'О нас',
+  about_title: 'База отдыха "Хуторок"',
+  about_phone: 'Телефон для справок',
   info: 'Центр поддержки',
   recommend_title: 'Рекомендуем вам',
   service: 'Сервис',

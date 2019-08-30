@@ -64,6 +64,8 @@ export default {
   error: 'Error',
   contacts: 'Contacts',
   about: 'About',
+  about_title: 'Recreation Center "Hutorok"',
+  about_phone: 'Phone',
   info: 'Info',
   recommend_title: 'Recommended',
   service: 'Service',

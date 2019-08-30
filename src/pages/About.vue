@@ -1,29 +1,58 @@
 <template>
-  <q-page padding class="text-center">
-    <h1 class="text-h2" v-text="$t('about')"/>
-    <q-img
-      class="q-px-xs"
-      :src="onePage.main_image"
-      style="max-height: 125px; max-width: 350px"
-    />
-    <p
-      class="text-body1 text-weight-bold q-pt-md"
-      v-text="onePage.title"
-    />
+  <q-page class="text-center">
     <div
-      class="text-body1 space-pre"
-      v-text="onePage.content"
-    />
-    <div
-      v-for="img in onePage.content_images"
-      :key="img"
-    >
-      <q-img
-        :src="img"
-        :ratio="4/2"
+    class="q-pa-xl about-content">
+
+      <div
+      class="text-h4 q-py-md about-title"
+      v-text="$t('about_title')"
+      />
+
+      <div
+        class="text-justify text-grey-7 text-body2"
+        v-text="onePage.content"
       />
     </div>
-    <ya-map :coords="coords"/>
+
+    <ya-map
+    class="q-py-md q-px-xl ya-map"
+    :coords="coords"
+    />
+
+    <q-carousel
+      v-model="slide"
+      transition-next="slide-left"
+      transition-prev="slide-right"
+      animated
+      swipeable
+      control-color="white"
+      navigation
+      infinite
+      padding
+      arrows
+      class="full-width"
+      height="100vh"
+      :autoplay="3000">
+
+      <q-carousel-slide
+        v-for="(img,index) in onePage.content_images"
+        :key="index"
+        :img-src="img"
+        :name="index"
+      />
+    </q-carousel>
+
+    <div
+    class="q-pa-xl about-content">
+      <div
+        class="text-grey-7 text-body2">
+      <a
+      class="standard-link"
+      href="#">{{ $t('about_phone')+ ': +' + mainTelephone }}
+      </a>
+      </div>
+
+    </div>
   </q-page>
 </template>
 
@@ -40,21 +69,43 @@ export default {
   data() {
     return {
       coords: [60, 30],
+      slide: 0,
     };
   },
   computed: {
     ...mapState({
       onePage: state => state.content.pages.about_rest,
+      mainTelephone: state => state.mainTelephone,
     }),
   },
 };
 </script>
 
-<style scoped>
-.ymap-container {
-  height: 500px;
-}
-.space-pre {
-  white-space: pre-wrap;
-}
+<style lang="stylus" scoped>
+.ya-map
+  height 80vh
+.about-content
+  max-width: 780px
+  margin: auto
+
+@media (max-width: $sizes.md)
+  .about-content
+    padding-left: $spaces.lg.x
+    padding-right: $spaces.lg.x
+  .ya-map
+    padding-left: $spaces.lg.x
+    padding-right: $spaces.lg.x
+  .about-title
+    font-size: 1.8rem
+
+@media (max-width: $sizes.sm)
+  .about-content
+    padding-left: $spaces.md.x
+    padding-right: $spaces.md.x
+  .ya-map
+    padding-left: $spaces.md.x
+    padding-right: $spaces.md.x
+  .about-title
+    font-size: 1.6rem
+
 </style>

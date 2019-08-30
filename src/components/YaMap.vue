@@ -6,6 +6,7 @@
     :zoom="zoom"
     :controls="controls"
     :options="options"
+    :scroll-zoom="false"
   >
     <ymap-marker
       :coords="coords"

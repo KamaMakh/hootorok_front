@@ -1,22 +1,17 @@
 <template>
   <q-page class="text-center">
-    <div
-    class="q-pa-xl about-content">
-
-      <div
-      class="text-h4 q-py-md about-title"
+    <h1
+      class="text-h5"
       v-text="$t('about_title')"
-      />
-
-      <div
-        class="text-justify text-grey-7 text-body2"
-        v-text="onePage.content"
-      />
-    </div>
+    />
+    <div
+      class="text-justify text-grey-7 text-body2 q-px-md about-content"
+      v-text="onePage.content"
+    />
 
     <ya-map
-    class="q-py-md q-px-xl ya-map"
-    :coords="coords"
+      class="q-pa-md ya-map"
+      :coords="coords"
     />
 
     <q-carousel
@@ -24,34 +19,28 @@
       transition-next="slide-left"
       transition-prev="slide-right"
       animated
+      thumbnails
       swipeable
       control-color="white"
-      navigation
       infinite
       padding
-      arrows
       class="full-width"
       height="100vh"
-      :autoplay="3000">
-
+    >
       <q-carousel-slide
-        v-for="(img,index) in onePage.content_images"
+        v-for="(img, index) in onePage.content_images"
         :key="index"
         :img-src="img"
         :name="index"
       />
     </q-carousel>
 
-    <div
-    class="q-pa-xl about-content">
-      <div
-      class="text-body2">
-        <a
-        class="standard-link"
-        :href="'tel:+' + mainTelephone">{{ $t('about_phone')+ ': +' + mainTelephone }}
-        </a>
-      </div>
-
+    <div class="q-py-lg text-body2">
+      {{ $t('about_phone') }}: <a
+        class="standard-link text-primary"
+        :href="`tel:+${mainTelephone}`"
+        v-text="`+${mainTelephone}`"
+      />
     </div>
   </q-page>
 </template>
@@ -68,14 +57,14 @@ export default {
   components: { YaMap },
   data() {
     return {
-      coords: [60, 30],
       slide: 0,
     };
   },
   computed: {
     ...mapState({
       onePage: state => state.content.pages.about_rest,
-      mainTelephone: state => state.mainTelephone,
+      mainTelephone: 'mainTelephone',
+      coords: 'coords',
     }),
   },
 };
@@ -84,28 +73,8 @@ export default {
 <style lang="stylus" scoped>
 .ya-map
   height 80vh
+
 .about-content
   max-width: 780px
   margin: auto
-
-@media (max-width: $sizes.md)
-  .about-content
-    padding-left: $spaces.lg.x
-    padding-right: $spaces.lg.x
-  .ya-map
-    padding-left: $spaces.lg.x
-    padding-right: $spaces.lg.x
-  .about-title
-    font-size: 1.8rem
-
-@media (max-width: $sizes.sm)
-  .about-content
-    padding-left: $spaces.md.x
-    padding-right: $spaces.md.x
-  .ya-map
-    padding-left: $spaces.md.x
-    padding-right: $spaces.md.x
-  .about-title
-    font-size: 1.6rem
-
 </style>

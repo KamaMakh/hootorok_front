@@ -89,4 +89,5 @@ export default {
   send: 'Send',
   password_reset: 'Password reset',
   change_password_success_send: 'Data about changing password successfully send on your email',
+  display_by: 'Display by',
 };

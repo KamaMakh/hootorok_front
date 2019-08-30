@@ -91,4 +91,5 @@ export default {
   send: 'Отправить',
   password_reset: 'Восстановление пароля',
   change_password_success_send: 'Данные о смене пароля отправлены на email',
+  display_by: 'Отображать по',
 };

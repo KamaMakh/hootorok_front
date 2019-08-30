@@ -103,7 +103,7 @@ export default {
   name: 'MainLayout',
   data() {
     return {
-      leftDrawerOpen: this.$q.platform.is.desktop,
+      leftDrawerOpen: false,
       langOptions: [{
         label: 'RU',
         value: 'ru',

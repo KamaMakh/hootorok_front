@@ -44,10 +44,13 @@ export default function ({ ssrContext }) {
     module.hot.accept(['./user'], () => {
       // eslint-disable-next-line
       const newUser = require('./user').default;
+      // eslint-disable-next-line
+      const newContent = require('./content').default;
 
       Store.hotUpdate({
         modules: {
           user: newUser,
+          content: newContent,
         },
       });
     });

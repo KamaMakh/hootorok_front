@@ -96,6 +96,12 @@ const routes = [
         name: 'thermal',
         component: () => import('pages/Thermal.vue'),
       },
+      {
+        path: 'rooms/:id',
+        name: 'room',
+        props: true,
+        component: () => import('pages/RoomItem.vue'),
+      },
     ],
   },
 ];

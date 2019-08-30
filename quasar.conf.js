@@ -68,6 +68,7 @@ module.exports = () => ({
       'QSeparator',
       'QBtnGroup',
       'QImg',
+      'QPagination',
     ],
 
     directives: [

@@ -71,6 +71,7 @@ export default {
   info: 'Центр поддержки',
   recommend_title: 'Рекомендуем вам',
   service: 'Сервис',
+  housing_facilities: 'Корпуса базы отдыха',
   booking_card_label: 'Бронируйте великолепный отдых',
   arrival_date: 'Дата заезда',
   departure_date: 'Дата выезда',
@@ -92,4 +93,5 @@ export default {
   send: 'Отправить',
   password_reset: 'Восстановление пароля',
   change_password_success_send: 'Данные о смене пароля отправлены на email',
+  display_by: 'Отображать по',
 };

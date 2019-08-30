@@ -69,6 +69,7 @@ export default {
   info: 'Info',
   recommend_title: 'Recommended',
   service: 'Service',
+  housing_facilities: 'Housing facilities',
   booking_card_label: 'Book a great holiday',
   arrival_date: 'Date of arrival',
   departure_date: 'Date of departure',
@@ -90,4 +91,5 @@ export default {
   send: 'Send',
   password_reset: 'Password reset',
   change_password_success_send: 'Data about changing password successfully send on your email',
+  display_by: 'Display by',
 };

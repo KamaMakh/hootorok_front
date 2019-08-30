@@ -32,8 +32,6 @@ export default {
   service: 'Сервис',
   password_reset: 'Восстановление пароля',
   housing_facilities: 'Корпуса базы отдыха',
-
-  // BookingCard
   booking_card_label: 'Бронируйте великолепный отдых',
   arrival_date: 'Дата заезда',
   departure_date: 'Дата выезда',

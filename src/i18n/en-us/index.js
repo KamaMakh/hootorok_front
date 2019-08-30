@@ -30,8 +30,6 @@ export default {
   service: 'Service',
   password_reset: 'Password Reset',
   housing_facilities: 'Housing facilities',
-
-  // BookingCard
   booking_card_label: 'Book a great holiday',
   arrival_date: 'Date of arrival',
   departure_date: 'Date of departure',

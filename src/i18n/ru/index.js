@@ -90,4 +90,5 @@ export default {
   send: 'Отправить',
   password_reset: 'Восстановление пароля',
   change_password_success_send: 'Данные о смене пароля отправлены на email',
+  room_number: 'Номер ',
 };

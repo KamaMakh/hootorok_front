@@ -3,12 +3,12 @@
     <h1 class="text-h2 text-center" v-text="$t('rooms_and_houses')"/>
     <div class="row">
       <div class="q-pa-md col-xs-12 col-sm-4 col-md-3">
-        <q-btn
-          @click="sortArray"
-          color="primary"
-          :label="$t('sort_by_price_per_day')">
-          <q-icon :name="this.iconBtn"/>
-        </q-btn>
+        <q-select
+          v-model="model"
+          :options="options"
+          :label="$t('sort_by_price_per_day')"
+          @click="sortArray">
+        </q-select>
         <q-option-group
           v-model="group"
           :options="formatHousings()"
@@ -148,15 +148,18 @@ export default {
     return {
       result: [],
       isDesc: true,
+      model: null,
+      options: ['уменьшению цены', 'возрастанию цены'],
       view: 'one',
       group: 0,
-      iconBtn: 'arrow_upward',
       price: '2500 руб',
       showAllPhoto: false,
       slide: 1,
-      images: ['https://cdn.quasar.dev/img/mountains.jpg',
+      images: [
+        'https://cdn.quasar.dev/img/mountains.jpg',
         'https://cdn.quasar.dev/img/parallax2.jpg',
-        'https://cdn.quasar.dev/img/parallax1.jpg'],
+        'https://cdn.quasar.dev/img/parallax1.jpg',
+      ],
     };
   },
   methods: {
@@ -170,16 +173,13 @@ export default {
       if (this.isDesc) {
         this.result.sort((a, b) => a.price - b.price);
         this.isDesc = !this.isDesc;
-        this.iconBtn = 'arrow_downward';
       } else {
         this.result.sort((a, b) => b.price - a.price);
         this.isDesc = !this.isDesc;
-        this.iconBtn = 'arrow_upward';
       }
     },
-    showCarousel(id) {
+    showCarousel() {
       this.showAllPhoto = true;
-      console.log(id);
     },
     formatHousings() {
       const a = this.housingList.map(i => ({ label: `${this.$t('housing')} ${i.id}`, value: i.id }));

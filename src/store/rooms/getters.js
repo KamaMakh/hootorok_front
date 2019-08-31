@@ -3,7 +3,7 @@ function getHousingsList(state) {
 }
 
 function getRoomsList(state) {
-  return state.rooms;
+  return state.roomsList;
 }
 
 export {

@@ -3,7 +3,7 @@ function setHousingList(state, payload) {
 }
 
 function setRoomsList(state, payload) {
-  state.rooms = payload;
+  state.roomsList = payload;
 }
 
 export {

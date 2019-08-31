@@ -5,6 +5,7 @@ export default {
   rooms_and_houses: 'Rooms and houses',
   room_number: 'Room ',
   housing: 'Housing ',
+  all_housings: 'All housings',
   price_per_day: 'Price per day ',
   number_of_adults_and_children: 'Number of adults and children ',
   photo: 'Photo',

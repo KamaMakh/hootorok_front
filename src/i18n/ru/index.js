@@ -9,4 +9,5 @@ export default {
   number_of_adults_and_children: 'Кол-во взрослых и детей ',
   photo: 'Фото',
   sort_by_price_per_day: 'Сортировка по цене за сутки',
+  all_housings: 'Все корпуса',
 };

@@ -23,7 +23,9 @@
               v-for="item in roomFoto"
               :key="item.id"
               :name="item.id"
-              :img-src="item.src"/>
+              :img-src="item.src"
+              @click="showDialog = true"
+            />
           </q-carousel>
           <br>
           <div class="text-body1">
@@ -35,6 +37,24 @@
         </div>
       </div>
     </div>
+    <q-dialog v-model="showDialog" full-width full-height>
+        <q-carousel
+          swipeable
+          animated
+          v-model="newSlide"
+          thumbnails
+          infinite
+        >
+          <q-carousel-slide
+            v-for="item in roomFoto"
+            :key="item.id"
+            :name="item.id"
+            :img-src="item.src"
+          >
+            <q-btn flat @click="showDialog = false"><q-icon name="clear"></q-icon></q-btn>
+          </q-carousel-slide>
+        </q-carousel>
+    </q-dialog>
   </q-page>
 </template>
 
@@ -47,7 +67,8 @@ export default {
   data() {
     return {
       slide: 1,
-      icon: false,
+      newSlide: 1,
+      showDialog: false,
       roomFoto: [
         {
           id: 1,
@@ -82,5 +103,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

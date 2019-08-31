@@ -11,7 +11,7 @@
         </q-btn>
         <q-option-group
           v-model="group"
-          :options="housing"
+          :options="formatHousings()"
           color="primary"
           @input="group === 0 ? showAll() : filterData(group)">
         </q-option-group>
@@ -140,142 +140,16 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapState } from 'vuex';
 
 export default {
   name: 'Rooms',
   data() {
     return {
-      rooms: [
-        {
-          name: 'Номер 1',
-          img: ['https://cdn.quasar.dev/img/mountains.jpg',
-            'https://cdn.quasar.dev/img/parallax2.jpg',
-            'https://cdn.quasar.dev/img/parallax1.jpg'],
-          id: 1,
-          price: 7500,
-          housing: 1,
-          max: 4,
-          showAllPhoto: false,
-          slide: 1,
-        },
-        {
-          name: 'Номер 2',
-          img: [
-            'https://cdn.quasar.dev/img/parallax2.jpg',
-            'https://cdn.quasar.dev/img/mountains.jpg',
-          ],
-          id: 2,
-          price: 1500,
-          housing: 1,
-          max: 5,
-          showAllPhoto: false,
-          slide: 1,
-        },
-        {
-          name: 'Номер 3',
-          img: [
-            'https://cdn.quasar.dev/img/mountains.jpg',
-            'https://cdn.quasar.dev/img/parallax1.jpg',
-          ],
-          id: 3,
-          price: 250,
-          housing: 2,
-          max: 4,
-          showAllPhoto: false,
-          slide: 1,
-        },
-        {
-          name: 'Номер 4',
-          img: [
-            'https://cdn.quasar.dev/img/parallax1.jpg',
-            'https://cdn.quasar.dev/img/quasar.jpg',
-          ],
-          id: 4,
-          price: 300,
-          housing: 3,
-          max: 3,
-          showAllPhoto: false,
-          slide: 1,
-        },
-        {
-          name: 'Номер 5',
-          img: [
-            'https://cdn.quasar.dev/img/parallax2.jpg',
-            'https://cdn.quasar.dev/img/parallax2.jpg',
-            'https://cdn.quasar.dev/img/mountains.jpg',
-          ],
-          id: 5,
-          price: 1500,
-          housing: 2,
-          max: 4,
-          showAllPhoto: false,
-          slide: 1,
-        },
-        {
-          name: 'Номер 6',
-          img: [
-            'https://cdn.quasar.dev/img/mountains.jpg',
-            'https://cdn.quasar.dev/img/parallax1.jpg',
-          ],
-          id: 6,
-          price: 500,
-          housing: 3,
-          max: 6,
-          showAllPhoto: false,
-          slide: 1,
-        },
-        {
-          name: 'Номер 7',
-          img: [
-            'https://cdn.quasar.dev/img/quasar.jpg',
-            'https://cdn.quasar.dev/img/mountains.jpg',
-          ],
-          id: 7,
-          price: 2500,
-          housing: 1,
-          max: 2,
-          showAllPhoto: false,
-          slide: 1,
-        },
-        {
-          name: 'Номер 8',
-          img: [
-            'https://cdn.quasar.dev/img/parallax1.jpg',
-            'https://cdn.quasar.dev/img/mountains.jpg',
-            'https://cdn.quasar.dev/img/parallax1.jpg',
-          ],
-          id: 8,
-          price: 1500,
-          housing: 1,
-          max: 3,
-          showAllPhoto: false,
-          slide: 1,
-        },
-      ],
       result: [],
       isDesc: true,
       view: 'one',
-      model: 'Все корпуса',
       group: 0,
-      housing: [
-        {
-          label: 'Все корпуса',
-          value: 0,
-        },
-        {
-          label: 'Первый корпус',
-          value: 1,
-        },
-        {
-          label: 'Второй корпус',
-          value: 2,
-        },
-        {
-          label: 'Третий корпус',
-          value: 3,
-        },
-      ],
       iconBtn: 'arrow_upward',
       price: '2500 руб',
       showAllPhoto: false,
@@ -303,23 +177,22 @@ export default {
         this.iconBtn = 'arrow_upward';
       }
     },
-    showCarousel() {
+    showCarousel(id) {
       this.showAllPhoto = true;
+      console.log(id);
+    },
+    formatHousings() {
+      const a = this.housingList.map(i => ({ label: `${this.$t('housing')} ${i.id}`, value: i.id }));
+      return [{ label: this.$t('all_housings'), value: 0 }, ...a];
     },
   },
   created() {
-    this.showAll();
     this.$store.dispatch('rooms/fetchHousingList');
     this.$store.dispatch('rooms/fetchRoomsList');
+    this.showAll();
   },
   computed: {
-    ...mapGetters('rooms', ['getRoomsList', 'getHousingsList']),
-    roomsList() {
-      return this.getRoomsList;
-    },
-    housingList() {
-      return this.getHousingsList;
-    },
+    ...mapState('rooms', ['roomsList', 'housingList']),
   },
 };
 </script>

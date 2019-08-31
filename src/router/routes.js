@@ -82,6 +82,12 @@ const routes = [
         component: () => import('pages/Services.vue'),
       },
       {
+        path: 'services/:id',
+        name: 'service',
+        props: true,
+        component: () => import('pages/ServiceItem.vue'),
+      },
+      {
         path: 'rooms',
         name: 'rooms',
         component: () => import('pages/DummyPage.vue'),

@@ -4,6 +4,7 @@ import { Cookies } from 'quasar';
 
 import user from './user';
 import content from './content';
+import room from './room';
 
 Vue.use(Vuex);
 
@@ -19,6 +20,7 @@ export default function ({ ssrContext }) {
     modules: {
       user,
       content,
+      room,
     },
     state: {
       lang: cookies.get('lang') || 'ru',

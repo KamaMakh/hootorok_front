@@ -7,6 +7,7 @@ const loginUrl = `${serverUrl}/auth/login`;
 const newsUrl = `${serverUrl}/news/getAllNews`;
 const logoutUrl = `${serverUrl}/auth/logout`;
 const checkAuthUrl = `${serverUrl}/auth/check`;
+const getOneRoom = `${serverUrl}/rooms/getOneRoom`;
 
 export {
   serverUrl,
@@ -18,4 +19,5 @@ export {
   logoutUrl,
   checkAuthUrl,
   getOnePageUrl,
+  getOneRoom,
 };

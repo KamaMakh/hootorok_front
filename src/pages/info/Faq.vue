@@ -68,7 +68,7 @@
             lazy-rules
             :rules="[
               val => !!val || $t('required_field'),
-              val => isValidEmailAddress || $t('enter_correct_email'),
+              val => isValidEmail(formDate.email) || $t('enter_correct_email'),
             ]"
           />
           <div class="relative-position row q-mt-md">
@@ -86,11 +86,11 @@
 
 <script>
 import { mapState } from 'vuex';
-import EmailValidationMixin from 'components/helpers/emailValidationMixin.vue';
+import { emailValidationMixin } from 'components/helpers/mixins';
 
 export default {
   name: 'FAQ',
-  mixins: [EmailValidationMixin],
+  mixins: [emailValidationMixin],
   preFetch({ store }) {
     return store.dispatch('content/getFAQ');
   },

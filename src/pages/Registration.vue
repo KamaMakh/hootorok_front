@@ -31,7 +31,7 @@
             lazy-rules
             :rules="[
               val => !!val || $t('required_field'),
-              val => isValidEmailAddress || $t('enter_correct_email')
+              val => isValidEmail(formData.email) || $t('enter_correct_email')
             ]"
           />
           <q-input
@@ -119,10 +119,11 @@
 </template>
 
 <script>
-import EmailValidationMixin from 'components/helpers/emailValidationMixin.vue';
+import { emailValidationMixin } from 'components/helpers/mixins';
 
 export default {
   name: 'Registration',
+  mixins: [emailValidationMixin],
   data() {
     return {
       formData: {
@@ -171,7 +172,6 @@ export default {
       }
     },
   },
-  mixins: [EmailValidationMixin],
 };
 </script>
 

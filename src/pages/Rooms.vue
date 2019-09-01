@@ -1,6 +1,9 @@
 <template>
   <q-page>
-    <h1 class="text-h2 text-center" v-text="$t('rooms_and_houses')"/>
+    <h1
+      class="text-h2 text-center"
+      v-text="$t('rooms_and_houses')"
+    />
     <div class="row justify-center">
       <div class="row no-wrap items-center">
         <span v-text="$t('sort_by')"/>
@@ -24,6 +27,18 @@
           v-model="group"
           :options="housingsOptions"
           class="q-mx-md"
+          @input="resetCurrentPage"
+        />
+      </div>
+      <div class="row no-wrap items-center">
+        <span v-text="$t('display_by')"/>
+        <q-select
+          dense
+          options-dense
+          v-model="perPage"
+          :options="perPageOptions"
+          class="q-mx-md"
+          @input="resetCurrentPage"
         />
       </div>
       <!-- <q-btn-toggle
@@ -50,7 +65,7 @@
       class="row items-start q-pb-md"
     >
       <q-card
-        v-for="item in roomsFiltered"
+        v-for="item in roomsPaged"
         :key="item.id"
         flat
         square
@@ -110,7 +125,7 @@
         </thead>
         <tbody>
           <tr>
-          <tr v-for="item in roomsFiltered" :key="item.id">
+          <tr v-for="item in roomsPaged" :key="item.id">
             <td class="text-left">
               <img
                 :src="defaultImage"
@@ -128,9 +143,7 @@
             />
             <td
               class="text-right"
-              @click="$router.push({
-                name: 'housings',
-              })"
+              @click="$router.push({ name: 'housings' })"
               v-text="item.housing"
             />
             <td class="text-right" v-text="item.price"/>
@@ -138,6 +151,13 @@
           </tr>
         </tbody>
       </q-markup-table>
+    </div>
+    <div v-if="pages > 1" class="q-pa-lg flex flex-center">
+      <q-pagination
+        v-model="currentPage"
+        :max="pages"
+        :direction-links="true"
+      />
     </div>
     <q-dialog
       v-model="showAllPhoto"
@@ -176,6 +196,8 @@
 <script>
 import { mapState } from 'vuex';
 
+const perPageOptions = [6, 12, 18];
+
 export default {
   name: 'Rooms',
   data() {
@@ -185,6 +207,9 @@ export default {
       group: 0,
       showAllPhoto: false,
       slide: 1,
+      perPage: perPageOptions[0],
+      perPageOptions,
+      currentPage: 1,
       defaultImage: 'https://cdn.quasar.dev/img/mountains.jpg',
       defaultImages: [
         'https://cdn.quasar.dev/img/mountains.jpg',
@@ -199,6 +224,9 @@ export default {
   },
   computed: {
     ...mapState('rooms', ['rooms', 'housings']),
+    pages() {
+      return Math.ceil(this.roomsFiltered.length / this.perPage);
+    },
     sortOptions() {
       return [
         {
@@ -238,6 +266,12 @@ export default {
 
       return res;
     },
+    roomsPaged() {
+      const start = (this.currentPage - 1) * this.perPage;
+      const end = start + this.perPage;
+
+      return this.roomsFiltered.slice(start, end);
+    },
     roomsWithPrices() {
       const res = [...this.rooms];
 
@@ -251,6 +285,9 @@ export default {
   methods: {
     showCarousel() {
       this.showAllPhoto = true;
+    },
+    resetCurrentPage() {
+      this.currentPage = 1;
     },
     calculatePrice() {
       return 4000 + Math.round(Math.random() * 2000);

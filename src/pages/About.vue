@@ -1,29 +1,47 @@
 <template>
-  <q-page padding class="text-center">
-    <h1 class="text-h2" v-text="$t('about')"/>
-    <q-img
-      class="q-px-xs"
-      :src="onePage.main_image"
-      style="max-height: 125px; max-width: 350px"
-    />
-    <p
-      class="text-body1 text-weight-bold q-pt-md"
-      v-text="onePage.title"
+  <q-page class="text-center">
+    <h1
+      class="text-h5"
+      v-text="$t('recreation_center_hutorok')"
     />
     <div
-      class="text-body1 space-pre"
+      class="text-justify text-grey-7 text-body2 q-px-md about-content"
       v-text="onePage.content"
     />
-    <div
-      v-for="img in onePage.content_images"
-      :key="img"
+
+    <ya-map
+      class="q-px-md q-mt-md ya-map"
+      :coords="coords"
+    />
+
+    <q-carousel
+      v-model="slide"
+      transition-next="slide-left"
+      transition-prev="slide-right"
+      animated
+      thumbnails
+      swipeable
+      control-color="white"
+      infinite
+      padding
+      class="full-width q-mt-md"
+      height="100vh"
     >
-      <q-img
-        :src="img"
-        :ratio="4/2"
+      <q-carousel-slide
+        v-for="(img, index) in onePage.content_images"
+        :key="index"
+        :img-src="img"
+        :name="index"
+      />
+    </q-carousel>
+
+    <div class="q-py-lg text-body2">
+      {{ $t('phone_for_information') }}: <a
+        class="standard-link text-primary"
+        :href="`tel:+${mainTelephone}`"
+        v-text="`+${mainTelephone}`"
       />
     </div>
-    <ya-map :coords="coords"/>
   </q-page>
 </template>
 
@@ -39,22 +57,24 @@ export default {
   components: { YaMap },
   data() {
     return {
-      coords: [60, 30],
+      slide: 0,
     };
   },
   computed: {
     ...mapState({
       onePage: state => state.content.pages.about_rest,
+      mainTelephone: 'mainTelephone',
+      coords: 'coords',
     }),
   },
 };
 </script>
 
-<style scoped>
-.ymap-container {
-  height: 500px;
-}
-.space-pre {
-  white-space: pre-wrap;
-}
+<style lang="stylus" scoped>
+.ya-map
+  height 80vh
+
+.about-content
+  max-width: 780px
+  margin: auto
 </style>

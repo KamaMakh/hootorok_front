@@ -94,4 +94,5 @@ export default {
   display_by: 'Отображать по',
   recreation_center_hutorok: 'База отдыха "Хуторок"',
   phone_for_information: 'Телефон для справок',
+  list_of_services: 'Список услуг',
 };

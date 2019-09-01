@@ -92,4 +92,5 @@ export default {
   display_by: 'Display by',
   recreation_center_hutorok: 'Recreation Center "Hutorok"',
   phone_for_information: 'Phone for infos',
+  list_of_services: 'List of services',
 };

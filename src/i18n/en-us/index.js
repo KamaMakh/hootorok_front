@@ -100,5 +100,12 @@ export default {
   price_per_day: 'Price per day',
   number_of_adults_and_children: 'Number of adults and children',
   photo: 'Photo',
-  sort_by_price_per_day: 'Sort by price per day',
+  sort_by: 'Sort by',
+  show_rooms: 'Show rooms',
+  of_all_housings: 'of all housings',
+  man: 'man',
+  'rur/night': 'RUR/night',
+  see_all_room_photos: 'See all room photos',
+  decrease_price_by: 'decrease price',
+  increase_price_by: 'increase price',
 };

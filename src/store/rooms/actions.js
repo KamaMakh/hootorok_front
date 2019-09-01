@@ -1,22 +1,24 @@
 import axios from 'axios';
 import { getAllHousingsUrl, getAllRoomsUrl } from 'src/store/urls';
 
-function fetchHousingList({ commit }) {
+function getHousings({ commit }) {
   return new Promise((resolve) => {
     axios.post(getAllHousingsUrl)
       .then((response) => {
-        commit('setHousingList', response.data.data);
+        commit('setHousings', response.data.data);
+
         resolve();
       })
       .catch(error => console.log('error', error));
   });
 }
 
-function fetchRoomsList({ commit }) {
+function getRooms({ commit }) {
   return new Promise((resolve) => {
     axios.post(getAllRoomsUrl)
       .then((response) => {
-        commit('setRoomsList', response.data.data);
+        commit('setRooms', response.data.data);
+
         resolve();
       })
       .catch(error => console.log('error', error));
@@ -24,6 +26,6 @@ function fetchRoomsList({ commit }) {
 }
 
 export {
-  fetchHousingList,
-  fetchRoomsList,
+  getHousings,
+  getRooms,
 };

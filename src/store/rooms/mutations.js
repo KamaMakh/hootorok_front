@@ -1,12 +1,12 @@
-function setHousingList(state, payload) {
-  state.housingList = payload;
+function setHousings(state, housings) {
+  state.housings = housings;
 }
 
-function setRoomsList(state, payload) {
-  state.roomsList = payload;
+function setRooms(state, rooms) {
+  state.rooms = rooms;
 }
 
 export {
-  setHousingList,
-  setRoomsList,
+  setHousings,
+  setRooms,
 };

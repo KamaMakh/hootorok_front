@@ -1,141 +1,175 @@
 <template>
-  <q-page padding>
+  <q-page>
     <h1 class="text-h2 text-center" v-text="$t('rooms_and_houses')"/>
-    <div class="row">
-      <div class="q-pa-md col-xs-12 col-sm-4 col-md-3">
+    <div class="row justify-center">
+      <div class="row no-wrap items-center">
+        <span v-text="$t('sort_by')"/>
         <q-select
-          v-model="model"
-          :options="options"
-          :label="$t('sort_by_price_per_day')"
-          @click="sortArray">
-        </q-select>
-        <q-option-group
+          dense
+          emit-value
+          map-options
+          options-dense
+          v-model="isDesc"
+          :options="sortOptions"
+          class="q-mx-md"
+        />
+      </div>
+      <div class="row no-wrap items-center">
+        <span v-text="$t('show_rooms')"/>
+        <q-select
+          dense
+          emit-value
+          map-options
+          options-dense
           v-model="group"
-          :options="formatHousings()"
-          color="primary"
-          @input="group === 0 ? showAll() : filterData(group)">
-        </q-option-group>
-        <q-btn-toggle
-          v-model="view"
-          size="sm"
-          push
-          glossy
-          toggle-color="primary"
-          :options="[
+          :options="housingsOptions"
+          class="q-mx-md"
+        />
+      </div>
+      <!-- <q-btn-toggle
+        v-model="view"
+        size="sm"
+        push
+        glossy
+        toggle-color="primary"
+        :options="[
           { value: 'one', slot: 'one'},
           { value: 'two', slot: 'two'},
-        ]">
-          <template v-slot:one>
-            <div>
-              <q-icon name="view_module"/>
-            </div>
-          </template>
-          <template v-slot:two>
-            <div>
-              <q-icon name="view_headline"/>
-            </div>
-          </template>
-        </q-btn-toggle>
-      </div>
-      <div class="col-xs-12 col-sm-8 col-md-9">
-        <div class="q-pa-md row items-start q-gutter-md" v-if="view === 'one'">
-          <q-card class="card" v-for="item in result" :key="item.id">
-            <img src="https://cdn.quasar.dev/img/mountains.jpg" class="image" @click="showCarousel()">
-            <q-card-section>
-              <div class="text-h6"
-                   @click="$router.push({
-                  name: 'room',
-                  params: {
-                  id: item.id,
-                  },
-                  })"
-              >{{$t('room_number')}}{{item.id}}</div>
-              <div class="text-h6"
-                   @click="$router.push({
-                  name: 'housings',
-                  })"
-              >{{$t('housing')}}{{item.housing}}</div>
-            </q-card-section>
-            <q-card-section>
-              <p>{{$t('number_of_adults_and_children')}}{{item.capacity}}</p>
-              <p>{{$t('price_per_day')}}{{price}}</p>
-            </q-card-section>
-            <q-dialog v-model="showAllPhoto" >
-              <div class="carousel">
-                <q-carousel
-                  animated
-                  v-model="slide"
-                  arrows
-                  navigation
-                  infinite
-                >
-                  <q-carousel-slide
-                    v-for="(image, index) in images"
-                    :img-src="image"
-                    :key="index"
-                    :name="index + 1"
-                  ></q-carousel-slide>
-                </q-carousel>
-              </div>
-            </q-dialog>
-          </q-card>
-        </div>
-        <div class="q-pa-md" v-if="view === 'two'">
-          <q-markup-table>
-            <thead>
-            <tr>
-              <th class="text-left">{{$t('photo')}}</th>
-              <th class="text-right">{{$t('room_number')}}</th>
-              <th class="text-right">{{$t('housing')}}</th>
-              <th class="text-right">{{$t('price_per_day')}}</th>
-              <th class="text-right">{{$t('number_of_adults_and_children')}}</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-            <tr v-for="item in result" :key="item.id">
-              <td class="text-left">
-                <img src="https://cdn.quasar.dev/img/mountains.jpg" class="small_image" @click="showCarousel()">
-              </td>
-              <td class="text-right"
-                  @click="$router.push({
-                name: 'room',
-                params: {
-                id: item.id,
-                },
-                })"
-              >{{item.id}}</td>
-              <td class="text-right"
-                  @click="$router.push({
-                  name: 'housings',
-                  })"
-              >{{item.housing}}</td>
-              <td class="text-right">{{price}}</td>
-              <td class="text-right">{{item.capacity}}</td>
-              <q-dialog v-model="showAllPhoto" >
-                <div class="carousel">
-                  <q-carousel
-                    animated
-                    v-model="slide"
-                    arrows
-                    navigation
-                    infinite
-                  >
-                    <q-carousel-slide
-                      v-for="(image, index) in images"
-                      :img-src="image"
-                      :key="index"
-                      :name="index + 1"
-                    ></q-carousel-slide>
-                  </q-carousel>
-                </div>
-              </q-dialog>
-            </tr>
-            </tbody>
-          </q-markup-table>
-        </div>
-      </div>
+        ]"
+      >
+        <template v-slot:one>
+          <q-icon name="view_module"/>
+        </template>
+        <template v-slot:two>
+          <q-icon name="view_headline"/>
+        </template>
+      </q-btn-toggle> -->
     </div>
+    <div
+      v-if="view === 'one'"
+      class="row items-start q-pb-md"
+    >
+      <q-card
+        v-for="item in roomsFiltered"
+        :key="item.id"
+        flat
+        square
+        class="card-link"
+      >
+        <router-link
+          class="text-h6 q-py-sm block standard-link text-default"
+          :to="{
+            name: 'room',
+            params: { id: item.id },
+          }"
+          v-text="`${$t('room_number')} ${item.id}`"
+        />
+        <q-img
+          basic
+          :src="defaultImage"
+          :ratio="16/9"
+          @click="showCarousel()"
+          class="cursor-pointer"
+        >
+          <q-tooltip>{{ $t('see_all_room_photos') }}</q-tooltip>
+        </q-img>
+        <q-separator class="q-my-sm"/>
+        <div class="row justify-between text-body2 text-bold">
+          <div v-text="`${item.price} ${$t('rur/night')}`"/>
+          <div v-text="`${item.capacity} ${$t('man')}`"/>
+        </div>
+        <div class="row no-wrap q-mt-md items-center justify-between">
+          <div class="text-body2" v-text="item.description"/>
+          <q-btn
+            flat
+            color="grey"
+            class="justify-center items-center"
+            :to="{
+              name: 'room',
+              params: { id: item.id },
+            }"
+          >
+            <q-icon name="arrow_forward_ios" style="font-size: 14px;"/>
+          </q-btn>
+        </div>
+      </q-card>
+    </div>
+    <div
+      v-if="view === 'two'"
+      class="q-pa-md"
+    >
+      <q-markup-table>
+        <thead>
+          <tr>
+            <th class="text-left" v-text="$t('photo')"/>
+            <th class="text-right" v-text="$t('room_number')"/>
+            <th class="text-right" v-text="$t('housing')"/>
+            <th class="text-right" v-text="$t('price_per_day')"/>
+            <th class="text-right" v-text="$t('number_of_adults_and_children')"/>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+          <tr v-for="item in roomsFiltered" :key="item.id">
+            <td class="text-left">
+              <img
+                :src="defaultImage"
+                class="small-image"
+                @click="showCarousel()"
+              >
+            </td>
+            <td
+              class="text-right"
+              @click="$router.push({
+                name: 'room',
+                params: { id: item.id },
+              })"
+              v-text="item.id"
+            />
+            <td
+              class="text-right"
+              @click="$router.push({
+                name: 'housings',
+              })"
+              v-text="item.housing"
+            />
+            <td class="text-right" v-text="item.price"/>
+            <td class="text-right" v-text="item.capacity"/>
+          </tr>
+        </tbody>
+      </q-markup-table>
+    </div>
+    <q-dialog
+      v-model="showAllPhoto"
+      maximized
+      class="relative"
+    >
+      <div class="full-width full-height">
+        <q-carousel
+          animated
+          v-model="slide"
+          arrows
+          navigation
+          infinite
+          class="full-height full-width"
+        >
+          <q-carousel-slide
+            v-for="(image, index) in defaultImages"
+            :img-src="image"
+            :key="index"
+            :name="index + 1"
+          />
+        </q-carousel>
+        <q-btn
+          flat
+          icon="close"
+          class="absolute-top-right"
+          color="white"
+          style="z-index: 10000;"
+          @click="showAllPhoto = false"
+        />
+      </div>
+    </q-dialog>
   </q-page>
 </template>
 
@@ -146,73 +180,87 @@ export default {
   name: 'Rooms',
   data() {
     return {
-      result: [],
       isDesc: true,
-      model: null,
-      options: ['уменьшению цены', 'возрастанию цены'],
       view: 'one',
       group: 0,
-      price: '2500 руб',
       showAllPhoto: false,
       slide: 1,
-      images: [
+      defaultImage: 'https://cdn.quasar.dev/img/mountains.jpg',
+      defaultImages: [
         'https://cdn.quasar.dev/img/mountains.jpg',
         'https://cdn.quasar.dev/img/parallax2.jpg',
         'https://cdn.quasar.dev/img/parallax1.jpg',
       ],
     };
   },
-  methods: {
-    showAll() {
-      this.result = this.roomsList;
+  async mounted() {
+    this.$store.dispatch('rooms/getHousings');
+    this.$store.dispatch('rooms/getRooms');
+  },
+  computed: {
+    ...mapState('rooms', ['rooms', 'housings']),
+    sortOptions() {
+      return [
+        {
+          label: this.$t('decrease_price_by'),
+          value: true,
+        }, {
+          label: this.$t('increase_price_by'),
+          value: false,
+        },
+      ];
     },
-    filterData(index) {
-      this.result = this.roomsList.filter(obj => obj.housing === index);
+    housingsOptions() {
+      const housingsSelection = this.housings
+        .map(i => ({
+          label: `${this.$t('housing')} ${i.id}`,
+          value: i.id,
+        }));
+
+      return [
+        {
+          label: this.$t('of_all_housings'),
+          value: 0,
+        },
+        ...housingsSelection,
+      ];
     },
-    sortArray() {
+    roomsFiltered() {
+      const res = this.group === 0
+        ? [...this.roomsWithPrices]
+        : this.roomsWithPrices.filter(r => r.housing === this.group);
+
       if (this.isDesc) {
-        this.result.sort((a, b) => a.price - b.price);
-        this.isDesc = !this.isDesc;
+        res.sort((a, b) => b.price - a.price);
       } else {
-        this.result.sort((a, b) => b.price - a.price);
-        this.isDesc = !this.isDesc;
+        res.sort((a, b) => a.price - b.price);
       }
+
+      return res;
     },
+    roomsWithPrices() {
+      const res = [...this.rooms];
+
+      res.forEach((r) => {
+        r.price = this.calculatePrice();
+      });
+
+      return res;
+    },
+  },
+  methods: {
     showCarousel() {
       this.showAllPhoto = true;
     },
-    formatHousings() {
-      const a = this.housingList.map(i => ({ label: `${this.$t('housing')} ${i.id}`, value: i.id }));
-      return [{ label: this.$t('all_housings'), value: 0 }, ...a];
+    calculatePrice() {
+      return 4000 + Math.round(Math.random() * 2000);
     },
-  },
-  created() {
-    this.$store.dispatch('rooms/fetchHousingList');
-    this.$store.dispatch('rooms/fetchRoomsList');
-    this.showAll();
-  },
-  computed: {
-    ...mapState('rooms', ['roomsList', 'housingList']),
   },
 };
 </script>
 
 <style lang="stylus" scoped>
-  .card{
-    width: 300px;
-    height: 370px;
-    cursor: pointer;
-  }
-  .image{
-    width: 300px;
-    height: 200px;
-  }
-  .small_image{
-    width: 120px;
-    height: 75px;
-  }
-  .carousel{
-    width: 560px;
-    height: 400px;
-  }
+.small-image
+  width: 120px
+  height: 75px
 </style>

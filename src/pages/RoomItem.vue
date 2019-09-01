@@ -1,13 +1,16 @@
 <template>
   <q-page padding>
     <div>
-      <router-link :to="{name: 'rooms'}">
+      <router-link :to="{ name: 'rooms' }">
         <q-btn color="primary">
-          <q-icon left size="1em" name="navigate_before" />
-          <div>Rooms list</div>
+          <q-icon left size="1em" name="navigate_before"/>
+          <div v-text="$t('all_rooms')"/>
         </q-btn>
       </router-link>
-      <h4 class="text-h4 text-center">{{$t('room_number')}} {{this.$attrs.id}}</h4>
+      <h4
+        class="text-h4 text-center"
+        v-text="`${$t('room_number')} ${this.$attrs.id}`"
+      />
     </div>
     <div class="q-pa-md">
       <div class="row">
@@ -28,16 +31,21 @@
             />
           </q-carousel>
           <br>
-          <div class="text-body1">
-            {{this.oneRoom[0].description}}
-          </div>
+          <div
+            class="text-body1"
+            v-text="this.room.description"
+          />
         </div>
         <div class="col q-ma-md">
           <booking-card/>
         </div>
       </div>
     </div>
-    <q-dialog v-model="showDialog" full-width full-height>
+    <q-dialog
+      full-width
+      full-height
+      v-model="showDialog"
+    >
         <q-carousel
           swipeable
           animated
@@ -51,7 +59,12 @@
             :name="item.id"
             :img-src="item.src"
           >
-            <q-btn flat @click="showDialog = false"><q-icon name="clear"></q-icon></q-btn>
+            <q-btn
+              flat
+              @click="showDialog = false"
+              color="white"
+              icon="clear"
+            />
           </q-carousel-slide>
         </q-carousel>
     </q-dialog>
@@ -60,7 +73,7 @@
 
 <script>
 import { mapState } from 'vuex';
-import BookingCard from '../components/BookingCard';
+import BookingCard from 'components/BookingCard.vue';
 
 export default {
   name: 'RoomItem',
@@ -89,11 +102,11 @@ export default {
       ],
     };
   },
-  created() {
-    this.$store.dispatch('room/fetchOneRoom', this.$attrs.id);
+  async mounted() {
+    this.$store.dispatch('rooms/getRoom', this.$attrs.id);
   },
   computed: {
-    ...mapState('room', ['oneRoom']),
+    ...mapState('rooms', ['room']),
   },
   methods: {},
   components: {

@@ -109,4 +109,5 @@ export default {
   see_all_room_photos: 'Смотреть все фото номера',
   decrease_price_by: 'уменьшению цены',
   increase_price_by: 'возрастанию цены',
+  all_rooms: 'Все номера',
 };

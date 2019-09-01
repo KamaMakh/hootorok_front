@@ -1,25 +1,31 @@
 <template>
-  <q-page padding class="text-center">
-    <h1 class="text-h2" v-text="$t('list_of_services')"/>
-    <div class="q-pa-md">
-      <div class="row">
-        <div class="q-ma-md items-center" v-for="item in services"
-             :key="item.id"
-             @click="$router.push({
-             name: 'service',
-             params: {
-             id: item.id
-             },
-             })">
-          <q-card class="card">
-            <q-img
-              :src="item.main_image"
-              class="image"
-            ></q-img>
-          </q-card>
-          <p>{{item.title}}</p>
-        </div>
-      </div>
+  <q-page class="text-center">
+    <h1
+      class="text-h2"
+      v-text="$t('list_of_services')"
+    />
+    <div class="row q-gutter-y-md">
+      <router-link
+        class="card-link"
+        v-for="item in services"
+        :key="item.id"
+        :to="{
+          name: 'service',
+          params: { id: item.id },
+        }"
+      >
+        <q-card>
+          <q-img
+            :src="item.main_image"
+            basic
+            :ratio="16/9"
+          />
+        </q-card>
+        <div
+          class="q-my-sm text-default"
+          v-text="item.title"
+        />
+      </router-link>
     </div>
   </q-page>
 </template>
@@ -37,13 +43,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-  .card{
-    width: 350px;
-    cursor: pointer;
-  }
-  .image {
-    height: 200px;
-  }
-</style>

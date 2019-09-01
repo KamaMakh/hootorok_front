@@ -132,18 +132,4 @@ export default {
     width: 390px
     top: 50%
     transform: translateY(-50%)
-
-.card-link
-  width: "calc((100% - 4 * %s) / 3)" % (2 * $spaces.sm.x)
-  margin-left: $spaces.md.x
-  margin-top: $spaces.md.y
-  text-decoration: none;
-
-@media (max-width: $sizes.md)
-  .card-link
-    width: "calc((100% - 3 * %s) / 2)" % (2 * $spaces.sm.x)
-
-@media (max-width: $sizes.sm)
-  .card-link
-    width: "calc(100% - 2 * %s)" % (2 * $spaces.sm.x)
 </style>

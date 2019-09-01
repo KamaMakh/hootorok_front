@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import { Cookies } from 'quasar';
 
 import user from './user';
+import rooms from './rooms';
 import content from './content';
 
 Vue.use(Vuex);
@@ -18,6 +19,7 @@ export default function ({ ssrContext }) {
   const Store = new Vuex.Store({
     modules: {
       user,
+      rooms,
       content,
     },
     state: {
@@ -48,11 +50,14 @@ export default function ({ ssrContext }) {
       const newUser = require('./user').default;
       // eslint-disable-next-line
       const newContent = require('./content').default;
+      // eslint-disable-next-line
+      const newRooms = require('./rooms').default;
 
       Store.hotUpdate({
         modules: {
           user: newUser,
           content: newContent,
+          rooms: newRooms,
         },
       });
     });

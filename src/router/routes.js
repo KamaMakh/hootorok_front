@@ -67,11 +67,6 @@ const routes = [
         component: () => import('pages/PasswordReset.vue'),
       },
       {
-        path: 'housings',
-        name: 'housings',
-        component: () => import('pages/Housing.vue'),
-      },
-      {
         path: 'news',
         name: 'news',
         component: () => import('pages/News.vue'),
@@ -93,11 +88,6 @@ const routes = [
         component: () => import('pages/ServiceItem.vue'),
       },
       {
-        path: 'rooms',
-        name: 'rooms',
-        component: () => import('pages/DummyPage.vue'),
-      },
-      {
         path: 'map',
         name: 'map',
         component: () => import('pages/DummyPage.vue'),
@@ -107,6 +97,24 @@ const routes = [
         name: 'thermal',
         component: () => import('pages/Thermal.vue'),
       },
+      {
+        path: 'rooms',
+        name: 'rooms',
+        component: () => import('pages/Rooms.vue'),
+      },
+      {
+        path: 'rooms/:id',
+        name: 'room',
+        props: true,
+        component: () => import('pages/RoomItem.vue'),
+      },
+      {
+        path: 'housings',
+        name: 'housings',
+        props: true,
+        component: () => import('pages/Housings.vue'),
+      },
+
     ],
   },
 ];

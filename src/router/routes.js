@@ -93,11 +93,6 @@ const routes = [
         component: () => import('pages/ServiceItem.vue'),
       },
       {
-        path: 'rooms',
-        name: 'rooms',
-        component: () => import('pages/DummyPage.vue'),
-      },
-      {
         path: 'map',
         name: 'map',
         component: () => import('pages/DummyPage.vue'),

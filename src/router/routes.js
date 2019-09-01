@@ -68,7 +68,7 @@ const routes = [
       },
       {
         path: 'info/payment',
-        name: 'payment',
+        name: 'payment-info',
         component: () => import('pages/info/Payment.vue'),
       },
       {

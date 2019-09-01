@@ -12,74 +12,14 @@
       </div>
     </div>
 
-    <div class="feedback">
+    <div class="feedback q-mt-xl">
       <q-banner class="bg-grey-3">
         <div
           class="text-center font-size_20"
           v-text="$t('feedback')"
         />
       </q-banner>
-      <form @submit.prevent="submitForm" class="q-pa-md">
-        <div class="q-gutter-md">
-          <q-input
-            type="textarea"
-            outlined
-            v-model="formData.question"
-            :label="$t('question')"
-            ref="question"
-            lazy-rules
-            :rules="[
-            val => !!val || $t('required_field'),
-            val => val.length >= 15 || $t('number_characters_question'),
-            val => val.length <= 1000 || $t('number_characters_question'),
-          ]"
-          />
-          <q-input
-            outlined
-            v-model="formData.name"
-            :label="$t('name')"
-            ref="name"
-            lazy-rules
-            :rules="[
-              val => !!val || $t('required_field'),
-              val => val.length <= 25 || $t('twentyfive_characters_name'),
-            ]"
-          />
-          <q-input
-            outlined
-            v-model="formData.phone_number"
-            :label="$t('phone')"
-            ref="phone_number"
-            mask="# ### ### ## ##"
-            unmasked-value
-            fill-mask
-            :hint="$t('phone_layout')"
-            lazy-rules
-            :rules="[
-              val => !!val || $t('required_field'),
-              val => val.length === 11 || $t('eleven_numbers_min')
-            ]"
-          />
-          <q-input
-            outlined
-            v-model="formData.email"
-            label="E-mail"
-            ref="email"
-            lazy-rules
-            :rules="[
-              val => !!val || $t('required_field'),
-              val => isValidEmail(formDate.email) || $t('enter_correct_email'),
-            ]"
-          />
-          <div class="relative-position row q-mt-md">
-            <q-btn
-              color="primary"
-              :label="$t('send')"
-              type="submit"
-            />
-          </div>
-        </div>
-      </form>
+      <feedback-form/>
     </div>
   </q-page>
 </template>
@@ -87,6 +27,7 @@
 <script>
 import { mapState } from 'vuex';
 import { emailValidationMixin } from 'components/helpers/mixins';
+import FeedbackForm from 'components/FeedbackForm.vue';
 
 export default {
   name: 'FAQ',
@@ -95,45 +36,13 @@ export default {
     return store.dispatch('content/getFAQ');
   },
   data() {
-    return {
-      formData: {
-        question: '',
-        name: '',
-        phone_number: '',
-        email: '',
-      },
-    };
+    return {};
   },
   computed: {
     ...mapState('content', ['faq']),
   },
-  methods: {
-    submitForm() {
-      this.$refs.question.validate();
-      this.$refs.name.validate();
-      this.$refs.phone_number.validate();
-      this.$refs.email.validate();
-      if (
-        !this.$refs.question.hasError
-          && !this.$refs.name.hasError
-          && !this.$refs.phone_number.hasError
-          && !this.$refs.email.hasError
-      ) {
-        this.$store.dispatch('content/sendFeedback', this.formData)
-          .then(() => this.$q.notify({
-            icon: 'done',
-            color: 'positive',
-            message: this.$t('request_sent'),
-          }))
-          .catch((error) => {
-            this.$q.notify({
-              icon: 'close',
-              color: 'negative',
-              message: error,
-            });
-          });
-      }
-    },
+  components: {
+    FeedbackForm,
   },
 };
 </script>
@@ -141,6 +50,7 @@ export default {
 <style lang="stylus" scoped>
 .feedback
   max-width: 500px
-  margin: 0 auto
+  margin-left: auto
+  margin-right: auto
   border: 1px solid lightgrey
 </style>

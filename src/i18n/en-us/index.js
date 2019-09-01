@@ -119,4 +119,5 @@ export default {
   correct_question_message: 'Please correct the question',
   request_sent: 'Request sent',
   eleven_numbers_min: 'Expected 11 digits',
+  expected_length_between: 'We expect length of your text between {0} and {1} characters',
 };

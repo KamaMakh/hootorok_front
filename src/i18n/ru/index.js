@@ -120,4 +120,5 @@ export default {
   correct_question_message: 'Скорректируйте, пожалуйста, вопрос',
   request_sent: 'Запрос отправлен',
   eleven_numbers_min: 'Ожидается 11 цифр',
+  expected_length_between: 'Ожидаем текст от {0} до {1} символов',
 };

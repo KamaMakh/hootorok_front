@@ -118,7 +118,6 @@ export default {
   question: 'Вопрос',
   feedback: 'Обратная связь',
   correct_question_message: 'Скорректируйте, пожалуйста, вопрос',
-  send: 'Отправить',
   request_sent: 'Запрос отправлен',
   eleven_numbers_min: 'Ожидается 11 цифр',
 };

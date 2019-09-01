@@ -87,7 +87,6 @@ export default {
   pools_with_thermal_water: 'Swimming pools with thermal water',
   forgot_password_message: 'If you have forgotten your password, enter the e-mail address provided during registration. A control string for changing the password and your registration data will be sent to you by e-mail.',
   send: 'Send',
-  password_reset: 'Password reset',
   change_password_success_send: 'Data about changing password successfully send on your email',
   display_by: 'Display by',
   recreation_center_hutorok: 'Recreation Center "Hutorok"',
@@ -118,7 +117,6 @@ export default {
   question: 'Question',
   feedback: 'Feedback',
   correct_question_message: 'Please correct the question',
-  send: 'Send',
   request_sent: 'Request sent',
   eleven_numbers_min: 'Expected 11 digits',
 };

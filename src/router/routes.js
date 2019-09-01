@@ -67,11 +67,6 @@ const routes = [
         component: () => import('pages/PasswordReset.vue'),
       },
       {
-        path: 'housings',
-        name: 'housings',
-        component: () => import('pages/Housing.vue'),
-      },
-      {
         path: 'news',
         name: 'news',
         component: () => import('pages/News.vue'),

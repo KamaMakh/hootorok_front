@@ -73,8 +73,9 @@ const routes = [
       },
       {
         path: 'news/:id',
-        name: 'news-detail',
-        component: () => import('pages/News.vue'),
+        name: 'news-item',
+        props: true,
+        component: () => import('pages/NewsItem.vue'),
       },
       {
         path: 'services',

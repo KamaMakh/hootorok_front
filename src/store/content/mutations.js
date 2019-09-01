@@ -16,9 +16,14 @@ function setHousings(state, housings) {
   state.housings = housings;
 }
 
+function setOneNews(state, news) {
+  state.oneNews = news;
+}
+
 export {
   setPage,
   setServices,
   setHousings,
   setNews,
+  setOneNews,
 };

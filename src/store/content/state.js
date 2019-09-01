@@ -4,4 +4,5 @@ export default {
   newsTotal: null,
   services: [],
   housings: [],
+  oneNews: {},
 };

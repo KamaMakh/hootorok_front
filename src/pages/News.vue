@@ -29,14 +29,14 @@
       >
         <q-card-section class="q-pa-none q-mb-md text-bold">
           <router-link
-            :to="{ name: 'news-detail', params: { id: item.id } }"
+            :to="{ name: 'news-item', params: { id: item.id } }"
             class="row items-center no-wrap standard-link text-default"
             v-text="item.title"
           />
         </q-card-section>
 
         <router-link
-          :to="{ name: 'news-detail', params: { id: item.id } }"
+          :to="{ name: 'news-item', params: { id: item.id } }"
         >
           <img
             :src="item.main_image"
@@ -68,7 +68,7 @@
             >
               <q-icon name="arrow_forward_ios" style="font-size: 14px;"/>
               <router-link
-                :to="{ name: 'news-detail', params: { id: item.id } }"
+                :to="{ name: 'news-item', params: { id: item.id } }"
                 class="standard-link text-black"
               />
             </q-btn>

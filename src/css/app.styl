@@ -2,9 +2,27 @@
 
 .standard-link
   text-decoration: none
+  transition: color 0.3s ease-out
 
   &:hover
     color: $primary
 
 .text-default
   color: $text_default
+
+.font-size_20
+  font-size: 20px
+
+.card-link
+  width: "calc((100% - 4 * %s) / 3)" % (2 * $spaces.sm.x)
+  margin-left: $spaces.md.x
+  margin-top: $spaces.md.y
+  text-decoration: none;
+
+@media (max-width: $sizes.md)
+  .card-link
+    width: "calc((100% - 3 * %s) / 2)" % (2 * $spaces.sm.x)
+
+@media (max-width: $sizes.sm)
+  .card-link
+    width: "calc(100% - 2 * %s)" % (2 * $spaces.sm.x)

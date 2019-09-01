@@ -109,4 +109,5 @@ export default {
   decrease_price_by: 'decrease price',
   increase_price_by: 'increase price',
   all_rooms: 'All rooms',
+  news_not_found: 'Such news not found',
 };

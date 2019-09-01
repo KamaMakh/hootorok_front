@@ -53,7 +53,7 @@ const routes = [
       {
         path: 'info',
         name: 'info',
-        component: () => import('pages/Info.vue'),
+        component: () => import('pages/info/Info.vue'),
       },
       {
         path: 'booking',
@@ -65,6 +65,21 @@ const routes = [
         path: 'auth/forgot-password',
         name: 'password-reset',
         component: () => import('pages/PasswordReset.vue'),
+      },
+      {
+        path: 'info/payment',
+        name: 'payment-info',
+        component: () => import('pages/info/PaymentInfo.vue'),
+      },
+      {
+        path: 'info/faq',
+        name: 'faq',
+        component: () => import('pages/info/FAQ.vue'),
+      },
+      {
+        path: 'info/booking-info',
+        name: 'booking-info',
+        component: () => import('pages/info/BookingInfo.vue'),
       },
       {
         path: 'news',

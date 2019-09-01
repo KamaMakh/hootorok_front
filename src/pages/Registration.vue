@@ -31,7 +31,7 @@
             lazy-rules
             :rules="[
               val => !!val || $t('required_field'),
-              val => isValidEmailAddress || $t('enter_correct_email')
+              val => isValidEmail(formData.email) || $t('enter_correct_email')
             ]"
           />
           <q-input
@@ -119,8 +119,11 @@
 </template>
 
 <script>
+import { emailValidationMixin } from 'components/helpers/mixins';
+
 export default {
   name: 'Registration',
+  mixins: [emailValidationMixin],
   data() {
     return {
       formData: {
@@ -167,13 +170,6 @@ export default {
             });
           });
       }
-    },
-  },
-  computed: {
-    isValidEmailAddress() {
-    // eslint-disable-next-line
-      const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      return re.test(String(this.$refs.email.value).toLowerCase());
     },
   },
 };

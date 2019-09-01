@@ -114,7 +114,6 @@ const routes = [
         props: true,
         component: () => import('pages/Housings.vue'),
       },
-
     ],
   },
 ];

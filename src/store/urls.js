@@ -7,6 +7,7 @@ const loginUrl = `${serverUrl}/auth/login`;
 const newsUrl = `${serverUrl}/news/getAllNews`;
 const logoutUrl = `${serverUrl}/auth/logout`;
 const checkAuthUrl = `${serverUrl}/auth/check`;
+const getOneRoomUrl = `${serverUrl}/rooms/getOneRoom`;
 const getAllHousingsUrl = `${serverUrl}/housings/getAllHousings`;
 const getAllRoomsUrl = `${serverUrl}/rooms/getAllRooms`;
 
@@ -22,4 +23,5 @@ export {
   getAllHousingsUrl,
   getAllRoomsUrl,
   getOnePageUrl,
+  getOneRoomUrl,
 };

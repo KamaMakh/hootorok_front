@@ -108,4 +108,5 @@ export default {
   see_all_room_photos: 'See all room photos',
   decrease_price_by: 'decrease price',
   increase_price_by: 'increase price',
+  all_rooms: 'All rooms',
 };

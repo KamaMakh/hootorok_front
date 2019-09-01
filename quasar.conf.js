@@ -28,7 +28,7 @@ module.exports = () => ({
   framework: {
     // iconSet: 'ionicons-v4',
     // lang: 'de', // Quasar language
-
+    cssAddon: true,
     // all: true, // --- includes everything; for dev only!
 
     components: [
@@ -47,15 +47,37 @@ module.exports = () => ({
       'QItemSection',
       'QItemLabel',
       'QSelect',
-
+      'QMarkupTable',
+      'QBtnToggle',
+      'QOptionGroup',
+      'QTable',
+      'QTh',
+      'QTr',
+      'QTd',
+      'QDialog',
       'QCheckbox',
       'QInput',
       'QBanner',
       'QDialog',
+      'QCarousel',
+      'QCarouselControl',
+      'QCarouselSlide',
+      'QCard',
+      'QCardSection',
+      'QCardActions',
+      'QDate',
+      'QField',
+      'QMenu',
+      'QSeparator',
+      'QBtnGroup',
+      'QImg',
+      'QPagination',
+      'QTooltip',
     ],
 
     directives: [
       'Ripple',
+      'ClosePopup',
     ],
 
     // Quasar plugins
@@ -63,12 +85,16 @@ module.exports = () => ({
       'Notify',
       'Cookies',
       'Dialog',
+      'LoadingBar',
     ],
   },
+
+  preFetch: true,
 
   supportIE: false,
 
   build: {
+    transpileDependencies: [/vue-yandex-maps/],
     scopeHoisting: true,
     // vueRouterMode: 'history',
     // vueCompiler: true,

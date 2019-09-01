@@ -10,13 +10,35 @@ const routes = [
       },
       {
         path: 'auth',
-        name: 'auth',
+        name: 'login',
         component: () => import('pages/Login.vue'),
+        meta: {
+          requiresVisitor: true,
+        },
       },
       {
         path: 'registration',
         name: 'registration',
         component: () => import('pages/Registration.vue'),
+        meta: {
+          requiresVisitor: true,
+        },
+      },
+      {
+        path: 'cabinet',
+        name: 'cabinet',
+        component: () => import('pages/Cabinet.vue'),
+        meta: {
+          requiresAuth: true,
+        },
+      },
+      {
+        path: 'logout',
+        name: 'logout',
+        component: () => import('pages/Logout.vue'),
+        // meta: {
+        //   requiresAuth: true,
+        // },
       },
       {
         path: 'contacts',
@@ -37,10 +59,11 @@ const routes = [
         path: 'booking',
         name: 'booking',
         component: () => import('pages/Booking.vue'),
+        props: true,
       },
       {
-        path: '/auth/forgot-password',
-        name: 'passwordreset',
+        path: 'auth/forgot-password',
+        name: 'password-reset',
         component: () => import('pages/PasswordReset.vue'),
       },
       {
@@ -52,6 +75,53 @@ const routes = [
         path: 'cabinet',
         name: 'cabinet',
         component: () => import('pages/Cabinet.vue'),
+        path: 'news',
+        name: 'news',
+        component: () => import('pages/News.vue'),
+      },
+      {
+        path: 'news/:id',
+        name: 'news-item',
+        props: true,
+        component: () => import('pages/NewsItem.vue'),
+      },
+      {
+        path: 'services',
+        name: 'services',
+        component: () => import('pages/Services.vue'),
+      },
+      {
+        path: 'services/:id',
+        name: 'service',
+        props: true,
+        component: () => import('pages/ServiceItem.vue'),
+      },
+      {
+        path: 'map',
+        name: 'map',
+        component: () => import('pages/DummyPage.vue'),
+      },
+      {
+        path: 'thermal',
+        name: 'thermal',
+        component: () => import('pages/Thermal.vue'),
+      },
+      {
+        path: 'rooms',
+        name: 'rooms',
+        component: () => import('pages/Rooms.vue'),
+      },
+      {
+        path: 'rooms/:id',
+        name: 'room',
+        props: true,
+        component: () => import('pages/RoomItem.vue'),
+      },
+      {
+        path: 'housings',
+        name: 'housings',
+        props: true,
+        component: () => import('pages/Housings.vue'),
       },
     ],
   },

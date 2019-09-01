@@ -1,14 +1,15 @@
 <template>
   <q-page padding>
-    <!-- content -->
+    <h1 class="text-h2" v-text="'Dummy'"/>
   </q-page>
 </template>
 
 <script>
 export default {
-  // name: 'PageName',
+  name: 'Dummy',
 };
 </script>
 
-<style>
+<style scoped>
+
 </style>

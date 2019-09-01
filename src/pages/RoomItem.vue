@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="col q-ma-md">
-          <app-booking-card/>
+          <booking-card/>
         </div>
       </div>
     </div>
@@ -97,10 +97,7 @@ export default {
   },
   methods: {},
   components: {
-    appBookingCard: BookingCard,
+    BookingCard,
   },
 };
 </script>
-
-<style scoped>
-</style>

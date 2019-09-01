@@ -1,12 +1,12 @@
 <template>
   <yandex-map
     v-if="showMap"
-    class="q-py-md"
     :coords="coords"
     :settings="settings"
     :zoom="zoom"
     :controls="controls"
     :options="options"
+    :scroll-zoom="false"
   >
     <ymap-marker
       :coords="coords"

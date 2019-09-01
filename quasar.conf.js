@@ -47,6 +47,9 @@ module.exports = () => ({
       'QItemSection',
       'QItemLabel',
       'QSelect',
+      'QMarkupTable',
+      'QBtnToggle',
+      'QOptionGroup',
       'QTable',
       'QTh',
       'QTr',
@@ -68,6 +71,8 @@ module.exports = () => ({
       'QSeparator',
       'QBtnGroup',
       'QImg',
+      'QPagination',
+      'QTooltip',
     ],
 
     directives: [

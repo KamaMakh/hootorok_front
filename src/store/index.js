@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import { Cookies } from 'quasar';
 
 import user from './user';
+import rooms from './rooms';
 import content from './content';
 import room from './room';
 
@@ -19,11 +20,14 @@ export default function ({ ssrContext }) {
   const Store = new Vuex.Store({
     modules: {
       user,
+      rooms,
       content,
       room,
     },
     state: {
       lang: cookies.get('lang') || 'ru',
+      mainTelephone: '7 (918) 190-15-17',
+      coords: [44.421986, 40.739452],
     },
     getters: {
       loggedIn(state) {
@@ -48,11 +52,14 @@ export default function ({ ssrContext }) {
       const newUser = require('./user').default;
       // eslint-disable-next-line
       const newContent = require('./content').default;
+      // eslint-disable-next-line
+      const newRooms = require('./rooms').default;
 
       Store.hotUpdate({
         modules: {
           user: newUser,
           content: newContent,
+          rooms: newRooms,
         },
       });
     });

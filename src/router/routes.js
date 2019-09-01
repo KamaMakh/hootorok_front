@@ -77,14 +77,15 @@ const routes = [
         component: () => import('pages/News.vue'),
       },
       {
-        path: 'services/:id',
+        path: 'services',
         name: 'services',
         component: () => import('pages/Services.vue'),
       },
       {
-        path: 'rooms',
-        name: 'rooms',
-        component: () => import('pages/DummyPage.vue'),
+        path: 'services/:id',
+        name: 'service',
+        props: true,
+        component: () => import('pages/ServiceItem.vue'),
       },
       {
         path: 'map',
@@ -97,10 +98,21 @@ const routes = [
         component: () => import('pages/Thermal.vue'),
       },
       {
+        path: 'rooms',
+        name: 'rooms',
+        component: () => import('pages/Rooms.vue'),
+      },
+      {
         path: 'rooms/:id',
         name: 'room',
         props: true,
         component: () => import('pages/RoomItem.vue'),
+      },
+      {
+        path: 'housings',
+        name: 'housings',
+        props: true,
+        component: () => import('pages/Housings.vue'),
       },
     ],
   },

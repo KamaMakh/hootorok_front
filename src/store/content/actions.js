@@ -4,6 +4,7 @@ import {
   servicesUrl,
   newsUrl,
   getOnePageUrl,
+  getAllHousingsUrl,
 } from 'src/store/urls';
 
 
@@ -33,6 +34,7 @@ function getNews({ commit }, data) {
           total: response.data.total,
         };
         commit('setNews', payload);
+
         resolve();
       })
       .catch(error => onError(error, reject));
@@ -51,8 +53,19 @@ function getServices({ commit }) {
   });
 }
 
+function getAllHousings({ commit }, data) {
+  return new Promise((resolve, reject) => {
+    axios.post(getAllHousingsUrl, data).then((response) => {
+      commit('setHousings', response.data.data);
+
+      resolve();
+    }).catch(error => onError(error, reject));
+  });
+}
+
 export {
   getOnePage,
   getNews,
   getServices,
+  getAllHousings,
 };

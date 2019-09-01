@@ -1,14 +1,23 @@
 <template>
   <q-page padding>
-    <h1 class="text-h2" v-text="$t('faq')"/>
-    <p>Описание условия доставки1</p>
-    <p>Описание условия доставки2</p>
-    <p>Описание условия доставки3</p>
+    <h1
+      class="text-h2"
+      v-text="$t('faq')"
+    />
+    <div :key="block.topic" v-for="block in faq">
+      <h2 class="text-h6" v-text="block.topic"/>
+      <div :key="question.id" v-for="question in block.faq" class="text-body2">
+        <p class="text-bold" v-text="question.title"/>
+        <p class="" v-text="question.content"/>
+      </div>
+    </div>
+
     <div class="feedback">
       <q-banner class="bg-grey-3">
         <div
           class="text-center font-size_20"
-          v-text="$t('feedback')"></div>
+          v-text="$t('feedback')"
+        />
       </q-banner>
       <form @submit.prevent="submitForm" class="q-pa-md">
         <div class="q-gutter-md">
@@ -76,11 +85,15 @@
 </template>
 
 <script>
-
+import { mapState } from 'vuex';
 import EmailValidationMixin from 'components/helpers/emailValidationMixin.vue';
 
 export default {
-  name: 'Faq',
+  name: 'FAQ',
+  mixins: [EmailValidationMixin],
+  preFetch({ store }) {
+    return store.dispatch('content/getFAQ');
+  },
   data() {
     return {
       formData: {
@@ -90,6 +103,9 @@ export default {
         email: '',
       },
     };
+  },
+  computed: {
+    ...mapState('content', ['faq']),
   },
   methods: {
     submitForm() {
@@ -103,7 +119,7 @@ export default {
           && !this.$refs.phone_number.hasError
           && !this.$refs.email.hasError
       ) {
-        this.$store.dispatch('/sendMessage', this.formData)
+        this.$store.dispatch('content/sendFeedback', this.formData)
           .then(() => this.$q.notify({
             icon: 'done',
             color: 'positive',
@@ -119,15 +135,12 @@ export default {
       }
     },
   },
-  mixins: [EmailValidationMixin],
-
 };
 </script>
 
-<style>
-  .feedback {
-    max-width: 500px;
-    margin: 0 auto;
-    border: 1px solid lightgrey;
-  }
+<style lang="stylus" scoped>
+.feedback
+  max-width: 500px
+  margin: 0 auto
+  border: 1px solid lightgrey
 </style>

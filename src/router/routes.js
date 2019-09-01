@@ -69,12 +69,12 @@ const routes = [
       {
         path: 'info/payment',
         name: 'payment-info',
-        component: () => import('pages/info/Payment.vue'),
+        component: () => import('pages/info/PaymentInfo.vue'),
       },
       {
         path: 'info/faq',
         name: 'faq',
-        component: () => import('pages/info/Faq.vue'),
+        component: () => import('pages/info/FAQ.vue'),
       },
       {
         path: 'info/booking-info',

@@ -6,6 +6,8 @@ import {
   getOnePageUrl,
   getAllHousingsUrl,
   oneNewsUrl,
+  feedbackUrl,
+  faqUrl,
 } from 'src/store/urls';
 
 
@@ -88,10 +90,32 @@ function getOneNews({ commit }, id) {
   });
 }
 
+function sendFeedback(context, data) {
+  return new Promise((resolve, reject) => {
+    axios.post(feedbackUrl, data)
+      .then(() => resolve())
+      .catch(error => onError(error, reject));
+  });
+}
+
+function getFAQ({ commit }) {
+  return new Promise((resolve, reject) => {
+    axios.post(faqUrl)
+      .then((response) => {
+        commit('setFAQ', response.data.data);
+
+        resolve();
+      })
+      .catch(error => onError(error, reject));
+  });
+}
+
 export {
   getOnePage,
   getNews,
   getServices,
   getAllHousings,
   getOneNews,
+  sendFeedback,
+  getFAQ,
 };

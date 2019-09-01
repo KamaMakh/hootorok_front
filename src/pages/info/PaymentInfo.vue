@@ -2,7 +2,7 @@
   <q-page padding>
     <h1
       class="text-h2"
-      v-text="$t('booking')"
+      v-text="$t('payment')"
     />
     <div
       class="text-body1"
@@ -15,13 +15,13 @@
 import { mapState } from 'vuex';
 
 export default {
-  name: 'BookingInfo',
+  name: 'PaymentInfo',
   preFetch({ store }) {
-    return store.dispatch('content/getOnePage', 'booking');
+    return store.dispatch('content/getOnePage', 'payment');
   },
   computed: {
     ...mapState({
-      page: state => state.content.pages.booking,
+      page: state => state.content.pages.payment,
     }),
   },
 };

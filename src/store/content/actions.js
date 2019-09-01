@@ -74,7 +74,17 @@ function getOneNews({ commit }, id) {
 
         resolve();
       })
-      .catch(error => onError(error, reject));
+      .catch((error) => {
+        if (error.response && error.response.status === 404) {
+          commit('resetOneNews');
+
+          resolve();
+
+          return;
+        }
+
+        onError(error, reject);
+      });
   });
 }
 

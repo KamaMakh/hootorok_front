@@ -20,10 +20,15 @@ function setOneNews(state, news) {
   state.oneNews = news;
 }
 
+function resetOneNews(state) {
+  state.oneNews = {};
+}
+
 export {
   setPage,
   setServices,
   setHousings,
   setNews,
   setOneNews,
+  resetOneNews,
 };

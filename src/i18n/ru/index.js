@@ -81,8 +81,8 @@ export default {
   check_prices: 'Проверить цены',
   news_and_campaigns: 'Новости и акции',
   more: 'Подробнее',
-  prev: 'Предыдущие',
-  next: 'Следующие',
+  prev: 'Предыдущая',
+  next: 'Следующая',
   meet_hutorok: 'Познакомьтесь с базой отдыха Хуторок',
   virtual_walk: 'Виртуальная прогулка по базе',
   cosy_houses_and_comfort_rooms: 'Уютные домики и комфортные номера',
@@ -110,4 +110,5 @@ export default {
   decrease_price_by: 'уменьшению цены',
   increase_price_by: 'возрастанию цены',
   all_rooms: 'Все номера',
+  news_not_found: 'Новость не найдена',
 };

@@ -12,34 +12,29 @@
         v-text="`${$t('room_number')} ${this.$attrs.id}`"
       />
     </div>
-    <div class="q-pa-md">
-      <div class="row">
-        <div class="col">
-          <q-carousel
-            swipeable
-            animated
-            v-model="slide"
-            thumbnails
-            infinite
-          >
-            <q-carousel-slide
-              v-for="item in roomFoto"
-              :key="item.id"
-              :name="item.id"
-              :img-src="item.src"
-              @click="showDialog = true"
-            />
-          </q-carousel>
-          <br>
-          <div
-            class="text-body1"
-            v-text="this.room.description"
+    <div class="row q-gutter-md items-start">
+      <div class="col">
+        <q-carousel
+          swipeable
+          animated
+          v-model="slide"
+          thumbnails
+          infinite
+        >
+          <q-carousel-slide
+            v-for="item in roomFoto"
+            :key="item.id"
+            :name="item.id"
+            :img-src="item.src"
+            @click="showDialog = true"
           />
-        </div>
-        <div class="col q-ma-md">
-          <booking-card/>
-        </div>
+        </q-carousel>
+        <div
+          class="text-body2 q-my-sm"
+          v-text="this.room.description"
+        />
       </div>
+      <booking-card/>
     </div>
     <q-dialog
       full-width
@@ -76,7 +71,7 @@ import { mapState } from 'vuex';
 import BookingCard from 'components/BookingCard.vue';
 
 export default {
-  name: 'RoomItem',
+  name: 'Room',
   data() {
     return {
       slide: 1,

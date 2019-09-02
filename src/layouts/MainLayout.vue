@@ -1,18 +1,23 @@
 <template>
   <q-layout view="lHh Lpr lff">
     <q-header elevated>
-      <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          @click="leftDrawerOpen = !leftDrawerOpen"
-          aria-label="Menu"
-        >
-          <q-icon name="menu" />
-        </q-btn>
+      <q-toolbar class="justify-between">
+        <div class="row no-wrap items-center">
+          <q-btn
+            flat
+            dense
+            round
+            @click="leftDrawerOpen = !leftDrawerOpen"
+            aria-label="Menu"
+          >
+            <q-icon name="menu" />
+          </q-btn>
 
-        <q-toolbar-title />
+          <router-link class="q-mx-md standard-link" :to="{ name: 'home' }">
+            <span class="text-white" v-text="'Главная'"/>
+            <!-- <q-img src="statics/logo.jpg" style="width: 100px;"/> -->
+          </router-link>
+        </div>
 
         <div class="row items-center">
           <template v-if="loggedIn">
@@ -55,16 +60,33 @@
     </q-header>
 
     <q-drawer v-model="leftDrawerOpen" bordered content-class="bg-grey-2">
-      <q-list>
-        <q-item-label header>Essential Links</q-item-label>
-        <q-item clickable tag="a" target="_blank" href="https://quasar.dev">
-          <q-item-section avatar>
-            <q-icon name="school" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Docs</q-item-label>
-            <q-item-label caption>quasar.dev</q-item-label>
-          </q-item-section>
+      <q-list dense>
+        <q-item-label header v-text="$t('cabinet')"/>
+        <q-item class="items-center" :to="{ name: 'cabinet' }">
+          <q-item-label v-text="$t('profile')"/>
+        </q-item>
+        <q-item-label header v-text="$t('recreation_center')"/>
+        <q-item class="items-center" :to="{ name: 'news' }">
+          <q-item-label v-text="$t('news_and_campaigns')"/>
+        </q-item>
+        <q-item class="items-center" :to="{ name: 'services' }">
+          <q-item-label v-text="$t('list_of_services')"/>
+        </q-item>
+        <q-item class="items-center" :to="{ name: 'housings' }">
+          <q-item-label v-text="$t('housing_facilities')"/>
+        </q-item>
+        <q-item class="items-center" :to="{ name: 'rooms' }">
+          <q-item-label v-text="$t('rooms_and_houses')"/>
+        </q-item>
+        <q-item-label header v-text="$t('info')"/>
+        <q-item class="items-center" :to="{ name: 'contacts' }">
+          <q-item-label v-text="$t('contacts')"/>
+        </q-item>
+        <q-item class="items-center" :to="{ name: 'about' }">
+          <q-item-label v-text="$t('about')"/>
+        </q-item>
+        <q-item class="items-center" :to="{ name: 'info' }">
+          <q-item-label v-text="$t('support_center')"/>
         </q-item>
       </q-list>
     </q-drawer>
@@ -87,7 +109,7 @@
           <router-link
             :to="{ name: 'info'}"
             class="standard-link text-white"
-            v-text="$t('info')"
+            v-text="$t('support_center')"
           />
         </div>
       </q-footer>

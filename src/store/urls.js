@@ -13,6 +13,8 @@ const checkAuthUrl = `${serverUrl}/auth/check`;
 const getOneRoomUrl = `${serverUrl}/rooms/getOneRoom`;
 const getAllHousingsUrl = `${serverUrl}/housings/getAllHousings`;
 const getAllRoomsUrl = `${serverUrl}/rooms/getAllRooms`;
+const feedbackUrl = `${serverUrl}/feedback/sendMessage`;
+const faqUrl = `${serverUrl}/pages/getAllFAQ`;
 
 export {
   serverUrl,
@@ -30,4 +32,6 @@ export {
   getAllRoomsUrl,
   getOnePageUrl,
   getOneRoomUrl,
+  feedbackUrl,
+  faqUrl,
 };

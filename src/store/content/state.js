@@ -5,4 +5,5 @@ export default {
   services: [],
   housings: [],
   oneNews: {},
+  faq: [],
 };

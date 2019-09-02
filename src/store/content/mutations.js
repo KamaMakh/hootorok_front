@@ -24,6 +24,10 @@ function resetOneNews(state) {
   state.oneNews = {};
 }
 
+function setFAQ(state, faq) {
+  state.faq = faq;
+}
+
 export {
   setPage,
   setServices,
@@ -31,4 +35,5 @@ export {
   setNews,
   setOneNews,
   resetOneNews,
+  setFAQ,
 };

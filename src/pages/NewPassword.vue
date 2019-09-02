@@ -1,9 +1,9 @@
 <template>
   <q-page padding>
     <div
-      class="auth-tabs"
       v-if="!this.error"
-      >
+      class="auth-tabs"
+    >
       <q-banner class="bg-grey-3">
         <div
           class="text-center font-size_20"
@@ -42,7 +42,7 @@
             :rules="[
               val => !!val || $t('required_field'),
               val => this.$refs.password.value === this.$refs.password2.value
-            || $t('passwords_should_match')
+                || $t('passwords_should_match'),
             ]"
             lazy-rules
           >
@@ -65,9 +65,9 @@
       </form>
     </div>
     <div
-      class="auth-tabs"
       v-else
-      >
+      class="auth-tabs"
+    >
       <q-banner class="bg-grey-3">
         <div
           class="text-center font-size_20"
@@ -82,9 +82,10 @@
 export default {
   beforeMount() {
     const credentials = { email: '', hash: '' };
+
     credentials.hash = this.$route.query.hash;
     credentials.email = this.$route.query.email;
-    console.log(credentials);
+
     if (credentials.hash) {
       this.$store.dispatch('user/checkRecoveryHash', credentials)
         .catch((error) => {

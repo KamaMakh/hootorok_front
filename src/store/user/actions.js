@@ -6,7 +6,7 @@ import {
   checkAuthUrl,
   resetPasswordUrl,
   newPasswordUrl,
-  RecoveryHashUrl,
+  recoveryHashUrl,
 } from 'src/store/urls';
 
 import onError from 'src/store/onError';
@@ -28,6 +28,7 @@ function resetPassword({ commit }, data) {
     axios.post(resetPasswordUrl, data)
       .then(() => {
         commit('resetUser');
+
         resolve();
       })
       .catch(error => onError(error, reject));
@@ -79,21 +80,17 @@ function checkUser({ commit }) {
 function setNewPassword(data) {
   return new Promise((resolve, reject) => {
     axios.post(newPasswordUrl, data)
-      .then((response) => {
-        console.log(response);
-
-        resolve();
-      })
+      .then(() => resolve())
       .catch(error => onError(error, reject));
   });
 }
 
 function checkRecoveryHash({ commit }, data) {
   return new Promise((resolve, reject) => {
-    axios.post(RecoveryHashUrl, data)
-      .then((response) => {
-        console.log(response);
+    axios.post(recoveryHashUrl, data)
+      .then(() => {
         commit('resetUser');
+
         resolve();
       })
       .catch(error => onError(error, reject));

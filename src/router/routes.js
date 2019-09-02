@@ -72,11 +72,6 @@ const routes = [
         component: () => import('pages/NewPassword.vue'),
       },
       {
-        path: 'cabinet',
-        name: 'cabinet',
-        component: () => import('pages/Cabinet.vue'),
-      },
-      {
         path: 'news',
         name: 'news',
         component: () => import('pages/News.vue'),

@@ -5,7 +5,7 @@ const resetPasswordUrl = `${serverUrl}/auth/sendRecoveryHash`;
 const servicesUrl = `${serverUrl}/pages/getAllServices`;
 const loginUrl = `${serverUrl}/auth/login`;
 const newPasswordUrl = `${serverUrl}/auth/setNewPassword`;
-const RecoveryHashUrl = `${serverUrl}/auth/checkRecoveryHash`;
+const recoveryHashUrl = `${serverUrl}/auth/checkRecoveryHash`;
 const newsUrl = `${serverUrl}/news/getAllNews`;
 const oneNewsUrl = `${serverUrl}/news/getOneNews`;
 const logoutUrl = `${serverUrl}/auth/logout`;
@@ -21,7 +21,7 @@ export {
   servicesUrl,
   loginUrl,
   newPasswordUrl,
-  RecoveryHashUrl,
+  recoveryHashUrl,
   newsUrl,
   oneNewsUrl,
   logoutUrl,

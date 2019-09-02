@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    <template v-if="isNewsEmpty">
+    <template v-if="!oneNews">
       {{ $t('news_not_found') }}
     </template>
     <template v-else>
@@ -71,9 +71,6 @@ export default {
   },
   computed: {
     ...mapState('content', ['oneNews']),
-    isNewsEmpty() {
-      return Object.keys(this.oneNews).length === 0;
-    },
   },
   methods: {
     formatDate(timestamp) {

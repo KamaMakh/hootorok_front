@@ -1,14 +1,14 @@
 import axios from 'axios';
 import onError from 'src/store/onError';
 import {
-  getAllHousingsUrl,
-  getAllRoomsUrl,
-  getOneRoomUrl,
+  allHousingsUrl,
+  allRoomsUrl,
+  oneRoomUrl,
 } from 'src/store/urls';
 
 function getHousings({ commit }) {
   return new Promise((resolve, reject) => {
-    axios.post(getAllHousingsUrl)
+    axios.post(allHousingsUrl)
       .then((response) => {
         commit('setHousings', response.data.data);
 
@@ -20,7 +20,7 @@ function getHousings({ commit }) {
 
 function getRooms({ commit }) {
   return new Promise((resolve, reject) => {
-    axios.post(getAllRoomsUrl)
+    axios.post(allRoomsUrl)
       .then((response) => {
         commit('setRooms', response.data.data);
 
@@ -32,7 +32,7 @@ function getRooms({ commit }) {
 
 function getRoom({ commit }, index) {
   return new Promise((resolve, reject) => {
-    axios.post(getOneRoomUrl, { id: index })
+    axios.post(oneRoomUrl, { id: index })
       .then((response) => {
         commit('setRoom', response.data.room[0]);
 

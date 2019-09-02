@@ -70,7 +70,7 @@ export default {
     };
   },
   computed: {
-    ...mapState('content', ['housings']),
+    ...mapState('rooms', ['housings']),
   },
   methods: {
     changeFullscreen(index) {
@@ -78,7 +78,7 @@ export default {
     },
   },
   async mounted() {
-    this.$store.dispatch('content/getAllHousings')
+    this.$store.dispatch('rooms/getHousings')
       .then(() => {
         this.housingsSlides = Array.from(
           { length: this.housings.length },

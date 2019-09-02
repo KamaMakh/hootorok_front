@@ -64,7 +64,7 @@ export default {
   error: 'Error',
   contacts: 'Contacts',
   about: 'About',
-  info: 'Info',
+  support_center: 'Support center',
   recommend_title: 'Recommended',
   service: 'Service',
   housing_facilities: 'Housing facilities',
@@ -120,4 +120,7 @@ export default {
   request_sent: 'Request sent',
   eleven_numbers_min: 'Expected 11 digits',
   expected_length_between: 'We expect length of your text between {0} and {1} characters',
+  info: 'Information',
+  profile: 'Profile',
+  recreation_center: 'Recreation center',
 };

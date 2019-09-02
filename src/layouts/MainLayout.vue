@@ -55,16 +55,33 @@
     </q-header>
 
     <q-drawer v-model="leftDrawerOpen" bordered content-class="bg-grey-2">
-      <q-list>
-        <q-item-label header>Essential Links</q-item-label>
-        <q-item clickable tag="a" target="_blank" href="https://quasar.dev">
-          <q-item-section avatar>
-            <q-icon name="school" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Docs</q-item-label>
-            <q-item-label caption>quasar.dev</q-item-label>
-          </q-item-section>
+      <q-list dense>
+        <q-item-label header v-text="$t('cabinet')"/>
+        <q-item class="items-center" :to="{ name: 'cabinet' }">
+          <q-item-label v-text="$t('profile')"/>
+        </q-item>
+        <q-item-label header v-text="$t('recreation_center')"/>
+        <q-item class="items-center" :to="{ name: 'news' }">
+          <q-item-label v-text="$t('news_and_campaigns')"/>
+        </q-item>
+        <q-item class="items-center" :to="{ name: 'services' }">
+          <q-item-label v-text="$t('list_of_services')"/>
+        </q-item>
+        <q-item class="items-center" :to="{ name: 'housings' }">
+          <q-item-label v-text="$t('housing_facilities')"/>
+        </q-item>
+        <q-item class="items-center" :to="{ name: 'rooms' }">
+          <q-item-label v-text="$t('rooms_and_houses')"/>
+        </q-item>
+        <q-item-label header v-text="$t('info')"/>
+        <q-item class="items-center" :to="{ name: 'contacts' }">
+          <q-item-label v-text="$t('contacts')"/>
+        </q-item>
+        <q-item class="items-center" :to="{ name: 'about' }">
+          <q-item-label v-text="$t('about')"/>
+        </q-item>
+        <q-item class="items-center" :to="{ name: 'info' }">
+          <q-item-label v-text="$t('support_center')"/>
         </q-item>
       </q-list>
     </q-drawer>
@@ -87,7 +104,7 @@
           <router-link
             :to="{ name: 'info'}"
             class="standard-link text-white"
-            v-text="$t('info')"
+            v-text="$t('support_center')"
           />
         </div>
       </q-footer>

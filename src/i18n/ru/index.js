@@ -66,7 +66,7 @@ export default {
   error: 'Ошибка',
   contacts: 'Контакты',
   about: 'О нас',
-  info: 'Центр поддержки',
+  support_center: 'Центр поддержки',
   recommend_title: 'Рекомендуем вам',
   service: 'Сервис',
   housing_facilities: 'Корпуса базы отдыха',
@@ -121,4 +121,7 @@ export default {
   request_sent: 'Запрос отправлен',
   eleven_numbers_min: 'Ожидается 11 цифр',
   expected_length_between: 'Ожидаем текст от {0} до {1} символов',
+  info: 'Информация',
+  profile: 'Профиль',
+  recreation_center: 'База отдыха',
 };

@@ -1,18 +1,23 @@
 <template>
   <q-layout view="lHh Lpr lff">
     <q-header elevated>
-      <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          @click="leftDrawerOpen = !leftDrawerOpen"
-          aria-label="Menu"
-        >
-          <q-icon name="menu" />
-        </q-btn>
+      <q-toolbar class="justify-between">
+        <div class="row no-wrap items-center">
+          <q-btn
+            flat
+            dense
+            round
+            @click="leftDrawerOpen = !leftDrawerOpen"
+            aria-label="Menu"
+          >
+            <q-icon name="menu" />
+          </q-btn>
 
-        <q-toolbar-title />
+          <router-link class="q-mx-md standard-link" :to="{ name: 'home' }">
+            <span class="text-white" v-text="'Главная'"/>
+            <!-- <q-img src="statics/logo.jpg" style="width: 100px;"/> -->
+          </router-link>
+        </div>
 
         <div class="row items-center">
           <template v-if="loggedIn">

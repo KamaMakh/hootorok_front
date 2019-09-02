@@ -87,13 +87,13 @@ export default {
     console.log(credentials);
     if (credentials.hash) {
       this.$store.dispatch('user/checkRecoveryHash', credentials)
-        .then(this.$router.push({ name: 'password-reset' }))
         .catch((error) => {
           this.$q.notify({
             icon: 'close',
             color: 'negative',
             message: error,
           });
+          this.$router.push({ name: 'password-reset' });
         });
     } else {
       this.$router.push({ name: 'password-reset' });

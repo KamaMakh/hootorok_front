@@ -20,10 +20,8 @@ export {
   resetPasswordUrl,
   servicesUrl,
   loginUrl,
-<<<<<<< HEAD
   newPasswordUrl,
   RecoveryHashUrl,
-=======
   newsUrl,
   oneNewsUrl,
   logoutUrl,
@@ -32,5 +30,4 @@ export {
   getAllRoomsUrl,
   getOnePageUrl,
   getOneRoomUrl,
->>>>>>> master
 };

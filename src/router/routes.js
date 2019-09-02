@@ -75,6 +75,8 @@ const routes = [
         path: 'cabinet',
         name: 'cabinet',
         component: () => import('pages/Cabinet.vue'),
+      },
+      {
         path: 'news',
         name: 'news',
         component: () => import('pages/News.vue'),

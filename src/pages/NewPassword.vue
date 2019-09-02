@@ -81,18 +81,22 @@
 <script>
 export default {
   beforeMount() {
-    const securityToken = this.$route.query.token;
-    if (securityToken) {
-      this.$store.dispatch('user/checkRecoveryHash', securityToken).catch((error) => {
-        this.$router.push({ name: 'passwordreset' });
-        this.$q.notify({
-          icon: 'close',
-          color: 'negative',
-          message: error,
+    const credentials = { email: '', hash: '' };
+    credentials.hash = this.$route.query.hash;
+    credentials.email = this.$route.query.email;
+    console.log(credentials);
+    if (credentials.hash) {
+      this.$store.dispatch('user/checkRecoveryHash', credentials)
+        .then(this.$router.push({ name: 'password-reset' }))
+        .catch((error) => {
+          this.$q.notify({
+            icon: 'close',
+            color: 'negative',
+            message: error,
+          });
         });
-      });
     } else {
-      this.$router.push({ name: 'passwordreset' });
+      this.$router.push({ name: 'password-reset' });
       this.$q.notify({
         icon: 'close',
         color: 'negative',

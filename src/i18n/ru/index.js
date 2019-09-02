@@ -93,7 +93,6 @@ export default {
   reset_password: 'Восстановить пароль',
   set_new_password: 'Установить пароль',
   new_password: 'Новый пароль',
-  cabinet: 'Личный кабинет',
   incorrect_token: 'Не корректный или не валидный токен',
   change_password_success_send: 'Данные о смене пароля отправлены на email',
   display_by: 'Отображать по',

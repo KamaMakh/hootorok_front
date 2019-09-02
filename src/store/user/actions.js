@@ -1,6 +1,3 @@
-import axios from 'axios';
-import {
-  registerUrl, resetPasswordUrl, loginUrl, newPasswordUrl, RecoveryHashUrl,
 import { axios } from 'boot/axios';
 import {
   registerUrl,
@@ -8,6 +5,8 @@ import {
   logoutUrl,
   checkAuthUrl,
   resetPasswordUrl,
+  newPasswordUrl,
+  RecoveryHashUrl,
 } from 'src/store/urls';
 
 import onError from 'src/store/onError';
@@ -102,10 +101,11 @@ function checkRecoveryHash(data) {
 }
 
 export {
-  register, resetPassword, login, setNewPassword, checkRecoveryHash,
   register,
+  resetPassword,
   login,
+  setNewPassword,
+  checkRecoveryHash,
   logout,
   checkUser,
-  resetPassword,
 };

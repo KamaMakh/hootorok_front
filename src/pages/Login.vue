@@ -66,6 +66,7 @@ export default {
         !this.$refs.login.hasError
         && !this.$refs.password.hasError
       ) {
+        console.log(this.formData);
         this.$store.dispatch('user/login', this.formData)
           .then(() => this.$router.push({ name: 'booking' }))
           .catch((error) => {

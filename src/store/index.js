@@ -31,6 +31,9 @@ export default function ({ ssrContext }) {
       loggedIn(state) {
         return Boolean(state.user.user.id);
       },
+      isAdmin(state) {
+        return Boolean(state.user.user.isAdmin);
+      },
     },
     mutations: {
       setLang(state, lang) {

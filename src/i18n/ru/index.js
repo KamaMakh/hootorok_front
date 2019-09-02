@@ -128,4 +128,6 @@ export default {
   info: 'Информация',
   profile: 'Профиль',
   recreation_center: 'База отдыха',
+  users: 'Пользователи',
+  info_pages: 'Информационные страницы',
 };

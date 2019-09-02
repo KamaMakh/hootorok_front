@@ -128,4 +128,6 @@ export default {
   info: 'Information',
   profile: 'Profile',
   recreation_center: 'Recreation center',
+  users: 'Users',
+  info_pages: 'Info pages',
 };

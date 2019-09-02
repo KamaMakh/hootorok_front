@@ -138,6 +138,54 @@ const routes = [
       },
     ],
   },
+  {
+    path: '/admin',
+    component: () => import('layouts/AdminLayout.vue'),
+    meta: { requiresAdmin: true },
+    redirect: { name: 'admin-feedback' },
+    children: [
+      {
+        path: 'feedback',
+        name: 'admin-feedback',
+        component: () => import('pages/admin/Feedback.vue'),
+      },
+      {
+        path: 'housings',
+        name: 'admin-housings',
+        component: () => import('pages/admin/Housings.vue'),
+      },
+      {
+        path: 'rooms',
+        name: 'admin-rooms',
+        component: () => import('pages/admin/Rooms.vue'),
+      },
+      {
+        path: 'news',
+        name: 'admin-news',
+        component: () => import('pages/admin/News.vue'),
+      },
+      {
+        path: 'services',
+        name: 'admin-services',
+        component: () => import('pages/admin/Services.vue'),
+      },
+      {
+        path: 'info-pages',
+        name: 'admin-info-pages',
+        component: () => import('pages/admin/InfoPages.vue'),
+      },
+      {
+        path: 'faq',
+        name: 'admin-faq',
+        component: () => import('pages/admin/FAQ.vue'),
+      },
+      {
+        path: 'users',
+        name: 'admin-users',
+        component: () => import('pages/admin/Users.vue'),
+      },
+    ],
+  },
 ];
 
 // Always leave this as last one

@@ -93,7 +93,7 @@ export default {
   reset_password: 'Восстановить пароль',
   set_new_password: 'Установить пароль',
   new_password: 'Новый пароль',
-  incorrect_token: 'Не корректный или не валидный токен',
+  invalid_token: 'Невалидный токен',
   change_password_success_send: 'Данные о смене пароля отправлены на email',
   display_by: 'Отображать по',
   recreation_center_hutorok: 'База отдыха "Хуторок"',

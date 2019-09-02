@@ -71,7 +71,7 @@
       <q-banner class="bg-grey-3">
         <div
           class="text-center font-size_20"
-          v-text="$t('incorrect_token')"
+          v-text="$t('invalid_token')"
         />
       </q-banner>
     </div>
@@ -80,11 +80,24 @@
 
 <script>
 export default {
+  name: 'NewPassword',
+  data() {
+    return {
+      formData: {
+        password: '',
+      },
+      formData1: {
+        password2: '',
+      },
+      hidePassword: true,
+      hidePassword2: true,
+    };
+  },
   beforeMount() {
-    const credentials = { email: '', hash: '' };
-
-    credentials.hash = this.$route.query.hash;
-    credentials.email = this.$route.query.email;
+    const credentials = {
+      email: this.$route.query.email || '',
+      hash: this.$route.query.hash || '',
+    };
 
     if (credentials.hash) {
       this.$store.dispatch('user/checkRecoveryHash', credentials)
@@ -101,23 +114,9 @@ export default {
       this.$q.notify({
         icon: 'close',
         color: 'negative',
-        message: 'Не корректный или не валидный токен',
+        message: this.$t('invalid_token'),
       });
     }
-  },
-  name: 'NewPassword',
-  data() {
-    return {
-      formData: {
-        password: '',
-      },
-      formData1: {
-        password2: '',
-      },
-      hidePassword: true,
-      hidePassword2: true,
-      tab: 'Login',
-    };
   },
   methods: {
     submitForm() {

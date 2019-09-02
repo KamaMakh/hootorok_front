@@ -90,7 +90,7 @@ export default {
   set_new_password: 'Set new password',
   new_password: 'New password',
   cabinet: 'Personal page',
-  incorrect_token: 'Token invalid',
+  invalid_token: 'Invalid token',
   send: 'Send',
   password_reset: 'Password reset',
   change_password_success_send: 'Data about changing password successfully send on your email',

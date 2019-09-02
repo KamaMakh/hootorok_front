@@ -68,7 +68,7 @@ const routes = [
       },
       {
         path: 'recovery',
-        name: 'newpassword',
+        name: 'recovery',
         component: () => import('pages/NewPassword.vue'),
       },
       {

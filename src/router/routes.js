@@ -121,6 +121,7 @@ const routes = [
       {
         path: 'rooms',
         name: 'rooms',
+        props: true,
         component: () => import('pages/Rooms.vue'),
       },
       {

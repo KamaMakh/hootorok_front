@@ -11,7 +11,7 @@
         class="q-mb-md full-width text-center q-gutter-y-md"
       >
         <router-link
-          :to="{ name: 'rooms' }"
+          :to="{ name: 'rooms', params: { housing: housing.id } }"
           class="text-h6 text-default housing-title block"
           v-text="`${$t('housing')} ${housing.id}`"
         />

@@ -24,7 +24,7 @@
           emit-value
           map-options
           options-dense
-          v-model="group"
+          v-model="housing"
           :options="housingsOptions"
           class="q-mx-md"
           @input="resetCurrentPage"
@@ -204,7 +204,7 @@ export default {
     return {
       isDesc: true,
       view: 'one',
-      group: 0,
+      housing: this.$route.params.housing || 0,
       showCarousel: false,
       slide: 1,
       perPage: perPageOptions[0],
@@ -249,9 +249,9 @@ export default {
       ];
     },
     roomsFiltered() {
-      const res = this.group === 0
+      const res = this.housing === 0
         ? [...this.rooms]
-        : this.rooms.filter(r => r.housing === this.group);
+        : this.rooms.filter(r => r.housing === this.housing);
 
       if (this.isDesc) {
         res.sort((a, b) => b.price - a.price);

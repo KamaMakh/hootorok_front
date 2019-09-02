@@ -88,12 +88,12 @@ function setNewPassword(data) {
   });
 }
 
-function checkRecoveryHash(data) {
+function checkRecoveryHash({ commit }, data) {
   return new Promise((resolve, reject) => {
     axios.post(RecoveryHashUrl, data)
       .then((response) => {
         console.log(response);
-
+        commit('resetUser');
         resolve();
       })
       .catch(error => onError(error, reject));

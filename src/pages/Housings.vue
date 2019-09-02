@@ -13,7 +13,7 @@
         <router-link
           :to="{ name: 'rooms' }"
           class="text-h6 text-default housing-title block"
-          v-text="'Заголовок'"
+          v-text="`${$t('housing')} ${housing.id}`"
         />
         <q-carousel
           v-model="housingsSlides[i]"

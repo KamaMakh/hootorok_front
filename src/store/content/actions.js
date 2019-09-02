@@ -59,7 +59,7 @@ function getOneNews({ commit }, id) {
   return new Promise((resolve, reject) => {
     axios.post(oneNewsUrl, { id })
       .then((response) => {
-        commit('setOneNews', response.data.news);
+        commit('setOneNews', response.data.data);
 
         resolve();
       })

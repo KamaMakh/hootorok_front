@@ -10,6 +10,7 @@ const newsUrl = `${serverUrl}/news/getAllNews`;
 const oneNewsUrl = `${serverUrl}/news/getOneNews`;
 const logoutUrl = `${serverUrl}/auth/logout`;
 const checkAuthUrl = `${serverUrl}/auth/check`;
+const editProfileUrl = `${serverUrl}/user/editProfile`;
 const oneRoomUrl = `${serverUrl}/rooms/getOneRoom`;
 const allHousingsUrl = `${serverUrl}/housings/getAllHousings`;
 const allRoomsUrl = `${serverUrl}/rooms/getAllRooms`;
@@ -34,4 +35,5 @@ export {
   oneRoomUrl,
   feedbackUrl,
   faqUrl,
+  editProfileUrl,
 };

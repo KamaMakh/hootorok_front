@@ -7,6 +7,7 @@ import {
   resetPasswordUrl,
   newPasswordUrl,
   recoveryHashUrl,
+  editProfileUrl,
 } from 'src/store/urls';
 
 import onError from 'src/store/onError';
@@ -14,6 +15,18 @@ import onError from 'src/store/onError';
 function register({ commit }, data) {
   return new Promise((resolve, reject) => {
     axios.post(registerUrl, data)
+      .then((response) => {
+        commit('setUser', response.data.data);
+
+        resolve();
+      })
+      .catch(error => onError(error, reject));
+  });
+}
+
+function editProfile({ commit }, data) {
+  return new Promise((resolve, reject) => {
+    axios.post(editProfileUrl, data)
       .then((response) => {
         commit('setUser', response.data.data);
 
@@ -105,4 +118,5 @@ export {
   checkRecoveryHash,
   logout,
   checkUser,
+  editProfile,
 };

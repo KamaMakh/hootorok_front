@@ -130,4 +130,8 @@ export default {
   recreation_center: 'Recreation center',
   users: 'Users',
   info_pages: 'Info pages',
+  save: 'Save',
+  parental_name: 'Parental name',
+  birthday: 'Birthday',
+  gender: 'Gender',
 };

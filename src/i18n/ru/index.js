@@ -130,4 +130,8 @@ export default {
   recreation_center: 'База отдыха',
   users: 'Пользователи',
   info_pages: 'Информационные страницы',
+  save: 'Сохранить',
+  parental_name: 'Отчество',
+  birthday: 'Дата рождения',
+  gender: 'Пол',
 };

@@ -130,4 +130,6 @@ export default {
   recreation_center: 'База отдыха',
   users: 'Пользователи',
   info_pages: 'Информационные страницы',
+  registration_date: 'Дата регистрации',
+  entries_by_page: 'Записей на странице',
 };

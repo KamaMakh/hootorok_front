@@ -130,4 +130,6 @@ export default {
   recreation_center: 'Recreation center',
   users: 'Users',
   info_pages: 'Info pages',
+  registration_date: 'Registration date',
+  entries_by_page: 'Entries by page',
 };

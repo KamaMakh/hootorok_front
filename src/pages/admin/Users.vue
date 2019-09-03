@@ -1,14 +1,14 @@
 <template>
   <q-page padding>
     <q-table
-      title="Пользователи"
-      rows-per-page-label="Записей на странице"
+      :title="$t('users')"
+      :rows-per-page-label="$t('entries_by_page')"
       :data="users"
       :columns="columns"
       :loading="loading"
       :rows-per-page-options="[10, 20, 50]"
       :pagination="pagination"
-      row-key="name"
+      row-key="id"
       @request="onRequest"
     />
   </q-page>
@@ -16,6 +16,7 @@
 
 <script>
 import { mapState } from 'vuex';
+import { date } from 'quasar';
 
 export default {
   name: 'AdminUsers',
@@ -41,7 +42,7 @@ export default {
         {
           name: 'first_name',
           required: true,
-          field: 'first_name',
+          field: this.$t('first_name'),
           label: 'Имя',
           align: 'left',
           sortable: true,
@@ -50,7 +51,7 @@ export default {
           name: 'second_name',
           required: true,
           field: 'second_name',
-          label: 'Фамилия',
+          label: this.$t('second_name'),
           align: 'left',
           sortable: true,
         },
@@ -58,7 +59,7 @@ export default {
           name: 'email',
           required: true,
           field: 'email',
-          label: 'email',
+          label: 'E-mail',
           align: 'left',
           sortable: true,
         },
@@ -66,7 +67,7 @@ export default {
           name: 'phone_number',
           required: true,
           field: 'phone_number',
-          label: 'Номер телефона',
+          label: this.$t('phone'),
           align: 'left',
           format: val => this.formatPhone(val),
           sortable: true,
@@ -75,7 +76,7 @@ export default {
           name: 'created_at',
           required: true,
           field: 'created_at',
-          label: 'Дата создания',
+          label: this.$t('registration_date'),
           align: 'left',
           format: val => this.formatDate(val),
           sortable: true,
@@ -113,16 +114,10 @@ export default {
       });
     },
     formatPhone(phone) {
-      return phone.replace(/(\d{1})(\d{3})(\d{3})(\d{2})(\d{2})/, '$1-($2)-$3-$4-$5');
+      return phone.replace(/(\d{1})(\d{3})(\d{3})(\d{2})(\d{2})/, '$1 ($2) $3-$4-$5');
     },
-    formatDate(dateTime) {
-      const date = new Date(dateTime * 1000);
-      const format = num => (num < 10 ? `0${num}` : num);
-      const day = format(date.getDate());
-      const month = format(date.getMonth() + 1);
-      const year = date.getFullYear();
-
-      return `${day}.${month}.${year}`;
+    formatDate(timestamp) {
+      return date.formatDate(timestamp * 1000, 'DD.MM.YYYY');
     },
   },
 };

@@ -161,6 +161,11 @@ const routes = [
         component: () => import('pages/admin/HousingEdit.vue'),
       },
       {
+        path: 'housings/add',
+        name: 'admin-housing-add',
+        component: () => import('pages/DummyPage.vue'),
+      },
+      {
         path: 'rooms',
         name: 'admin-rooms',
         component: () => import('pages/admin/Rooms.vue'),

@@ -7,11 +7,15 @@ import {
   oneRoomUrl,
 } from 'src/store/urls';
 
-function getHousings({ commit }) {
+function getHousings({ commit }, data) {
   return new Promise((resolve, reject) => {
-    axios.post(allHousingsUrl)
+    axios.post(allHousingsUrl, data)
       .then((response) => {
-        commit('setHousings', response.data.data);
+        const payload = {
+          housings: response.data.data,
+          total: response.data.total,
+        };
+        commit('setHousings', payload);
 
         resolve();
       })

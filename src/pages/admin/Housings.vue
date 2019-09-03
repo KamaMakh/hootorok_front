@@ -27,7 +27,7 @@
       </template>
     </q-table>
     <div class="q-ma-md flex justify-center">
-      <q-btn :label="$t('add')" to="/admin/rooms/add" />
+      <q-btn :label="$t('add')" to="/admin/housings/add" />
     </div>
   </q-page>
 </template>
@@ -114,7 +114,7 @@ export default {
       this.pagination.rowsPerPage = props.pagination.rowsPerPage;
       this.pagination.sortBy = props.pagination.sortBy;
       this.pagination.descending = props.pagination.descending;
-      this.getRooms();
+      this.getHousings();
     },
     getHousings() {
       this.$store.dispatch('rooms/getHousings', {
@@ -124,7 +124,7 @@ export default {
         order: this.pagination.descending ? 'desc' : 'asc',
       }).then(() => {
         this.loading = false;
-        this.pagination.rowsNumber = this.roomsTotal;
+        this.pagination.rowsNumber = this.housingsTotal;
       });
     },
   },

@@ -47,6 +47,7 @@
         v-text="`${contactNumberBooking}`"
         />
       </span>
+
       <div class="q-py-md">
         <span
           class="block q-py-xs text-body2 text-grey-7"
@@ -55,12 +56,14 @@
           >
           {{ $t(`reception_service_name[${index}]`) }}:
           <a
-          class="standard-link text-primary"
+          class="standard-link text-primary text-no-wrap"
           :href="`tel:+${contactNumber}`"
           v-text="`+${contactNumber}`"
           />
         </span>
+
         <h3 class="text-subtitle1">E-mail:</h3>
+
         <span
           class="block q-py-xs text-body2 text-grey-7"
           v-for="(contactMail, index) in contactMails"
@@ -73,6 +76,7 @@
           v-text="`${contactMail}`"
           />
         </span>
+
         <h3 class="text-subtitle1">
           {{ $t('social_networks') }}:
         </h3>
@@ -124,5 +128,4 @@ export default {
 .contacts-text
   width: 90vw
   max-width: 580px
-  vertical-align: top
 </style>

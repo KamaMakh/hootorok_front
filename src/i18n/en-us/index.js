@@ -134,9 +134,9 @@ export default {
   how_to_get: 'How to get there',
   phones_for_communication: 'Phones for communication',
   reception_service: 'Reception and accommodation service',
-  reception_service_name: ['WhatsApp', 'ИП Ключко О.В. 1-й корпус',
-    'ИП Просвирякова И.А. 2-й корпус', 'ИП Просвирякова И.А. 3-й корпус',
-    'ИП Санжарова Э.Е. закусочная "Харчевня"'],
+  reception_service_name: ['WhatsApp', 'IP Klyuchko O.V. 1st building',
+    'IP Prosviryakova I.A. 2nd building', 'IP Prosviryakova I.A. 3rd building',
+    'IP Sanzharova E.E. snack bar "Kharchevnya"'],
   contact_emails: ['For reservation', 'For other issues'],
   social_networks: 'We are in social networks',
 };

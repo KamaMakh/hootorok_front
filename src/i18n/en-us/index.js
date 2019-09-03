@@ -130,4 +130,13 @@ export default {
   recreation_center: 'Recreation center',
   users: 'Users',
   info_pages: 'Info pages',
+  contacts_reseption_hutorok: 'Contacts recreation "Hutorok"',
+  how_to_get: 'How to get there',
+  phones_for_communication: 'Phones for communication',
+  reception_service: 'Reception and accommodation service',
+  reception_service_name: ['WhatsApp', 'ИП Ключко О.В. 1-й корпус',
+    'ИП Просвирякова И.А. 2-й корпус', 'ИП Просвирякова И.А. 3-й корпус',
+    'ИП Санжарова Э.Е. закусочная "Харчевня"'],
+  contact_emails: ['For reservation', 'For other issues'],
+  social_networks: 'We are in social networks',
 };

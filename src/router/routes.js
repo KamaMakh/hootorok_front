@@ -160,6 +160,22 @@ const routes = [
         component: () => import('pages/admin/Rooms.vue'),
       },
       {
+        path: 'rooms',
+        name: 'admin-rooms',
+        component: () => import('pages/admin/Rooms.vue'),
+      },
+      {
+        path: 'rooms/:id/edit',
+        name: 'rooms-edit',
+        props: true,
+        component: () => import('pages/admin/RoomEdit.vue'),
+      },
+      {
+        path: 'rooms/add',
+        name: 'rooms-add',
+        component: () => import('pages/DummyPage.vue'),
+      },
+      {
         path: 'news',
         name: 'admin-news',
         component: () => import('pages/admin/News.vue'),

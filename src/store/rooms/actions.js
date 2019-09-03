@@ -18,11 +18,15 @@ function getHousings({ commit }) {
   });
 }
 
-function getRooms({ commit }) {
+function getRooms({ commit }, data) {
   return new Promise((resolve, reject) => {
-    axios.post(allRoomsUrl)
+    axios.post(allRoomsUrl, data)
       .then((response) => {
-        commit('setRooms', response.data.data);
+        const payload = {
+          rooms: response.data.data,
+          total: response.data.total,
+        };
+        commit('setRooms', payload);
 
         resolve();
       })
@@ -34,8 +38,7 @@ function getRoom({ commit }, index) {
   return new Promise((resolve, reject) => {
     axios.post(oneRoomUrl, { id: index })
       .then((response) => {
-        commit('setRoom', response.data.data);
-
+        commit('setRoom', response.data.room[0]);
         resolve();
       })
       .catch(error => onError(error, reject));

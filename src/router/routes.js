@@ -160,11 +160,6 @@ const routes = [
         component: () => import('pages/admin/Rooms.vue'),
       },
       {
-        path: 'rooms',
-        name: 'admin-rooms',
-        component: () => import('pages/admin/Rooms.vue'),
-      },
-      {
         path: 'rooms/:id/edit',
         name: 'rooms-edit',
         props: true,

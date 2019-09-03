@@ -7,6 +7,7 @@ import {
   resetPasswordUrl,
   newPasswordUrl,
   recoveryHashUrl,
+  getAllUsersUrl,
 } from 'src/store/urls';
 
 import onError from 'src/store/onError';
@@ -97,6 +98,21 @@ function checkRecoveryHash({ commit }, data) {
   });
 }
 
+function getAllUsers({ commit }, data) {
+  return new Promise((resolve, reject) => {
+    axios.post(getAllUsersUrl, data)
+      .then((response) => {
+        const payload = {
+          users: response.data.data,
+          total: response.data.total,
+        };
+        commit('setUsers', payload);
+        resolve();
+      })
+      .catch(error => onError(error, reject));
+  });
+}
+
 export {
   register,
   resetPassword,
@@ -105,4 +121,5 @@ export {
   checkRecoveryHash,
   logout,
   checkUser,
+  getAllUsers,
 };

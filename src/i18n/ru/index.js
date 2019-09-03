@@ -102,6 +102,7 @@ export default {
   rooms_and_houses: 'Номера и домики',
   room_number: 'Номер',
   housing: 'Корпус',
+  capacity: 'Вместительность',
   price_per_day: 'Цена за сутки',
   number_of_adults_and_children: 'Кол-во взрослых и детей',
   photo: 'Фото',
@@ -130,4 +131,10 @@ export default {
   recreation_center: 'База отдыха',
   users: 'Пользователи',
   info_pages: 'Информационные страницы',
+  entries_by_page: 'Записей на странице',
+  edit: 'Изменить',
+  add: 'Добавить',
+  number: 'Номер',
+  title: 'Название',
+  description: 'Описание',
 };

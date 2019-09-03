@@ -23,7 +23,7 @@ function getHousing({ commit }, index) {
   return new Promise((resolve, reject) => {
     axios.post(oneHousingUrl, { id: index })
       .then((response) => {
-        commit('setHousing', response.data.data);
+        commit('setHousing', response.data.data[0]);
 
         resolve();
       })

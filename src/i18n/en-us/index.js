@@ -100,6 +100,7 @@ export default {
   rooms_and_houses: 'Rooms and houses',
   room_number: 'Room',
   housing: 'Housing',
+  capacity: 'Capacity',
   all_housings: 'All housings',
   price_per_day: 'Price per day',
   number_of_adults_and_children: 'Number of adults and children',
@@ -130,4 +131,10 @@ export default {
   recreation_center: 'Recreation center',
   users: 'Users',
   info_pages: 'Info pages',
+  entries_by_page: 'Entries by page',
+  edit: 'Edit',
+  add: 'Add',
+  number: 'Number',
+  title: 'Title',
+  description: 'description',
 };

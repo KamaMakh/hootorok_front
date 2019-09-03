@@ -1,7 +1,7 @@
 <template>
   <q-page padding>
     <q-table
-      :title="$t('users')"
+      :title="$t('rooms_and_houses')"
       :rows-per-page-label="$t('entries_by_page')"
       :data="rooms"
       :columns="columns"

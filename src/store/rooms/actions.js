@@ -38,7 +38,7 @@ function getRoom({ commit }, index) {
   return new Promise((resolve, reject) => {
     axios.post(oneRoomUrl, { id: index })
       .then((response) => {
-        commit('setRoom', response.data.room[0]);
+        commit('setRoom', response.data.data);
         resolve();
       })
       .catch(error => onError(error, reject));

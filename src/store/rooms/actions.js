@@ -2,15 +2,32 @@ import axios from 'axios';
 import onError from 'src/store/onError';
 import {
   allHousingsUrl,
+  oneHousingUrl,
   allRoomsUrl,
   oneRoomUrl,
 } from 'src/store/urls';
 
-function getHousings({ commit }) {
+function getHousings({ commit }, data) {
   return new Promise((resolve, reject) => {
-    axios.post(allHousingsUrl)
+    axios.post(allHousingsUrl, data)
       .then((response) => {
-        commit('setHousings', response.data.data);
+        const payload = {
+          housings: response.data.data,
+          total: response.data.total,
+        };
+        commit('setHousings', payload);
+
+        resolve();
+      })
+      .catch(error => onError(error, reject));
+  });
+}
+
+function getHousing({ commit }, index) {
+  return new Promise((resolve, reject) => {
+    axios.post(oneHousingUrl, { id: index })
+      .then((response) => {
+        commit('setHousing', response.data.data[0]);
 
         resolve();
       })
@@ -49,4 +66,5 @@ export {
   getHousings,
   getRooms,
   getRoom,
+  getHousing,
 };

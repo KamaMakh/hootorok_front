@@ -155,6 +155,17 @@ const routes = [
         component: () => import('pages/admin/Housings.vue'),
       },
       {
+        path: 'housings/:id/edit',
+        name: 'edit-housing',
+        props: true,
+        component: () => import('pages/admin/HousingEdit.vue'),
+      },
+      {
+        path: 'housings/add',
+        name: 'add-housing',
+        component: () => import('pages/DummyPage.vue'),
+      },
+      {
         path: 'rooms',
         name: 'admin-rooms',
         component: () => import('pages/admin/Rooms.vue'),

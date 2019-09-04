@@ -1,5 +1,10 @@
-function setHousings(state, housings) {
-  state.housings = housings;
+function setHousings(state, data) {
+  state.housingsTotal = parseInt(data.total, 10);
+  state.housings = data.housings;
+}
+
+function setHousing(state, housing) {
+  state.housing = housing;
 }
 
 function setRooms(state, data) {
@@ -15,4 +20,5 @@ export {
   setHousings,
   setRooms,
   setRoom,
+  setHousing,
 };

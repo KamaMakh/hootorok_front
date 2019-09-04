@@ -12,6 +12,7 @@ const logoutUrl = `${serverUrl}/auth/logout`;
 const checkAuthUrl = `${serverUrl}/auth/check`;
 const oneRoomUrl = `${serverUrl}/rooms/getOneRoom`;
 const allHousingsUrl = `${serverUrl}/housings/getAllHousings`;
+const oneHousingUrl = `${serverUrl}/housings/getHousing`;
 const allRoomsUrl = `${serverUrl}/rooms/getAllRooms`;
 const feedbackUrl = `${serverUrl}/feedback/sendMessage`;
 const faqUrl = `${serverUrl}/pages/getAllFAQ`;
@@ -30,6 +31,7 @@ export {
   logoutUrl,
   checkAuthUrl,
   allHousingsUrl,
+  oneHousingUrl,
   allRoomsUrl,
   onePageUrl,
   oneRoomUrl,

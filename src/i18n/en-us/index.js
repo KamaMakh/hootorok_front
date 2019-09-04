@@ -134,5 +134,8 @@ export default {
   entries_by_page: 'Entries by page',
   edit: 'Edit',
   add: 'Add',
+  number: 'Number',
+  title: 'Title',
+  description: 'description',
   registration_date: 'Registration date',
 };

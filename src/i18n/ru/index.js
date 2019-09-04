@@ -134,5 +134,8 @@ export default {
   entries_by_page: 'Записей на странице',
   edit: 'Изменить',
   add: 'Добавить',
+  number: 'Номер',
+  title: 'Название',
+  description: 'Описание',
   registration_date: 'Дата регистрации',
 };

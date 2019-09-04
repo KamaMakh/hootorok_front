@@ -13,17 +13,17 @@
     >
       <template v-slot:body="props">
         <q-tr :props="props">
-          <q-td key="id" :props="props">{{ props.row.id }}</q-td>
-          <q-td key="number" :props="props">{{ props.row.number }}</q-td>
-          <q-td key="housing" :props="props">{{ props.row.housing }}</q-td>
-          <q-td key="capacity" :props="props">{{ props.row.capacity }}</q-td>
+          <q-td key="id" :props="props" v-text="props.row.id"/>
+          <q-td key="number" :props="props" v-text="props.row.number"/>
+          <q-td key="housing" :props="props" v-text="props.row.housing"/>
+          <q-td key="capacity" :props="props" v-text="props.row.capacity"/>
           <q-td key="main_image" :props="props">
             <img
               :src="props.row.main_image"
-              @click="image = true"
+              @click="showImage = true"
               style="height: 100px; cursor: pointer"
             />
-            <q-dialog v-model="image">
+            <q-dialog v-model="showImage">
               <q-card>
                 <q-card-section class="row items-center">
                   <q-space />
@@ -35,15 +35,29 @@
               </q-card>
             </q-dialog>
           </q-td>
-          <q-td key="price" :props="props">{{ props.row.price }}</q-td>
-          <q-td key="edit" auto-width>
-            <q-btn flat :label="$t('edit')" :to="`/admin/rooms/${props.row.id}/edit`"/>
+          <q-td key="price" :props="props" v-text="props.row.price"/>
+          <q-td key="edit">
+            <div class="row justify-center">
+              <q-btn
+                size="sm"
+                color="orange"
+                :label="$t('edit')"
+                :to="{
+                  name: 'edit-room',
+                  params: { id: props.row.id },
+                }"/>
+            </div>
           </q-td>
         </q-tr>
       </template>
     </q-table>
     <div class="q-ma-md flex justify-center">
-      <q-btn :label="$t('add')" to="/admin/rooms/add" />
+      <q-btn
+        size="sm"
+        color="positive"
+        :label="$t('add')"
+        :to="{ name: 'add-room' }"
+      />
     </div>
   </q-page>
 </template>
@@ -55,7 +69,7 @@ export default {
   name: 'AdminRooms',
   data() {
     return {
-      image: false,
+      showImage: false,
       loading: false,
       pagination: {
         sortBy: 'id',
@@ -65,15 +79,6 @@ export default {
         rowsNumber: null,
       },
       columns: [
-        {
-          name: 'id',
-          required: true,
-          field: 'id',
-          label: 'id',
-          align: 'left',
-          sortable: true,
-
-        },
         {
           name: 'number',
           required: true,

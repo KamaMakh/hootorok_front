@@ -161,13 +161,13 @@ const routes = [
       },
       {
         path: 'rooms/:id/edit',
-        name: 'rooms-edit',
+        name: 'edit-room',
         props: true,
         component: () => import('pages/admin/RoomEdit.vue'),
       },
       {
         path: 'rooms/add',
-        name: 'rooms-add',
+        name: 'add-room',
         component: () => import('pages/DummyPage.vue'),
       },
       {

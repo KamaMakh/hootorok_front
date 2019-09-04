@@ -134,9 +134,7 @@ export default {
   how_to_get: 'How to get there',
   phones_for_communication: 'Phones for communication',
   reception_service: 'Reception and accommodation service',
-  reception_service_name: ['WhatsApp', 'IP Klyuchko O.V. 1st building',
-    'IP Prosviryakova I.A. 2nd building', 'IP Prosviryakova I.A. 3rd building',
-    'IP Sanzharova E.E. snack bar "Kharchevnya"'],
-  contact_emails: ['For reservation', 'For other issues'],
+  for_questions_about_booking: 'For questions about booking',
+  for_other_reasons: 'For other reasons',
   social_networks: 'We are in social networks',
 };

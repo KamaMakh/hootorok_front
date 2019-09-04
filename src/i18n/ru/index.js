@@ -134,10 +134,7 @@ export default {
   how_to_get: 'Как добраться',
   phones_for_communication: 'Телефоны для связи',
   reception_service: 'Служба приема и размещения',
-  reception_service_name: ['WhatsApp', 'ИП Ключко О.В. 1-й корпус',
-    'ИП Просвирякова И.А. 2-й корпус', 'ИП Просвирякова И.А. 3-й корпус',
-    'ИП Санжарова Э.Е. закусочная "Харчевня"'],
-  contact_emails: ['По вопросам бронирования', 'По другим вопросам'],
-  email_for_other_issues: 'По другим вопросам',
+  for_questions_about_booking: 'По вопросам бронирования',
+  for_other_reasons: 'По другим вопросам',
   social_networks: 'Мы в социальных сетях',
 };

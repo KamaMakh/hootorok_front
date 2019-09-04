@@ -138,4 +138,11 @@ export default {
   title: 'Название',
   description: 'Описание',
   registration_date: 'Дата регистрации',
+  contacts_reseption_hutorok: 'Контакты базы отдыха "Хуторок"',
+  how_to_get: 'Как добраться',
+  phones_for_communication: 'Телефоны для связи',
+  reception_service: 'Служба приема и размещения',
+  for_questions_about_booking: 'По вопросам бронирования',
+  for_other_reasons: 'По другим вопросам',
+  social_networks: 'Мы в социальных сетях',
 };

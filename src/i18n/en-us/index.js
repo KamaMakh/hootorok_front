@@ -138,4 +138,11 @@ export default {
   title: 'Title',
   description: 'description',
   registration_date: 'Registration date',
+  contacts_reseption_hutorok: 'Contacts recreation "Hutorok"',
+  how_to_get: 'How to get there',
+  phones_for_communication: 'Phones for communication',
+  reception_service: 'Reception and accommodation service',
+  for_questions_about_booking: 'For questions about booking',
+  for_other_reasons: 'For other reasons',
+  social_networks: 'We are in social networks',
 };

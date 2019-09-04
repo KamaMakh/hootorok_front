@@ -137,4 +137,5 @@ export default {
   number: 'Number',
   title: 'Title',
   description: 'description',
+  registration_date: 'Registration date',
 };

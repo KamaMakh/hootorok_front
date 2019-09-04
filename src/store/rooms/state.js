@@ -3,5 +3,6 @@ export default {
   housing: {},
   housingsTotal: null,
   rooms: [],
+  roomsTotal: null,
   room: {},
 };

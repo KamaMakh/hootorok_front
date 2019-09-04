@@ -137,4 +137,5 @@ export default {
   number: 'Номер',
   title: 'Название',
   description: 'Описание',
+  registration_date: 'Дата регистрации',
 };

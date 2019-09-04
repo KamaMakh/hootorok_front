@@ -156,13 +156,13 @@ const routes = [
       },
       {
         path: 'housings/:id/edit',
-        name: 'admin-housing-edit',
+        name: 'edit-housing',
         props: true,
         component: () => import('pages/admin/HousingEdit.vue'),
       },
       {
         path: 'housings/add',
-        name: 'admin-housing-add',
+        name: 'add-housing',
         component: () => import('pages/DummyPage.vue'),
       },
       {

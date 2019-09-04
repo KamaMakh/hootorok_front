@@ -13,21 +13,36 @@
     >
       <template v-slot:body="props">
         <q-tr :props="props">
-          <q-td key="id" :props="props">{{ props.row.id }}</q-td>
-          <q-td key="title" :props="props">{{ props.row.title }}</q-td>
-          <q-td key="number" :props="props">{{ props.row.number }}</q-td>
-          <q-td key="capacity" :props="props">{{ props.row.capacity }}</q-td>
-          <q-td key="description" :props="props" style="white-space: normal">
-            {{ props.row.description }}
-          </q-td>
-          <q-td key="edit" auto-width>
-            <q-btn flat :label="$t('edit')" :to="`/admin/housings/${props.row.id}/edit`"/>
+          <q-td key="id" :props="props" v-text="props.row.id"/>
+          <q-td key="title" :props="props" v-text="props.row.title"/>
+          <q-td key="number" :props="props" v-text="props.row.number"/>
+          <q-td
+            key="description"
+            :props="props"
+            style="white-space: normal"
+            v-text="props.row.description"
+          />
+          <q-td key="edit">
+            <q-btn
+              size="sm"
+              color="orange"
+              :label="$t('edit')"
+              :to="{
+                name: 'edit-housing',
+                params: { id: props.row.id },
+              }"
+            />
           </q-td>
         </q-tr>
       </template>
     </q-table>
     <div class="q-ma-md flex justify-center">
-      <q-btn :label="$t('add')" to="/admin/housings/add" />
+      <q-btn
+        size="sm"
+        color="positive"
+        :label="$t('add')"
+        :to="{ name: 'add-housing' }"
+      />
     </div>
   </q-page>
 </template>
@@ -50,15 +65,6 @@ export default {
       },
       columns: [
         {
-          name: 'id',
-          required: true,
-          field: 'id',
-          label: 'id',
-          align: 'left',
-          sortable: true,
-
-        },
-        {
           name: 'title',
           required: true,
           field: 'title',
@@ -73,13 +79,6 @@ export default {
           label: this.$t('number'),
           align: 'left',
           sortable: true,
-        },
-        {
-          name: 'capacity',
-          required: true,
-          field: 'capacity',
-          label: this.$t('capacity'),
-          align: 'left',
         },
         {
           name: 'description',

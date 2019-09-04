@@ -60,7 +60,7 @@ import { date } from 'quasar';
 import { mapState } from 'vuex';
 
 export default {
-  name: 'news',
+  name: 'NewsItem',
   preFetch({ store, currentRoute }) {
     return store.dispatch('content/getOneNews', currentRoute.params.id);
   },
@@ -74,7 +74,7 @@ export default {
   },
   methods: {
     formatDate(timestamp) {
-      return date.formatDate(timestamp, 'DD.MM.YYYY');
+      return date.formatDate(timestamp * 1000, 'DD.MM.YYYY');
     },
   },
 };

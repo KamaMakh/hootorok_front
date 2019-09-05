@@ -10,13 +10,35 @@ const routes = [
       },
       {
         path: 'auth',
-        name: 'auth',
+        name: 'login',
         component: () => import('pages/Login.vue'),
+        meta: {
+          requiresVisitor: true,
+        },
       },
       {
         path: 'registration',
         name: 'registration',
         component: () => import('pages/Registration.vue'),
+        meta: {
+          requiresVisitor: true,
+        },
+      },
+      {
+        path: 'cabinet',
+        name: 'cabinet',
+        component: () => import('pages/Cabinet.vue'),
+        meta: {
+          requiresAuth: true,
+        },
+      },
+      {
+        path: 'logout',
+        name: 'logout',
+        component: () => import('pages/Logout.vue'),
+        // meta: {
+        //   requiresAuth: true,
+        // },
       },
       {
         path: 'contacts',
@@ -31,12 +53,60 @@ const routes = [
       {
         path: 'info',
         name: 'info',
-        component: () => import('pages/Info.vue'),
+        component: () => import('pages/info/Info.vue'),
       },
       {
         path: 'booking',
         name: 'booking',
         component: () => import('pages/Booking.vue'),
+        props: true,
+      },
+      {
+        path: 'auth/forgot-password',
+        name: 'password-reset',
+        component: () => import('pages/PasswordReset.vue'),
+      },
+      {
+        path: 'info/payment',
+        name: 'payment-info',
+        component: () => import('pages/info/PaymentInfo.vue'),
+      },
+      {
+        path: 'info/faq',
+        name: 'faq',
+        component: () => import('pages/info/FAQ.vue'),
+      },
+      {
+        path: 'info/booking-info',
+        name: 'booking-info',
+        component: () => import('pages/info/BookingInfo.vue'),
+      },
+      {
+        path: 'news',
+        name: 'news',
+        component: () => import('pages/News.vue'),
+      },
+      {
+        path: 'news/:id',
+        name: 'news-item',
+        props: true,
+        component: () => import('pages/NewsItem.vue'),
+      },
+      {
+        path: 'services',
+        name: 'services',
+        component: () => import('pages/Services.vue'),
+      },
+      {
+        path: 'services/:id',
+        name: 'service',
+        props: true,
+        component: () => import('pages/ServiceItem.vue'),
+      },
+      {
+        path: 'map',
+        name: 'map',
+        component: () => import('pages/DummyPage.vue'),
       },
       {
         path: 'thermal',
@@ -49,14 +119,16 @@ const routes = [
         component: () => import('pages/Rooms.vue'),
       },
       {
-        path: 'maps',
-        name: 'maps',
-        component: () => import('pages/Maps.vue'),
+        path: 'rooms/:id',
+        name: 'room',
+        props: true,
+        component: () => import('pages/RoomItem.vue'),
       },
       {
-        path: '/auth/forgot-password',
-        name: 'passwordreset',
-        component: () => import('pages/PasswordReset.vue'),
+        path: 'housings',
+        name: 'housings',
+        props: true,
+        component: () => import('pages/Housings.vue'),
       },
     ],
   },

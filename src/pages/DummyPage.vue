@@ -1,12 +1,12 @@
 <template>
   <q-page padding>
-    <h1 class="text-h2" v-text="$t('info')"/>
+    <h1 class="text-h2" v-text="'Dummy'"/>
   </q-page>
 </template>
 
 <script>
 export default {
-  name: 'Info',
+  name: 'Dummy',
 };
 </script>
 

@@ -1,9 +1,5 @@
 <template>
   <q-page padding class="text-center">
-   <!-- <template v-if="isServiceEmpty">
-      {{ $t('news_not_found') }}
-    </template>-->
-    <!--<template v-else>-->
       <router-link
         class="services-link"
         to="/services"
@@ -62,9 +58,6 @@ export default {
     ...mapState('content', ['pages']),
     currentPage() {
       return this.pages[this.$attrs.id];
-    },
-    isServiceEmpty() {
-      return Object.keys(this.oneService).length === 0;
     },
   },
 };

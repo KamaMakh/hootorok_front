@@ -24,11 +24,22 @@ function setFAQ(state, faq) {
   state.faq = faq;
 }
 
+function setAllServices(state, data) {
+  state.servicesTotal = parseInt(data.total, 10);
+  state.services = data.services;
+}
+
+function setService(state, service) {
+  state.service = service;
+}
+
 export {
   setPage,
-  setServices,
   setNews,
   setOneNews,
   resetOneNews,
   setFAQ,
+  setServices,
+  setAllServices,
+  setService,
 };

@@ -7,6 +7,8 @@ import {
   oneNewsUrl,
   feedbackUrl,
   faqUrl,
+  oneServiceUrl,
+  allServicesUrl,
 } from 'src/store/urls';
 
 
@@ -97,6 +99,34 @@ function sendFeedback(context, data) {
   });
 }
 
+
+function getAllServices({ commit }, data) {
+  return new Promise((resolve, reject) => {
+    axios.post(allServicesUrl, data)
+      .then((response) => {
+        const payload = {
+          services: response.data.data,
+          total: response.data.total,
+        };
+        commit('setAllServices', payload);
+
+        resolve();
+      })
+      .catch(error => onError(error, reject));
+  });
+}
+
+function getService({ commit }, index) {
+  return new Promise((resolve, reject) => {
+    axios.post(oneServiceUrl, { id: index })
+      .then((response) => {
+        commit('setService', response.data.data);
+        resolve();
+      })
+      .catch(error => onError(error, reject));
+  });
+}
+
 export {
   getFAQ,
   getNews,
@@ -104,4 +134,6 @@ export {
   getOnePage,
   getServices,
   sendFeedback,
+  getService,
+  getAllServices,
 };

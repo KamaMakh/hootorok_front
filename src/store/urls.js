@@ -14,6 +14,8 @@ const oneRoomUrl = `${serverUrl}/rooms/getOneRoom`;
 const allHousingsUrl = `${serverUrl}/housings/getAllHousings`;
 const oneHousingUrl = `${serverUrl}/housings/getHousing`;
 const allRoomsUrl = `${serverUrl}/rooms/getAllRooms`;
+const oneServiceUrl = `${serverUrl}/pages/getOneService`;
+const allServicesUrl = `${serverUrl}/pages/getAllservices`;
 const feedbackUrl = `${serverUrl}/feedback/sendMessage`;
 const faqUrl = `${serverUrl}/pages/getAllFAQ`;
 const getAllUsersUrl = `${serverUrl}/user/getAllUsers`;
@@ -38,4 +40,6 @@ export {
   feedbackUrl,
   faqUrl,
   getAllUsersUrl,
+  oneServiceUrl,
+  allServicesUrl,
 };

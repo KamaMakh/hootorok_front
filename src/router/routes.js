@@ -33,6 +33,12 @@ const routes = [
         },
       },
       {
+        path: 'cabinet/orders',
+        name: 'orders',
+        props: true,
+        component: () => import('pages/DummyPage.vue'),
+      },
+      {
         path: 'logout',
         name: 'logout',
         component: () => import('pages/Logout.vue'),

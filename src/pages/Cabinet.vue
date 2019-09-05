@@ -10,79 +10,53 @@
       <form @submit.prevent="submitForm" class="q-pa-md">
         <div class="q-gutter-md">
           <q-input
-            ref="password"
-            outlined
-            v-model="formData.password"
-            :label="$t('new_password')"
-            :type="hidePassword ? 'password' : 'text'"
-            :rules="[
-              val => !!val || $t('required_field'),
-              val => val.length >= 6 || $t('six_characters_min'),
-              val => val.length <= 25 || $t('twentyfive_characters_password'),
-            ]"
-            lazy-rules
-          >
-            <template v-slot:append>
-              <q-icon
-                :name="hidePassword ? 'visibility_off' : 'visibility'"
-                class="cursor-pointer"
-                @click="hidePassword = !hidePassword"
-              />
-            </template>
-          </q-input>
-          <q-input
-            ref="password2"
-            outlined
-            v-model="formData1.password2"
-            :label="$t('confirm_password')"
-            :type="hidePassword2 ? 'password' : 'text'"
-            :rules="[
-              val => !!val || $t('required_field'),
-              val => this.$refs.password.value === this.$refs.password2.value
-            || $t('passwords_should_match')
-            ]"
-            lazy-rules
-          >
-            <template v-slot:append>
-              <q-icon
-                :name="hidePassword2 ? 'visibility_off' : 'visibility'"
-                class="cursor-pointer"
-                @click="hidePassword2 = !hidePassword2"
-              />
-            </template>
-          </q-input>
-          <q-input
             outlined
             v-model="formData.first_name"
-            :label="$t('name')"
             ref="first_name"
             lazy-rules
             :rules="[
               val => !!val || $t('required_field'),
               val => val.length <= 25 || $t('twentyfive_characters_name'),
             ]"
-          />
-          <q-input
+          >
+          <template v-slot:before>
+            <span class="span-form" v-text="$t('name')"></span>
+          </template>
+          </q-input>
+          <!-- <q-input
             outlined
             v-model="formData1.parental_name"
             :label="$t('parental_name')"
             ref="parental_name"
-            lazy-rules
-            :rules="[
-              val => val.length <= 25 || $t('twentyfive_characters_secondname'),
-            ]"
-          />
+          /> -->
           <q-input
             outlined
             v-model="formData.second_name"
-            :label="$t('second_name')"
             ref="second_name"
             lazy-rules
             :rules="[
               val => !!val || $t('required_field'),
               val => val.length <= 25 || $t('twentyfive_characters_secondname'),
             ]"
-          />
+          >
+          <template v-slot:before>
+            <span class="span-form" v-text="$t('second_name')" width="200px"></span>
+          </template>
+          </q-input>
+          <q-input
+            outlined
+            v-model="formData.email"
+            ref="email"
+            lazy-rules
+            :rules="[
+              val => !!val || $t('required_field'),
+              val => isValidEmail(formData.email) || $t('enter_correct_email')
+            ]"
+          >
+          <template v-slot:before>
+            <span class="span-form" v-text="$t('E-mail')"></span>
+          </template>
+          </q-input>
           <q-input
             outlined
             v-model="formData.phone_number"
@@ -97,20 +71,37 @@
               val => !!val || $t('required_field'),
               val => isValidPhone(formData.phone_number) || $t('enter_correct_tel_number')
             ]"
-          />
+          >
+          <template v-slot:before>
+            <span class="span-form" v-text="$t('phone')"></span>
+          </template>
+          </q-input>
           <q-input
+            ref="password"
             outlined
-            v-model="formData.email"
-            label="E-mail"
-
-            ref="email"
-            lazy-rules
-            :rules="[
-              val => !!val || $t('required_field'),
-              val => isValidEmail(formData.email) || $t('enter_correct_email')
-            ]"
-          />
+            v-model="formData.password"
+            :type="hidePassword ? 'password' : 'text'"
+          >
+          <template v-slot:before>
+            <span class="span-form" v-text="$t('new_password')"></span>
+          </template>
+          </q-input>
           <q-input
+            ref="password2"
+            outlined
+            v-model="formData1.password2"
+            :type="hidePassword2 ? 'password' : 'text'"
+            :rules="[
+              val => isPasswordEmpty()
+            || $t('passwords_should_match')
+            ]"
+            lazy-rules
+          >
+          <template v-slot:before>
+            <span class="span-form" v-text="$t('confirm_password')"></span>
+          </template>
+          </q-input>
+          <!-- <q-input
             v-model="formData1.birthday"
             outlined
             :label="$t('birthday')"
@@ -136,15 +127,15 @@
             v-model="formData1.gender"
             :options="options"
             :label="$t('gender')"
-          />
+          /> -->
         </div>
-        <div class="row">
+        <!-- <div class="row">
           <q-checkbox
             right-label
             v-model="formData1.subscribed"
             :label="$t('subscribe_for_newsletter')"
           />
-        </div>
+        </div> -->
         <div class="row q-mt-md">
           <q-btn
             color="primary"
@@ -156,7 +147,7 @@
             color="primary"
             :label="$t('booking')"
             icon-right="arrow_right"
-            :to="{ name: 'booking'}"
+            :to="{ name: 'Dummy'}"
           />
         </div>
       </form>
@@ -174,18 +165,18 @@ export default {
   data() {
     return {
       formData: {
-        email: '',
-        password: '',
         first_name: '',
         second_name: '',
+        email: '',
+        password: '',
         phone_number: '',
       },
       formData1: {
         password2: '',
-        parental_name: '',
-        birthday: '',
-        gender: '',
-        subscribed: false,
+        // parental_name: '',
+        // birthday: '',
+        // gender: '',
+        // subscribed: false,
       },
       hidePassword: true,
       hidePassword2: true,
@@ -200,12 +191,29 @@ export default {
     ...mapState('user', ['user']),
   },
   methods: {
+    isPasswordEmpty() {
+      if (
+        this.$refs.password.value !== ''
+        && this.$refs.password.value !== null
+        && this.$refs.password.value !== undefined
+        && this.$refs.password2.value !== ''
+        && this.$refs.password2.value !== null
+        && this.$refs.password2.value !== undefined
+      ) {
+        if (this.$refs.password.value !== this.$refs.password2.value) {
+          return false;
+        }
+      } else if (this.$refs.password.value !== this.$refs.password2.value) {
+        return false;
+      }
+      return true;
+    },
     submitForm() {
       this.$refs.email.validate();
       this.$refs.password.validate();
       this.$refs.password2.validate();
       this.$refs.first_name.validate();
-      this.$refs.parental_name.validate();
+      // this.$refs.parental_name.validate();
       this.$refs.second_name.validate();
       this.$refs.phone_number.validate();
       if (
@@ -213,13 +221,12 @@ export default {
         && !this.$refs.password.hasError
         && !this.$refs.password2.hasError
         && !this.$refs.first_name.hasError
-        && !this.$refs.parental_name.hasError
+        // && !this.$refs.parental_name.hasError
         && !this.$refs.second_name.hasError
         && !this.$refs.phone_number.hasError
-        && this.$refs.password.value === this.$refs.password2.value
+        && !this.$refs.password2.hasError
       ) {
         this.$store.dispatch('user/editProfile', this.formData)
-          .then(() => this.$router.push({ name: 'booking' }))
           .catch((error) => {
             this.$q.notify({
               icon: 'close',
@@ -241,5 +248,10 @@ export default {
   max-width: 500px;
   margin: 0 auto;
   border: 1px solid lightgrey;
+}
+.span-form {
+  width: 180px;
+  font-size: 1rem;
+  text-align: right;
 }
 </style>

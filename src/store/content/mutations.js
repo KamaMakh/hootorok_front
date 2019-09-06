@@ -12,14 +12,6 @@ function setServices(state, services) {
   state.services = services;
 }
 
-function setOneService(state, services) {
-  state.oneService = services;
-}
-
-function resetOneService(state) {
-  state.oneService = {};
-}
-
 function setOneNews(state, news) {
   state.oneNews = news;
 }
@@ -35,8 +27,6 @@ function setFAQ(state, faq) {
 export {
   setPage,
   setServices,
-  setOneService,
-  resetOneService,
   setNews,
   setOneNews,
   resetOneNews,

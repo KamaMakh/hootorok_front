@@ -148,4 +148,5 @@ export default {
   service_name: 'Service name',
   services: 'Services',
   active: 'Active',
+  text_id: 'Text id',
 };

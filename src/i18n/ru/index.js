@@ -147,5 +147,6 @@ export default {
   social_networks: 'Мы в социальных сетях',
   service_name: 'Название услуги',
   services: 'Услуги',
-  active: 'Услуга доступна',
+  active: 'Активно',
+  text_id: 'Текстовой id',
 };

@@ -19,33 +19,23 @@
             key="description"
             :props="props"
             v-text="props.row.description"
+            style="white-space: normal"
           />
           <q-td key="main_image" :props="props">
-            <img
+            <q-img
               :src="props.row.main_image"
-              @click="showImage = true"
-              style="height: 100px; cursor: pointer"
+              style="height: 100px; width: 150px;"
             />
-            <q-dialog v-model="showImage">
-              <q-card>
-                <q-card-section class="row items-center">
-                  <q-space />
-                  <q-btn icon="close" flat round dense v-close-popup />
-                </q-card-section>
-                <q-card-section>
-                  <img :src="props.row.main_image" alt="">
-                </q-card-section>
-              </q-card>
-            </q-dialog>
           </q-td>
-          <q-td key="active"
-            :props="props"
-            :v-if="props.row.active"
-          >
+          <!-- <q-td key="active" :props="props">
             <div class="row justify-center">
-              <q-icon name="done" size="24px" color="primary"></q-icon>
+              <q-icon
+                :name="props.row.active ? 'done' : 'close'"
+                size="12px"
+                :color="props.row.active ? 'positive' : 'negative'"
+              />
             </div>
-          </q-td>
+          </q-td> -->
           <q-td key="edit">
             <div class="row justify-center">
               <q-btn
@@ -53,7 +43,7 @@
                 color="orange"
                 :label="$t('edit')"
                 :to="{
-                  name: 'edit-service',
+                  name: 'edit-page',
                   params: { id: props.row.text_id },
                 }"/>
             </div>
@@ -66,7 +56,7 @@
         size="sm"
         color="positive"
         :label="$t('add')"
-        :to="{ name: 'add-service' }"
+        :to="{ name: 'add-page' }"
       />
     </div>
   </q-page>
@@ -79,7 +69,6 @@ export default {
   name: 'AdminServices',
   data() {
     return {
-      showImage: false,
       loading: false,
       pagination: {
         sortBy: 'id',
@@ -101,7 +90,7 @@ export default {
           name: 'text_id',
           required: true,
           field: 'text_id',
-          label: this.$t('id'),
+          label: this.$t('text_id'),
           align: 'left',
           sortable: true,
         },
@@ -119,14 +108,14 @@ export default {
           label: this.$t('photo'),
           align: 'center',
         },
-        {
-          name: 'active',
-          required: true,
-          field: 'active',
-          label: this.$t('active'),
-          align: 'left',
-          sortable: true,
-        },
+        // {
+        //   name: 'active',
+        //   required: true,
+        //   field: 'active',
+        //   label: this.$t('active'),
+        //   align: 'left',
+        //   sortable: true,
+        // },
         {
           name: 'edit',
           required: true,

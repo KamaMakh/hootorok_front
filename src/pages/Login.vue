@@ -28,7 +28,7 @@
             type="password"
             :rules="[
               val => !!val || $t('required_field'),
-              val => val.length >= 6 || $t('six_characters_min')
+              val => val.length >= 6 || $t('expected_more_than', [6]),
             ]"
             lazy-rules
           />

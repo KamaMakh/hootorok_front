@@ -26,7 +26,7 @@ export default function ({ store }) {
     store.dispatch('user/checkUser')
       .then(() => {
         if (to.matched.some(record => record.meta.requiresAdmin)) {
-          if (store.getters.loggedIn && store.state.user.isAdmin) {
+          if (store.getters.isAdmin) {
             next();
           } else {
             next({ name: 'home' });

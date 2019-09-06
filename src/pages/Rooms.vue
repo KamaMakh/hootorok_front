@@ -24,7 +24,7 @@
           emit-value
           map-options
           options-dense
-          v-model="group"
+          v-model="housing"
           :options="housingsOptions"
           class="q-mx-md"
           @input="resetCurrentPage"
@@ -81,9 +81,9 @@
         />
         <q-img
           basic
-          :src="defaultImage"
+          :src="item.main_image"
           :ratio="16/9"
-          @click="showCarousel()"
+          @click="showPhotos(item)"
           class="cursor-pointer"
         >
           <q-tooltip>{{ $t('see_all_room_photos') }}</q-tooltip>
@@ -128,9 +128,9 @@
           <tr v-for="item in roomsPaged" :key="item.id">
             <td class="text-left">
               <img
-                :src="defaultImage"
+                :src="item.main_image"
                 class="small-image"
-                @click="showCarousel()"
+                @click="showPhotos(item)"
               >
             </td>
             <td
@@ -160,7 +160,7 @@
       />
     </div>
     <q-dialog
-      v-model="showAllPhoto"
+      v-model="showCarousel"
       maximized
       class="relative"
     >
@@ -174,7 +174,7 @@
           class="full-height full-width"
         >
           <q-carousel-slide
-            v-for="(image, index) in defaultImages"
+            v-for="(image, index) in photos"
             :img-src="image"
             :key="index"
             :name="index + 1"
@@ -186,7 +186,7 @@
           class="absolute-top-right"
           color="white"
           style="z-index: 10000;"
-          @click="showAllPhoto = false"
+          @click="showCarousel = false"
         />
       </div>
     </q-dialog>
@@ -204,18 +204,13 @@ export default {
     return {
       isDesc: true,
       view: 'one',
-      group: 0,
-      showAllPhoto: false,
+      housing: this.$route.params.housing || 0,
+      showCarousel: false,
       slide: 1,
       perPage: perPageOptions[0],
       perPageOptions,
       currentPage: 1,
-      defaultImage: 'https://cdn.quasar.dev/img/mountains.jpg',
-      defaultImages: [
-        'https://cdn.quasar.dev/img/mountains.jpg',
-        'https://cdn.quasar.dev/img/parallax2.jpg',
-        'https://cdn.quasar.dev/img/parallax1.jpg',
-      ],
+      photos: [],
     };
   },
   async mounted() {
@@ -254,9 +249,9 @@ export default {
       ];
     },
     roomsFiltered() {
-      const res = this.group === 0
-        ? [...this.roomsWithPrices]
-        : this.roomsWithPrices.filter(r => r.housing === this.group);
+      const res = this.housing === 0
+        ? [...this.rooms]
+        : this.rooms.filter(r => r.housing === this.housing);
 
       if (this.isDesc) {
         res.sort((a, b) => b.price - a.price);
@@ -272,25 +267,16 @@ export default {
 
       return this.roomsFiltered.slice(start, end);
     },
-    roomsWithPrices() {
-      const res = [...this.rooms];
-
-      res.forEach((r) => {
-        r.price = this.calculatePrice();
-      });
-
-      return res;
-    },
   },
   methods: {
-    showCarousel() {
-      this.showAllPhoto = true;
+    showPhotos(room) {
+      this.photos = [...room.content_images];
+      this.slide = 1;
+
+      this.showCarousel = true;
     },
     resetCurrentPage() {
       this.currentPage = 1;
-    },
-    calculatePrice() {
-      return 4000 + Math.round(Math.random() * 2000);
     },
   },
 };

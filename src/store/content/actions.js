@@ -3,8 +3,7 @@ import onError from 'src/store/onError';
 import {
   servicesUrl,
   newsUrl,
-  getOnePageUrl,
-  getAllHousingsUrl,
+  onePageUrl,
   oneNewsUrl,
   feedbackUrl,
   faqUrl,
@@ -13,7 +12,7 @@ import {
 
 function getOnePage({ commit }, textId) {
   return new Promise((resolve, reject) => {
-    axios.post(getOnePageUrl, { text_id: textId })
+    axios.post(onePageUrl, { text_id: textId })
       .then((response) => {
         const payload = {
           id: textId,
@@ -56,23 +55,11 @@ function getServices({ commit }) {
   });
 }
 
-function getAllHousings({ commit }, data) {
-  return new Promise((resolve, reject) => {
-    axios.post(getAllHousingsUrl, data)
-      .then((response) => {
-        commit('setHousings', response.data.data);
-
-        resolve();
-      })
-      .catch(error => onError(error, reject));
-  });
-}
-
 function getOneNews({ commit }, id) {
   return new Promise((resolve, reject) => {
     axios.post(oneNewsUrl, { id })
       .then((response) => {
-        commit('setOneNews', response.data.news);
+        commit('setOneNews', response.data.data);
 
         resolve();
       })
@@ -90,14 +77,6 @@ function getOneNews({ commit }, id) {
   });
 }
 
-function sendFeedback(context, data) {
-  return new Promise((resolve, reject) => {
-    axios.post(feedbackUrl, data)
-      .then(() => resolve())
-      .catch(error => onError(error, reject));
-  });
-}
-
 function getFAQ({ commit }) {
   return new Promise((resolve, reject) => {
     axios.post(faqUrl)
@@ -110,12 +89,19 @@ function getFAQ({ commit }) {
   });
 }
 
+function sendFeedback(context, data) {
+  return new Promise((resolve, reject) => {
+    axios.post(feedbackUrl, data)
+      .then(() => resolve())
+      .catch(error => onError(error, reject));
+  });
+}
+
 export {
-  getOnePage,
-  getNews,
-  getServices,
-  getAllHousings,
-  getOneNews,
-  sendFeedback,
   getFAQ,
+  getNews,
+  getOneNews,
+  getOnePage,
+  getServices,
+  sendFeedback,
 };

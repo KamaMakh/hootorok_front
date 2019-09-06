@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import { Cookies } from 'quasar';
 
+import admin from './admin';
 import user from './user';
 import rooms from './rooms';
 import content from './content';
@@ -18,6 +19,7 @@ export default function ({ ssrContext }) {
 
   const Store = new Vuex.Store({
     modules: {
+      admin,
       user,
       rooms,
       content,
@@ -30,6 +32,9 @@ export default function ({ ssrContext }) {
     getters: {
       loggedIn(state) {
         return Boolean(state.user.user.id);
+      },
+      isAdmin(state) {
+        return Boolean(state.user.user.isAdmin);
       },
     },
     mutations: {
@@ -47,6 +52,8 @@ export default function ({ ssrContext }) {
   if (process.env.DEV && module.hot) {
     module.hot.accept(['./user'], () => {
       // eslint-disable-next-line
+      const newAdmin = require('./admin').default;
+      // eslint-disable-next-line
       const newUser = require('./user').default;
       // eslint-disable-next-line
       const newContent = require('./content').default;
@@ -55,6 +62,7 @@ export default function ({ ssrContext }) {
 
       Store.hotUpdate({
         modules: {
+          admin: newAdmin,
           user: newUser,
           content: newContent,
           rooms: newRooms,

@@ -1,15 +1,14 @@
 <template>
   <q-page padding class="text-center">
-      <router-link
-        class="services-link"
-        to="/services"
-      >
-        <h1
-          class="text-h6 text-left"
-          v-text="$t('list_of_services')"
-        />
-      </router-link>
-     <!-- <h1 class="text-h2">{{$t('service')}} {{this.$attrs.id}} </h1>-->
+    <router-link
+      class="services-link"
+      :to="{ name: 'services' }"
+    >
+      <h1
+        class="text-h6 text-left"
+        v-text="$t('list_of_services')"
+      />
+    </router-link>
     <div
       class="q-my-sm text-h2"
       v-text="currentPage.title"
@@ -36,8 +35,6 @@
         :name="i"
       />
     </q-carousel>
-   <!-- </template>-->
-
   </q-page>
 </template>
 
@@ -62,8 +59,3 @@ export default {
   },
 };
 </script>
-
-
-<style scoped>
-
-</style>

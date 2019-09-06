@@ -11,9 +11,9 @@
         class="q-mb-md full-width text-center q-gutter-y-md"
       >
         <router-link
-          :to="{ name: 'rooms' }"
+          :to="{ name: 'rooms', params: { housing: housing.id } }"
           class="text-h6 text-default housing-title block"
-          v-text="'Заголовок'"
+          v-text="`${$t('housing')} ${housing.id}`"
         />
         <q-carousel
           v-model="housingsSlides[i]"
@@ -70,7 +70,7 @@ export default {
     };
   },
   computed: {
-    ...mapState('content', ['housings']),
+    ...mapState('rooms', ['housings']),
   },
   methods: {
     changeFullscreen(index) {
@@ -78,7 +78,7 @@ export default {
     },
   },
   async mounted() {
-    this.$store.dispatch('content/getAllHousings')
+    this.$store.dispatch('rooms/getHousings')
       .then(() => {
         this.housingsSlides = Array.from(
           { length: this.housings.length },

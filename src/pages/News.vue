@@ -87,6 +87,7 @@
 </template>
 
 <script>
+import { date } from 'quasar';
 import { mapState } from 'vuex';
 
 const perPageSelection = [6, 12, 18];
@@ -104,7 +105,6 @@ export default {
   },
   async mounted() {
     this.getNews();
-    this.getNews();
   },
   methods: {
     changePage() {
@@ -116,13 +116,8 @@ export default {
         limit: this.perPage,
       });
     },
-    formatDate(dateTime) {
-      const date = new Date(dateTime);
-      const day = date.getDate();
-      const month = date.getMonth();
-      const year = date.getFullYear();
-
-      return `${day}.${month}.${year}`;
+    formatDate(timestamp) {
+      return date.formatDate(timestamp * 1000, 'DD.MM.YYYY');
     },
   },
   watch: {

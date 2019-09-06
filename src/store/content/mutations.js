@@ -11,6 +11,7 @@ function setNews(state, data) {
 function setServices(state, services) {
   state.services = services;
 }
+
 function setOneService(state, services) {
   state.oneService = services;
 }
@@ -18,16 +19,13 @@ function setOneService(state, services) {
 function resetOneService(state) {
   state.oneService = {};
 }
-function setHousings(state, housings) {
-  state.housings = housings;
-}
 
 function setOneNews(state, news) {
   state.oneNews = news;
 }
 
 function resetOneNews(state) {
-  state.oneNews = {};
+  state.oneNews = null;
 }
 
 function setFAQ(state, faq) {
@@ -39,7 +37,6 @@ export {
   setServices,
   setOneService,
   resetOneService,
-  setHousings,
   setNews,
   setOneNews,
   resetOneNews,

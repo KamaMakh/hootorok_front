@@ -1,9 +1,8 @@
 export default {
-  pages: {},
+  faq: [],
   news: [],
   newsTotal: null,
   services: [],
-  housings: [],
-  oneNews: {},
-  faq: [],
+  oneNews: null,
+  pages: {},
 };

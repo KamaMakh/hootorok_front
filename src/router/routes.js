@@ -67,6 +67,11 @@ const routes = [
         component: () => import('pages/PasswordReset.vue'),
       },
       {
+        path: 'recovery',
+        name: 'recovery',
+        component: () => import('pages/NewPassword.vue'),
+      },
+      {
         path: 'info/payment',
         name: 'payment-info',
         component: () => import('pages/info/PaymentInfo.vue'),
@@ -116,6 +121,7 @@ const routes = [
       {
         path: 'rooms',
         name: 'rooms',
+        props: true,
         component: () => import('pages/Rooms.vue'),
       },
       {
@@ -129,6 +135,76 @@ const routes = [
         name: 'housings',
         props: true,
         component: () => import('pages/Housings.vue'),
+      },
+    ],
+  },
+  {
+    path: '/admin',
+    component: () => import('layouts/AdminLayout.vue'),
+    meta: { requiresAdmin: true },
+    redirect: { name: 'admin-feedback' },
+    children: [
+      {
+        path: 'feedback',
+        name: 'admin-feedback',
+        component: () => import('pages/admin/Feedback.vue'),
+      },
+      {
+        path: 'housings',
+        name: 'admin-housings',
+        component: () => import('pages/admin/Housings.vue'),
+      },
+      {
+        path: 'housings/:id/edit',
+        name: 'edit-housing',
+        props: true,
+        component: () => import('pages/admin/HousingEdit.vue'),
+      },
+      {
+        path: 'housings/add',
+        name: 'add-housing',
+        component: () => import('pages/DummyPage.vue'),
+      },
+      {
+        path: 'rooms',
+        name: 'admin-rooms',
+        component: () => import('pages/admin/Rooms.vue'),
+      },
+      {
+        path: 'rooms/:id/edit',
+        name: 'edit-room',
+        props: true,
+        component: () => import('pages/admin/RoomEdit.vue'),
+      },
+      {
+        path: 'rooms/add',
+        name: 'add-room',
+        component: () => import('pages/DummyPage.vue'),
+      },
+      {
+        path: 'news',
+        name: 'admin-news',
+        component: () => import('pages/admin/News.vue'),
+      },
+      {
+        path: 'services',
+        name: 'admin-services',
+        component: () => import('pages/admin/Services.vue'),
+      },
+      {
+        path: 'info-pages',
+        name: 'admin-info-pages',
+        component: () => import('pages/admin/InfoPages.vue'),
+      },
+      {
+        path: 'faq',
+        name: 'admin-faq',
+        component: () => import('pages/admin/FAQ.vue'),
+      },
+      {
+        path: 'users',
+        name: 'admin-users',
+        component: () => import('pages/admin/Users.vue'),
       },
     ],
   },

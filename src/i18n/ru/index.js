@@ -145,4 +145,8 @@ export default {
   for_questions_about_booking: 'По вопросам бронирования',
   for_other_reasons: 'По другим вопросам',
   social_networks: 'Мы в социальных сетях',
+  service_name: 'Название услуги',
+  services: 'Услуги',
+  active: 'Активно',
+  text_id: 'Текстовой id',
 };

@@ -145,4 +145,8 @@ export default {
   for_questions_about_booking: 'For questions about booking',
   for_other_reasons: 'For other reasons',
   social_networks: 'We are in social networks',
+  service_name: 'Service name',
+  services: 'Services',
+  active: 'Active',
+  text_id: 'Text id',
 };

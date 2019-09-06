@@ -47,7 +47,11 @@ function getServices({ commit }) {
   return new Promise((resolve, reject) => {
     axios.post(servicesUrl)
       .then((response) => {
-        commit('setServices', response.data.data);
+        const payload = {
+          services: response.data.data,
+          total: response.data.total,
+        };
+        commit('setServices', payload);
 
         resolve();
       })

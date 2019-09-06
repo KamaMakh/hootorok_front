@@ -81,7 +81,19 @@
             outlined
             v-model="formData.password"
             :type="hidePassword ? 'password' : 'text'"
+            :rules="[
+              val => isPasswordsEmpty()
+            || $t('passwords_should_match')
+            ]"
+            lazy-rules
           >
+          <template v-slot:append>
+            <q-icon
+              :name="hidePassword ? 'visibility_off' : 'visibility'"
+              class="cursor-pointer"
+              @click="hidePassword = !hidePassword"
+            />
+          </template>
           <template v-slot:before>
             <span class="span-form" v-text="$t('new_password')"></span>
           </template>
@@ -92,11 +104,19 @@
             v-model="formData1.password2"
             :type="hidePassword2 ? 'password' : 'text'"
             :rules="[
-              val => isPasswordEmpty()
+              val => val.length <= 25 || $t('twentyfive_characters_password'),
+              val => isPasswordsEmpty()
             || $t('passwords_should_match')
             ]"
             lazy-rules
           >
+            <template v-slot:append>
+              <q-icon
+                :name="hidePassword2 ? 'visibility_off' : 'visibility'"
+                class="cursor-pointer"
+                @click="hidePassword2 = !hidePassword2"
+              />
+            </template>
           <template v-slot:before>
             <span class="span-form" v-text="$t('confirm_password')"></span>
           </template>
@@ -145,9 +165,9 @@
           <q-space />
           <q-btn
             color="primary"
-            :label="$t('booking')"
+            :label="$t('go_to_my_orders')"
             icon-right="arrow_right"
-            :to="{ name: 'Dummy'}"
+            :to="{ name: 'my-orders'}"
           />
         </div>
       </form>
@@ -191,19 +211,13 @@ export default {
     ...mapState('user', ['user']),
   },
   methods: {
-    isPasswordEmpty() {
-      if (
-        this.$refs.password.value !== ''
-        && this.$refs.password.value !== null
-        && this.$refs.password.value !== undefined
-        && this.$refs.password2.value !== ''
-        && this.$refs.password2.value !== null
+    isPasswordsEmpty() {
+      if (this.$refs.password.value !== undefined
         && this.$refs.password2.value !== undefined
       ) {
-        if (this.$refs.password.value !== this.$refs.password2.value) {
-          return false;
+        if (this.$refs.password.value === this.$refs.password2.value) {
+          return true;
         }
-      } else if (this.$refs.password.value !== this.$refs.password2.value) {
         return false;
       }
       return true;
@@ -224,7 +238,6 @@ export default {
         // && !this.$refs.parental_name.hasError
         && !this.$refs.second_name.hasError
         && !this.$refs.phone_number.hasError
-        && !this.$refs.password2.hasError
       ) {
         this.$store.dispatch('user/editProfile', this.formData)
           .catch((error) => {

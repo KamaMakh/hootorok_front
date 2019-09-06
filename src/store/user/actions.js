@@ -27,10 +27,10 @@ function register({ commit }, data) {
 
 function editProfile({ commit }, data) {
   return new Promise((resolve, reject) => {
+    console.log(data);
     axios.post(editProfileUrl, data)
       .then((response) => {
         commit('setUser', response.data.data);
-
         resolve();
       })
       .catch(error => onError(error, reject));

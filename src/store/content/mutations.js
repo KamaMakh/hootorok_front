@@ -8,8 +8,9 @@ function setNews(state, data) {
   state.news = data.news;
 }
 
-function setServices(state, services) {
-  state.services = services;
+function setServices(state, data) {
+  state.servicesTotal = parseInt(data.total, 10);
+  state.services = data.services;
 }
 
 function setOneNews(state, news) {
@@ -26,9 +27,9 @@ function setFAQ(state, faq) {
 
 export {
   setPage,
-  setServices,
   setNews,
   setOneNews,
   resetOneNews,
   setFAQ,
+  setServices,
 };

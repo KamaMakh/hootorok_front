@@ -188,14 +188,25 @@ const routes = [
         component: () => import('pages/DummyPage.vue'),
       },
       {
-        path: 'news',
-        name: 'admin-news',
-        component: () => import('pages/admin/News.vue'),
-      },
-      {
         path: 'services',
         name: 'admin-services',
         component: () => import('pages/admin/Services.vue'),
+      },
+      {
+        path: 'pages/:id/edit',
+        name: 'edit-page',
+        props: true,
+        component: () => import('pages/DummyPage.vue'),
+      },
+      {
+        path: 'pages/add',
+        name: 'add-page',
+        component: () => import('pages/DummyPage.vue'),
+      },
+      {
+        path: 'news',
+        name: 'admin-news',
+        component: () => import('pages/admin/News.vue'),
       },
       {
         path: 'info-pages',

@@ -18,7 +18,7 @@ function setRoom(state, room) {
 
 export {
   setHousings,
+  setHousing,
   setRooms,
   setRoom,
-  setHousing,
 };

@@ -9,15 +9,13 @@
         class="window-height full-width absolute"
         style="top: 0; left: 0; background: rgba(0, 0, 0, 0.3);"
       />
-      <div
-        class="relative-position q-pt-xl"
-      >
+      <div class="relative-position q-pt-xl full-width">
         <div
           class="text-center q-ma-md text-h4"
           v-text="$t('thermal_springs')"
         />
         <div
-          class="text-justify text-body2 q-pt-lg"
+          class="text-center text-body2 q-pt-lg"
           style="width: 80%; margin: auto;"
           v-text="page.content.substring(0, 100)"
         />

@@ -56,6 +56,7 @@ function getRoom({ commit }, index) {
     axios.post(oneRoomUrl, { id: index })
       .then((response) => {
         commit('setRoom', response.data.data);
+
         resolve();
       })
       .catch(error => onError(error, reject));
@@ -64,7 +65,7 @@ function getRoom({ commit }, index) {
 
 export {
   getHousings,
+  getHousing,
   getRooms,
   getRoom,
-  getHousing,
 };

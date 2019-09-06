@@ -8,10 +8,10 @@
       <router-link
         class="card-link"
         v-for="item in services"
-        :key="item.id"
+        :key="item.text_id"
         :to="{
           name: 'service',
-          params: { id: item.id },
+          params: { id: item.text_id },
         }"
       >
         <q-card>
@@ -34,7 +34,7 @@
 import { mapState } from 'vuex';
 
 export default {
-  name: 'Service',
+  name: 'Services',
   async mounted() {
     this.$store.dispatch('content/getServices');
   },

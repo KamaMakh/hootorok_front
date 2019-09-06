@@ -212,11 +212,6 @@ const routes = [
         name: 'admin-users',
         component: () => import('pages/admin/Users.vue'),
       },
-      {
-        path: 'cabinet/orders',
-        name: 'my-orders',
-        component: () => import('pages/DummyPage.vue'),
-      },
     ],
   },
 ];

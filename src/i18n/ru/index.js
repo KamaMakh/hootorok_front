@@ -131,10 +131,6 @@ export default {
   recreation_center: 'База отдыха',
   users: 'Пользователи',
   info_pages: 'Информационные страницы',
-  save: 'Сохранить',
-  parental_name: 'Отчество',
-  birthday: 'Дата рождения',
-  gender: 'Пол',
   entries_by_page: 'Записей на странице',
   edit: 'Изменить',
   add: 'Добавить',
@@ -149,6 +145,7 @@ export default {
   for_questions_about_booking: 'По вопросам бронирования',
   for_other_reasons: 'По другим вопросам',
   social_networks: 'Мы в социальных сетях',
+  save: 'Сохранить',
   my_orders: 'Мои заказы',
   data_successfully_saved: 'Данные успешно сохранены',
 };

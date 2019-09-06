@@ -10,19 +10,6 @@ const emailValidationMixin = {
   },
 };
 
-const phoneValidationMixin = {
-  methods: {
-    // eslint-disable-next-line
-    isValidPhone(phone_number) {
-      if (/^((\+7|7|8)+([0-9]){10})$/.test(phone_number)) {
-        return true;
-      }
-
-      return false;
-    },
-  },
-};
-
 export {
-  emailValidationMixin, phoneValidationMixin,
+  emailValidationMixin,
 };

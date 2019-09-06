@@ -131,10 +131,6 @@ export default {
   recreation_center: 'Recreation center',
   users: 'Users',
   info_pages: 'Info pages',
-  save: 'Save',
-  parental_name: 'Parental name',
-  birthday: 'Birthday',
-  gender: 'Gender',
   entries_by_page: 'Entries by page',
   edit: 'Edit',
   add: 'Add',
@@ -149,6 +145,7 @@ export default {
   for_questions_about_booking: 'For questions about booking',
   for_other_reasons: 'For other reasons',
   social_networks: 'We are in social networks',
+  save: 'Save',
   my_orders: 'My orders',
   data_successfully_saved: 'Data successfully saved',
 };

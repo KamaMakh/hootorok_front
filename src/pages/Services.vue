@@ -34,7 +34,7 @@
 import { mapState } from 'vuex';
 
 export default {
-  name: 'Service',
+  name: 'Services',
   async mounted() {
     this.$store.dispatch('content/getServices');
   },

@@ -145,7 +145,7 @@ export default {
       this.getServices();
     },
     getServices() {
-      this.$store.dispatch('content/getAllServices', {
+      this.$store.dispatch('content/getServices', {
         limit: this.pagination.rowsPerPage,
         offset: this.pagination.rowsPerPage * (this.pagination.page - 1),
         orderBy: this.pagination.sortBy || 'id',

@@ -6,5 +6,4 @@ export default {
   pages: {},
   services: [],
   servicesTotal: null,
-  service: {},
 };

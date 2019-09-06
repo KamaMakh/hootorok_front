@@ -20,8 +20,8 @@
             :type="hidePassword ? 'password' : 'text'"
             :rules="[
               val => !!val || $t('required_field'),
-              val => val.length >= 6 || $t('six_characters_min'),
-              val => val.length <= 25 || $t('twentyfive_characters_password'),
+              val => ((val.length >= 6) && (val.length <= 25)) ||
+                $t('expected_length_between', [6, 25]),
             ]"
             lazy-rules
           >

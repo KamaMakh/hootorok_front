@@ -149,5 +149,6 @@ export default {
   for_questions_about_booking: 'For questions about booking',
   for_other_reasons: 'For other reasons',
   social_networks: 'We are in social networks',
-  go_to_my_orders: 'Go to my orders',
+  my_orders: 'My orders',
+  data_successfully_saved: 'Data successfully saved',
 };

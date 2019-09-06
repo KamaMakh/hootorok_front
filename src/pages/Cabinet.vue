@@ -1,112 +1,97 @@
 <template>
   <q-page padding>
-    <div class="auth-tabs">
-      <q-banner class="bg-grey-3">
-        <div
-          class="text-center font-size_20"
-          v-text="$t('cabinet')"
-        />
-      </q-banner>
-      <form @submit.prevent="submitForm" class="q-pa-md">
+    <h1
+      class="text-center text-h5"
+      v-text="$t('cabinet')"
+    />
+    <div class="row justify-center">
+      <form
+        @submit.prevent="submitForm"
+        class="col-xs-12 col-sm-6"
+        style="max-width: 500px;"
+      >
         <div class="q-gutter-md">
           <q-input
+            dense
             outlined
             v-model="formData.first_name"
             ref="first_name"
             lazy-rules
+            class="text-right"
+            :hint="$t('name')"
             :rules="[
               val => !!val || $t('required_field'),
               val => val.length <= 25 || $t('twentyfive_characters_name'),
             ]"
-          >
-          <template v-slot:before>
-            <span class="span-form" v-text="$t('name')"></span>
-          </template>
-          </q-input>
-          <!-- <q-input
-            outlined
-            v-model="formData1.parental_name"
-            :label="$t('parental_name')"
-            ref="parental_name"
-          /> -->
+          />
           <q-input
+            dense
             outlined
             v-model="formData.second_name"
             ref="second_name"
             lazy-rules
+            :hint="$t('second_name')"
             :rules="[
               val => !!val || $t('required_field'),
               val => val.length <= 25 || $t('twentyfive_characters_secondname'),
             ]"
-          >
-          <template v-slot:before>
-            <span class="span-form" v-text="$t('second_name')" width="200px"></span>
-          </template>
-          </q-input>
+          />
           <q-input
+            dense
             outlined
             v-model="formData.email"
             ref="email"
             lazy-rules
+            hint="E-mail"
             :rules="[
               val => !!val || $t('required_field'),
               val => isValidEmail(formData.email) || $t('enter_correct_email')
             ]"
-          >
-          <template v-slot:before>
-            <span class="span-form" v-text="$t('E-mail')"></span>
-          </template>
-          </q-input>
+          />
           <q-input
+            dense
             outlined
             v-model="formData.phone_number"
             :label="$t('phone')"
             ref="phone_number"
             mask="# ### ### ## ##"
             unmasked-value
-            fill-mask
             :hint="$t('phone_layout')"
             lazy-rules
             :rules="[
               val => !!val || $t('required_field'),
-              val => isValidPhone(formData.phone_number) || $t('enter_correct_tel_number')
             ]"
-          >
-          <template v-slot:before>
-            <span class="span-form" v-text="$t('phone')"></span>
-          </template>
-          </q-input>
+          />
           <q-input
-            ref="password"
+            dense
             outlined
+            ref="password"
             v-model="formData.password"
             :type="hidePassword ? 'password' : 'text'"
+            :hint="$t('new_password')"
             :rules="[
-              val => isPasswordsEmpty()
-            || $t('passwords_should_match')
+              val => (!val || val.length >= 6) || $t('six_characters_min'),
+              val => (!val || val.length <= 25) || $t('twentyfive_characters_password'),
             ]"
             lazy-rules
           >
-          <template v-slot:append>
-            <q-icon
-              :name="hidePassword ? 'visibility_off' : 'visibility'"
-              class="cursor-pointer"
-              @click="hidePassword = !hidePassword"
-            />
-          </template>
-          <template v-slot:before>
-            <span class="span-form" v-text="$t('new_password')"></span>
-          </template>
+            <template v-slot:append>
+              <q-icon
+                :name="hidePassword ? 'visibility_off' : 'visibility'"
+                class="cursor-pointer"
+                @click="hidePassword = !hidePassword"
+              />
+            </template>
           </q-input>
           <q-input
-            ref="password2"
+            dense
             outlined
-            v-model="formData1.password2"
+            ref="password2"
+            v-model="password_repeat"
             :type="hidePassword2 ? 'password' : 'text'"
+            :hint="$t('confirm_password')"
             :rules="[
-              val => val.length <= 25 || $t('twentyfive_characters_password'),
-              val => isPasswordsEmpty()
-            || $t('passwords_should_match')
+              val => isPasswordsEqual || $t('passwords_should_match')
             ]"
             lazy-rules
           >
@@ -117,55 +102,24 @@
                 @click="hidePassword2 = !hidePassword2"
               />
             </template>
-          <template v-slot:before>
-            <span class="span-form" v-text="$t('confirm_password')"></span>
-          </template>
           </q-input>
-          <!-- <q-input
-            v-model="formData1.birthday"
-            outlined
-            :label="$t('birthday')"
-          >
-            <template v-slot:append>
-              <q-icon name="event" class="cursor-pointer">
-                <q-popup-proxy
-                  ref="qDateProxy"
-                  transition-show="scale"
-                  transition-hide="scale">
-                  <q-date
-                    v-model="formData1.birthday"
-                    @input="() => $refs.qDateProxy.hide()"
-                    mask="DD.MM.YYYY"
-                  />
-                </q-popup-proxy>
-              </q-icon>
-            </template>
-          </q-input>
-          <q-select
-            class="q-pt-md q-pb-md"
-            outlined
-            v-model="formData1.gender"
-            :options="options"
-            :label="$t('gender')"
-          /> -->
         </div>
         <!-- <div class="row">
           <q-checkbox
             right-label
-            v-model="formData1.subscribed"
+            v-model="formData.subscribed"
             :label="$t('subscribe_for_newsletter')"
           />
         </div> -->
-        <div class="row q-mt-md">
+        <div class="row q-gutter-md q-py-md justify-between">
           <q-btn
             color="primary"
             :label="$t('save')"
             type="submit"
           />
-          <q-space />
           <q-btn
             color="primary"
-            :label="$t('go_to_my_orders')"
+            :label="$t('my_orders')"
             icon-right="arrow_right"
             :to="{ name: 'my-orders'}"
           />
@@ -177,57 +131,41 @@
 
 <script>
 import { mapState } from 'vuex';
-import { emailValidationMixin, phoneValidationMixin } from 'components/helpers/mixins';
+import { emailValidationMixin } from 'components/helpers/mixins';
 
 export default {
   name: 'Cabinet',
-  mixins: [emailValidationMixin, phoneValidationMixin],
+  mixins: [emailValidationMixin],
   data() {
     return {
       formData: {
-        first_name: '',
-        second_name: '',
-        email: '',
+        id: this.$store.state.user.user.id,
+        first_name: this.$store.state.user.user.first_name,
+        second_name: this.$store.state.user.user.second_name,
+        email: this.$store.state.user.user.email,
+        phone_number: this.$store.state.user.user.phone_number,
         password: '',
-        phone_number: '',
       },
-      formData1: {
-        password2: '',
-        // parental_name: '',
-        // birthday: '',
-        // gender: '',
-        // subscribed: false,
-      },
+      password_repeat: '',
       hidePassword: true,
       hidePassword2: true,
-      tab: 'Login',
-      options: [
-        'Male', 'Female',
-      ],
-      check: false,
     };
   },
   computed: {
     ...mapState('user', ['user']),
+    isPasswordsEqual() {
+      return this.formData.password === this.password_repeat;
+    },
+    isPasswordsEmpty() {
+      return !this.formData.password && !this.password_repeat;
+    },
   },
   methods: {
-    isPasswordsEmpty() {
-      if (this.$refs.password.value !== undefined
-        && this.$refs.password2.value !== undefined
-      ) {
-        if (this.$refs.password.value === this.$refs.password2.value) {
-          return true;
-        }
-        return false;
-      }
-      return true;
-    },
     submitForm() {
       this.$refs.email.validate();
       this.$refs.password.validate();
       this.$refs.password2.validate();
       this.$refs.first_name.validate();
-      // this.$refs.parental_name.validate();
       this.$refs.second_name.validate();
       this.$refs.phone_number.validate();
       if (
@@ -235,11 +173,26 @@ export default {
         && !this.$refs.password.hasError
         && !this.$refs.password2.hasError
         && !this.$refs.first_name.hasError
-        // && !this.$refs.parental_name.hasError
         && !this.$refs.second_name.hasError
         && !this.$refs.phone_number.hasError
       ) {
-        this.$store.dispatch('user/editProfile', this.formData)
+        const newUser = Object.assign({}, this.formData);
+
+        if (this.isPasswordsEmpty) {
+          delete newUser.password;
+        }
+
+        this.$store.dispatch('user/editProfile', newUser)
+          .then(() => {
+            this.formData.password = '';
+            this.password_repeat = '';
+
+            this.$q.notify({
+              icon: 'done',
+              color: 'positive',
+              message: this.$t('data_successfully_saved'),
+            });
+          })
           .catch((error) => {
             this.$q.notify({
               icon: 'close',
@@ -250,21 +203,5 @@ export default {
       }
     },
   },
-  mounted() {
-    this.formData = Object.assign({}, this.user);
-  },
 };
 </script>
-
-<style>
-.auth-tabs {
-  max-width: 500px;
-  margin: 0 auto;
-  border: 1px solid lightgrey;
-}
-.span-form {
-  width: 180px;
-  font-size: 1rem;
-  text-align: right;
-}
-</style>

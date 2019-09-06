@@ -149,5 +149,6 @@ export default {
   for_questions_about_booking: 'По вопросам бронирования',
   for_other_reasons: 'По другим вопросам',
   social_networks: 'Мы в социальных сетях',
-  go_to_my_orders: 'Перейти в мои заказы',
+  my_orders: 'Мои заказы',
+  data_successfully_saved: 'Данные успешно сохранены',
 };

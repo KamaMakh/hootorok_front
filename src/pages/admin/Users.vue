@@ -21,6 +21,13 @@ import { formatMixin } from 'components/helpers/mixins';
 export default {
   name: 'AdminUsers',
   mixins: [formatMixin],
+  preFetch({ store }) {
+    return store.dispatch('user/getUsers', {
+      limit: 10,
+      orderBy: 'id',
+      order: 'asc',
+    });
+  },
   data() {
     return {
       loading: false,
@@ -91,9 +98,6 @@ export default {
       'usersTotal',
     ]),
   },
-  async mounted() {
-    this.getUsers();
-  },
   methods: {
     onRequest(props) {
       this.loading = true;
@@ -104,15 +108,23 @@ export default {
       this.getUsers();
     },
     getUsers() {
-      this.$store.dispatch('user/getAllUsers', {
+      this.$store.dispatch('user/getUsers', {
         limit: this.pagination.rowsPerPage,
         offset: this.pagination.rowsPerPage * (this.pagination.page - 1),
         orderBy: this.pagination.sortBy || 'id',
         order: this.pagination.descending ? 'desc' : 'asc',
-      }).then(() => {
-        this.loading = false;
-        this.pagination.rowsNumber = this.usersTotal;
-      });
+      })
+        .then(() => {
+          this.loading = false;
+          this.pagination.rowsNumber = this.usersTotal;
+        })
+        .catch((error) => {
+          this.$q.notify({
+            icon: 'close',
+            color: 'negative',
+            message: error,
+          });
+        });
     },
   },
 };

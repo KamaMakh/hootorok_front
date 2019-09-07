@@ -67,6 +67,13 @@ import { mapState } from 'vuex';
 
 export default {
   name: 'AdminRooms',
+  preFetch({ store }) {
+    return store.dispatch('rooms/getRooms', {
+      limit: 10,
+      orderBy: 'id',
+      order: 'asc',
+    });
+  },
   data() {
     return {
       showImage: false,
@@ -134,9 +141,6 @@ export default {
       'roomsTotal',
     ]),
   },
-  async mounted() {
-    this.getRooms();
-  },
   methods: {
     onRequest(props) {
       this.loading = true;
@@ -144,6 +148,7 @@ export default {
       this.pagination.rowsPerPage = props.pagination.rowsPerPage;
       this.pagination.sortBy = props.pagination.sortBy;
       this.pagination.descending = props.pagination.descending;
+
       this.getRooms();
     },
     getRooms() {
@@ -152,10 +157,18 @@ export default {
         offset: this.pagination.rowsPerPage * (this.pagination.page - 1),
         orderBy: this.pagination.sortBy || 'id',
         order: this.pagination.descending ? 'desc' : 'asc',
-      }).then(() => {
-        this.loading = false;
-        this.pagination.rowsNumber = this.roomsTotal;
-      });
+      })
+        .then(() => {
+          this.loading = false;
+          this.pagination.rowsNumber = this.roomsTotal;
+        })
+        .catch((error) => {
+          this.$q.notify({
+            icon: 'close',
+            color: 'negative',
+            message: error,
+          });
+        });
     },
   },
 };

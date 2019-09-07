@@ -120,7 +120,6 @@ function getFeedbacks({ commit }, data) {
 }
 
 function getInfoPages({ commit }, data) {
-  console.log('fgg');
   return new Promise((resolve, reject) => {
     axios.post(infoPagesUrl, data)
       .then((response) => {

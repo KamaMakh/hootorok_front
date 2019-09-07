@@ -7,6 +7,7 @@ import {
   oneNewsUrl,
   feedbackUrl,
   faqUrl,
+  allMessagesUrl,
 } from 'src/store/urls';
 
 
@@ -97,6 +98,22 @@ function sendFeedback(context, data) {
   });
 }
 
+function getAllMessages({ commit }, data) {
+  return new Promise((resolve, reject) => {
+    axios.post(allMessagesUrl, data)
+      .then((response) => {
+        const payload = {
+          messages: response.data.data,
+          total: response.data.total,
+        };
+        commit('setAllMessages', payload);
+
+        resolve();
+      })
+      .catch(error => onError(error, reject));
+  });
+}
+
 export {
   getFAQ,
   getNews,
@@ -104,4 +121,5 @@ export {
   getOnePage,
   getServices,
   sendFeedback,
+  getAllMessages,
 };

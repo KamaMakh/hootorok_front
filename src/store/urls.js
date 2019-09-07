@@ -15,6 +15,8 @@ const allHousingsUrl = `${serverUrl}/housings/getAllHousings`;
 const allRoomsUrl = `${serverUrl}/rooms/getAllRooms`;
 const feedbackUrl = `${serverUrl}/feedback/sendMessage`;
 const faqUrl = `${serverUrl}/pages/getAllFAQ`;
+const allMessagesUrl = `${serverUrl}/feedback/getAllMessages`;
+const deleteMessageUrl = `${serverUrl}/feedback/deleteMessage`;
 
 export {
   serverUrl,
@@ -34,4 +36,6 @@ export {
   oneRoomUrl,
   feedbackUrl,
   faqUrl,
+  allMessagesUrl,
+  deleteMessageUrl,
 };

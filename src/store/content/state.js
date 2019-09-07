@@ -5,4 +5,6 @@ export default {
   oneNews: null,
   pages: {},
   services: [],
+  allMessagesTotal: null,
+  allMessages: [],
 };

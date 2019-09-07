@@ -24,6 +24,11 @@ function setFAQ(state, faq) {
   state.faq = faq;
 }
 
+function setAllMessages(state, data) {
+  state.allMessagesTotal = parseInt(data.total, 10);
+  state.allMessages = data.messages;
+}
+
 export {
   setPage,
   setServices,
@@ -31,4 +36,5 @@ export {
   setOneNews,
   resetOneNews,
   setFAQ,
+  setAllMessages,
 };

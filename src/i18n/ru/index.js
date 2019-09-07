@@ -130,4 +130,7 @@ export default {
   recreation_center: 'База отдыха',
   users: 'Пользователи',
   info_pages: 'Информационные страницы',
+  entries_by_page: 'Показывать на странице',
+  watch: 'Смотреть',
+  actions: 'Действия',
 };

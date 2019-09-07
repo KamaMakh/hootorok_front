@@ -1,7 +1,7 @@
 import { axios } from 'boot/axios';
 import onError from 'src/store/onError';
 import {
-  deleteMessageUrl,
+  deleteFeedbackUrl,
   addHousingUrl,
   editHousingUrl,
 } from 'src/store/urls';
@@ -22,9 +22,9 @@ function editHousing(context, data) {
   });
 }
 
-function deleteMessage(context, id) {
+function deleteFeedback(context, id) {
   return new Promise((resolve, reject) => {
-    axios.post(deleteMessageUrl, { id })
+    axios.post(deleteFeedbackUrl, { id })
       .then(() => resolve())
       .catch(error => onError(error, reject));
   });
@@ -33,5 +33,5 @@ function deleteMessage(context, id) {
 export {
   addHousing,
   editHousing,
-  deleteMessage,
+  deleteFeedback,
 };

@@ -6,6 +6,6 @@ export default {
   pages: {},
   services: [],
   servicesTotal: 0,
-  allMessages: [],
-  allMessagesTotal: 0,
+  feedbacks: [],
+  feedbacksTotal: 0,
 };

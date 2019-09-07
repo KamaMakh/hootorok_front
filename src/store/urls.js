@@ -17,10 +17,10 @@ const oneHousingUrl = `${serverUrl}/housings/getHousing`;
 const addHousingUrl = `${serverUrl}/housings/addHousing`;
 const editHousingUrl = `${serverUrl}/housings/editHousing`;
 const allRoomsUrl = `${serverUrl}/rooms/getAllRooms`;
-const feedbackUrl = `${serverUrl}/feedback/sendMessage`;
+const sendFeedbackUrl = `${serverUrl}/feedback/sendMessage`;
 const faqUrl = `${serverUrl}/pages/getAllFAQ`;
-const allMessagesUrl = `${serverUrl}/feedback/getAllMessages`;
-const deleteMessageUrl = `${serverUrl}/feedback/deleteMessage`;
+const feedbacksUrl = `${serverUrl}/feedback/getAllMessages`;
+const deleteFeedbackUrl = `${serverUrl}/feedback/deleteMessage`;
 const getAllUsersUrl = `${serverUrl}/user/getAllUsers`;
 
 export {
@@ -42,10 +42,10 @@ export {
   allRoomsUrl,
   onePageUrl,
   oneRoomUrl,
-  feedbackUrl,
+  sendFeedbackUrl,
   faqUrl,
-  allMessagesUrl,
-  deleteMessageUrl,
+  feedbacksUrl,
+  deleteFeedbackUrl,
   editProfileUrl,
   getAllUsersUrl,
 };

@@ -5,9 +5,9 @@ import {
   newsUrl,
   onePageUrl,
   oneNewsUrl,
-  feedbackUrl,
+  sendFeedbackUrl,
   faqUrl,
-  allMessagesUrl,
+  feedbacksUrl,
 } from 'src/store/urls';
 
 
@@ -96,21 +96,21 @@ function getFAQ({ commit }) {
 
 function sendFeedback(context, data) {
   return new Promise((resolve, reject) => {
-    axios.post(feedbackUrl, data)
+    axios.post(sendFeedbackUrl, data)
       .then(() => resolve())
       .catch(error => onError(error, reject));
   });
 }
 
-function getAllMessages({ commit }, data) {
+function getFeedbacks({ commit }, data) {
   return new Promise((resolve, reject) => {
-    axios.post(allMessagesUrl, data)
+    axios.post(feedbacksUrl, data)
       .then((response) => {
         const payload = {
           messages: response.data.data,
           total: response.data.total,
         };
-        commit('setAllMessages', payload);
+        commit('setFeedbacks', payload);
 
         resolve();
       })
@@ -125,5 +125,5 @@ export {
   getOnePage,
   getServices,
   sendFeedback,
-  getAllMessages,
+  getFeedbacks,
 };

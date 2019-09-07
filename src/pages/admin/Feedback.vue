@@ -3,7 +3,7 @@
     <q-table
       :title="$t('feedback')"
       :rows-per-page-label="$t('entries_by_page')"
-      :data="allMessages"
+      :data="feedbacks"
       :columns="columns"
       :loading="loading"
       :rows-per-page-options="[10, 20, 50]"
@@ -82,7 +82,7 @@ export default {
   name: 'AdminFeedback',
   mixins: [formatMixin],
   preFetch({ store }) {
-    return store.dispatch('content/getAllMessages', {
+    return store.dispatch('content/getFeedbacks', {
       limit: 10,
       orderBy: 'id',
       order: 'asc',
@@ -137,8 +137,8 @@ export default {
   },
   computed: {
     ...mapState('content', [
-      'allMessages',
-      'allMessagesTotal',
+      'feedbacks',
+      'feedbacksTotal',
     ]),
   },
   methods: {
@@ -156,7 +156,7 @@ export default {
       this.pagination.sortBy = props.pagination.sortBy;
       this.pagination.descending = props.pagination.descending;
 
-      this.getAllMessages();
+      this.getFeedbacks();
     },
     confirm(id) {
       this.$q.dialog({
@@ -174,8 +174,8 @@ export default {
       })
         .onOk(() => this.deleteMessage(id));
     },
-    getAllMessages() {
-      this.$store.dispatch('content/getAllMessages', {
+    getFeedbacks() {
+      this.$store.dispatch('content/getFeedbacks', {
         limit: this.pagination.rowsPerPage,
         offset: this.pagination.rowsPerPage * (this.pagination.page - 1),
         orderBy: this.pagination.sortBy || 'id',
@@ -183,7 +183,7 @@ export default {
       })
         .then(() => {
           this.loading = false;
-          this.pagination.rowsNumber = this.allMessagesTotal;
+          this.pagination.rowsNumber = this.feedbacksTotal;
         })
         .catch((error) => {
           this.$q.notify({
@@ -194,11 +194,11 @@ export default {
         });
     },
     deleteMessage(id) {
-      this.$store.dispatch('admin/deleteMessage', id)
+      this.$store.dispatch('admin/deleteFeedback', id)
         .then(() => {
           this.loading = false;
 
-          this.getAllMessages();
+          this.getFeedbacks();
         })
         .catch((error) => {
           this.$q.notify({

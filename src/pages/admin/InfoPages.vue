@@ -16,15 +16,23 @@
         <q-tr :props="props">
           <q-td key="id" :props="props" v-text="props.row.id"/>
           <q-td key="title" :props="props" v-text="props.row.title"/>
-          <q-td key="text_id" :props="props" v-text="props.row.text_id"/>
-          <q-td key="description" :props="props" v-text="props.row.description"/>
+          <q-td
+            key="text_id"
+            :props="props"
+            v-text="props.row.text_id"
+            style="width: 200px;"
+          />
+          <q-td
+            key="description"
+            :props="props"
+            v-text="props.row.description"
+          />
           <q-td key="main_image" :props="props">
-            <img
+            <q-img
               :src="props.row.main_image"
-              style="height: 100px;"
-              />
+              style="width: 150px; height: 100px;"
+            />
           </q-td>
-          <q-td key="active" :props="props" v-text="props.row.active"/>
           <q-td key="edit">
             <div class="row justify-center">
               <q-btn
@@ -34,7 +42,8 @@
                 :to="{
                   name: 'edit-page',
                   params: { id: props.row.id },
-                }"/>
+                }"
+              />
             </div>
           </q-td>
         </q-tr>
@@ -56,6 +65,13 @@ import { mapState } from 'vuex';
 
 export default {
   name: 'AdminInfoPages',
+  preFetch({ store }) {
+    return store.dispatch('content/getInfoPages', {
+      limit: 10,
+      orderBy: 'id',
+      order: 'asc',
+    });
+  },
   data() {
     return {
       loading: false,
@@ -72,8 +88,8 @@ export default {
           required: true,
           field: 'title',
           label: this.$t('title'),
-          align: 'center',
           sortable: true,
+          align: 'left',
         },
         {
           name: 'text_id',
@@ -88,7 +104,7 @@ export default {
           required: true,
           field: 'description',
           label: this.$t('description'),
-          align: 'center',
+          align: 'left',
         },
         {
           name: 'main_image',
@@ -96,14 +112,6 @@ export default {
           field: 'main_image',
           label: this.$t('photo'),
           align: 'center',
-        },
-        {
-          name: 'active',
-          required: true,
-          field: 'active',
-          label: this.$t('active'),
-          align: 'left',
-          sortable: true,
         },
         {
           name: 'edit',
@@ -121,9 +129,6 @@ export default {
       'infoPagesTotal',
     ]),
   },
-  async mounted() {
-    this.getAllInfos();
-  },
   methods: {
     onRequest(props) {
       this.loading = true;
@@ -131,6 +136,7 @@ export default {
       this.pagination.rowsPerPage = props.pagination.rowsPerPage;
       this.pagination.sortBy = props.pagination.sortBy;
       this.pagination.descending = props.pagination.descending;
+
       this.getAllInfos();
     },
     getAllInfos() {
@@ -139,10 +145,11 @@ export default {
         offset: this.pagination.rowsPerPage * (this.pagination.page - 1),
         orderBy: this.pagination.sortBy || 'id',
         order: this.pagination.descending ? 'desc' : 'asc',
-      }).then(() => {
-        this.loading = false;
-        this.pagination.rowsNumber = this.infoPagesTotal;
-      });
+      })
+        .then(() => {
+          this.loading = false;
+          this.pagination.rowsNumber = this.infoPagesTotal;
+        });
     },
   },
 };

@@ -22,9 +22,9 @@ function editHousing(context, data) {
   });
 }
 
-function deleteMessage(context, data) {
+function deleteMessage(context, id) {
   return new Promise((resolve, reject) => {
-    axios.post(deleteMessageUrl, data)
+    axios.post(deleteMessageUrl, { id })
       .then(() => resolve())
       .catch(error => onError(error, reject));
   });

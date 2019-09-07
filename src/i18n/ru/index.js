@@ -155,4 +155,8 @@ export default {
   not_found: 'Не найдено',
   watch: 'Смотреть',
   actions: 'Действия',
+  are_you_sure: 'Вы уверены?',
+  confirm: 'Подтверждение',
+  cancel: 'Отмена',
+  yes: 'Да',
 };

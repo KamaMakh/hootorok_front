@@ -153,4 +153,10 @@ export default {
   add_housing: 'Добавление корпуса',
   edit_housing: 'Редактирование корпуса',
   not_found: 'Не найдено',
+  watch: 'Смотреть',
+  actions: 'Действия',
+  are_you_sure: 'Вы уверены?',
+  confirm: 'Подтверждение',
+  cancel: 'Отмена',
+  yes: 'Да',
 };

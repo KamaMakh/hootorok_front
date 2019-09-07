@@ -16,10 +16,11 @@
 
 <script>
 import { mapState } from 'vuex';
-import { date } from 'quasar';
+import { formatMixin } from 'components/helpers/mixins';
 
 export default {
   name: 'AdminUsers',
+  mixins: [formatMixin],
   data() {
     return {
       loading: false,
@@ -42,8 +43,8 @@ export default {
         {
           name: 'first_name',
           required: true,
-          field: this.$t('first_name'),
-          label: 'Имя',
+          field: 'first_name',
+          label: this.$t('name'),
           align: 'left',
           sortable: true,
         },
@@ -112,12 +113,6 @@ export default {
         this.loading = false;
         this.pagination.rowsNumber = this.usersTotal;
       });
-    },
-    formatPhone(phone) {
-      return phone.replace(/(\d{1})(\d{3})(\d{3})(\d{2})(\d{2})/, '$1 ($2) $3-$4-$5');
-    },
-    formatDate(timestamp) {
-      return date.formatDate(timestamp * 1000, 'DD.MM.YYYY');
     },
   },
 };

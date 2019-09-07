@@ -25,11 +25,17 @@ function setFAQ(state, faq) {
   state.faq = faq;
 }
 
+function setFeedbacks(state, data) {
+  state.feedbacksTotal = parseInt(data.total, 10);
+  state.feedbacks = data.messages;
+}
+
 export {
   setPage,
   setNews,
   setOneNews,
   resetOneNews,
   setFAQ,
+  setFeedbacks,
   setServices,
 };

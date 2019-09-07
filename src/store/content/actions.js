@@ -5,8 +5,9 @@ import {
   newsUrl,
   onePageUrl,
   oneNewsUrl,
-  feedbackUrl,
+  sendFeedbackUrl,
   faqUrl,
+  feedbacksUrl,
 } from 'src/store/urls';
 
 
@@ -95,8 +96,24 @@ function getFAQ({ commit }) {
 
 function sendFeedback(context, data) {
   return new Promise((resolve, reject) => {
-    axios.post(feedbackUrl, data)
+    axios.post(sendFeedbackUrl, data)
       .then(() => resolve())
+      .catch(error => onError(error, reject));
+  });
+}
+
+function getFeedbacks({ commit }, data) {
+  return new Promise((resolve, reject) => {
+    axios.post(feedbacksUrl, data)
+      .then((response) => {
+        const payload = {
+          messages: response.data.data,
+          total: response.data.total,
+        };
+        commit('setFeedbacks', payload);
+
+        resolve();
+      })
       .catch(error => onError(error, reject));
   });
 }
@@ -108,4 +125,5 @@ export {
   getOnePage,
   getServices,
   sendFeedback,
+  getFeedbacks,
 };

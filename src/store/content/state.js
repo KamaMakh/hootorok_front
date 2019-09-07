@@ -1,9 +1,11 @@
 export default {
   faq: [],
   news: [],
-  newsTotal: null,
+  newsTotal: 0,
   oneNews: null,
   pages: {},
   services: [],
-  servicesTotal: null,
+  servicesTotal: 0,
+  feedbacks: [],
+  feedbacksTotal: 0,
 };

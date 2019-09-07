@@ -4,7 +4,7 @@
       wrap-cells
       :title="$t('info_pages')"
       :rows-per-page-label="$t('entries_by_page')"
-      :data="allInfos"
+      :data="infoPages"
       :columns="columns"
       :loading="loading"
       :rows-per-page-options="[10, 20, 50]"
@@ -117,8 +117,8 @@ export default {
   },
   computed: {
     ...mapState('content', [
-      'allInfos',
-      'infosTotal',
+      'infoPages',
+      'infoPagesTotal',
     ]),
   },
   async mounted() {
@@ -134,15 +134,14 @@ export default {
       this.getAllInfos();
     },
     getAllInfos() {
-      this.$store.dispatch('content/getAllInfos', {
+      this.$store.dispatch('content/getInfoPages', {
         limit: this.pagination.rowsPerPage,
         offset: this.pagination.rowsPerPage * (this.pagination.page - 1),
         orderBy: this.pagination.sortBy || 'id',
         order: this.pagination.descending ? 'desc' : 'asc',
       }).then(() => {
-        console.log(this.allInfos);
         this.loading = false;
-        this.pagination.rowsNumber = this.infosTotal;
+        this.pagination.rowsNumber = this.infoPagesTotal;
       });
     },
   },

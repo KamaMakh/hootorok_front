@@ -8,7 +8,7 @@ import {
   sendFeedbackUrl,
   faqUrl,
   feedbacksUrl,
-  getAllInfosUrl,
+  infoPagesUrl,
 } from 'src/store/urls';
 
 
@@ -119,16 +119,16 @@ function getFeedbacks({ commit }, data) {
   });
 }
 
-function getAllInfos({ commit }, data) {
+function getInfoPages({ commit }, data) {
   console.log('fgg');
   return new Promise((resolve, reject) => {
-    axios.post(getAllInfosUrl, data)
+    axios.post(infoPagesUrl, data)
       .then((response) => {
         const payload = {
           allInfos: response.data.data,
           total: response.data.total,
         };
-        commit('setAllInfos', payload);
+        commit('setInfoPages', payload);
 
         resolve();
       })
@@ -144,5 +144,5 @@ export {
   getServices,
   sendFeedback,
   getFeedbacks,
-  getAllInfos,
+  getInfoPages,
 };

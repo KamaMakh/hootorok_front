@@ -22,7 +22,7 @@ const faqUrl = `${serverUrl}/pages/getAllFAQ`;
 const feedbacksUrl = `${serverUrl}/feedback/getAllMessages`;
 const deleteFeedbackUrl = `${serverUrl}/feedback/deleteMessage`;
 const usersUrl = `${serverUrl}/user/getAllUsers`;
-const getAllInfosUrl = `${serverUrl}/pages/getAllInfos`;
+const infoPagesUrl = `${serverUrl}/pages/getAllInfos`;
 
 export {
   serverUrl,
@@ -49,5 +49,5 @@ export {
   deleteFeedbackUrl,
   editProfileUrl,
   usersUrl,
-  getAllInfosUrl,
+  infoPagesUrl,
 };

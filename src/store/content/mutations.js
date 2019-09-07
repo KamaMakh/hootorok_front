@@ -30,9 +30,9 @@ function setFeedbacks(state, data) {
   state.feedbacks = data.messages;
 }
 
-function setAllInfos(state, data) {
-  state.infosTotal = parseInt(data.total, 10);
-  state.allInfos = data.allInfos;
+function setInfoPages(state, data) {
+  state.infoPagesTotal = parseInt(data.total, 10);
+  state.infoPages = data.allInfos;
 }
 
 export {
@@ -43,5 +43,5 @@ export {
   setFAQ,
   setFeedbacks,
   setServices,
-  setAllInfos,
+  setInfoPages,
 };

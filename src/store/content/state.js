@@ -8,6 +8,6 @@ export default {
   servicesTotal: 0,
   feedbacks: [],
   feedbacksTotal: 0,
-  allInfos: [],
-  infosTotal: 0,
+  infoPages: [],
+  infoPagesTotal: 0,
 };

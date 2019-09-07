@@ -30,6 +30,11 @@ function setFeedbacks(state, data) {
   state.feedbacks = data.messages;
 }
 
+function setInfoPages(state, data) {
+  state.infoPagesTotal = parseInt(data.total, 10);
+  state.infoPages = data.allInfos;
+}
+
 export {
   setPage,
   setNews,
@@ -38,4 +43,5 @@ export {
   setFAQ,
   setFeedbacks,
   setServices,
+  setInfoPages,
 };

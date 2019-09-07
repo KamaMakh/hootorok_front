@@ -8,6 +8,7 @@ import {
   sendFeedbackUrl,
   faqUrl,
   feedbacksUrl,
+  infoPagesUrl,
 } from 'src/store/urls';
 
 
@@ -118,6 +119,22 @@ function getFeedbacks({ commit }, data) {
   });
 }
 
+function getInfoPages({ commit }, data) {
+  return new Promise((resolve, reject) => {
+    axios.post(infoPagesUrl, data)
+      .then((response) => {
+        const payload = {
+          allInfos: response.data.data,
+          total: response.data.total,
+        };
+        commit('setInfoPages', payload);
+
+        resolve();
+      })
+      .catch(error => onError(error, reject));
+  });
+}
+
 export {
   getFAQ,
   getNews,
@@ -126,4 +143,5 @@ export {
   getServices,
   sendFeedback,
   getFeedbacks,
+  getInfoPages,
 };

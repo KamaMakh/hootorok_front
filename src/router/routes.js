@@ -169,7 +169,7 @@ const routes = [
       {
         path: 'housings/add',
         name: 'add-housing',
-        component: () => import('pages/DummyPage.vue'),
+        component: () => import('pages/admin/HousingAdd.vue'),
       },
       {
         path: 'rooms',

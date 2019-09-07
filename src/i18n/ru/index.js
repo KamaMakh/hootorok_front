@@ -150,4 +150,7 @@ export default {
   save: 'Сохранить',
   my_orders: 'Мои заказы',
   data_successfully_saved: 'Данные успешно сохранены',
+  add_housing: 'Добавление корпуса',
+  edit_housing: 'Редактирование корпуса',
+  not_found: 'Не найдено',
 };

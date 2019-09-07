@@ -31,7 +31,17 @@ function getHousing({ commit }, index) {
 
         resolve();
       })
-      .catch(error => onError(error, reject));
+      .catch((error) => {
+        if (error.response && error.response.status === 404) {
+          commit('resetHousing');
+
+          resolve();
+
+          return;
+        }
+
+        onError(error, reject);
+      });
   });
 }
 

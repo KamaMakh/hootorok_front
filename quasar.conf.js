@@ -74,6 +74,7 @@ module.exports = () => ({
       'QPagination',
       'QTooltip',
       'QSpace',
+      'QForm',
     ],
 
     directives: [

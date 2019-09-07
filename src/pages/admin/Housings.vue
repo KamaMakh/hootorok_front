@@ -52,6 +52,13 @@ import { mapState } from 'vuex';
 
 export default {
   name: 'AdminHousings',
+  preFetch({ store }) {
+    return store.dispatch('rooms/getHousings', {
+      limit: 10,
+      orderBy: 'id',
+      order: 'asc',
+    });
+  },
   data() {
     return {
       image: false,
@@ -103,9 +110,6 @@ export default {
       'housingsTotal',
     ]),
   },
-  async mounted() {
-    this.getHousings();
-  },
   methods: {
     onRequest(props) {
       this.loading = true;
@@ -113,6 +117,7 @@ export default {
       this.pagination.rowsPerPage = props.pagination.rowsPerPage;
       this.pagination.sortBy = props.pagination.sortBy;
       this.pagination.descending = props.pagination.descending;
+
       this.getHousings();
     },
     getHousings() {

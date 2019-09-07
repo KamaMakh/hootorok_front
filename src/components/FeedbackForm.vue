@@ -22,7 +22,7 @@
         lazy-rules
         :rules="[
           val => !!val || $t('required_field'),
-          val => val.length <= 25 || $t('twentyfive_characters_name'),
+          val => val.length <= 25 || $t('expected_less_than', [25]),
         ]"
       />
       <q-input
@@ -37,7 +37,7 @@
         lazy-rules
         :rules="[
           val => !!val || $t('required_field'),
-          val => val.length === 11 || $t('eleven_numbers_min')
+          val => val.length === 11 || $t('expected_length', [11]),
         ]"
       />
       <q-input

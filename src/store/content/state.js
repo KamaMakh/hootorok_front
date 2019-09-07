@@ -1,10 +1,11 @@
 export default {
   faq: [],
   news: [],
-  newsTotal: null,
+  newsTotal: 0,
   oneNews: null,
   pages: {},
   services: [],
-  allMessagesTotal: null,
+  servicesTotal: 0,
   allMessages: [],
+  allMessagesTotal: 0,
 };

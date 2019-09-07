@@ -33,6 +33,12 @@ const routes = [
         },
       },
       {
+        path: 'cabinet/orders',
+        name: 'orders',
+        props: true,
+        component: () => import('pages/DummyPage.vue'),
+      },
+      {
         path: 'logout',
         name: 'logout',
         component: () => import('pages/Logout.vue'),
@@ -155,19 +161,52 @@ const routes = [
         component: () => import('pages/admin/Housings.vue'),
       },
       {
+        path: 'housings/:id/edit',
+        name: 'edit-housing',
+        props: true,
+        component: () => import('pages/admin/HousingEdit.vue'),
+      },
+      {
+        path: 'housings/add',
+        name: 'add-housing',
+        component: () => import('pages/admin/HousingAdd.vue'),
+      },
+      {
         path: 'rooms',
         name: 'admin-rooms',
         component: () => import('pages/admin/Rooms.vue'),
       },
       {
-        path: 'news',
-        name: 'admin-news',
-        component: () => import('pages/admin/News.vue'),
+        path: 'rooms/:id/edit',
+        name: 'edit-room',
+        props: true,
+        component: () => import('pages/admin/RoomEdit.vue'),
+      },
+      {
+        path: 'rooms/add',
+        name: 'add-room',
+        component: () => import('pages/DummyPage.vue'),
       },
       {
         path: 'services',
         name: 'admin-services',
         component: () => import('pages/admin/Services.vue'),
+      },
+      {
+        path: 'pages/:id/edit',
+        name: 'edit-page',
+        props: true,
+        component: () => import('pages/DummyPage.vue'),
+      },
+      {
+        path: 'pages/add',
+        name: 'add-page',
+        component: () => import('pages/DummyPage.vue'),
+      },
+      {
+        path: 'news',
+        name: 'admin-news',
+        component: () => import('pages/admin/News.vue'),
       },
       {
         path: 'info-pages',

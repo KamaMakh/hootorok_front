@@ -2,15 +2,20 @@ import axios from 'axios';
 import onError from 'src/store/onError';
 import {
   allHousingsUrl,
+  oneHousingUrl,
   allRoomsUrl,
   oneRoomUrl,
 } from 'src/store/urls';
 
-function getHousings({ commit }) {
+function getHousings({ commit }, data) {
   return new Promise((resolve, reject) => {
-    axios.post(allHousingsUrl)
+    axios.post(allHousingsUrl, data)
       .then((response) => {
-        commit('setHousings', response.data.data);
+        const payload = {
+          housings: response.data.data,
+          total: response.data.total,
+        };
+        commit('setHousings', payload);
 
         resolve();
       })
@@ -18,11 +23,37 @@ function getHousings({ commit }) {
   });
 }
 
-function getRooms({ commit }) {
+function getHousing({ commit }, index) {
   return new Promise((resolve, reject) => {
-    axios.post(allRoomsUrl)
+    axios.post(oneHousingUrl, { id: index })
       .then((response) => {
-        commit('setRooms', response.data.data);
+        commit('setHousing', response.data.data[0]);
+
+        resolve();
+      })
+      .catch((error) => {
+        if (error.response && error.response.status === 404) {
+          commit('resetHousing');
+
+          resolve();
+
+          return;
+        }
+
+        onError(error, reject);
+      });
+  });
+}
+
+function getRooms({ commit }, data) {
+  return new Promise((resolve, reject) => {
+    axios.post(allRoomsUrl, data)
+      .then((response) => {
+        const payload = {
+          rooms: response.data.data,
+          total: response.data.total,
+        };
+        commit('setRooms', payload);
 
         resolve();
       })
@@ -44,6 +75,7 @@ function getRoom({ commit }, index) {
 
 export {
   getHousings,
+  getHousing,
   getRooms,
   getRoom,
 };

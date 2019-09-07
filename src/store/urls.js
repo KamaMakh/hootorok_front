@@ -18,6 +18,8 @@ const allRoomsUrl = `${serverUrl}/rooms/getAllRooms`;
 const feedbackUrl = `${serverUrl}/feedback/sendMessage`;
 const faqUrl = `${serverUrl}/pages/getAllFAQ`;
 const getAllUsersUrl = `${serverUrl}/user/getAllUsers`;
+const getAllInfosUrl = `${serverUrl}/pages/getAllInfos`;
+
 
 export {
   serverUrl,
@@ -40,4 +42,5 @@ export {
   faqUrl,
   editProfileUrl,
   getAllUsersUrl,
+  getAllInfosUrl,
 };

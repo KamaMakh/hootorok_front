@@ -6,4 +6,6 @@ export default {
   pages: {},
   services: [],
   servicesTotal: null,
+  allInfos: [],
+  infosTotal: null,
 };

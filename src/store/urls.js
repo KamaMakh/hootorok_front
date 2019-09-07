@@ -14,12 +14,15 @@ const editProfileUrl = `${serverUrl}/user/editProfile`;
 const oneRoomUrl = `${serverUrl}/rooms/getOneRoom`;
 const allHousingsUrl = `${serverUrl}/housings/getAllHousings`;
 const oneHousingUrl = `${serverUrl}/housings/getHousing`;
+const addHousingUrl = `${serverUrl}/housings/addHousing`;
+const editHousingUrl = `${serverUrl}/housings/editHousing`;
 const allRoomsUrl = `${serverUrl}/rooms/getAllRooms`;
-const feedbackUrl = `${serverUrl}/feedback/sendMessage`;
+const sendFeedbackUrl = `${serverUrl}/feedback/sendMessage`;
 const faqUrl = `${serverUrl}/pages/getAllFAQ`;
-const getAllUsersUrl = `${serverUrl}/user/getAllUsers`;
+const feedbacksUrl = `${serverUrl}/feedback/getAllMessages`;
+const deleteFeedbackUrl = `${serverUrl}/feedback/deleteMessage`;
+const usersUrl = `${serverUrl}/user/getAllUsers`;
 const getAllInfosUrl = `${serverUrl}/pages/getAllInfos`;
-
 
 export {
   serverUrl,
@@ -35,12 +38,16 @@ export {
   checkAuthUrl,
   allHousingsUrl,
   oneHousingUrl,
+  addHousingUrl,
+  editHousingUrl,
   allRoomsUrl,
   onePageUrl,
   oneRoomUrl,
-  feedbackUrl,
+  sendFeedbackUrl,
   faqUrl,
+  feedbacksUrl,
+  deleteFeedbackUrl,
   editProfileUrl,
-  getAllUsersUrl,
+  usersUrl,
   getAllInfosUrl,
 };

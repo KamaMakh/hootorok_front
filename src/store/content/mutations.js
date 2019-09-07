@@ -25,6 +25,11 @@ function setFAQ(state, faq) {
   state.faq = faq;
 }
 
+function setFeedbacks(state, data) {
+  state.feedbacksTotal = parseInt(data.total, 10);
+  state.feedbacks = data.messages;
+}
+
 function setAllInfos(state, data) {
   state.infosTotal = parseInt(data.total, 10);
   state.allInfos = data.allInfos;
@@ -36,6 +41,7 @@ export {
   setOneNews,
   resetOneNews,
   setFAQ,
+  setFeedbacks,
   setServices,
   setAllInfos,
 };

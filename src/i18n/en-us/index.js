@@ -150,4 +150,13 @@ export default {
   save: 'Save',
   my_orders: 'My orders',
   data_successfully_saved: 'Data successfully saved',
+  add_housing: 'Add housing',
+  edit_housing: 'Edit housing',
+  not_found: 'Not found',
+  watch: 'Watch',
+  actions: 'Actions',
+  are_you_sure: 'Are you sure',
+  confirm: 'Confirm',
+  cancel: 'Cancel',
+  yes: 'Yes',
 };

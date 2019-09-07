@@ -1,8 +1,8 @@
 export default {
+  housing: null,
   housings: [],
-  housing: {},
-  housingsTotal: null,
+  housingsTotal: 0,
   rooms: [],
-  roomsTotal: null,
+  roomsTotal: 0,
   room: {},
 };

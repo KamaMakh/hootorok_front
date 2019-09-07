@@ -8,7 +8,7 @@ import {
   newPasswordUrl,
   recoveryHashUrl,
   editProfileUrl,
-  getAllUsersUrl,
+  usersUrl,
 } from 'src/store/urls';
 
 import onError from 'src/store/onError';
@@ -111,9 +111,9 @@ function checkRecoveryHash({ commit }, data) {
   });
 }
 
-function getAllUsers({ commit }, data) {
+function getUsers({ commit }, data) {
   return new Promise((resolve, reject) => {
-    axios.post(getAllUsersUrl, data)
+    axios.post(usersUrl, data)
       .then((response) => {
         const payload = {
           users: response.data.data,
@@ -134,6 +134,6 @@ export {
   checkRecoveryHash,
   logout,
   checkUser,
-  getAllUsers,
+  getUsers,
   editProfile,
 };

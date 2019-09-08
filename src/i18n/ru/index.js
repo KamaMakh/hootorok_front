@@ -159,4 +159,6 @@ export default {
   confirm: 'Подтверждение',
   cancel: 'Отмена',
   yes: 'Да',
+  periodic: 'Периодичная',
+  created_at: 'Дата создания',
 };

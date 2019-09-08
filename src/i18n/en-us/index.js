@@ -159,4 +159,6 @@ export default {
   confirm: 'Confirm',
   cancel: 'Cancel',
   yes: 'Yes',
+  periodic: 'Periodic',
+  created_at: 'Date of creation',
 };

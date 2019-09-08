@@ -8,6 +8,7 @@
       class="text-right"
       :rules="[
         val => !!val || $t('required_field'),
+        val => isValidString(page.text_id) || $t('correct_string_message')
       ]"
       lazy-rules
       @change="onChange('text_id', $event.target.value)"
@@ -24,18 +25,6 @@
       lazy-rules
       @change="onChange($event.target.value)"
     />
-    <!-- <q-select
-      dense
-      outlined
-      :hint="$t('category')"
-      :options="categories"
-      v-model="page.category"
-      :rules="[
-        val => !!val || $t('required_field'),
-      ]"
-      lazy-rules
-      @change="onChange($event.target.value)"
-    /> -->
     <q-input
       dense
       outlined
@@ -91,7 +80,6 @@
 </template>
 
 <script>
-// import { mapState } from 'vuex';
 export default {
   name: 'PageForm',
   data() {
@@ -99,7 +87,6 @@ export default {
       options: [
         'SERVICE', 'INFO', 'FAQ',
       ],
-      // categories: ['1', '2', '3'],
     };
   },
   props: {
@@ -123,12 +110,12 @@ export default {
 
       this.$emit('change', newData);
     },
+    isValidString(textId) {
+      if (/^[a-z0-9_-]+$/i.test(textId)) {
+        return true;
+      }
+      return false;
+    },
   },
-  // async mounted() {
-  //   this.$store.dispatch('content/getCategories');
-  // },
-  // computed: {
-  //   ...mapState('content', ['pages']),
-  // },
 };
 </script>

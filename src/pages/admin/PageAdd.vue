@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    <h1 class="text-h5" v-text="$t('add_page')"/>
+    <h1 class="text-h5" v-text="$t('add_service')"/>
     <page-form
       :page="page"
       :onSubmit="addPage"

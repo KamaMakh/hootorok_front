@@ -34,7 +34,14 @@ export default {
       // this.$store.commit('content/setOnePage', newPage);
     },
     editPage() {
-      const page = Object.assign({}, this.page.page);
+      let page = Object.assign({}, this.page.page);
+      const filteredObject = {};
+      const p = new Set(Object.keys(page));
+      const blacklist = ['id', 'category', 'updated_at', 'created_at'];
+      blacklist.forEach(a => p.delete(a));
+      // eslint-disable-next-line
+      [...p].forEach(k => filteredObject[k] = page[k]);
+      page = filteredObject;
       this.$store.dispatch('admin/editPage', page)
         .then(() => this.$router.push({ name: 'admin-services' }))
         .catch((error) => {

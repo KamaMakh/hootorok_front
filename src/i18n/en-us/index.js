@@ -153,4 +153,9 @@ export default {
   add_housing: 'Add housing',
   edit_housing: 'Edit housing',
   not_found: 'Not found',
+  add_service: 'Add service',
+  type: 'Type',
+  content: 'Content',
+  edit_page: 'Edit page',
+  correct_string_message: 'Only latin letters, numbers, - and _ symbols are allowed',
 };

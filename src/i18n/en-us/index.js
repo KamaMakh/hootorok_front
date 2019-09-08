@@ -159,4 +159,6 @@ export default {
   confirm: 'Confirm',
   cancel: 'Cancel',
   yes: 'Yes',
+  repost: 'Published',
+  created_at: 'Date of creation',
 };

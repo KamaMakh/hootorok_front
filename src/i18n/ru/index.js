@@ -159,4 +159,6 @@ export default {
   confirm: 'Подтверждение',
   cancel: 'Отмена',
   yes: 'Да',
+  repost: 'Опубликован',
+  created_at: 'Дата создания',
 };

@@ -7,23 +7,41 @@
       :columns="columns"
       :loading="loading"
       :rows-per-page-options="[10, 20, 50]"
-      :pagination="pagination"
+      :pagination.sync="pagination"
       row-key="id"
       @request="onRequest"
     >
       <template v-slot:body="props">
         <q-tr :props="props">
-          <q-td key="id" :props="props" v-text="props.row.id"/>
-          <q-td key="title" :props="props" v-text="props.row.title"/>
-          <q-td key="description" :props="props" v-text="props.row.description"/>
+          <q-td
+            key="title"
+            :props="props"
+            v-text="props.row.title"
+            style="white-space: normal;"
+          />
+          <q-td
+            key="description"
+            :props="props"
+            v-text="props.row.description"
+            style="white-space: normal;"
+          />
           <q-td key="main_image" :props="props">
             <q-img
               :src="props.row.main_image"
               style="width: 150px; height: 100px;"
             />
           </q-td>
-          <q-td key="repost" :props="props" v-text="isPublished(props.row.repost)"/>
-          <q-td key="created_at" :props="props" v-text="formatDate(props.row.created_at)"/>
+          <q-td key="repost" :props="props">
+            <q-icon
+              :name="props.row.repost ? 'done' : 'close'"
+              :color="props.row.repost ? 'positive' : 'negative'"
+            />
+          </q-td>
+          <q-td
+            key="created_at"
+            :props="props"
+            v-text="formatDate(props.row.created_at)"
+          />
           <q-td key="edit">
             <div class="row justify-center">
               <q-btn
@@ -53,10 +71,11 @@
 
 <script>
 import { mapState } from 'vuex';
-import { date } from 'quasar';
+import { formatMixin } from 'components/helpers/mixins';
 
 export default {
   name: 'AdminNews',
+  mixins: [formatMixin],
   preFetch({ store }) {
     return store.dispatch('content/getNews', {
       limit: 10,
@@ -72,7 +91,7 @@ export default {
         descending: false,
         page: 1,
         rowsPerPage: 10,
-        rowsNumber: null,
+        rowsNumber: this.$store.state.content.newsTotal,
       },
       columns: [
         {
@@ -102,7 +121,7 @@ export default {
           required: true,
           field: 'repost',
           sortable: true,
-          label: this.$t('repost'),
+          label: this.$t('periodic'),
           align: 'center',
         },
         {
@@ -148,17 +167,8 @@ export default {
       })
         .then(() => {
           this.loading = false;
-          this.pagination.rowsNumber = this.infoPagesTotal;
+          this.pagination.rowsNumber = this.newsTotal;
         });
-    },
-    formatDate(timestamp) {
-      return date.formatDate(timestamp * 1000, 'DD.MM.YYYY');
-    },
-    isPublished(boolean) {
-      if (boolean) {
-        return 'done';
-      }
-      return 'close';
     },
   },
 };

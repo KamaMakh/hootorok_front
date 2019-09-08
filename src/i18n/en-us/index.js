@@ -159,6 +159,6 @@ export default {
   confirm: 'Confirm',
   cancel: 'Cancel',
   yes: 'Yes',
-  repost: 'Published',
+  periodic: 'Periodic',
   created_at: 'Date of creation',
 };

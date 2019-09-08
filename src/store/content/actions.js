@@ -7,6 +7,7 @@ import {
   oneNewsUrl,
   feedbackUrl,
   faqUrl,
+  categoriesUrl,
 } from 'src/store/urls';
 
 
@@ -15,11 +16,10 @@ function getOnePage({ commit }, textId) {
     axios.post(onePageUrl, { text_id: textId })
       .then((response) => {
         const payload = {
-          id: textId,
+          text_id: textId,
           page: response.data.data,
         };
-
-        commit('setPage', payload);
+        commit('setOnePage', payload);
 
         resolve();
       })
@@ -101,6 +101,22 @@ function sendFeedback(context, data) {
   });
 }
 
+function getCategories({ commit }) {
+  return new Promise((resolve, reject) => {
+    axios.post(categoriesUrl)
+      .then((response) => {
+        // const payload = {
+        //   categories: response.data.data,
+        //   total: response.data.total,
+        // };
+        commit('setCategories', response.data.data);
+
+        resolve();
+      })
+      .catch(error => onError(error, reject));
+  });
+}
+
 export {
   getFAQ,
   getNews,
@@ -108,4 +124,5 @@ export {
   getOnePage,
   getServices,
   sendFeedback,
+  getCategories,
 };

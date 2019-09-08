@@ -196,12 +196,12 @@ const routes = [
         path: 'pages/:id/edit',
         name: 'edit-page',
         props: true,
-        component: () => import('pages/DummyPage.vue'),
+        component: () => import('pages/admin/PageEdit.vue'),
       },
       {
         path: 'pages/add',
         name: 'add-page',
-        component: () => import('pages/DummyPage.vue'),
+        component: () => import('pages/admin/PageAdd.vue'),
       },
       {
         path: 'news',

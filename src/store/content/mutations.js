@@ -17,12 +17,21 @@ function setOneNews(state, news) {
   state.oneNews = news;
 }
 
+function setOnePage(state, page) {
+  state.page = page;
+}
+
 function resetOneNews(state) {
   state.oneNews = null;
 }
 
 function setFAQ(state, faq) {
   state.faq = faq;
+}
+
+function setCategories(state, data) {
+  state.categoriesTotal = parseInt(data.total, 10);
+  state.categories = data.categories;
 }
 
 export {
@@ -32,4 +41,6 @@ export {
   resetOneNews,
   setFAQ,
   setServices,
+  setCategories,
+  setOnePage,
 };

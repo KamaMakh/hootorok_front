@@ -45,9 +45,9 @@ function getNews({ commit }, data) {
   });
 }
 
-function getServices({ commit }) {
+function getServices({ commit }, data) {
   return new Promise((resolve, reject) => {
-    axios.post(servicesUrl)
+    axios.post(servicesUrl, data)
       .then((response) => {
         const payload = {
           services: response.data.data,

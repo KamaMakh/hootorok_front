@@ -7,7 +7,7 @@
       :columns="columns"
       :loading="loading"
       :rows-per-page-options="[10, 20, 50]"
-      :pagination="pagination"
+      :pagination.sync="pagination"
       row-key="id"
       @request="onRequest"
     />

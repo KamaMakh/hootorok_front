@@ -7,7 +7,7 @@
       :columns="columns"
       :loading="loading"
       :rows-per-page-options="[10, 20, 50]"
-      :pagination="pagination"
+      :pagination.sync="pagination"
       row-key="id"
       @request="onRequest"
     >
@@ -27,15 +27,14 @@
               style="height: 100px; width: 150px;"
             />
           </q-td>
-          <!-- <q-td key="active" :props="props">
+          <q-td key="active" :props="props">
             <div class="row justify-center">
               <q-icon
                 :name="props.row.active ? 'done' : 'close'"
-                size="12px"
                 :color="props.row.active ? 'positive' : 'negative'"
               />
             </div>
-          </q-td> -->
+          </q-td>
           <q-td key="edit">
             <div class="row justify-center">
               <q-btn
@@ -108,14 +107,14 @@ export default {
           label: this.$t('photo'),
           align: 'center',
         },
-        // {
-        //   name: 'active',
-        //   required: true,
-        //   field: 'active',
-        //   label: this.$t('active'),
-        //   align: 'left',
-        //   sortable: true,
-        // },
+        {
+          name: 'active',
+          required: true,
+          field: 'active',
+          label: this.$t('active'),
+          align: 'left',
+          sortable: true,
+        },
         {
           name: 'edit',
           required: true,

@@ -25,9 +25,8 @@ export default {
         title: '',
         description: '',
         content: '',
-        active: '',
-        content_images: ['1', '2'],
-        main_image: '1',
+        active: false,
+        content_images: [],
       },
     };
   },
@@ -37,6 +36,7 @@ export default {
     },
     addPage() {
       const page = Object.assign({}, this.page);
+
       this.$store.dispatch('admin/addPage', page)
         .then(() => {
           this.$router.push({ name: 'admin-services' });

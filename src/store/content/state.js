@@ -5,6 +5,7 @@ export default {
   oneNews: null,
   pages: {},
   services: [],
-  page: null,
   servicesTotal: null,
+  categories: null,
+  categoriesTotal: 0,
 };

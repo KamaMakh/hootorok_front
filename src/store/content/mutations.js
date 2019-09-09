@@ -17,10 +17,6 @@ function setOneNews(state, news) {
   state.oneNews = news;
 }
 
-function setOnePage(state, page) {
-  state.page = page;
-}
-
 function resetOneNews(state) {
   state.oneNews = null;
 }
@@ -42,5 +38,4 @@ export {
   setFAQ,
   setServices,
   setCategories,
-  setOnePage,
 };

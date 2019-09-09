@@ -1,9 +1,9 @@
 <template>
   <q-page padding>
-    <template v-if="page">
+    <template v-if="currentPage">
       <h1 class="text-h5" v-text="$t('edit_page')"/>
       <page-form
-        :page="page.page"
+        :page="currentPage"
         :onSubmit="editPage"
         :button-text="$t('edit')"
         @change="onChange"
@@ -26,22 +26,25 @@ export default {
     return store.dispatch('content/getOnePage', currentRoute.params.id);
   },
   computed: {
-    ...mapState('content', ['page']),
+    ...mapState('content', ['pages']),
+    currentPage() {
+      return this.pages[this.$attrs.id];
+    },
   },
   methods: {
     onChange(newPage) {
-      this.page.page = newPage;
-      // this.$store.commit('content/setOnePage', newPage);
+      this.$store.commit('content/setPage', {
+        id: newPage.text_id,
+        page: newPage,
+      });
     },
     editPage() {
-      let page = Object.assign({}, this.page.page);
-      const filteredObject = {};
-      const p = new Set(Object.keys(page));
-      const blacklist = ['id', 'updated_at', 'created_at'];
-      blacklist.forEach(a => p.delete(a));
-      // eslint-disable-next-line
-      [...p].forEach(k => filteredObject[k] = page[k]);
-      page = filteredObject;
+      const page = Object.assign({}, this.currentPage, {
+        created_at: undefined,
+        updated_at: undefined,
+        id: undefined,
+      });
+
       this.$store.dispatch('admin/editPage', page)
         .then(() => this.$router.push({ name: 'admin-services' }))
         .catch((error) => {

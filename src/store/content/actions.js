@@ -16,10 +16,10 @@ function getOnePage({ commit }, textId) {
     axios.post(onePageUrl, { text_id: textId })
       .then((response) => {
         const payload = {
-          text_id: textId,
+          id: textId,
           page: response.data.data,
         };
-        commit('setOnePage', payload);
+        commit('setPage', payload);
 
         resolve();
       })
@@ -109,7 +109,6 @@ function getCategories({ commit }) {
           categories: response.data.data,
           total: response.data.total,
         };
-        console.log(payload);
         commit('setCategories', payload);
 
         resolve();

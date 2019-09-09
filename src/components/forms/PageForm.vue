@@ -18,24 +18,25 @@
       outlined
       :hint="$t('type')"
       :options="options"
-      v-model="page.type"
+      :value="page.type"
       :rules="[
         val => !!val || $t('required_field'),
       ]"
       lazy-rules
-      @change="onChange($event.target.value)"
+      @input="onChange('type', $event)"
     />
     <q-select
       dense
       outlined
       :hint="$t('category')"
-      :options="this.$store.state.content.categories"
-      v-model="page.category"
+      :options="categoriesOptions"
+      :value="page.category"
       :rules="[
         val => !!val || $t('required_field'),
       ]"
       lazy-rules
-      @change="onChange($event.target.value)"
+      @filter="getCategories"
+      @input="onChange('category', $event)"
     />
     <q-input
       dense
@@ -76,9 +77,9 @@
       @change="onChange('content', $event.target.value)"
     />
     <q-checkbox
-      v-model="page.active"
+      :value="page.active"
       :label="$t('active')"
-      @change="onChange('active', $event.target.value)"
+      @input="onChange('active', $event)"
     />
     <div class="row">
       <q-btn
@@ -96,15 +97,12 @@ import { mapState } from 'vuex';
 
 export default {
   name: 'PageForm',
-  preFetch({ store }) {
-    return store.dispatch('content/getCategories');
-  },
   data() {
     return {
       options: [
         'SERVICE', 'INFO', 'FAQ',
       ],
-      // categories: this.$store.state.content.categories,
+      categoriesOptions: null,
     };
   },
   computed: {
@@ -127,26 +125,27 @@ export default {
   methods: {
     onChange(prop, newValue) {
       const newData = Object.assign({}, this.page);
-      newData[prop] = prop === 'text_id' ? newValue : newValue;
+      newData[prop] = newValue;
 
       this.$emit('change', newData);
     },
     isValidString(textId) {
-      if (/^[a-z0-9_-]+$/i.test(textId)) {
-        return true;
-      }
-      return false;
+      return Boolean(/^[a-z0-9_-]+$/i.test(textId));
     },
-    // filterFn(val, update) {
-    //   if (this.categories !== null) {
-    //     update();
-    //     return;
-    //   }
+    getCategories(val, update) {
+      if (this.categories !== null) {
+        update();
 
-    //   update(() => {
-    //     this.categories = this.$store.state.content.categories;
-    //   });
-    // },
+        return;
+      }
+
+      this.$store.dispatch('content/getCategories')
+        .then(() => {
+          update(() => {
+            this.categoriesOptions = this.categories.map(c => c.id);
+          });
+        });
+    },
   },
 };
 </script>

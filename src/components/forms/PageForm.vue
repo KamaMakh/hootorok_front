@@ -25,6 +25,18 @@
       lazy-rules
       @change="onChange($event.target.value)"
     />
+    <q-select
+      dense
+      outlined
+      :hint="$t('category')"
+      :options="this.$store.state.content.categories"
+      v-model="page.category"
+      :rules="[
+        val => !!val || $t('required_field'),
+      ]"
+      lazy-rules
+      @change="onChange($event.target.value)"
+    />
     <q-input
       dense
       outlined
@@ -80,14 +92,23 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: 'PageForm',
+  preFetch({ store }) {
+    return store.dispatch('content/getCategories');
+  },
   data() {
     return {
       options: [
         'SERVICE', 'INFO', 'FAQ',
       ],
+      // categories: this.$store.state.content.categories,
     };
+  },
+  computed: {
+    ...mapState('content', ['categories']),
   },
   props: {
     page: {
@@ -116,6 +137,16 @@ export default {
       }
       return false;
     },
+    // filterFn(val, update) {
+    //   if (this.categories !== null) {
+    //     update();
+    //     return;
+    //   }
+
+    //   update(() => {
+    //     this.categories = this.$store.state.content.categories;
+    //   });
+    // },
   },
 };
 </script>

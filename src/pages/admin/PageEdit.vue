@@ -37,7 +37,7 @@ export default {
       let page = Object.assign({}, this.page.page);
       const filteredObject = {};
       const p = new Set(Object.keys(page));
-      const blacklist = ['id', 'category', 'updated_at', 'created_at'];
+      const blacklist = ['id', 'updated_at', 'created_at'];
       blacklist.forEach(a => p.delete(a));
       // eslint-disable-next-line
       [...p].forEach(k => filteredObject[k] = page[k]);

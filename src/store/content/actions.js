@@ -105,11 +105,12 @@ function getCategories({ commit }) {
   return new Promise((resolve, reject) => {
     axios.post(categoriesUrl)
       .then((response) => {
-        // const payload = {
-        //   categories: response.data.data,
-        //   total: response.data.total,
-        // };
-        commit('setCategories', response.data.data);
+        const payload = {
+          categories: response.data.data,
+          total: response.data.total,
+        };
+        console.log(payload);
+        commit('setCategories', payload);
 
         resolve();
       })

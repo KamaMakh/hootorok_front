@@ -20,7 +20,7 @@ export default {
     return {
       page: {
         text_id: '',
-        // category: '',
+        category: '',
         type: '',
         title: '',
         description: '',

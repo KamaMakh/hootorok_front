@@ -158,4 +158,5 @@ export default {
   content: 'Content',
   edit_page: 'Edit page',
   correct_string_message: 'Only latin letters, numbers, - and _ symbols are allowed',
+  category: 'Category',
 };

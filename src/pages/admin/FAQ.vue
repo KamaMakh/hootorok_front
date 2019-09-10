@@ -14,14 +14,10 @@
       <template v-slot:body="props">
         <q-tr :props="props">
           <q-td
-            key="id"
-            :props="props"
-            v-text="props.row.faq[0].id"
-          />
-          <q-td
             key="title"
             :props="props"
             v-text="props.row.faq[0].title"
+            style="white-space: normal;"
           />
           <q-td
             key="text_id"
@@ -36,8 +32,12 @@
           <q-td
             key="active"
             :props="props"
-            v-text="isActive(props.row.faq[0].active)"
-          />
+          >
+            <q-icon
+              :name="props.row.active ? 'done' : 'close'"
+              :color="props.row.active ? 'positive' : 'negative'"
+            />
+          </q-td>
           <q-td key="edit">
             <div class="row justify-center">
               <q-btn
@@ -153,12 +153,6 @@ export default {
             message: error,
           });
         });
-    },
-    isActive(boolean) {
-      if (boolean) {
-        return 'active';
-      }
-      return 'closed';
     },
   },
 };

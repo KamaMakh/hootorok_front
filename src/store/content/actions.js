@@ -5,9 +5,11 @@ import {
   newsUrl,
   onePageUrl,
   oneNewsUrl,
-  feedbackUrl,
+  sendFeedbackUrl,
   faqUrl,
   categoriesUrl,
+  feedbacksUrl,
+  infoPagesUrl,
 } from 'src/store/urls';
 
 
@@ -43,9 +45,9 @@ function getNews({ commit }, data) {
   });
 }
 
-function getServices({ commit }) {
+function getServices({ commit }, data) {
   return new Promise((resolve, reject) => {
-    axios.post(servicesUrl)
+    axios.post(servicesUrl, data)
       .then((response) => {
         const payload = {
           services: response.data.data,
@@ -95,7 +97,7 @@ function getFAQ({ commit }) {
 
 function sendFeedback(context, data) {
   return new Promise((resolve, reject) => {
-    axios.post(feedbackUrl, data)
+    axios.post(sendFeedbackUrl, data)
       .then(() => resolve())
       .catch(error => onError(error, reject));
   });
@@ -117,6 +119,38 @@ function getCategories({ commit }) {
   });
 }
 
+function getFeedbacks({ commit }, data) {
+  return new Promise((resolve, reject) => {
+    axios.post(feedbacksUrl, data)
+      .then((response) => {
+        const payload = {
+          messages: response.data.data,
+          total: response.data.total,
+        };
+        commit('setFeedbacks', payload);
+
+        resolve();
+      })
+      .catch(error => onError(error, reject));
+  });
+}
+
+function getInfoPages({ commit }, data) {
+  return new Promise((resolve, reject) => {
+    axios.post(infoPagesUrl, data)
+      .then((response) => {
+        const payload = {
+          allInfos: response.data.data,
+          total: response.data.total,
+        };
+        commit('setInfoPages', payload);
+
+        resolve();
+      })
+      .catch(error => onError(error, reject));
+  });
+}
+
 export {
   getFAQ,
   getNews,
@@ -125,4 +159,6 @@ export {
   getServices,
   sendFeedback,
   getCategories,
+  getFeedbacks,
+  getInfoPages,
 };

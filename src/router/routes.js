@@ -209,6 +209,17 @@ const routes = [
         component: () => import('pages/admin/News.vue'),
       },
       {
+        path: 'news/:id/edit',
+        name: 'edit-news',
+        props: true,
+        component: () => import('pages/admin/NewsEdit.vue'),
+      },
+      {
+        path: 'news/add',
+        name: 'add-news',
+        component: () => import('pages/DummyPage.vue'),
+      },
+      {
         path: 'info-pages',
         name: 'admin-info-pages',
         component: () => import('pages/admin/InfoPages.vue'),

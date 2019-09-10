@@ -19,10 +19,13 @@ const editHousingUrl = `${serverUrl}/housings/editHousing`;
 const addPageUrl = `${serverUrl}/pages/addPage`;
 const editPageUrl = `${serverUrl}/pages/editPage`;
 const allRoomsUrl = `${serverUrl}/rooms/getAllRooms`;
-const feedbackUrl = `${serverUrl}/feedback/sendMessage`;
+const sendFeedbackUrl = `${serverUrl}/feedback/sendMessage`;
 const faqUrl = `${serverUrl}/pages/getAllFAQ`;
-const getAllUsersUrl = `${serverUrl}/user/getAllUsers`;
 const categoriesUrl = `${serverUrl}/pages/getAllCategories`;
+const feedbacksUrl = `${serverUrl}/feedback/getAllMessages`;
+const deleteFeedbackUrl = `${serverUrl}/feedback/deleteMessage`;
+const usersUrl = `${serverUrl}/user/getAllUsers`;
+const infoPagesUrl = `${serverUrl}/pages/getAllInfos`;
 
 export {
   serverUrl,
@@ -43,11 +46,14 @@ export {
   allRoomsUrl,
   onePageUrl,
   oneRoomUrl,
-  feedbackUrl,
+  sendFeedbackUrl,
   faqUrl,
+  feedbacksUrl,
+  deleteFeedbackUrl,
   editProfileUrl,
-  getAllUsersUrl,
   addPageUrl,
   editPageUrl,
   categoriesUrl,
+  usersUrl,
+  infoPagesUrl,
 };

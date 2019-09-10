@@ -30,12 +30,24 @@ function setCategories(state, data) {
   state.categories = data.categories;
 }
 
+function setFeedbacks(state, data) {
+  state.feedbacksTotal = parseInt(data.total, 10);
+  state.feedbacks = data.messages;
+}
+
+function setInfoPages(state, data) {
+  state.infoPagesTotal = parseInt(data.total, 10);
+  state.infoPages = data.allInfos;
+}
+
 export {
   setPage,
   setNews,
   setOneNews,
   resetOneNews,
   setFAQ,
+  setFeedbacks,
   setServices,
   setCategories,
+  setInfoPages,
 };

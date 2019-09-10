@@ -161,4 +161,13 @@ export default {
   yes: 'Yes',
   periodic: 'Periodic',
   created_at: 'Date of creation',
+  type: 'Type',
+  content: 'Content',
+  add_page: 'Add page',
+  edit_page: 'Edit page',
+  correct_string_message: 'Only latin letters, numbers, - and _ symbols are allowed',
+  category: 'Category',
+  add_service: 'Add service',
+  add_info_page: 'Add info page',
+  add_faq: 'Add frequently asked question',
 };

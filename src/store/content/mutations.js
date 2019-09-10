@@ -25,6 +25,11 @@ function setFAQ(state, faq) {
   state.faq = faq;
 }
 
+function setCategories(state, data) {
+  state.categoriesTotal = parseInt(data.total, 10);
+  state.categories = data.categories;
+}
+
 function setFeedbacks(state, data) {
   state.feedbacksTotal = parseInt(data.total, 10);
   state.feedbacks = data.messages;
@@ -43,5 +48,6 @@ export {
   setFAQ,
   setFeedbacks,
   setServices,
+  setCategories,
   setInfoPages,
 };

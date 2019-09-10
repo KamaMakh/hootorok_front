@@ -7,6 +7,7 @@ import {
   oneNewsUrl,
   sendFeedbackUrl,
   faqUrl,
+  categoriesUrl,
   feedbacksUrl,
   infoPagesUrl,
 } from 'src/store/urls';
@@ -20,7 +21,6 @@ function getOnePage({ commit }, textId) {
           id: textId,
           page: response.data.data,
         };
-
         commit('setPage', payload);
 
         resolve();
@@ -103,6 +103,22 @@ function sendFeedback(context, data) {
   });
 }
 
+function getCategories({ commit }) {
+  return new Promise((resolve, reject) => {
+    axios.post(categoriesUrl)
+      .then((response) => {
+        const payload = {
+          categories: response.data.data,
+          total: response.data.total,
+        };
+        commit('setCategories', payload);
+
+        resolve();
+      })
+      .catch(error => onError(error, reject));
+  });
+}
+
 function getFeedbacks({ commit }, data) {
   return new Promise((resolve, reject) => {
     axios.post(feedbacksUrl, data)
@@ -142,6 +158,7 @@ export {
   getOnePage,
   getServices,
   sendFeedback,
+  getCategories,
   getFeedbacks,
   getInfoPages,
 };

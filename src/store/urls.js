@@ -16,9 +16,12 @@ const allHousingsUrl = `${serverUrl}/housings/getAllHousings`;
 const oneHousingUrl = `${serverUrl}/housings/getHousing`;
 const addHousingUrl = `${serverUrl}/housings/addHousing`;
 const editHousingUrl = `${serverUrl}/housings/editHousing`;
+const addPageUrl = `${serverUrl}/pages/addPage`;
+const editPageUrl = `${serverUrl}/pages/editPage`;
 const allRoomsUrl = `${serverUrl}/rooms/getAllRooms`;
 const sendFeedbackUrl = `${serverUrl}/feedback/sendMessage`;
 const faqUrl = `${serverUrl}/pages/getAllFAQ`;
+const categoriesUrl = `${serverUrl}/pages/getAllCategories`;
 const feedbacksUrl = `${serverUrl}/feedback/getAllMessages`;
 const deleteFeedbackUrl = `${serverUrl}/feedback/deleteMessage`;
 const usersUrl = `${serverUrl}/user/getAllUsers`;
@@ -48,6 +51,9 @@ export {
   feedbacksUrl,
   deleteFeedbackUrl,
   editProfileUrl,
+  addPageUrl,
+  editPageUrl,
+  categoriesUrl,
   usersUrl,
   infoPagesUrl,
 };

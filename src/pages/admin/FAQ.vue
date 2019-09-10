@@ -6,18 +6,38 @@
       :columns="columns"
       :loading="loading"
       :rows-per-page-options="['all']"
-      :pagination="pagination"
+      :pagination.sync="pagination"
       hide-bottom
       row-key="id"
       @request="onRequest"
     >
       <template v-slot:body="props">
         <q-tr :props="props">
-          <q-td key="id" :props="props" v-text="props.row.id"/>
-          <q-td key="title" :props="props" v-text="props.row.title"/>
-          <q-td key="text_id" :props="props" v-text="props.row.text_id"/>
-          <q-td key="description" :props="props" v-text="props.row.description"/>
-          <q-td key="active" :props="props" v-text="isActive(props.row.active)"/>
+          <q-td
+            key="id"
+            :props="props"
+            v-text="props.row.faq[0].id"
+          />
+          <q-td
+            key="title"
+            :props="props"
+            v-text="props.row.faq[0].title"
+          />
+          <q-td
+            key="text_id"
+            :props="props"
+            v-text="props.row.faq[0].text_id"
+          />
+          <q-td
+            key="description"
+            :props="props"
+            v-text="props.row.faq[0].description"
+          />
+          <q-td
+            key="active"
+            :props="props"
+            v-text="isActive(props.row.faq[0].active)"
+          />
           <q-td key="edit">
             <div class="row justify-center">
               <q-btn
@@ -26,7 +46,7 @@
                 :label="$t('edit')"
                 :to="{
                   name: 'edit-page',
-                  params: { id: props.row.text_id },
+                  params: { id: props.row.faq[0].text_id },
                 }"/>
             </div>
           </q-td>
@@ -116,7 +136,6 @@ export default {
       this.loading = true;
       this.pagination.sortBy = props.pagination.sortBy;
       this.pagination.descending = props.pagination.descending;
-
       this.getFAQ();
     },
     getFAQ() {

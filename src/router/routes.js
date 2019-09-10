@@ -195,8 +195,8 @@ const routes = [
       {
         path: 'pages/:id/edit',
         name: 'edit-page',
-        props: true,
         component: () => import('pages/admin/PageEdit.vue'),
+        props: true,
       },
       {
         path: 'pages/add',

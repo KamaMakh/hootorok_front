@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    <h1 class="text-h5" v-text="$t('add_service')"/>
+    <h1 class="text-h5" v-text="headerText"/>
     <page-form
       :page="page"
       :onSubmit="addPage"
@@ -48,6 +48,19 @@ export default {
             message: error,
           });
         });
+    },
+  },
+  computed: {
+    headerText() {
+      const texts = {
+        SERVICE: this.$t('add_service'),
+        INFO: this.$t('add_info_page'),
+        FAQ: this.$t('add_faq'),
+        default: this.$t('add_page'),
+      };
+      const { type } = this.$route.query;
+
+      return type ? texts[type] : texts.default;
     },
   },
   components: {

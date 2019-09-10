@@ -49,7 +49,7 @@
                 :label="$t('edit')"
                 :to="{
                   name: 'edit-page',
-                  params: { id: props.row.id },
+                  params: { id: props.row.text_id },
                 }"
               />
             </div>
@@ -62,7 +62,10 @@
         size="sm"
         color="positive"
         :label="$t('add')"
-        :to="{ name: 'add-page' }"
+        :to="{
+          name: 'add-page',
+          query: { type: 'INFO' },
+        }"
       />
     </div>
   </q-page>

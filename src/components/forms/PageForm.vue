@@ -17,12 +17,13 @@
       dense
       outlined
       :hint="$t('type')"
-      :options="options"
-      :value="page.type"
+      :options="typeOptions"
+      :value="computedType"
       :rules="[
         val => !!val || $t('required_field'),
       ]"
       lazy-rules
+      :readonly="readonlyType"
       @input="onChange('type', $event)"
     />
     <q-select
@@ -99,7 +100,7 @@ export default {
   name: 'PageForm',
   data() {
     return {
-      options: [
+      typeOptions: [
         'SERVICE', 'INFO', 'FAQ',
       ],
       categoriesOptions: null,
@@ -107,6 +108,14 @@ export default {
   },
   computed: {
     ...mapState('content', ['categories']),
+    computedType() {
+      if (this.page.id) return this.page.type;
+
+      return this.$route.query.type || this.page.type;
+    },
+    readonlyType() {
+      return Boolean(this.page.id) || Boolean(this.$route.query.type);
+    },
   },
   props: {
     page: {
@@ -133,7 +142,7 @@ export default {
       return Boolean(/^[a-z0-9_-]+$/i.test(textId));
     },
     getCategories(val, update) {
-      if (this.categories !== null) {
+      if (this.categoriesOptions !== null) {
         update();
 
         return;

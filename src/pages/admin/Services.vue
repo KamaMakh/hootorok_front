@@ -55,7 +55,10 @@
         size="sm"
         color="positive"
         :label="$t('add')"
-        :to="{ name: 'add-page' }"
+        :to="{
+          name: 'add-page',
+          query: { type: 'SERVICE' },
+        }"
       />
     </div>
   </q-page>

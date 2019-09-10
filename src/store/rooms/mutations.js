@@ -18,6 +18,7 @@ function setRooms(state, data) {
 
 function setRoom(state, room) {
   state.room = room;
+  state.rooms = Object.assign({}, state.rooms, { [room.id]: room });
 }
 
 export {

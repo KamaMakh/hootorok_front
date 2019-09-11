@@ -19,14 +19,15 @@ export default {
   data() {
     return {
       room: {
-        number: '',
+        number: undefined,
         description: '',
-        main_image: '',
+        // TODO: remove temp main_image value
+        main_image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrPDZHgrGKsCE4a4ABzZxX_cTC_DBR-XsxSmTdt6ZIPGzTGa_aaA',
         content_images: [],
-        price: '',
-        active: '',
-        housing: '',
-        capacity: '',
+        price: undefined,
+        active: true,
+        housing: undefined,
+        capacity: undefined,
       },
     };
   },
@@ -39,7 +40,7 @@ export default {
 
       this.$store.dispatch('rooms/addRoom', room)
         .then(() => {
-          this.$router.push({ name: 'admin-services' });
+          this.$router.push({ name: 'admin-rooms' });
         })
         .catch((error) => {
           this.$q.notify({

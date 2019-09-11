@@ -46,7 +46,7 @@
       dense
       outlined
       :hint="$t('housing')"
-      :options="housings"
+      :options="housingsOptions"
       :value="room.housing"
       :rules="[
         val => !!val || $t('required_field'),
@@ -85,7 +85,7 @@ export default {
   name: 'RoomForm',
   data() {
     return {
-      housingOptions: null,
+      housingsOptions: null,
     };
   },
   computed: {
@@ -113,7 +113,7 @@ export default {
       this.$emit('change', newData);
     },
     getHousings(val, update) {
-      if (this.housingOptions !== null) {
+      if (this.housingsOptions !== null) {
         update();
 
         return;
@@ -122,7 +122,7 @@ export default {
       this.$store.dispatch('rooms/getHousings')
         .then(() => {
           update(() => {
-            this.housingOptions = this.housingOptions.map(c => c.number);
+            this.housingsOptions = this.housings.map(c => c.id);
           });
         });
     },

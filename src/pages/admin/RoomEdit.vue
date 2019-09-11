@@ -1,9 +1,9 @@
 <template>
   <q-page padding>
-    <template v-if="currentRoom">
+    <template v-if="room">
       <h1 class="text-h5" v-text="$t('edit_room')"/>
       <room-form
-        :room="currentRoom"
+        :room="room"
         :onSubmit="editRoom"
         :button-text="$t('edit')"
         @change="onChange"
@@ -27,27 +27,22 @@ export default {
   },
   computed: {
     ...mapState('rooms', [
+      'room',
       'rooms',
     ]),
-    currentRoom() {
-      return this.rooms[this.$attrs.id];
-    },
   },
   methods: {
     onChange(newRoom) {
-      this.$store.commit('rooms/setRoom', {
-        room: newRoom,
-      });
+      this.$store.commit('rooms/setRoom', newRoom);
     },
     editRoom() {
-      const room = Object.assign({}, this.currentRoom, {
+      const room = Object.assign({}, this.room, {
         created_at: undefined,
         updated_at: undefined,
-        id: undefined,
       });
 
       this.$store.dispatch('rooms/editRoom', room)
-        .then(() => this.$router.push({ name: 'admin-services' }))
+        .then(() => this.$router.push({ name: 'admin-rooms' }))
         .catch((error) => {
           this.$q.notify({
             icon: 'close',
@@ -62,7 +57,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-
-</style>

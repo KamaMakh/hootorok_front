@@ -185,7 +185,7 @@ const routes = [
       {
         path: 'rooms/add',
         name: 'add-room',
-        component: () => import('pages/DummyPage.vue'),
+        component: () => import('pages/admin/RoomAdd.vue'),
       },
       {
         path: 'services',

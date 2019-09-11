@@ -83,7 +83,7 @@ export default {
         descending: false,
         page: 1,
         rowsPerPage: 10,
-        rowsNumber: null,
+        rowsNumber: this.$store.state.rooms.roomsTotal,
       },
       columns: [
         {

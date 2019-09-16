@@ -32,11 +32,11 @@
             />
           </q-td>
           <q-td key="repost" :props="props">
-          <q-icon
-            :name="props.row.repost ? 'done' : 'close'"
-            :color="props.row.repost ? 'positive' : 'negative'"
-          />
-        </q-td>
+            <q-icon
+              :name="props.row.repost ? 'done' : 'close'"
+              :color="props.row.repost ? 'positive' : 'negative'"
+            />
+          </q-td>
           <q-td
             key="period"
             :props="props"

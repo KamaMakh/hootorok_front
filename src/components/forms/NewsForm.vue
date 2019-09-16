@@ -10,8 +10,8 @@
         val => !!val || $t('required_field'),
       ]"
       lazy-rules
-      @change="onChange('title', $event.target.value)"></q-input>
-
+      @change="onChange('title', $event.target.value)"
+    />
     <q-input
       dense
       outlined
@@ -23,7 +23,8 @@
         val => !!val || $t('required_field'),
       ]"
       lazy-rules
-      @change="onChange('description', $event.target.value)"></q-input>
+      @change="onChange('description', $event.target.value)"
+    />
     <q-input
       dense
       outlined
@@ -35,12 +36,12 @@
         val => !!val || $t('required_field'),
       ]"
       lazy-rules
-      @change="onChange('content', $event.target.value)"></q-input>
+      @change="onChange('content', $event.target.value)"
+    />
     <q-checkbox
-      indeterminate-value="maybe"
       :value="news.repost"
-      :hint="$t('repost')"
-      @change="onChange('repost', $event.target.value)"
+      :label="$t('repost')"
+      @input="onChange('repost', $event)"
     />
     <q-input
       dense
@@ -49,14 +50,16 @@
       :value="news.period"
       :hint="$t('periodic')"
       class="text-right"
-      @change="onChange('period', $event.target.value)"></q-input>
-
+      min="1"
+      @change="onChange('period', $event.target.value)"
+    />
     <div class="row">
       <q-btn
         color="primary"
         size="sm"
         type="submit"
-        :label="buttonText"></q-btn>
+        :label="buttonText"
+      />
     </div>
   </q-form>
 </template>
@@ -81,7 +84,7 @@ export default {
   methods: {
     onChange(prop, newValue) {
       const newData = Object.assign({}, this.news);
-      newData[prop] = prop === 'number' ? Number(newValue) : newValue;
+      newData[prop] = prop === 'period' ? Number(newValue) : newValue;
 
       this.$emit('change', newData);
     },

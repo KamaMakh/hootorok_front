@@ -22,9 +22,11 @@ export default {
         title: '',
         description: '',
         content: '',
+        // TODO: remove temporary main_image
+        main_image: 'https://penza-online.ru/upload/articles/2019/5d5a9b803fba7.jpeg',
+        content_images: [],
         repost: false,
-        period: null,
-
+        period: undefined,
       },
     };
   },

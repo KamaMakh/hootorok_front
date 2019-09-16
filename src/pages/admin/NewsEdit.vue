@@ -33,7 +33,13 @@ export default {
       this.$store.commit('content/setOneNews', newNews);
     },
     editNews() {
-      const news = Object.assign({}, this.oneNews);
+      const news = Object.assign({}, this.oneNews, {
+        created_at: undefined,
+        updated_at: undefined,
+        prev: undefined,
+        next: undefined,
+        period: this.oneNews.period || undefined,
+      });
 
       this.$store.dispatch('admin/editNews', news)
         .then(() => this.$router.push({ name: 'admin-news' }))

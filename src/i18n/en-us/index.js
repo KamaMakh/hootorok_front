@@ -170,4 +170,10 @@ export default {
   add_service: 'Add service',
   add_info_page: 'Add info page',
   add_faq: 'Add frequently asked question',
+  price: 'Price',
+  add_room: 'Add room',
+  edit_room: 'Edit room',
+  repost: 'repost',
+  add_news: 'Add news',
+  edit_news: 'Edit news',
 };

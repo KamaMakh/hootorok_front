@@ -32,11 +32,17 @@
             />
           </q-td>
           <q-td key="repost" :props="props">
-            <q-icon
-              :name="props.row.repost ? 'done' : 'close'"
-              :color="props.row.repost ? 'positive' : 'negative'"
-            />
-          </q-td>
+          <q-icon
+            :name="props.row.repost ? 'done' : 'close'"
+            :color="props.row.repost ? 'positive' : 'negative'"
+          />
+        </q-td>
+          <q-td
+            key="period"
+            :props="props"
+            v-text="props.row.period"
+            style="white-space: normal;"
+          />
           <q-td
             key="created_at"
             :props="props"
@@ -120,6 +126,14 @@ export default {
           name: 'repost',
           required: true,
           field: 'repost',
+          sortable: true,
+          label: this.$t('repost'),
+          align: 'center',
+        },
+        {
+          name: 'period',
+          required: true,
+          field: 'period',
           sortable: true,
           label: this.$t('periodic'),
           align: 'center',

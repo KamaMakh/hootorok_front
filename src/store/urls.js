@@ -8,6 +8,8 @@ const newPasswordUrl = `${serverUrl}/auth/setNewPassword`;
 const recoveryHashUrl = `${serverUrl}/auth/checkRecoveryHash`;
 const newsUrl = `${serverUrl}/news/getAllNews`;
 const oneNewsUrl = `${serverUrl}/news/getOneNews`;
+const addNewsUrl = `${serverUrl}/news/addNews`;
+const editNewsUrl = `${serverUrl}/news/editNews`;
 const logoutUrl = `${serverUrl}/auth/logout`;
 const checkAuthUrl = `${serverUrl}/auth/check`;
 const editProfileUrl = `${serverUrl}/user/editProfile`;
@@ -18,6 +20,8 @@ const addHousingUrl = `${serverUrl}/housings/addHousing`;
 const editHousingUrl = `${serverUrl}/housings/editHousing`;
 const addPageUrl = `${serverUrl}/pages/addPage`;
 const editPageUrl = `${serverUrl}/pages/editPage`;
+const addRoomUrl = `${serverUrl}/rooms/addRoom`;
+const editRoomUrl = `${serverUrl}/rooms/editRoom`;
 const allRoomsUrl = `${serverUrl}/rooms/getAllRooms`;
 const sendFeedbackUrl = `${serverUrl}/feedback/sendMessage`;
 const faqUrl = `${serverUrl}/pages/getAllFAQ`;
@@ -56,4 +60,8 @@ export {
   categoriesUrl,
   usersUrl,
   infoPagesUrl,
+  addRoomUrl,
+  editRoomUrl,
+  editNewsUrl,
+  addNewsUrl,
 };

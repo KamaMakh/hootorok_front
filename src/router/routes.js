@@ -62,21 +62,6 @@ const routes = [
         component: () => import('pages/info/Info.vue'),
       },
       {
-        path: 'contacts',
-        name: 'contacts',
-        component: () => import('pages/Contacts.vue'),
-      },
-      {
-        path: 'about',
-        name: 'about',
-        component: () => import('pages/About.vue'),
-      },
-      {
-        path: 'info',
-        name: 'info',
-        component: () => import('pages/Info.vue'),
-      },
-      {
         path: 'booking',
         name: 'booking',
         component: () => import('pages/Booking.vue'),
@@ -200,7 +185,7 @@ const routes = [
       {
         path: 'rooms/add',
         name: 'add-room',
-        component: () => import('pages/DummyPage.vue'),
+        component: () => import('pages/admin/RoomAdd.vue'),
       },
       {
         path: 'services',
@@ -232,7 +217,7 @@ const routes = [
       {
         path: 'news/add',
         name: 'add-news',
-        component: () => import('pages/DummyPage.vue'),
+        component: () => import('pages/admin/NewsAdd.vue'),
       },
       {
         path: 'info-pages',

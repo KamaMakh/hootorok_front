@@ -176,4 +176,7 @@ export default {
   room_or_house_choice: 'Выбор домика или номера',
   search: 'Искать',
   book: 'Бронировать',
+  repost: 'Репост',
+  add_news: 'Добавить новость',
+  edit_news: 'Редактор новостей',
 };

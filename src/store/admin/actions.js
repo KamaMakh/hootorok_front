@@ -6,6 +6,8 @@ import {
   editHousingUrl,
   addPageUrl,
   editPageUrl,
+  addNewsUrl,
+  editNewsUrl,
 } from 'src/store/urls';
 
 function addHousing(context, data) {
@@ -47,11 +49,27 @@ function deleteFeedback(context, id) {
       .catch(error => onError(error, reject));
   });
 }
+function addNews(context, data) {
+  return new Promise((resolve, reject) => {
+    axios.post(addNewsUrl, data)
+      .then(() => resolve())
+      .catch(error => onError(error, reject));
+  });
+}
 
+function editNews(context, data) {
+  return new Promise((resolve, reject) => {
+    axios.post(editNewsUrl, data)
+      .then(() => resolve())
+      .catch(error => onError(error, reject));
+  });
+}
 export {
   addHousing,
   editHousing,
   addPage,
   editPage,
   deleteFeedback,
+  editNews,
+  addNews,
 };

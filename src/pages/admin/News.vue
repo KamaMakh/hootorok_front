@@ -38,6 +38,12 @@
             />
           </q-td>
           <q-td
+            key="period"
+            :props="props"
+            v-text="props.row.period"
+            style="white-space: normal;"
+          />
+          <q-td
             key="created_at"
             :props="props"
             v-text="formatDate(props.row.created_at)"
@@ -120,6 +126,14 @@ export default {
           name: 'repost',
           required: true,
           field: 'repost',
+          sortable: true,
+          label: this.$t('repost'),
+          align: 'center',
+        },
+        {
+          name: 'period',
+          required: true,
+          field: 'period',
           sortable: true,
           label: this.$t('periodic'),
           align: 'center',

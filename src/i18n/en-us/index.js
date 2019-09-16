@@ -176,4 +176,7 @@ export default {
   room_or_house_choice: 'Room or house choice',
   search: 'Search',
   book: 'Book',
+  repost: 'repost',
+  add_news: 'Add news',
+  edit_news: 'Edit news',
 };

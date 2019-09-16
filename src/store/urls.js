@@ -8,6 +8,8 @@ const newPasswordUrl = `${serverUrl}/auth/setNewPassword`;
 const recoveryHashUrl = `${serverUrl}/auth/checkRecoveryHash`;
 const newsUrl = `${serverUrl}/news/getAllNews`;
 const oneNewsUrl = `${serverUrl}/news/getOneNews`;
+const addNewsUrl = `${serverUrl}/news/addNews`;
+const editNewsUrl = `${serverUrl}/news/editNews`;
 const logoutUrl = `${serverUrl}/auth/logout`;
 const checkAuthUrl = `${serverUrl}/auth/check`;
 const editProfileUrl = `${serverUrl}/user/editProfile`;
@@ -64,4 +66,6 @@ export {
   editRoomUrl,
   freeRoomsUrl,
   bookingUrl,
+  editNewsUrl,
+  addNewsUrl,
 };

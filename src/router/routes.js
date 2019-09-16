@@ -217,7 +217,7 @@ const routes = [
       {
         path: 'news/add',
         name: 'add-news',
-        component: () => import('pages/DummyPage.vue'),
+        component: () => import('pages/admin/NewsAdd.vue'),
       },
       {
         path: 'info-pages',

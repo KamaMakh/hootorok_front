@@ -175,4 +175,5 @@ export default {
   edit_room: 'Edit room',
   room_or_house_choice: 'Room or house choice',
   search: 'Search',
+  book: 'Book',
 };

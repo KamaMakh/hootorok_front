@@ -75,7 +75,18 @@
         :key="room.id"
         :room="room"
         @show-photos="showPhotos"
-      />
+      >
+        <template v-slot:actions>
+          <q-card-actions class="justify-end">
+            <q-btn
+              size="sm"
+              color="primary"
+              :label="$t('book')"
+              @click="addBooking(room)"
+            />
+          </q-card-actions>
+        </template>
+      </room-card>
     </div>
     <q-dialog
       v-model="showCarousel"
@@ -112,7 +123,7 @@
 
 <script>
 import { date } from 'quasar';
-import { mapState } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 import GuestsSelect from 'components/GuestsSelect.vue';
 import RoomCard from 'components/RoomCard.vue';
 
@@ -140,7 +151,9 @@ export default {
       children,
     } = currentRoute.params;
 
-    if (arrivalDate && departureDate && !Number.isNaN(adults) && !Number.isNaN(children)) {
+    if (arrivalDate && departureDate
+      && !Number.isNaN(adults)
+      && !Number.isNaN(children)) {
       return store.dispatch('rooms/getFreeRooms', {
         startDate: dateStringToTimestamp(arrivalDate),
         endDate: dateStringToTimestamp(departureDate),
@@ -162,13 +175,19 @@ export default {
         seconds: 0,
         milliseconds: 0,
       }),
+      selectedRoom: null,
+      showBooking: false,
       showCarousel: false,
       slide: 1,
       photos: [],
     };
   },
   computed: {
-    ...mapState('rooms', ['freeRooms']),
+    ...mapGetters(['loggedIn']),
+    ...mapState({
+      freeRooms: state => state.rooms.freeRooms,
+      user: state => state.user.user,
+    }),
   },
   methods: {
     getRooms() {
@@ -182,6 +201,22 @@ export default {
           color: 'negative',
           message: error,
         });
+      });
+    },
+    addBooking(room) {
+      if (!this.loggedIn) {
+        return this.$router.push({ name: 'login' });
+      }
+
+      // TODO: improve logic because dates can be changed
+      // this.selectedRoom = room;
+      // this.showBooking = true;
+
+      return this.$store.dispatch('user/addBooking', {
+        room: room.id,
+        user: this.user.id,
+        start_date: dateStringToTimestamp(this.fromDate),
+        end_date: dateStringToTimestamp(this.toDate),
       });
     },
     onGuestsChange(data) {

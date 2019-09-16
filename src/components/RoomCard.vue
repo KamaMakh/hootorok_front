@@ -40,6 +40,7 @@
         <q-icon name="arrow_forward_ios" style="font-size: 14px;"/>
       </q-btn>
     </div>
+    <slot name="actions"/>
   </q-card>
 </template>
 

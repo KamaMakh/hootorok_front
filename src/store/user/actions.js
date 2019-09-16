@@ -9,6 +9,7 @@ import {
   recoveryHashUrl,
   editProfileUrl,
   usersUrl,
+  bookingUrl,
 } from 'src/store/urls';
 
 import onError from 'src/store/onError';
@@ -127,6 +128,14 @@ function getUsers({ commit }, data) {
   });
 }
 
+function addBooking(context, data) {
+  return new Promise((resolve, reject) => {
+    axios.post(bookingUrl, data)
+      .then(() => resolve())
+      .catch(error => onError(error, reject));
+  });
+}
+
 export {
   register,
   resetPassword,
@@ -137,4 +146,5 @@ export {
   checkUser,
   getUsers,
   editProfile,
+  addBooking,
 };

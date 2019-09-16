@@ -175,4 +175,5 @@ export default {
   edit_room: 'Изменить комнату',
   room_or_house_choice: 'Выбор домика или номера',
   search: 'Искать',
+  book: 'Бронировать',
 };

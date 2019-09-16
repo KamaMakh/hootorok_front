@@ -20,10 +20,20 @@ function setRoom(state, room) {
   state.room = room;
 }
 
+function setFreeRooms(state, freeRooms) {
+  state.freeRooms = freeRooms;
+}
+
+function resetFreeRooms(state) {
+  state.freeRooms = [];
+}
+
 export {
   setHousings,
   setHousing,
   resetHousing,
   setRooms,
   setRoom,
+  setFreeRooms,
+  resetFreeRooms,
 };

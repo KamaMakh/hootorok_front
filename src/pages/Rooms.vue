@@ -41,116 +41,14 @@
           @input="resetCurrentPage"
         />
       </div>
-      <!-- <q-btn-toggle
-        v-model="view"
-        size="sm"
-        push
-        glossy
-        toggle-color="primary"
-        :options="[
-          { value: 'one', slot: 'one'},
-          { value: 'two', slot: 'two'},
-        ]"
-      >
-        <template v-slot:one>
-          <q-icon name="view_module"/>
-        </template>
-        <template v-slot:two>
-          <q-icon name="view_headline"/>
-        </template>
-      </q-btn-toggle> -->
     </div>
-    <div
-      v-if="view === 'one'"
-      class="row items-start q-pb-md"
-    >
-      <q-card
-        v-for="item in roomsPaged"
-        :key="item.id"
-        flat
-        square
-        class="card-link"
-      >
-        <router-link
-          class="text-h6 q-py-sm block standard-link text-default"
-          :to="{
-            name: 'room',
-            params: { id: item.id },
-          }"
-          v-text="`${$t('room_number')} ${item.id}`"
-        />
-        <q-img
-          basic
-          :src="item.main_image"
-          :ratio="16/9"
-          @click="showPhotos(item)"
-          class="cursor-pointer"
-        >
-          <q-tooltip>{{ $t('see_all_room_photos') }}</q-tooltip>
-        </q-img>
-        <q-separator class="q-my-sm"/>
-        <div class="row justify-between text-body2 text-bold">
-          <div v-text="`${item.price} ${$t('rur/night')}`"/>
-          <div v-text="`${item.capacity} ${$t('man')}`"/>
-        </div>
-        <div class="row no-wrap q-mt-md items-center justify-between">
-          <div class="text-body2" v-text="item.description"/>
-          <q-btn
-            flat
-            color="grey"
-            class="justify-center items-center"
-            :to="{
-              name: 'room',
-              params: { id: item.id },
-            }"
-          >
-            <q-icon name="arrow_forward_ios" style="font-size: 14px;"/>
-          </q-btn>
-        </div>
-      </q-card>
-    </div>
-    <div
-      v-if="view === 'two'"
-      class="q-pa-md"
-    >
-      <q-markup-table>
-        <thead>
-          <tr>
-            <th class="text-left" v-text="$t('photo')"/>
-            <th class="text-right" v-text="$t('room_number')"/>
-            <th class="text-right" v-text="$t('housing')"/>
-            <th class="text-right" v-text="$t('price_per_day')"/>
-            <th class="text-right" v-text="$t('number_of_adults_and_children')"/>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-          <tr v-for="item in roomsPaged" :key="item.id">
-            <td class="text-left">
-              <img
-                :src="item.main_image"
-                class="small-image"
-                @click="showPhotos(item)"
-              >
-            </td>
-            <td
-              class="text-right"
-              @click="$router.push({
-                name: 'room',
-                params: { id: item.id },
-              })"
-              v-text="item.id"
-            />
-            <td
-              class="text-right"
-              @click="$router.push({ name: 'housings' })"
-              v-text="item.housing"
-            />
-            <td class="text-right" v-text="item.price"/>
-            <td class="text-right" v-text="item.capacity"/>
-          </tr>
-        </tbody>
-      </q-markup-table>
+    <div class="row items-start q-pb-md">
+      <room-card
+        v-for="room in roomsPaged"
+        :key="room.id"
+        :room="room"
+        @show-photos="showPhotos"
+      />
     </div>
     <div v-if="pages > 1" class="q-pa-lg flex flex-center">
       <q-pagination
@@ -166,7 +64,6 @@
     >
       <div class="full-width full-height">
         <q-carousel
-          animated
           v-model="slide"
           arrows
           navigation
@@ -195,15 +92,21 @@
 
 <script>
 import { mapState } from 'vuex';
+import RoomCard from 'components/RoomCard.vue';
 
 const perPageOptions = [6, 12, 18];
 
 export default {
   name: 'Rooms',
+  preFetch({ store }) {
+    return Promise.all([
+      store.dispatch('rooms/getHousings'),
+      store.dispatch('rooms/getRooms'),
+    ]);
+  },
   data() {
     return {
       isDesc: true,
-      view: 'one',
       housing: this.$route.params.housing || 0,
       showCarousel: false,
       slide: 1,
@@ -212,10 +115,6 @@ export default {
       currentPage: 1,
       photos: [],
     };
-  },
-  async mounted() {
-    this.$store.dispatch('rooms/getHousings');
-    this.$store.dispatch('rooms/getRooms');
   },
   computed: {
     ...mapState('rooms', ['rooms', 'housings']),
@@ -269,8 +168,8 @@ export default {
     },
   },
   methods: {
-    showPhotos(room) {
-      this.photos = [...room.content_images];
+    showPhotos(photos) {
+      this.photos = photos;
       this.slide = 1;
 
       this.showCarousel = true;
@@ -279,11 +178,8 @@ export default {
       this.currentPage = 1;
     },
   },
+  components: {
+    RoomCard,
+  },
 };
 </script>
-
-<style lang="stylus" scoped>
-.small-image
-  width: 120px
-  height: 75px
-</style>

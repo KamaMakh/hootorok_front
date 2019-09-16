@@ -5,6 +5,9 @@ import {
   oneHousingUrl,
   allRoomsUrl,
   oneRoomUrl,
+  addRoomUrl,
+  editRoomUrl,
+  freeRoomsUrl,
 } from 'src/store/urls';
 
 function getHousings({ commit }, data) {
@@ -73,9 +76,40 @@ function getRoom({ commit }, index) {
   });
 }
 
+function addRoom(context, data) {
+  return new Promise((resolve, reject) => {
+    axios.post(addRoomUrl, data)
+      .then(() => resolve())
+      .catch(error => onError(error, reject));
+  });
+}
+
+function editRoom(context, data) {
+  return new Promise((resolve, reject) => {
+    axios.post(editRoomUrl, data)
+      .then(() => resolve())
+      .catch(error => onError(error, reject));
+  });
+}
+
+function getFreeRooms({ commit }, options) {
+  return new Promise((resolve, reject) => {
+    axios.post(freeRoomsUrl, options)
+      .then((response) => {
+        commit('setFreeRooms', response.data.data);
+
+        resolve();
+      })
+      .catch(error => onError(error, reject));
+  });
+}
+
 export {
   getHousings,
   getHousing,
   getRooms,
   getRoom,
+  addRoom,
+  editRoom,
+  getFreeRooms,
 };

@@ -28,6 +28,7 @@ const feedbacksUrl = `${serverUrl}/feedback/getAllMessages`;
 const deleteFeedbackUrl = `${serverUrl}/feedback/deleteMessage`;
 const usersUrl = `${serverUrl}/user/getAllUsers`;
 const infoPagesUrl = `${serverUrl}/pages/getAllInfos`;
+const freeRoomsUrl = `${serverUrl}/reservation/getFreeRooms`;
 
 export {
   serverUrl,
@@ -60,4 +61,5 @@ export {
   infoPagesUrl,
   addRoomUrl,
   editRoomUrl,
+  freeRoomsUrl,
 };

@@ -75,6 +75,7 @@ module.exports = () => ({
       'QTooltip',
       'QSpace',
       'QForm',
+      'QPopupProxy',
     ],
 
     directives: [

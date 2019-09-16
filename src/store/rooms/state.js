@@ -5,4 +5,5 @@ export default {
   rooms: [],
   roomsTotal: 0,
   room: {},
+  freeRooms: [],
 };

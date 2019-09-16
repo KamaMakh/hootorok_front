@@ -5,7 +5,7 @@
     </q-card-section>
     <q-card-actions class="q-pa-md column q-col-gutter-y-md">
       <div class="row justify-between q-col-gutter-x-md">
-        <q-field class="col" :label="$t('arrival_date')" stack-label>
+        <q-field dense class="col" :label="$t('arrival_date')" stack-label>
           <template v-slot:control>
             <div class="self-center full-width no-outline" tabindex="0">
               {{arrivalDate}}
@@ -25,7 +25,7 @@
             </q-icon>
           </template>
         </q-field>
-        <q-field class="col" :label="$t('departure_date')" stack-label>
+        <q-field dense class="col" :label="$t('departure_date')" stack-label>
           <template v-slot:control>
             <div class="self-center full-width no-outline" tabindex="0">
               {{departureDate}}
@@ -81,7 +81,7 @@ export default {
       arrivalDate: this.arrival || '',
       departureDate: this.departure || '',
       maxDate: '2035/12/31',
-      adultsCount: this.adults || 0,
+      adultsCount: this.adults || 1,
       childrenCount: this.children || 0,
     };
   },
@@ -124,15 +124,11 @@ export default {
         params: {
           arrivalDate: this.arrivalDate,
           departureDate: this.departureDate,
-          adultsCount: this.adultsCount,
-          childrenCount: this.childrenCount,
+          adults: this.adultsCount,
+          children: this.childrenCount,
         },
       });
     },
   },
 };
 </script>
-
-<style scoped>
-
-</style>

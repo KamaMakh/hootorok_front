@@ -1,27 +1,57 @@
 <template>
-  <q-field :label="$t('guests')" stack-label>
+  <q-field
+    dense
+    :label="withLabel ? $t('guests') : undefined"
+    :stack-label="withLabel"
+  >
     <template v-slot:control>
       <div class="self-center full-width no-outline" tabindex="0">
-        <span>
-          {{formattedText}}
-        </span>
+        <span v-text="formattedText"/>
       </div>
       <q-menu fit>
         <div class="column q-pa-sm">
           <div class="row q-pa-sm justify-between items-center">
-            <div>{{ $t('adult_label') }}</div>
+            <div v-text="$t('adult_label')" class="q-mr-sm"/>
             <div class="q-gutter-sm row items-center">
-              <q-btn round icon="remove" size="sm" @click.native="dec(adultCount)" />
-              <div style="width: 1.5em" class="text-center">{{ adultCount.value }}</div>
-              <q-btn round icon="add" size="sm" @click.native="inc(adultCount)" />
+              <q-btn
+                round
+                size="sm"
+                icon="remove"
+                @click.native="dec(adultCount)"
+              />
+              <div
+                style="width: 1.5em"
+                class="text-center"
+                v-text="adultCount.value"
+              />
+              <q-btn
+                round
+                size="sm"
+                icon="add"
+                @click.native="inc(adultCount)"
+              />
             </div>
           </div>
           <div class="row q-pa-sm justify-between items-center">
-            <div>{{ $t('child_label') }}</div>
+            <div v-text="$t('child_label')" class="q-mr-sm"/>
             <div class="q-gutter-sm row items-center">
-              <q-btn round icon="remove" size="sm" @click.native="dec(childCount)" />
-              <div style="width: 1.5em" class="text-center">{{ childCount.value }}</div>
-              <q-btn round icon="add" size="sm" @click.native="inc(childCount)" />
+              <q-btn
+                round
+                size="sm"
+                icon="remove"
+                @click.native="dec(childCount)"
+              />
+              <div
+                style="width: 1.5em"
+                class="text-center"
+                v-text="childCount.value"
+              />
+              <q-btn
+                round
+                size="sm"
+                icon="add"
+                @click.native="inc(childCount)"
+              />
             </div>
           </div>
         </div>
@@ -33,6 +63,7 @@
 <script>
 const adultCountMin = 1;
 const childCountMin = 0;
+
 export default {
   name: 'GuestsSelect',
   props: {
@@ -40,6 +71,10 @@ export default {
     children: Number,
     declensions: Array,
     label: String,
+    withLabel: {
+      type: Boolean,
+      default: true,
+    },
   },
   data() {
     return {
@@ -101,7 +136,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-
-</style>
